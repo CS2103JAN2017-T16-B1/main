@@ -10,14 +10,10 @@ We are a team based in the [School of Computing, National University of Singapor
 
 **Components in charge of**: Storage <br>
 
-**Aspects/tools in charge of**: GUI, GUI Testing, Find command, Map Command, Sorting/Filtering <br>
+**Aspects/tools in charge of**: Storage, Deliverables and deadlines <br>
 
 **Features implemented**: 
-* Elegant UI design
-* "Power search" for tasks
-* Automated sorting of tasks:
-* Change of viewport to recently added, set or updated task
-* Map Command to find the venue of a task on Google Maps
+
 
 **Other major contribution**:
 
@@ -28,18 +24,10 @@ We are a team based in the [School of Computing, National University of Singapor
 
 **Components in charge of**: Logic
 
-**Aspects/tools in charge of**: GUI, GUI Testing, Find command, Map Command, Sorting/Filtering
+**Aspects/tools in charge of**: Testing, Code Quality,
 
 **Features implemented**: 
-* Add task - floating, deadline, events
-* Delete task(s)
-* Update task - floating, deadline, events
-* Set task status
-* Undo task(s)
-* Redo task(s)
-* Input Validation
-* Highly flexible commands
-* NLP Date parsing with Natty
+
 
 **Other major contribution**:
 
@@ -50,11 +38,10 @@ We are a team based in the [School of Computing, National University of Singapor
 
 **Components in charge of**: UI
 
-**Aspects/tools in charge of**: GUI, GUI Testing
+**Aspects/tools in charge of**: GUI, GUI Testing,
 
 **Features implemented**: 
-* Elegant UI design
-* Change of viewport to recently added, set or updated task
+
 
 **Other major contribution**:
 
@@ -65,11 +52,10 @@ We are a team based in the [School of Computing, National University of Singapor
 
 **Components in charge of**: Model
 
-**Aspects/tools in charge of**: Find Command, Sorting/Filtering, Map Command
+**Aspects/tools in charge of**: Scheduling and tracking, Documentation,
 
 **Features implemented**: 
-* "Power search" for tasks
-* Automated sorting of tasks:
+
 
 **Other major contribution**:
 
