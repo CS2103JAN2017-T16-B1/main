@@ -10,10 +10,11 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.UnmodifiableObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.ReadOnlyPerson;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.UniquePersonList.DuplicatePersonException;
+import seedu.address.model.assignment.*;
+import seedu.address.model.assignment.UniqueEventList.DuplicateEventException;
+import seedu.address.model.assignment.UniqueEventList.EventNotFoundException;
+import seedu.address.model.assignment.UniqueTaskList.DuplicateTaskException;
+import seedu.address.model.assignment.UniqueTaskList.TaskNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -23,7 +24,8 @@ import seedu.address.model.tag.UniqueTagList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueEventList events;
+    private final UniqueTaskList tasks;
     private final UniqueTagList tags;
 
     /*
@@ -34,7 +36,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        events = new UniqueEventList();
+        tasks = new UniqueTaskList();
         tags = new UniqueTagList();
     }
 
@@ -50,11 +53,14 @@ public class AddressBook implements ReadOnlyAddressBook {
 
 //// list overwrite operations
 
-    public void setPersons(List<? extends ReadOnlyPerson> persons)
-            throws UniquePersonList.DuplicatePersonException {
-        this.persons.setPersons(persons);
+    public void setEvent(List<? extends ReadOnlyEvent> events) throws DuplicateEventException {
+        this.events.setEvents(events);
     }
-
+    
+    public void setTask(List<? extends ReadOnlyTask> tasks) throws DuplicateTaskException {
+        this.tasks.setTasks(tasks);
+    }
+    
     public void setTags(Collection<Tag> tags) throws UniqueTagList.DuplicateTagException {
         this.tags.setTags(tags);
     }
@@ -62,88 +68,142 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         assert newData != null;
         try {
-            setPersons(newData.getPersonList());
-        } catch (UniquePersonList.DuplicatePersonException e) {
-            assert false : "AddressBooks should not have duplicate persons";
+            setEvent(newData.getEventList());
+            setTask(newData.getTaskList());
+        } catch (DuplicateEventException e) {
+            assert false : "Task Manager should not have duplicate events or tasks";
+        } catch( DuplicateTaskException e){
+        	assert false : "Task Manager should not have duplicate events or tasks";
         }
         try {
             setTags(newData.getTagList());
         } catch (UniqueTagList.DuplicateTagException e) {
-            assert false : "AddressBooks should not have duplicate tags";
+            assert false : "Task Manager should not have duplicate tags";
         }
-        syncMasterTagListWith(persons);
+        syncMasterTagListWith(tasks);
+        syncMasterTagListWith(events);
     }
 
-//// person-level operations
+//// Task operations
 
     /**
-     * Adds a person to the address book.
-     * Also checks the new person's tags and updates {@link #tags} with any new tags found,
+     * Adds a Task to the Task Manager.
+     * Also checks the new task's tags and updates {@link #tags} with any new tags found,
      * and updates the Tag objects in the person to point to those in {@link #tags}.
      *
-     * @throws UniquePersonList.DuplicatePersonException if an equivalent person already exists.
+     * @throws DuplicateTaskException if an equivalent task already exists.
      */
-    public void addPerson(Person p) throws UniquePersonList.DuplicatePersonException {
+    public void addTask(Task p) throws DuplicateTaskException {
         syncMasterTagListWith(p);
-        persons.add(p);
+        tasks.add(p);
     }
+    
 
     /**
-     * Updates the person in the list at position {@code index} with {@code editedReadOnlyPerson}.
-     * {@code AddressBook}'s tag list will be updated with the tags of {@code editedReadOnlyPerson}.
-     * @see #syncMasterTagListWith(Person)
+     * Updates the Task in the list at position {@code index} with {@code editedReadOnlyTask}.
+     * {@code Task Manager}'s tag list will be updated with the tags of {@code editedReadOnlyTask}.
+     * @see #syncMasterTagListWith(Task)
      *
      * @throws DuplicatePersonException if updating the person's details causes the person to be equivalent to
      *      another existing person in the list.
      * @throws IndexOutOfBoundsException if {@code index} < 0 or >= the size of the list.
      */
-    public void updatePerson(int index, ReadOnlyPerson editedReadOnlyPerson)
-            throws UniquePersonList.DuplicatePersonException {
-        assert editedReadOnlyPerson != null;
+    public void updateTask(int index, ReadOnlyTask editedReadOnlyTask)
+            throws DuplicateTaskException {
+        assert editedReadOnlyTask != null;
 
-        Person editedPerson = new Person(editedReadOnlyPerson);
-        syncMasterTagListWith(editedPerson);
+        Task editedTask = new Task(editedReadOnlyTask);
+        syncMasterTagListWith(editedTask);
         // TODO: the tags master list will be updated even though the below line fails.
         // This can cause the tags master list to have additional tags that are not tagged to any person
         // in the person list.
-        persons.updatePerson(index, editedPerson);
+        tasks.updateTask(index, editedTask);
     }
+////Event operations
+
+   /**
+    * Adds a Task to the Task Manager.
+    * Also checks the new task's tags and updates {@link #tags} with any new tags found,
+    * and updates the Tag objects in the person to point to those in {@link #tags}.
+    *
+    * @throws DuplicateTaskException if an equivalent task already exists.
+    */
+   public void addEvent(Event p) throws DuplicateEventException {
+       syncMasterTagListWith(p);
+       events.add(p);
+   }
+   
+
+   /**
+    * Updates the Event in the list at position {@code index} with {@code editedReadOnlyEvent}.
+    * {@code Event Manager}'s tag list will be updated with the tags of {@code editedReadOnlyEvent}.
+    * @see #syncMasterTagListWith(Event)
+    *
+    * @throws DuplicatePersonException if updating the person's details causes the person to be equivalent to
+    *      another existing person in the list.
+    * @throws IndexOutOfBoundsException if {@code index} < 0 or >= the size of the list.
+    */
+   public void updateEvent(int index, ReadOnlyEvent editedReadOnlyEvent)
+           throws DuplicateEventException {
+       assert editedReadOnlyEvent != null;
+
+       Event editedEvent = new Event(editedReadOnlyEvent);
+       syncMasterTagListWith(editedEvent);
+       // TODO: the tags master list will be updated even though the below line fails.
+       // This can cause the tags master list to have additional tags that are not tagged to any person
+       // in the person list.
+       events.updateEvent(index, editedEvent);
+   }
+   
+////General operations
 
     /**
-     * Ensures that every tag in this person:
+     * Ensures that every tag in this assignment
      *  - exists in the master list {@link #tags}
      *  - points to a Tag object in the master list
      */
-    private void syncMasterTagListWith(Person person) {
-        final UniqueTagList personTags = person.getTags();
-        tags.mergeFrom(personTags);
+    private void syncMasterTagListWith(Assignment assignment) {
+        final UniqueTagList assignmentTags = assignment.getTags();
+        tags.mergeFrom(assignmentTags);
 
         // Create map with values = tag object references in the master list
         // used for checking person tag references
         final Map<Tag, Tag> masterTagObjects = new HashMap<>();
         tags.forEach(tag -> masterTagObjects.put(tag, tag));
 
-        // Rebuild the list of person tags to point to the relevant tags in the master tag list.
+        // Rebuild the list of tags to point to the relevant tags in the master tag list.
         final Set<Tag> correctTagReferences = new HashSet<>();
-        personTags.forEach(tag -> correctTagReferences.add(masterTagObjects.get(tag)));
-        person.setTags(new UniqueTagList(correctTagReferences));
+        assignmentTags.forEach(tag -> correctTagReferences.add(masterTagObjects.get(tag)));
+        assignment.setTags(new UniqueTagList(correctTagReferences));
     }
 
     /**
-     * Ensures that every tag in these persons:
+     * Ensures that every tag in the task or event:
      *  - exists in the master list {@link #tags}
      *  - points to a Tag object in the master list
      *  @see #syncMasterTagListWith(Person)
      */
-    private void syncMasterTagListWith(UniquePersonList persons) {
-        persons.forEach(this::syncMasterTagListWith);
+    private void syncMasterTagListWith(UniqueEventList events) {
+        events.forEach(this::syncMasterTagListWith);
+    }
+    
+    private void syncMasterTagListWith(UniqueTaskList tasks) {
+        tasks.forEach(this::syncMasterTagListWith);
     }
 
-    public boolean removePerson(ReadOnlyPerson key) throws UniquePersonList.PersonNotFoundException {
-        if (persons.remove(key)) {
+    public boolean removeTask(ReadOnlyTask key) throws TaskNotFoundException {
+        if (tasks.remove(key)) {
             return true;
         } else {
-            throw new UniquePersonList.PersonNotFoundException();
+            throw new TaskNotFoundException();
+        }
+    }
+    
+    public boolean removeEvent(ReadOnlyEvent key) throws EventNotFoundException {
+        if (events.remove(key)) {
+            return true;
+        } else {
+            throw new EventNotFoundException();
         }
     }
 
@@ -157,13 +217,18 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asObservableList().size() + " persons, " + tags.asObservableList().size() +  " tags";
+        return events.asObservableList().size() + " Events, " + tasks.asObservableList().size() + " Tasks, " + tags.asObservableList().size() +  " tags";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<ReadOnlyPerson> getPersonList() {
-        return new UnmodifiableObservableList<>(persons.asObservableList());
+    public ObservableList<ReadOnlyEvent> getEventList() {
+        return new UnmodifiableObservableList<>(events.asObservableList());
+    }
+    
+    @Override
+    public ObservableList<ReadOnlyTask> getTaskList() {
+        return new UnmodifiableObservableList<>(tasks.asObservableList());
     }
 
     @Override
@@ -175,13 +240,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && this.persons.equals(((AddressBook) other).persons)
+                && this.events.equals(((AddressBook) other).events)
+                && this.tasks.equals(((AddressBook) other).tasks)
                 && this.tags.equalsOrderInsensitive(((AddressBook) other).tags));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(persons, tags);
+        return Objects.hash(events, tasks, tags);
     }
 }
