@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import seedu.address.model.person.ReadOnlyPerson;
 
-public class SelectCommandTest extends AddressBookGuiTest {
+public class SelectCommandTest extends TaskManagerGuiTest {
 
 
     @Test

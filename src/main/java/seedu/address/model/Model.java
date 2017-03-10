@@ -13,10 +13,10 @@ import seedu.address.model.person.UniquePersonList.DuplicatePersonException;
  */
 public interface Model {
     /** Clears existing backing model and replaces with the provided new data. */
-    void resetData(ReadOnlyAddressBook newData);
+    void resetData(ReadOnlyTaskManager newData);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the TaskManager */
+    ReadOnlyTaskManager getTaskManager();
 
     /** Deletes the given person. */
     void deletePerson(ReadOnlyPerson target) throws UniquePersonList.PersonNotFoundException;
