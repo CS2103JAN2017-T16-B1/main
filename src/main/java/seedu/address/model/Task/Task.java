@@ -2,6 +2,7 @@ package seedu.address.model.Task;
 
 import java.util.Objects;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -23,7 +24,8 @@ public class Task implements ReadOnlyTask {
     /**
      * Every name and start time must be present and not null.
      */
-    public Task(Name name, Description description, StartTime startTime, EndTime endTime, ID id, Priority priority, Status status, UniqueTagList tags) {
+    public Task(Name name, Description description, StartTime startTime, EndTime endTime,
+    		ID id, Priority priority, Status status, UniqueTagList tags) {
         assert !CollectionUtil.isAnyNull(name, startTime,id, tags);
         this.name = name;
         this.description = description;
@@ -34,12 +36,24 @@ public class Task implements ReadOnlyTask {
         this.status=status;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
-
+    public Task(Name name, Description description, StartTime startTime, EndTime endTime, UniqueTagList tags) throws IllegalValueException{
+    	assert !CollectionUtil.isAnyNull(name, startTime, tags);
+    	this.name = name;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.id= new ID("0");
+        this.priority=new Priority("m");
+        this.status= new Status("undone");
+        this.tags = new UniqueTagList(tags);
+        
+    }
     /**
      * Creates a copy of the given ReadOnlyPerson.
      */
     public Task(ReadOnlyTask source) {
-        this(source.getName(), source.getDescription(), source.getStartTime(), source.getEndTime(),source.getId(),source.getPriority(), source.getStatus(), source.getTags());
+        this(source.getName(), source.getDescription(), source.getStartTime(), source.getEndTime(),
+        		source.getId(),source.getPriority(), source.getStatus(), source.getTags());
     }
 
     public void setName(Name name) {
@@ -145,6 +159,9 @@ public class Task implements ReadOnlyTask {
         this.setDescription(replacement.getDescription());
         this.setStartTime(replacement.getStartTime());
         this.setEndTime(replacement.getEndTime());
+        this.setStatus(replacement.getStatus());
+        this.setPriority(replacement.getPriority());
+        // no change to ID
         this.setTags(replacement.getTags());
     }
 
