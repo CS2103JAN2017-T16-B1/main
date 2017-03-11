@@ -1,21 +1,21 @@
 package seedu.address.testutil;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.Task.EndTime;
+import seedu.address.model.Task.StartTime;
+import seedu.address.model.Task.Name;
+import seedu.address.model.Task.Description;
+import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
  * A mutable person object. For testing only.
  */
-public class TestPerson implements ReadOnlyPerson {
+public class TestPerson implements ReadOnlyTask {
 
     private Name name;
-    private Address address;
-    private Email email;
-    private Phone phone;
+    private EndTime endTime;
+    private StartTime startTime;
+    private Description description;
     private UniqueTagList tags;
 
     public TestPerson() {
@@ -27,9 +27,9 @@ public class TestPerson implements ReadOnlyPerson {
      */
     public TestPerson(TestPerson personToCopy) {
         this.name = personToCopy.getName();
-        this.phone = personToCopy.getPhone();
-        this.email = personToCopy.getEmail();
-        this.address = personToCopy.getAddress();
+        this.description = personToCopy.getDescription();
+        this.startTime = personToCopy.getStartTime();
+        this.endTime = personToCopy.getEndTime();
         this.tags = personToCopy.getTags();
     }
 
@@ -37,16 +37,16 @@ public class TestPerson implements ReadOnlyPerson {
         this.name = name;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddress(EndTime endTime) {
+        this.endTime = endTime;
     }
 
-    public void setEmail(Email email) {
-        this.email = email;
+    public void setEmail(StartTime startTime) {
+        this.startTime = startTime;
     }
 
-    public void setPhone(Phone phone) {
-        this.phone = phone;
+    public void setPhone(Description description) {
+        this.description = description;
     }
 
     public void setTags(UniqueTagList tags) {
@@ -59,18 +59,18 @@ public class TestPerson implements ReadOnlyPerson {
     }
 
     @Override
-    public Phone getPhone() {
-        return phone;
+    public Description getDescription() {
+        return description;
     }
 
     @Override
-    public Email getEmail() {
-        return email;
+    public StartTime getStartTime() {
+        return startTime;
     }
 
     @Override
-    public Address getAddress() {
-        return address;
+    public EndTime getEndTime() {
+        return endTime;
     }
 
     @Override
@@ -86,9 +86,9 @@ public class TestPerson implements ReadOnlyPerson {
     public String getAddCommand() {
         StringBuilder sb = new StringBuilder();
         sb.append("add " + this.getName().fullName + " ");
-        sb.append("a/" + this.getAddress().value + " ");
-        sb.append("p/" + this.getPhone().value + " ");
-        sb.append("e/" + this.getEmail().value + " ");
+        sb.append("a/" + this.getEndTime().endTime + " ");
+        sb.append("p/" + this.getDescription().description + " ");
+        sb.append("e/" + this.getStartTime().startTime + " ");
         this.getTags().asObservableList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }
