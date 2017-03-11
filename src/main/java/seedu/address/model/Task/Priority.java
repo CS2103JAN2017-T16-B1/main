@@ -15,7 +15,7 @@ public class Priority {
      * The urgency of the task must be either h,m or l,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String PRIORITY_VALIDATION_REGEX = "^[h,m,l]*";
+    public static final String PRIORITY_VALIDATION_REGEX = "[h,m,l]";//^(h|m|l)*";
 
     public final String priority;
 

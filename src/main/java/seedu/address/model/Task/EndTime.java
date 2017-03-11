@@ -5,7 +5,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
  * Represents a event's end time in the task manager.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
 public class EndTime {
 
@@ -27,7 +27,7 @@ public class EndTime {
      */
     public EndTime(String endTime) throws IllegalValueException {
         assert endTime != null;
-        if (!isValidAddress(endTime)) {
+        if (!isValidTime(endTime)) {
             throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
         }
         this.endTime = endTime;
@@ -36,7 +36,7 @@ public class EndTime {
     /**
      * Returns true if a given string is a valid time.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidTime(String test) {
         return test.matches(ENDTIME_VALIDATION_REGEX);
     }
 

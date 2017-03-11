@@ -15,7 +15,7 @@ public class Status {
      * The urgency of the task must be either h,m or l,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String STATUS_VALIDATION_REGEX = "^[done|undone]";
+    public static final String STATUS_VALIDATION_REGEX = "^(done|undone)";
 
     public final String status;
 
