@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.TaskManager;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.Task.Task;
+import seedu.address.model.Task.UniqueTaskList;
 
 /**
  *
@@ -46,8 +46,8 @@ public class TypicalTestPersons {
     public static void loadTaskManagerWithSampleData(TaskManager ab) {
         for (TestPerson person : new TypicalTestPersons().getTypicalPersons()) {
             try {
-                ab.addPerson(new Person(person));
-            } catch (UniquePersonList.DuplicatePersonException e) {
+                ab.addTask(new Task(person));
+            } catch (UniqueTaskList.DuplicatetaskException e) {
                 assert false : "not possible";
             }
         }
