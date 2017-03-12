@@ -31,11 +31,11 @@ public interface Model {
      *      another existing person in the list.
      * @throws IndexOutOfBoundsException if {@code filteredPersonListIndex} < 0 or >= the size of the filtered list.
      */
-    void updatePerson(int filteredPersonListIndex, ReadOnlyTask editedPerson)
+    void updateTask(int filteredPersonListIndex, ReadOnlyTask editedPerson)
             throws UniqueTaskList.DuplicatetaskException;
 
     /** Returns the filtered person list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */
-    UnmodifiableObservableList<ReadOnlyTask> getFilteredPersonList();
+    UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
 
     /** Updates the filter of the filtered person list to show all persons */
     void updateFilteredListToShowAll();
