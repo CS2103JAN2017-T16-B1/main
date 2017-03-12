@@ -76,6 +76,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
      */
+
     private static Task createEditedTask(ReadOnlyTask taskToEdit,
                                              EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
@@ -93,6 +94,7 @@ public class EditCommand extends Command {
         
         }
 
+
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
@@ -103,10 +105,13 @@ public class EditCommand extends Command {
         private Optional<StartTime> startTime = Optional.empty();
         private Optional<EndTime> endTime = Optional.empty();
         private Optional<Priority> priority = Optional.empty();
+
         private Optional<Status> status = Optional.empty();
+
         private Optional<UniqueTagList> tags = Optional.empty();
 
         public EditTaskDescriptor() {}
+
 
        
 		public EditTaskDescriptor(EditTaskDescriptor toCopy) {
@@ -114,6 +119,7 @@ public class EditCommand extends Command {
             this.description = toCopy.getDescription();
             this.startTime = toCopy.getStartTime();
             this.endTime = toCopy.getEndTime();
+
             this.priority= toCopy.getPriority();
             this.status= toCopy.getStatus();
             this.tags = toCopy.getTags();
@@ -176,7 +182,16 @@ public class EditCommand extends Command {
         public Optional<EndTime> getEndTime() {
             return endTime;
         }
+        
+        public void setPriority(Optional<Priority> priority) {
+            assert priority != null;
+            this.priority = priority;
+        }
 
+        public Optional<Priority> getPriority() {
+			return priority;
+		}
+        
         public void setTags(Optional<UniqueTagList> tags) {
             assert tags != null;
             this.tags = tags;
