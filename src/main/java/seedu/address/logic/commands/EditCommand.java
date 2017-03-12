@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Task.EndTime;
 import seedu.address.model.Task.StartTime;
 import seedu.address.model.Task.Name;
+import seedu.address.model.Task.Priority;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.Description;
 import seedu.address.model.Task.ReadOnlyTask;
@@ -78,12 +79,13 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElseGet(personToEdit::getName);
-        Description updatedPhone = editPersonDescriptor.getPhone().orElseGet(personToEdit::getDescription);
-        StartTime updatedEmail = editPersonDescriptor.getEmail().orElseGet(personToEdit::getStartTime);
-        EndTime updatedAddress = editPersonDescriptor.getAddress().orElseGet(personToEdit::getEndTime);
+        Description updatedDescription = editPersonDescriptor.getDescription().orElseGet(personToEdit::getDescription);
+        StartTime updatedStartTime = editPersonDescriptor.getStartTime().orElseGet(personToEdit::getStartTime);
+        EndTime updatedEndTime = editPersonDescriptor.getEndTime().orElseGet(personToEdit::getEndTime);
+        Priority updatedPriority = editPersonDescriptor.getPriority().orElseGet(personToEdit::getPriority);
         UniqueTagList updatedTags = editPersonDescriptor.getTags().orElseGet(personToEdit::getTags);
 
-        return new Task(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Task(updatedName, updatedDescription, updatedStartTime, updatedEndTime, null, updatedPriority, null, updatedTags);
     }
 
     /**
@@ -95,15 +97,18 @@ public class EditCommand extends Command {
         private Optional<Description> description = Optional.empty();
         private Optional<StartTime> startTime = Optional.empty();
         private Optional<EndTime> endTime = Optional.empty();
+        private Optional<Priority> priority = Optional.empty();
         private Optional<UniqueTagList> tags = Optional.empty();
 
         public EditPersonDescriptor() {}
 
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        
+
+		public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             this.name = toCopy.getName();
-            this.description = toCopy.getPhone();
-            this.startTime = toCopy.getEmail();
-            this.endTime = toCopy.getAddress();
+            this.description = toCopy.getDescription();
+            this.startTime = toCopy.getStartTime();
+            this.endTime = toCopy.getEndTime();
             this.tags = toCopy.getTags();
         }
 
@@ -123,33 +128,42 @@ public class EditCommand extends Command {
             return name;
         }
 
-        public void setPhone(Optional<Description> description) {
+        public void setDescription(Optional<Description> description) {
             assert description != null;
             this.description = description;
         }
 
-        public Optional<Description> getPhone() {
+        public Optional<Description> getDescription() {
             return description;
         }
 
-        public void setEmail(Optional<StartTime> startTime) {
+        public void setStartTime(Optional<StartTime> startTime) {
             assert startTime != null;
             this.startTime = startTime;
         }
 
-        public Optional<StartTime> getEmail() {
+        public Optional<StartTime> getStartTime() {
             return startTime;
         }
 
-        public void setAddress(Optional<EndTime> endTime) {
+        public void setEndTime(Optional<EndTime> endTime) {
             assert endTime != null;
             this.endTime = endTime;
         }
 
-        public Optional<EndTime> getAddress() {
+        public Optional<EndTime> getEndTime() {
             return endTime;
         }
+        
+        public void setPriority(Optional<Priority> priority) {
+            assert priority != null;
+            this.priority = priority;
+        }
 
+        public Optional<Priority> getPriority() {
+			return priority;
+		}
+        
         public void setTags(Optional<UniqueTagList> tags) {
             assert tags != null;
             this.tags = tags;
