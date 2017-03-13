@@ -434,7 +434,7 @@ public class LogicManagerTest {
          */
         Task generatePerson(int seed) throws Exception {
             return new Task(
-                    new Name("Person " + seed),
+                    new Name("Task " + seed),
                     new Description("" + Math.abs(seed)),
                     new StartTime(seed + "@email"),
                     new EndTime("House of " + seed),
