@@ -52,14 +52,14 @@ public class EditCommandParser {
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
-        
+
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             return new IncorrectCommand(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditCommand(index.get(), editTaskDescriptor);
         */
-        return null ;
+        return null;
     }
 
     /**

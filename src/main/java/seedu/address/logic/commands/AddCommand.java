@@ -5,14 +5,14 @@ import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Task.Description;
 import seedu.address.model.Task.EndTime;
 import seedu.address.model.Task.ID;
-import seedu.address.model.Task.StartTime;
-import seedu.address.model.Task.Status;
 import seedu.address.model.Task.Name;
 import seedu.address.model.Task.Priority;
+import seedu.address.model.Task.StartTime;
+import seedu.address.model.Task.Status;
 import seedu.address.model.Task.Task;
-import seedu.address.model.Task.Description;
 import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
@@ -55,7 +55,7 @@ public class AddCommand extends Command {
                 new EndTime(endTime),
                 new ID(id),
                 //new ID(id++),
-                new Priority("m"), 
+                new Priority("m"),
                 new Status("undone"),
                 new UniqueTagList(tagSet)
         );
@@ -76,7 +76,7 @@ public class AddCommand extends Command {
                 new StartTime(null),
                 new EndTime(endTime),
                 new ID(id),
-                new Priority("m"), 
+                new Priority("m"),
                 new Status("undone"),
                 new UniqueTagList(tagSet)
         );
@@ -97,16 +97,16 @@ public class AddCommand extends Command {
                 new StartTime(null),
                 new EndTime(null),
                 new ID(id),
-                new Priority("m"), 
+                new Priority("m"),
                 new Status("undone"),
                 new UniqueTagList(tagSet)
         );
         incrementID();
     }
-    private void incrementID(){
-       Integer intid = Integer.parseInt(id);
-       intid++;
-       id = intid.toString();
+    private void incrementID() {
+        Integer intid = Integer.parseInt(id);
+        intid++;
+        id = intid.toString();
     }
     /*
     public AddCommand(String name, String description, String startTime, String endTime,
@@ -125,7 +125,7 @@ public class AddCommand extends Command {
                 new EndTime(endTime),
                 new ID(id),
 
-                new Priority(priority), 
+                new Priority(priority),
                 new Status(status),
                 new UniqueTagList(tagSet)
         );

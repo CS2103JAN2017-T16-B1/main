@@ -27,16 +27,16 @@ public class EndTime {
      */
     public EndTime(String endTime) throws IllegalValueException {
         assert endTime != null;
-        if(endTime!=null){
+        if (endTime != null) {
             if (!isValidTime(endTime)) {
                 throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
             }
             this.endTime = endTime;
         }
-        else{
-            this.endTime=null;
+        else {
+            this.endTime = null;
         }
-        
+
     }
 
     /**
@@ -62,12 +62,13 @@ public class EndTime {
     public int hashCode() {
         return endTime.hashCode();
     }
-    public boolean isEmpty(){
-    	if(endTime==""){
-    		return true;
-    	}else{
-    		return false;
-    	}
+    public boolean isEmpty() {
+        if (endTime == "") {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 }
