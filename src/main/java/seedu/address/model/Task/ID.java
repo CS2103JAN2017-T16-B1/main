@@ -17,21 +17,21 @@ public class ID {
      */
     public static final String ID_VALIDATION_REGEX = "\\d+";
 
-    public final int id;
+    public final String id;
 
     /**
      * Validates given name.
      *
      * @throws IllegalValueException if given name string is invalid.
      */
-    public ID(int id) throws IllegalValueException {
-        assert id != 0;
-        String trimmedId = Integer.toString(id);
+    public ID(String id) throws IllegalValueException {
+        assert id != null;
+        String trimmedId = id.trim();
         if (!isValidName(trimmedId)) {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
         }
-        int trimmedIntId= Integer.parseInt(trimmedId);
-        this.id = trimmedIntId;
+        //int trimmedIntId= trimmedId;
+        this.id = trimmedId;
     }
 
     /**

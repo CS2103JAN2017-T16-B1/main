@@ -24,7 +24,7 @@ import seedu.address.model.tag.UniqueTagList;
 public class XmlAdaptedTask {
 
 	@XmlElement(required = true)
-    private int id;
+    private String id;
 	@XmlElement(required = true)
     private String name;
     @XmlElement(required = false)
@@ -43,18 +43,19 @@ public class XmlAdaptedTask {
 
 
     /**
-     * Constructs an XmlAdaptedPerson.
+     * Constructs an XmlAdaptedTask.
      * This is the no-arg constructor that is required by JAXB.
      */
     public XmlAdaptedTask() {}
 
 
     /**
-     * Converts a given Person into this class for JAXB use.
+     * Converts a given Task into this class for JAXB use.
      *
      * @param source future changes to this will not affect the created XmlAdaptedPerson
      */
     public XmlAdaptedTask(ReadOnlyTask source) {
+        id = source.getId().id;
         name = source.getName().fullName;
         description = source.getDescription().description;
         starttime = source.getStartTime().startTime;
@@ -68,7 +69,7 @@ public class XmlAdaptedTask {
     }
 
     /**
-     * Converts this jaxb-friendly adapted person object into the model's Person object.
+     * Converts this jaxb-friendly adapted task object into the model's Task object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
