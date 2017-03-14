@@ -1,9 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.NoSuchElementException;
@@ -14,7 +14,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.IncorrectCommand;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddCommand object.
  */
 public class AddCommandParser {
 
@@ -23,17 +23,63 @@ public class AddCommandParser {
      * and returns an AddCommand object for execution.
      */
     public Command parse(String args) {
-        ArgumentTokenizer argsTokenizer =
-                new ArgumentTokenizer(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
-        argsTokenizer.tokenize(args);
-        try {
+    String arguments = args.toString();
+    String taskType = arguments.split(" ")[1];//args.substring(0,args.indexOf(" "));
+    //String argument = args.substring(taskType.indexOf(" ")+1);
+    String argument = arguments.substring(taskType.length()+1);
+    ArgumentTokenizer argsTokenizer;
+ //   ArgumentTokenizer argsTokenizer =  new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_STARTTIME, PREFIX_ENDTIME, PREFIX_TAG);
+ //   argsTokenizer.tokenize(args);
+    try {
+      //String taskType = argsTokenizer.getPreamble().get();
+        
+            switch(taskType){
+            case "task":
+                argsTokenizer =  new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_ENDTIME, PREFIX_TAG);
+                argsTokenizer.tokenize(args);
+                return new AddCommand(
+                        argsTokenizer.getPreamble().get(),
+                        argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),
+                        argsTokenizer.getValue(PREFIX_ENDTIME).get(),
+                        ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
+                );
+                
+            case "event":
+                argsTokenizer =  new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_STARTTIME, PREFIX_ENDTIME, PREFIX_TAG);
+                argsTokenizer.tokenize(args);
+                return new AddCommand(
+                        argsTokenizer.getPreamble().get(),
+                        argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),
+                        argsTokenizer.getValue(PREFIX_STARTTIME).get(),
+                        argsTokenizer.getValue(PREFIX_ENDTIME).get(),
+                        ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
+                );
+                
+            case "floating":
+                argsTokenizer =  new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_TAG);
+                argsTokenizer.tokenize(args);
+                return new AddCommand(
+                        argsTokenizer.getPreamble().get(),
+                        argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),                        
+                        ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
+                );
+             
+            default:
+                argsTokenizer =  new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_STARTTIME, PREFIX_ENDTIME, PREFIX_TAG);
+                argsTokenizer.tokenize(args);
+                System.out.println("Please specify the type of Task to add (task/event/floating)");
+                
+            }
+            return null;
+            /*
             return new AddCommand(
                     argsTokenizer.getPreamble().get(),
-                    argsTokenizer.getValue(PREFIX_PHONE).get(),
+                    argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),
                     argsTokenizer.getValue(PREFIX_EMAIL).get(),
                     argsTokenizer.getValue(PREFIX_ADDRESS).get(),
-                    ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
+                    args, args, args, ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
             );
+            */
         } catch (NoSuchElementException nsee) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         } catch (IllegalValueException ive) {

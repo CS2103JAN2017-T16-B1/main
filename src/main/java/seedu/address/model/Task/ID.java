@@ -24,9 +24,9 @@ public class ID {
      *
      * @throws IllegalValueException if given name string is invalid.
      */
-    public ID(String id) throws IllegalValueException {
-        assert id != null;
-        String trimmedId = id.trim();
+    public ID(int id) throws IllegalValueException {
+        assert id != 0;
+        String trimmedId = Integer.toString(id);
         if (!isValidName(trimmedId)) {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
         }
