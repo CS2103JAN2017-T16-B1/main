@@ -141,13 +141,7 @@ public class EditCommand extends Command {
             return name;
         }
         
-        public void setPriority(Optional<Priority> priority) {
-            assert priority != null;
-            this.priority = priority;
-        }
-        public Optional<Priority> getPriority() {
-            return priority;
-        }
+
         public void setStatus(Optional<Status> status) {
             assert status != null;
             this.status = status;

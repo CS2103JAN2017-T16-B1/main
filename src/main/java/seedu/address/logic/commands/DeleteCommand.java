@@ -21,9 +21,12 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     public final int targetIndex;
+    
+    public final char targetList;
 
-    public DeleteCommand(int targetIndex) {
+    public DeleteCommand(char targetList, int targetIndex) {
         this.targetIndex = targetIndex;
+        this.targetList = targetList;
     }
 
 
@@ -39,7 +42,7 @@ public class DeleteCommand extends Command {
         ReadOnlyTask personToDelete = lastShownList.get(targetIndex - 1);
 
         try {
-            model.deletePerson(personToDelete);
+            model.deleteTask(personToDelete);
         } catch (TaskNotFoundException pnfe) {
             assert false : "The target person cannot be missing";
         }
