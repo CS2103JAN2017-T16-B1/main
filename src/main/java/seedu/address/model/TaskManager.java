@@ -64,7 +64,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         try {
             setTasks(newData.getTaskList());
         } catch (UniqueTaskList.DuplicatetaskException e) {
-            assert false : "TaskManager should not have duplicate persons";
+            assert false : "TaskManager should not have duplicate Task";
         }
         try {
             setTags(newData.getTagList());
@@ -135,8 +135,8 @@ public class TaskManager implements ReadOnlyTaskManager {
      *  - points to a Tag object in the master list
      *  @see #syncMasterTagListWith(Task)
      */
-    private void syncMasterTagListWith(UniqueTaskList persons) {
-        persons.forEach(this::syncMasterTagListWith);
+    private void syncMasterTagListWith(UniqueTaskList tasks) {
+        tasks.forEach(this::syncMasterTagListWith);
     }
 
     public boolean removePerson(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {

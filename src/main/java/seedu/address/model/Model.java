@@ -19,10 +19,10 @@ public interface Model {
     ReadOnlyTaskManager getTaskManager();
 
     /** Deletes the given person. */
-    void deletePerson(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
+    void deleteTask(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
 
     /** Adds the given person */
-    void addPerson(Task task) throws UniqueTaskList.DuplicatetaskException;
+    void addTask(Task task) throws UniqueTaskList.DuplicatetaskException;
 
     /**
      * Updates the person located at {@code filteredPersonListIndex} with {@code editedPerson}.
