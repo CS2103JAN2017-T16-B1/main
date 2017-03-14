@@ -30,7 +30,8 @@ public class EditCommandParser {
     public Command parse(String args) {
         assert args != null;
         ArgumentTokenizer argsTokenizer =
-                new ArgumentTokenizer(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_ENDTIME, PREFIX_STARTTIME,
+                		PREFIX_PRIORITY, PREFIX_STATUS, PREFIX_TAG);
         argsTokenizer.tokenize(args);
         List<Optional<String>> preambleFields = ParserUtil.splitPreamble(argsTokenizer.getPreamble().orElse(""), 2);
 
@@ -43,9 +44,11 @@ public class EditCommandParser {
         try {
 
             editTaskDescriptor.setName(ParserUtil.parseName(preambleFields.get(1)));
-            editTaskDescriptor.setDescription(ParserUtil.parsePhone(argsTokenizer.getValue(PREFIX_PHONE)));
-            editTaskDescriptor.setStartTime(ParserUtil.parseEmail(argsTokenizer.getValue(PREFIX_EMAIL)));
-            editTaskDescriptor.setEndTime(ParserUtil.parseAddress(argsTokenizer.getValue(PREFIX_ADDRESS)));
+            editTaskDescriptor.setDescription(ParserUtil.parseDescription(argsTokenizer.getValue(PREFIX_DESCRIPTION)));
+            editTaskDescriptor.setStartTime(ParserUtil.parseStartTime(argsTokenizer.getValue(PREFIX_STARTTIME)));
+            editTaskDescriptor.setEndTime(ParserUtil.parseEndTime(argsTokenizer.getValue(PREFIX_ENDTIME)));
+            editTaskDescriptor.setPriority(ParserUtil.parsePriority(argsTokenizer.getValue(PREFIX_PRIORITY)));
+            editTaskDescriptor.setStatus(ParserUtil.parseStatus(argsTokenizer.getValue(PREFIX_STATUS)));   
             editTaskDescriptor.setTags(parseTagsForEdit(ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))));
 
         } catch (IllegalValueException ive) {
