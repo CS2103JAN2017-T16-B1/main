@@ -19,20 +19,20 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
- * JAXB-friendly version of the Person.
+ * JAXB-friendly version of the Task.
  */
 public class XmlAdaptedTask {
 
 	@XmlElement(required = true)
-    private String id;
+    private int id;
 	@XmlElement(required = true)
     private String name;
-    @XmlElement(required = true)
-    private String phone;
-    @XmlElement(required = true)
-    private String email;
-    @XmlElement(required = true)
-    private String address;
+    @XmlElement(required = false)
+    private String description;
+    @XmlElement(required = false)
+    private String starttime;
+    @XmlElement(required = false)
+    private String endtime;
     @XmlElement(required = true)
 	private String priority;
     @XmlElement(required = true)
@@ -56,9 +56,11 @@ public class XmlAdaptedTask {
      */
     public XmlAdaptedTask(ReadOnlyTask source) {
         name = source.getName().fullName;
-        phone = source.getDescription().description;
-        email = source.getStartTime().startTime;
-        address = source.getEndTime().endTime;
+        description = source.getDescription().description;
+        starttime = source.getStartTime().startTime;
+        endtime = source.getEndTime().endTime;
+        priority = source.getPriority().priority;
+        status = source.getStatus().status;
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -71,18 +73,18 @@ public class XmlAdaptedTask {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
     public Task toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> taskTags = new ArrayList<>();
         for (XmlAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            taskTags.add(tag.toModelType());
         }
         final Name name = new Name(this.name);
-        final Description description = new Description(this.phone);
-        final StartTime startTime = new StartTime(this.email);
-        final EndTime endTime = new EndTime(this.address);
+        final Description description = new Description(this.description);
+        final StartTime startTime = new StartTime(this.starttime);
+        final EndTime endTime = new EndTime(this.endtime);
         final ID id = new ID(this.id);
         final Priority priority = new Priority(this.priority);
         final Status status = new Status(this.status);
-        final UniqueTagList tags = new UniqueTagList(personTags);
+        final UniqueTagList tags = new UniqueTagList(taskTags);
         return new Task(name, description, startTime, endTime, id, priority, status, tags);
     }
 }

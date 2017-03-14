@@ -24,19 +24,13 @@ public class AddCommandParser {
      */
     public Command parse(String args) {
     String arguments = args.toString();
-    String taskType = arguments.split(" ")[1];//args.substring(0,args.indexOf(" "));
-    //String argument = args.substring(taskType.indexOf(" ")+1);
+    String taskType = arguments.split(" ")[1];
     String argument = arguments.substring(taskType.length()+1);
-    ArgumentTokenizer argsTokenizer;
- //   ArgumentTokenizer argsTokenizer =  new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_STARTTIME, PREFIX_ENDTIME, PREFIX_TAG);
- //   argsTokenizer.tokenize(args);
-    try {
-      //String taskType = argsTokenizer.getPreamble().get();
-        
+    ArgumentTokenizer argsTokenizer =  new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_STARTTIME, PREFIX_ENDTIME, PREFIX_TAG);
+    argsTokenizer.tokenize(args);
+    try {        
             switch(taskType){
             case "task":
-                argsTokenizer =  new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_ENDTIME, PREFIX_TAG);
-                argsTokenizer.tokenize(args);
                 return new AddCommand(
                         argsTokenizer.getPreamble().get(),
                         argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),
@@ -44,9 +38,7 @@ public class AddCommandParser {
                         ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
                 );
                 
-            case "event":
-                argsTokenizer =  new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_STARTTIME, PREFIX_ENDTIME, PREFIX_TAG);
-                argsTokenizer.tokenize(args);
+            case "event":            
                 return new AddCommand(
                         argsTokenizer.getPreamble().get(),
                         argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),
@@ -56,8 +48,6 @@ public class AddCommandParser {
                 );
                 
             case "floating":
-                argsTokenizer =  new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_TAG);
-                argsTokenizer.tokenize(args);
                 return new AddCommand(
                         argsTokenizer.getPreamble().get(),
                         argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),                        
@@ -65,21 +55,11 @@ public class AddCommandParser {
                 );
              
             default:
-                argsTokenizer =  new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_STARTTIME, PREFIX_ENDTIME, PREFIX_TAG);
-                argsTokenizer.tokenize(args);
                 System.out.println("Please specify the type of Task to add (task/event/floating)");
                 
             }
             return null;
-            /*
-            return new AddCommand(
-                    argsTokenizer.getPreamble().get(),
-                    argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),
-                    argsTokenizer.getValue(PREFIX_EMAIL).get(),
-                    argsTokenizer.getValue(PREFIX_ADDRESS).get(),
-                    args, args, args, ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
-            );
-            */
+            
         } catch (NoSuchElementException nsee) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         } catch (IllegalValueException ive) {
