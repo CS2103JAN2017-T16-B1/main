@@ -1,9 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+
+import static seedu.address.logic.parser.CliSyntax.*;
+
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.NoSuchElementException;
@@ -23,13 +23,15 @@ public class AddCommandParser {
      * and returns an AddCommand object for execution.
      */
     public Command parse(String args) {
-    //String arguments = args.toString();
-   // String taskType = arguments.split(" ")[1];
-    //String argument = arguments.substring(taskType.length()+1);
-        ArgumentTokenizer argsTokenizer =  new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_STARTTIME, PREFIX_ENDTIME, PREFIX_TAG);
+
+        ArgumentTokenizer argsTokenizer =
+                new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_STARTTIME, PREFIX_ENDTIME,  PREFIX_PRIORITY,
+                		 PREFIX_STATUS, PREFIX_TAG);
+
         argsTokenizer.tokenize(args);
         String taskType = argsTokenizer.getCommandType();
         try {
+
             switch(taskType) {
             case "task":
                 return new AddCommand(
@@ -57,6 +59,7 @@ public class AddCommandParser {
                 System.out.println("Please specify the type of Task to add (task/event/floating)");
             }
             return null;
+
 
         } catch (NoSuchElementException nsee) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));

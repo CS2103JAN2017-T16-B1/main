@@ -25,13 +25,13 @@ public interface Model {
     void addTask(Task task) throws UniqueTaskList.DuplicatetaskException;
 
     /**
-     * Updates the person located at {@code filteredPersonListIndex} with {@code editedPerson}.
+     * Updates the Task located at {@code filteredPersonListIndex} with {@code editedPerson}.
      *
      * @throws DuplicatetaskException if updating the person's details causes the person to be equivalent to
      *      another existing person in the list.
      * @throws IndexOutOfBoundsException if {@code filteredPersonListIndex} < 0 or >= the size of the filtered list.
      */
-    void updateTask(int filteredPersonListIndex, ReadOnlyTask editedPerson)
+    void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)
             throws UniqueTaskList.DuplicatetaskException;
 
     /** Returns the filtered person list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */

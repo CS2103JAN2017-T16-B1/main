@@ -97,16 +97,16 @@ public class TaskManager implements ReadOnlyTaskManager {
      *      another existing person in the list.
      * @throws IndexOutOfBoundsException if {@code index} < 0 or >= the size of the list.
      */
-    public void updatePerson(int index, ReadOnlyTask editedReadOnlyPerson)
+    public void updateTask(int index, ReadOnlyTask editedReadOnlyTask)
             throws UniqueTaskList.DuplicatetaskException {
-        assert editedReadOnlyPerson != null;
+        assert editedReadOnlyTask != null;
 
-        Task editedPerson = new Task(editedReadOnlyPerson);
-        syncMasterTagListWith(editedPerson);
+        Task editedTask = new Task(editedReadOnlyTask);
+        syncMasterTagListWith(editedTask);
         // TODO: the tags master list will be updated even though the below line fails.
         // This can cause the tags master list to have additional tags that are not tagged to any person
         // in the person list.
-        tasks.updateTask(index, editedPerson);
+        tasks.updateTask(index, editedTask);
     }
 
     /**
@@ -139,7 +139,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         tasks.forEach(this::syncMasterTagListWith);
     }
 
-    public boolean removePerson(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {
+    public boolean removeTask(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {
         if (tasks.remove(key)) {
             return true;
         } else {

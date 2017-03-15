@@ -23,7 +23,7 @@ public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final TaskManager taskManager;
-    private final FilteredList<ReadOnlyTask> filteredPersons;
+    private final FilteredList<ReadOnlyTask> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given taskManager and userPrefs.
@@ -35,7 +35,11 @@ public class ModelManager extends ComponentManager implements Model {
         logger.fine("Initializing with task manager: " + taskManager + " and user prefs " + userPrefs);
 
         this.taskManager = new TaskManager(taskManager);
-        filteredPersons = new FilteredList<>(this.taskManager.getTaskList());
+
+
+        filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
+
+
     }
 
     public ModelManager() {
@@ -60,7 +64,9 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
-        taskManager.removePerson(target);
+
+        taskManager.removeTask(target);
+
         indicateTaskManagerChanged();
     }
 
@@ -72,12 +78,14 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void updateTask(int filteredPersonListIndex, ReadOnlyTask editedPerson)
+    public void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)
             throws UniqueTaskList.DuplicatetaskException {
-        assert editedPerson != null;
+        assert editedTask != null;
 
-        int taskManagerIndex = filteredPersons.getSourceIndex(filteredPersonListIndex);
-        taskManager.updatePerson(taskManagerIndex, editedPerson);
+
+        int taskManagerIndex = filteredTasks.getSourceIndex(filteredTaskListIndex);
+        taskManager.updateTask(taskManagerIndex, editedTask);
+
         indicateTaskManagerChanged();
     }
 
@@ -85,12 +93,12 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
-        return new UnmodifiableObservableList<>(filteredPersons);
+        return new UnmodifiableObservableList<>(filteredTasks);
     }
 
     @Override
     public void updateFilteredListToShowAll() {
-        filteredPersons.setPredicate(null);
+        filteredTasks.setPredicate(null);
     }
 
     @Override
@@ -99,7 +107,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     private void updateFilteredPersonList(Expression expression) {
-        filteredPersons.setPredicate(expression::satisfies);
+        filteredTasks.setPredicate(expression::satisfies);
     }
 
     //========== Inner classes/interfaces used for filtering =================================================
@@ -141,6 +149,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
 
         @Override
+
         public boolean run(ReadOnlyTask task) {
             return (nameKeyWords.stream()
                     .filter(keyword -> StringUtil.containsWordIgnoreCase(task.getName().fullName, keyword))
@@ -154,6 +163,7 @@ public class ModelManager extends ComponentManager implements Model {
                     || (nameKeyWords.stream()
                     .filter(keyword -> StringUtil.containsWordIgnoreCase(task.getDescription().description, keyword))
                     .findAny().isPresent());
+
         }
 
         @Override

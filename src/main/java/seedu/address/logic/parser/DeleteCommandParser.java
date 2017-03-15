@@ -25,6 +25,12 @@ public class DeleteCommandParser {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
+   /*     Optional<Character> list = ParserUtil.parseList(args);
+        if (!index.isPresent()) {
+            return new IncorrectCommand(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }*/
+
         return new DeleteCommand(index.get());
     }
 
