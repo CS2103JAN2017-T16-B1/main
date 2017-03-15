@@ -8,7 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Task.ReadOnlyTask;
 
 /**
- * Selects a person identified using it's last displayed index from the task manager.
+ * Selects a task identified using it's last displayed index from the task manager.
  */
 public class SelectCommand extends Command {
 
@@ -17,7 +17,7 @@ public class SelectCommand extends Command {
     public static final String COMMAND_WORD = "select";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Selects the person identified by the index number used in the last person listing.\n"
+            + ": Selects the task identified by the index number used in the last task listing.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

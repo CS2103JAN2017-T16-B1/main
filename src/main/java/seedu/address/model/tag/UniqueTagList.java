@@ -14,6 +14,8 @@ import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.exceptions.DuplicateDataException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
+import seedu.address.model.Task.ReadOnlyTask;
 
 /**
  * A list of tags that enforces no nulls and uniqueness between its elements.
@@ -32,6 +34,13 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public UniqueTagList() {}
 
+    /**
+     * Constructs TagList that combines
+     */
+    public UniqueTagList(ReadOnlyTask task, EditTaskDescriptor editedTask){
+    	final List<Tag> tagList = new ArrayList<Tag>();
+    	for(String tag : task.getTags())
+    }
     /**
      * Creates a UniqueTagList using given String tags.
      * Enforces no nulls or duplicates.
@@ -90,7 +99,7 @@ public class UniqueTagList implements Iterable<Tag> {
     public Set<Tag> toSet() {
         return new HashSet<>(internalList);
     }
-
+    
     /**
      * Replaces the Tags in this list with those in the argument tag list.
      */
