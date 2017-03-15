@@ -28,7 +28,7 @@ public class AddCommandParser {
     //String argument = arguments.substring(taskType.length()+1);
         ArgumentTokenizer argsTokenizer =  new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_STARTTIME, PREFIX_ENDTIME, PREFIX_TAG);
         argsTokenizer.tokenize(args);
-        String taskType = argsTokenizer.getCommandType();
+        String taskType = argsTokenizer.getCommandType(args);
         try {
             switch(taskType) {
             case "task":
