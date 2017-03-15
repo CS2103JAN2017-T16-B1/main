@@ -24,7 +24,7 @@ import seedu.address.model.tag.UniqueTagList;
 public class XmlAdaptedTask {
 
 	@XmlElement(required = true)
-    private int id;
+    private String id;
 	@XmlElement(required = true)
     private String name;
     @XmlElement(required = false)
