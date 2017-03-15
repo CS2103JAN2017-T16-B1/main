@@ -20,6 +20,12 @@ public class SampleDataUtil {
             return new Task[] {
             		new Task(new Name("buy milk"), new Description("87438807"), new StartTime(""),
                             new EndTime("2017-03-04-1000"), new ID("1"), new Priority("h"), new Status("undone"),
+                            new UniqueTagList("friends")),
+            		new Task(new Name("buy house"), new Description("87438807"), new StartTime(""),
+                            new EndTime("2017-03-04-1000"), new ID("1"), new Priority("h"), new Status("undone"),
+                            new UniqueTagList("friends")),
+            		new Task(new Name("study"), new Description("87438807"), new StartTime(""),
+                            new EndTime("2017-03-04-1000"), new ID("1"), new Priority("h"), new Status("undone"),
                             new UniqueTagList("friends"))
             };
         } catch (IllegalValueException e) {
