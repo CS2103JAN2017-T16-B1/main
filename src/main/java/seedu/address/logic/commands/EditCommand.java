@@ -19,7 +19,7 @@ import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
- * Edits the details of an existing person in the task manager.
+ * Edits the details of an existing task in the task manager.
  */
 public class EditCommand extends Command {
 
@@ -97,8 +97,8 @@ public class EditCommand extends Command {
 
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the task with. Each non-empty field value will replace the
+     * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
         private Optional<Name> name = Optional.empty();

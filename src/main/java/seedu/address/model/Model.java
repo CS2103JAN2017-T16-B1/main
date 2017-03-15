@@ -18,29 +18,29 @@ public interface Model {
     /** Returns the TaskManager */
     ReadOnlyTaskManager getTaskManager();
 
-    /** Deletes the given person. */
+    /** Deletes the given task. */
     void deletePerson(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
 
-    /** Adds the given person */
+    /** Adds the given task */
     void addPerson(Task task) throws UniqueTaskList.DuplicatetaskException;
 
     /**
      * Updates the Task located at {@code filteredPersonListIndex} with {@code editedPerson}.
      *
-     * @throws DuplicatetaskException if updating the person's details causes the person to be equivalent to
-     *      another existing person in the list.
+     * @throws DuplicatetaskException if updating the task's details causes the task to be equivalent to
+     *      another existing task in the list.
      * @throws IndexOutOfBoundsException if {@code filteredPersonListIndex} < 0 or >= the size of the filtered list.
      */
     void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)
             throws UniqueTaskList.DuplicatetaskException;
 
-    /** Returns the filtered person list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */
+    /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
 
-    /** Updates the filter of the filtered person list to show all persons */
+    /** Updates the filter of the filtered task list to show all tasks */
     void updateFilteredListToShowAll();
 
-    /** Updates the filter of the filtered person list to filter by the given keywords*/
+    /** Updates the filter of the filtered task list to filter by the given keywords*/
     void updateFilteredPersonList(Set<String> keywords);
 
 }

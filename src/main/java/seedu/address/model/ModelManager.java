@@ -108,7 +108,7 @@ public class ModelManager extends ComponentManager implements Model {
     //========== Inner classes/interfaces used for filtering =================================================
 
     interface Expression {
-        boolean satisfies(ReadOnlyTask person);
+        boolean satisfies(ReadOnlyTask task);
         String toString();
     }
 
@@ -121,8 +121,8 @@ public class ModelManager extends ComponentManager implements Model {
         }
 
         @Override
-        public boolean satisfies(ReadOnlyTask person) {
-            return qualifier.run(person);
+        public boolean satisfies(ReadOnlyTask task) {
+            return qualifier.run(task);
         }
 
         @Override
@@ -132,7 +132,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     interface Qualifier {
-        boolean run(ReadOnlyTask person);
+        boolean run(ReadOnlyTask task);
         String toString();
     }
 
@@ -144,19 +144,19 @@ public class ModelManager extends ComponentManager implements Model {
         }
 
         @Override
-        public boolean run(ReadOnlyTask person) {
+        public boolean run(ReadOnlyTask task) {
             return (nameKeyWords.stream()
-                    .filter(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword))
+                    .filter(keyword -> StringUtil.containsWordIgnoreCase(task.getName().fullName, keyword))
                     .findAny()
                     .isPresent())
             		|| (nameKeyWords.stream()
-            		.filter(keyword -> StringUtil.containsWordIgnoreCase(person.getStartTime().startTime, keyword))
+            		.filter(keyword -> StringUtil.containsWordIgnoreCase(task.getStartTime().startTime, keyword))
             		.findAny().isPresent())
             		|| (nameKeyWords.stream()
-                    		.filter(keyword -> StringUtil.containsWordIgnoreCase(person.getEndTime().endTime, keyword))
+                    		.filter(keyword -> StringUtil.containsWordIgnoreCase(task.getEndTime().endTime, keyword))
                     		.findAny().isPresent())
             		|| (nameKeyWords.stream()
-                    		.filter(keyword -> StringUtil.containsWordIgnoreCase(person.getDescription().description, keyword))
+                    		.filter(keyword -> StringUtil.containsWordIgnoreCase(task.getDescription().description, keyword))
                     		.findAny().isPresent());
         }
 

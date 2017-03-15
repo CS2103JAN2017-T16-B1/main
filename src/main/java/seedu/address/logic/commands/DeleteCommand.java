@@ -7,14 +7,14 @@ import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.model.Task.UniqueTaskList.TaskNotFoundException;
 
 /**
- * Deletes a person identified using it's last displayed index from the task manager.
+ * Deletes a task identified using it's last displayed index from the task manager.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the last person listing.\n"
+            + ": Deletes the task identified by the index number used in the last task listing.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -36,15 +36,15 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        ReadOnlyTask personToDelete = lastShownList.get(targetIndex - 1);
+        ReadOnlyTask taskToDelete = lastShownList.get(targetIndex - 1);
 
         try {
-            model.deletePerson(personToDelete);
+            model.deletePerson(taskToDelete);
         } catch (TaskNotFoundException pnfe) {
-            assert false : "The target person cannot be missing";
+            assert false : "The target task cannot be missing";
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, taskToDelete));
     }
 
 }
