@@ -35,7 +35,10 @@ public class ModelManager extends ComponentManager implements Model {
         logger.fine("Initializing with task manager: " + taskManager + " and user prefs " + userPrefs);
 
         this.taskManager = new TaskManager(taskManager);
+
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
+
+
     }
 
     public ModelManager() {
@@ -72,12 +75,14 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void updateTask(int filteredPersonListIndex, ReadOnlyTask editedPerson)
+    public void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)
             throws UniqueTaskList.DuplicatetaskException {
-        assert editedPerson != null;
+        assert editedTask != null;
 
-        int taskManagerIndex = filteredTasks.getSourceIndex(filteredPersonListIndex);
-        taskManager.updatePerson(taskManagerIndex, editedPerson);
+
+        int taskManagerIndex = filteredTasks.getSourceIndex(filteredTaskListIndex);
+        taskManager.updateTask(taskManagerIndex, editedTask);
+
         indicateTaskManagerChanged();
     }
 
@@ -142,10 +147,19 @@ public class ModelManager extends ComponentManager implements Model {
 
         @Override
         public boolean run(ReadOnlyTask person) {
-            return nameKeyWords.stream()
+            return (nameKeyWords.stream()
                     .filter(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword))
                     .findAny()
-                    .isPresent();
+                    .isPresent())
+            		|| (nameKeyWords.stream()
+            		.filter(keyword -> StringUtil.containsWordIgnoreCase(person.getStartTime().startTime, keyword))
+            		.findAny().isPresent())
+            		|| (nameKeyWords.stream()
+                    		.filter(keyword -> StringUtil.containsWordIgnoreCase(person.getEndTime().endTime, keyword))
+                    		.findAny().isPresent())
+            		|| (nameKeyWords.stream()
+                    		.filter(keyword -> StringUtil.containsWordIgnoreCase(person.getDescription().description, keyword))
+                    		.findAny().isPresent());
         }
 
         @Override

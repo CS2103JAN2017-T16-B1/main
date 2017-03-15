@@ -22,11 +22,11 @@ public class DeleteCommand extends Command {
 
     public final int targetIndex;
     
-    public final char targetList;
+    //public final char targetList;
 
-    public DeleteCommand(char targetList, int targetIndex) {
+    public DeleteCommand(int targetIndex) {
         this.targetIndex = targetIndex;
-        this.targetList = targetList;
+        //this.targetList = targetList;
     }
 
 
@@ -44,7 +44,7 @@ public class DeleteCommand extends Command {
         try {
             model.deleteTask(itemToDelete);
         } catch (TaskNotFoundException pnfe) {
-            assert false : "The target person cannot be missing";
+            assert false : "The target task cannot be missing";
         }
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, itemToDelete));
