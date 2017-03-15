@@ -14,6 +14,7 @@ import seedu.address.model.Task.Task;
 import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.Task.UniqueTaskList.TaskNotFoundException;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the task manager data.
@@ -105,6 +106,16 @@ public class ModelManager extends ComponentManager implements Model {
 
     private void updateFilteredPersonList(Expression expression) {
         filteredTasks.setPredicate(expression::satisfies);
+    }
+    
+    public void updateFilteredTaskListByTag(Tag tag){
+        filteredTasks.setPredicate(task -> {
+            if(task.getTags().contains(tag)) {
+                return true;
+            } else {
+                return false;
+            }
+        });
     }
 
     //========== Inner classes/interfaces used for filtering =================================================
