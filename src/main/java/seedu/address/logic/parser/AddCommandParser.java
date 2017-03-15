@@ -1,7 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import static seedu.address.logic.parser.CliSyntax.*;
+
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.NoSuchElementException;
@@ -12,7 +14,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.IncorrectCommand;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddCommand object.
  */
 public class AddCommandParser {
 
@@ -21,21 +23,43 @@ public class AddCommandParser {
      * and returns an AddCommand object for execution.
      */
     public Command parse(String args) {
+
         ArgumentTokenizer argsTokenizer =
                 new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_STARTTIME, PREFIX_ENDTIME,  PREFIX_PRIORITY,
                 		 PREFIX_STATUS, PREFIX_TAG);
+
         argsTokenizer.tokenize(args);
+        String taskType = argsTokenizer.getCommandType();
         try {
-        	return new AddCommand(
-        			  argsTokenizer.getPreamble().get(),
-                      argsTokenizer.getValue(PREFIX_STARTTIME).get(),
-                      argsTokenizer.getValue(PREFIX_ENDTIME).get(),
-                      argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),
-                      "1",
-                      argsTokenizer.getValue(PREFIX_PRIORITY).get(),
-                      argsTokenizer.getValue(PREFIX_STATUS).get(),
-                      ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
-                      );
+
+            switch(taskType) {
+            case "task":
+                return new AddCommand(
+                        argsTokenizer.getPreamble().get(),
+                        argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),
+                        argsTokenizer.getValue(PREFIX_ENDTIME).get(),
+                        ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
+                );
+
+            case "event":
+                return new AddCommand(
+                        argsTokenizer.getPreamble().get(),
+                        argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),
+                        argsTokenizer.getValue(PREFIX_STARTTIME).get(),
+                        argsTokenizer.getValue(PREFIX_ENDTIME).get(),
+                        ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
+                );
+            case "floating":
+                return new AddCommand(
+                        argsTokenizer.getPreamble().get(),
+                        argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),
+                        ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
+                );
+            default:
+                System.out.println("Please specify the type of Task to add (task/event/floating)");
+            }
+            return null;
+
 
         } catch (NoSuchElementException nsee) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));

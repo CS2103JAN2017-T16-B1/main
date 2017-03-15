@@ -10,12 +10,15 @@ import seedu.address.logic.parser.ArgumentTokenizer.Prefix;
 public class CliSyntax {
 
     /* Prefix definitions */
+
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("des/");
     public static final Prefix PREFIX_STATUS = new Prefix("sta/");
     public static final Prefix PREFIX_PRIORITY = new Prefix("pr/");
     public static final Prefix PREFIX_ENDTIME = new Prefix("et/");
     public static final Prefix PREFIX_STARTTIME = new Prefix("st/");
+
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_PRIORITY = new Prefix("p/");
 
     /* Patterns definitions */
     public static final Pattern KEYWORDS_ARGS_FORMAT =
