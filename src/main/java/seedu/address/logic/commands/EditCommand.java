@@ -141,6 +141,7 @@ public class EditCommand extends Command {
             return name;
         }
         
+
         public void setStatus(Optional<Status> status) {
             assert status != null;
             this.status = status;

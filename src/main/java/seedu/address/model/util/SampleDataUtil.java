@@ -15,7 +15,7 @@ import seedu.address.model.ReadOnlyTaskManager;
 import seedu.address.model.tag.UniqueTagList;
 
 public class SampleDataUtil {
-    public static Task[] getSamplePersons() {
+    public static Task[] getSampleTasks() {
         try {
             return new Task[] {
             		new Task(new Name("buy milk"), new Description("87438807"), new StartTime(""),
@@ -36,7 +36,7 @@ public class SampleDataUtil {
     public static ReadOnlyTaskManager getSampleTaskManager() {
         try {
             TaskManager sampleAB = new TaskManager();
-            for (Task samplePerson : getSamplePersons()) {
+            for (Task samplePerson : getSampleTasks()) {
                 sampleAB.addTask(samplePerson);
             }
             return sampleAB;

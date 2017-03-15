@@ -28,11 +28,13 @@ import seedu.address.model.tag.UniqueTagList;
 public class ParserUtil {
 
     private static final Pattern INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
-
     /**
      * Returns the specified index in the {@code command} if it is a positive unsigned integer
      * Returns an {@code Optional.empty()} otherwise.
      */
+    
+    private static final Pattern LIST_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+
     public static Optional<Integer> parseIndex(String command) {
         final Matcher matcher = INDEX_ARGS_FORMAT.matcher(command.trim());
         if (!matcher.matches()) {
@@ -47,6 +49,19 @@ public class ParserUtil {
 
     }
 
+    public static Optional<Character> parseList(String command) {
+        final Matcher matcher = INDEX_ARGS_FORMAT.matcher(command.trim());
+        if (!matcher.matches()) {
+            return Optional.empty();
+        }
+
+        String list = matcher.group("targetIndex");
+        if (!StringUtil.isUnsignedInteger(list)) {
+            return Optional.empty();
+        }
+        return null;
+
+    }
     /**
      * Returns a new Set populated by all elements in the given list of strings
      * Returns an empty set if the given {@code Optional} is empty,

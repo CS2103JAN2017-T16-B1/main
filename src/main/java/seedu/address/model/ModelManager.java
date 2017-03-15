@@ -36,8 +36,8 @@ public class ModelManager extends ComponentManager implements Model {
 
         this.taskManager = new TaskManager(taskManager);
 
-   
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
+
 
     }
 
@@ -62,8 +62,8 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public synchronized void deletePerson(ReadOnlyTask target) throws TaskNotFoundException {
-        taskManager.removePerson(target);
+    public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
+        taskManager.removeTask(target);
         indicateTaskManagerChanged();
     }
 
@@ -79,8 +79,10 @@ public class ModelManager extends ComponentManager implements Model {
             throws UniqueTaskList.DuplicatetaskException {
         assert editedTask != null;
 
+
         int taskManagerIndex = filteredTasks.getSourceIndex(filteredTaskListIndex);
         taskManager.updateTask(taskManagerIndex, editedTask);
+
         indicateTaskManagerChanged();
     }
 
