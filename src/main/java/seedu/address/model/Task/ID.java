@@ -17,7 +17,7 @@ public class ID {
      */
     public static final String ID_VALIDATION_REGEX = "\\d+";
 
-    public final int id;
+    public final String id;
 
     /**
      * Validates given name.
@@ -30,8 +30,8 @@ public class ID {
         if (!isValidName(trimmedId)) {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
         }
-        int trimmedIntId= Integer.parseInt(trimmedId);
-        this.id = trimmedIntId;
+        //int trimmedIntId= trimmedId;
+        this.id = trimmedId;
     }
 
     /**
