@@ -31,7 +31,7 @@ public class EditCommandParser {
      * and returns an EditCommand object for execution.
      */
     public Command parse(String args) {
-        /*
+        
         assert args != null;
         ArgumentTokenizer argsTokenizer =
         		 new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_ENDTIME, PREFIX_STARTTIME,
@@ -64,8 +64,8 @@ public class EditCommandParser {
         }
 
         return new EditCommand(index.get(), editTaskDescriptor);
-        */
-        return null;
+        
+       // return null;
     }
 
     /**

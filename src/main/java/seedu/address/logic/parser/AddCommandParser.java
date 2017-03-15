@@ -29,7 +29,7 @@ public class AddCommandParser {
                 		 PREFIX_STATUS, PREFIX_TAG);
 
         argsTokenizer.tokenize(args);
-        String taskType = argsTokenizer.getCommandType();
+        String taskType = argsTokenizer.getCommandType(args);
         try {
 
             switch(taskType) {

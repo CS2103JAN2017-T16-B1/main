@@ -18,7 +18,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
- * Adds a person to the task manager.
+ * Adds a task to the task manager.
  */
 public class AddCommand extends Command {
 
@@ -27,7 +27,9 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task manager. "
             + "Parameters: add event EVENT_NAME st/START_TIME et/END_TIME [des/DESCRIPTION] [t/TAG]...\n"
             + "Example: " + COMMAND_WORD
+
             + " Midterms st/2017-3-1-1300 et/2017-3-1-1500 des/CS2103 t/school";
+
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This task already exists in the task manager";

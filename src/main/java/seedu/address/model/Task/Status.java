@@ -34,7 +34,7 @@ public class Status {
     }
 
     /**
-     * Returns true if a given string is a valid person name.
+     * Returns true if a given string is a valid task name.
      */
     public static boolean isValidName(String test) {
         return test.matches(STATUS_VALIDATION_REGEX);
