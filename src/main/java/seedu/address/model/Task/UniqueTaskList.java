@@ -22,7 +22,7 @@ public class UniqueTaskList implements Iterable<Task> {
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent task as the given argument.
      */
     public boolean contains(ReadOnlyTask toCheck) {
         assert toCheck != null;
@@ -45,8 +45,8 @@ public class UniqueTaskList implements Iterable<Task> {
     /**
      * Updates the task in the list at position {@code index} with {@code editedtask}.
      *
-     * @throws DuplicatetaskException if updating the person's details causes the person to be equivalent to
-     *      another existing person in the list.
+     * @throws DuplicatetaskException if updating the task's details causes the task to be equivalent to
+     *      another existing task in the list.
      * @throws IndexOutOfBoundsException if {@code index} < 0 or >= the size of the list.
      */
     public void updateTask(int index, ReadOnlyTask editedTask) throws DuplicatetaskException {
@@ -58,7 +58,7 @@ public class UniqueTaskList implements Iterable<Task> {
         }
         
         taskToUpdate.resetData(editedTask);
-        // TODO: The code below is just a workaround to notify observers of the updated person.
+        // TODO: The code below is just a workaround to notify observers of the updated task.
         // The right way is to implement observable properties in the Person class.
         // Then, PersonCard should then bind its text labels to those observable properties.
         internalList.set(index, taskToUpdate);
@@ -67,7 +67,7 @@ public class UniqueTaskList implements Iterable<Task> {
     /**
      * Removes the equivalent task from the list.
      *
-     * @throws TaskNotFoundException if no such person could be found in the list.
+     * @throws TaskNotFoundException if no such task could be found in the list.
      */
     public boolean remove(ReadOnlyTask toRemove) throws TaskNotFoundException {
         assert toRemove != null;
@@ -123,7 +123,7 @@ public class UniqueTaskList implements Iterable<Task> {
 
     /**
      * Signals that an operation targeting a specified task in the list would fail because
-     * there is no such matching person in the list.
+     * there is no such matching task in the list.
      */
     public static class TaskNotFoundException extends Exception {}
 
