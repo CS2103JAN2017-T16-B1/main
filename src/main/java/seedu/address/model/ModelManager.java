@@ -193,8 +193,8 @@ public class ModelManager extends ComponentManager implements Model {
             return (nameKeyWords.stream()
                     .filter(keyword -> StringUtil.containsWordIgnoreCase(task.getName().fullName, keyword))
                     .findAny()
-                    .isPresent())
-            		|| (nameKeyWords.stream()
+                    .isPresent());
+            		/*|| (nameKeyWords.stream()
             		.filter(keyword -> StringUtil.containsWordIgnoreCase(task.getStartTime().startTime, keyword))
             		.findAny().isPresent())
             		|| (nameKeyWords.stream()
@@ -202,7 +202,7 @@ public class ModelManager extends ComponentManager implements Model {
                     		.findAny().isPresent())
             		|| (nameKeyWords.stream()
                     		.filter(keyword -> StringUtil.containsWordIgnoreCase(task.getDescription().description, keyword))
-                    		.findAny().isPresent());
+                    		.findAny().isPresent())*/
 
         }
 

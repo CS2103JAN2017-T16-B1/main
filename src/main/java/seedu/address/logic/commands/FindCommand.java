@@ -19,8 +19,11 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names contain any of "
             + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
+            + "when prefix (#) is used, will display all task with the associated tags or priority level.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " alice bob charlie\n"
+            + "Parameters: #KEYWORD \n"
+            + "Example: " + COMMAND_WORD + " #friends\n";
 
     private final Set<String> keywords;
     
