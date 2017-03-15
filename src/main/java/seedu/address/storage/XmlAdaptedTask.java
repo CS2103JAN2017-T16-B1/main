@@ -24,7 +24,7 @@ import seedu.address.model.tag.UniqueTagList;
 public class XmlAdaptedTask {
 
 	@XmlElement(required = true)
-    private String id;
+    private int id;
 	@XmlElement(required = true)
     private String name;
     @XmlElement(required = false)
@@ -71,7 +71,7 @@ public class XmlAdaptedTask {
     /**
      * Converts this jaxb-friendly adapted task object into the model's Task object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person
+     * @throws IllegalValueException if there were any data constraints violated in the adapted task
      */
     public Task toModelType() throws IllegalValueException {
         final List<Tag> taskTags = new ArrayList<>();
@@ -82,7 +82,9 @@ public class XmlAdaptedTask {
         final Description description = new Description(this.description);
         final StartTime startTime = new StartTime(this.starttime);
         final EndTime endTime = new EndTime(this.endtime);
-        final ID id = new ID(this.id);
+
+        final ID id = new ID(String.valueOf(this.id));
+
         final Priority priority = new Priority(this.priority);
         final Status status = new Status(this.status);
         final UniqueTagList tags = new UniqueTagList(taskTags);

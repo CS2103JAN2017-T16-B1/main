@@ -129,14 +129,14 @@ public class Task implements ReadOnlyTask {
     }
 
     /**
-     * Replaces this person's tags with the tags in the argument tag list.
+     * Replaces this task's tags with the tags in the argument tag list.
      */
     public void setTags(UniqueTagList replacement) {
         tags.setTags(replacement);
     }
 
     /**
-     * Updates this person with the details of {@code replacement}.
+     * Updates this task with the details of {@code replacement}.
      */
     public void resetData(ReadOnlyTask replacement) {
         assert replacement != null;
@@ -145,6 +145,8 @@ public class Task implements ReadOnlyTask {
         this.setDescription(replacement.getDescription());
         this.setStartTime(replacement.getStartTime());
         this.setEndTime(replacement.getEndTime());
+        this.setPriority(replacement.getPriority());
+        this.setStatus(replacement.getStatus());
         this.setTags(replacement.getTags());
     }
 
