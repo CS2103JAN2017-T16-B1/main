@@ -36,8 +36,10 @@ public class SampleDataUtil {
     public static ReadOnlyTaskManager getSampleTaskManager() {
         try {
             TaskManager sampleAB = new TaskManager();
+
             for (Task sampleTask : getSampleTasks()) {
                 sampleAB.addTask(sampleTask);
+
             }
             return sampleAB;
         } catch (DuplicatetaskException e) {

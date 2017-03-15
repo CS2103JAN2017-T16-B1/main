@@ -14,16 +14,20 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the task identified by the index number used in the last task listing.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+            + ": Deletes the item identified by the type of item and index number used in last task listing.\n"
+            + "Parameters: TYPE (must be 'e' for event,'t' for task or 'f' for floating task), INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " e1";
+
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Item: %1$s";
 
     public final int targetIndex;
+    
+    //public final char targetList;
 
     public DeleteCommand(int targetIndex) {
         this.targetIndex = targetIndex;
+        //this.targetList = targetList;
     }
 
 
@@ -40,11 +44,13 @@ public class DeleteCommand extends Command {
 
         try {
             model.deletePerson(taskToDelete);
+
         } catch (TaskNotFoundException pnfe) {
             assert false : "The target task cannot be missing";
         }
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, taskToDelete));
+
     }
 
 }

@@ -21,6 +21,7 @@ public interface Model {
     /** Deletes the given task. */
     void deletePerson(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
 
+
     /** Adds the given task */
     void addPerson(Task task) throws UniqueTaskList.DuplicatetaskException;
 

@@ -125,7 +125,7 @@ public class EditCommand extends Command {
             this.tags = toCopy.getTags();
         }
 
-        /**
+		/**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
@@ -141,6 +141,7 @@ public class EditCommand extends Command {
             return name;
         }
         
+
         public void setStatus(Optional<Status> status) {
             assert status != null;
             this.status = status;
@@ -183,6 +184,14 @@ public class EditCommand extends Command {
 
         public Optional<UniqueTagList> getTags() {
             return tags;
+        }
+        
+        private Optional<Priority> getPriority() {
+			return priority;
+		}
+        
+        public void setPriority(Optional<Priority> priority){
+        	this.priority = priority;
         }
     }
 }
