@@ -100,14 +100,42 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Set<String> keywords) {
-        updateFilteredPersonList(new PredicateExpression(new NameQualifier(keywords)));
+    public void updateFilteredTaskListByKeywords(Set<String> keywords) {
+        updateFilteredTaskListByKeywords(new PredicateExpression(new NameQualifier(keywords)));
     }
 
-    private void updateFilteredPersonList(Expression expression) {
+    private void updateFilteredTaskListByKeywords(Expression expression) {
         filteredTasks.setPredicate(expression::satisfies);
     }
+    public void updateFilteredTaskListByHighPriority() {
+    	filteredTasks.setPredicate(task -> {
+            if(task.getPriority().toString() == ("h")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
     
+    public void updateFilteredTaskListByMediumPriority() {
+    	filteredTasks.setPredicate(task -> {
+            if(task.getPriority().toString() == ("m")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    
+    public void updateFilteredTaskListByLowPriority() {
+    	filteredTasks.setPredicate(task -> {
+            if(task.getPriority().toString() == "l") {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
     public void updateFilteredTaskListByTag(Tag tag){
         filteredTasks.setPredicate(task -> {
             if(task.getTags().contains(tag)) {
