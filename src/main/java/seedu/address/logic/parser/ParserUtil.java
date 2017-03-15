@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.Task.EndTime;
-import seedu.address.model.Task.StartTime;
-import seedu.address.model.Task.Name;
 import seedu.address.model.Task.Description;
+import seedu.address.model.Task.EndTime;
+import seedu.address.model.Task.Name;
+import seedu.address.model.Task.StartTime;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 

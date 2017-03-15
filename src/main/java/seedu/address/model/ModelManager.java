@@ -10,8 +10,8 @@ import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.events.model.TaskManagerChangedEvent;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.Task.Task;
 import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.Task.UniqueTaskList.TaskNotFoundException;
 
@@ -59,13 +59,13 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public synchronized void deletePerson(ReadOnlyTask target) throws TaskNotFoundException {
+    public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
         taskManager.removePerson(target);
         indicateTaskManagerChanged();
     }
 
     @Override
-    public synchronized void addPerson(Task task) throws UniqueTaskList.DuplicatetaskException {
+    public synchronized void addTask(Task task) throws UniqueTaskList.DuplicatetaskException {
         taskManager.addTask(task);
         updateFilteredListToShowAll();
         indicateTaskManagerChanged();
