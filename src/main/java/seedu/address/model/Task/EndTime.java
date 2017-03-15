@@ -27,10 +27,16 @@ public class EndTime {
      */
     public EndTime(String endTime) throws IllegalValueException {
         assert endTime != null;
-        if (!isValidTime(endTime)) {
-            throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
+        if(endTime!=null){
+            if (!isValidTime(endTime)) {
+                throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
+            }
+            this.endTime = endTime;
         }
-        this.endTime = endTime;
+        else{
+            this.endTime=null;
+        }
+        
     }
 
     /**

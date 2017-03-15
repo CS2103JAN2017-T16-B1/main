@@ -119,7 +119,6 @@ public class EditCommand extends Command {
             this.description = toCopy.getDescription();
             this.startTime = toCopy.getStartTime();
             this.endTime = toCopy.getEndTime();
-
             this.priority= toCopy.getPriority();
             this.status= toCopy.getStatus();
             this.tags = toCopy.getTags();
@@ -141,13 +140,6 @@ public class EditCommand extends Command {
             return name;
         }
         
-        public void setPriority(Optional<Priority> priority) {
-            assert priority != null;
-            this.priority = priority;
-        }
-        public Optional<Priority> getPriority() {
-            return priority;
-        }
         public void setStatus(Optional<Status> status) {
             assert status != null;
             this.status = status;
