@@ -20,7 +20,7 @@ public interface Model {
 
     /** Deletes the given person. */
     void deleteTask(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
-
+    
     /** Adds the given person */
     void addPerson(Task task) throws UniqueTaskList.DuplicatetaskException;
 

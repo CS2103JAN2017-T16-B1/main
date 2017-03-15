@@ -19,7 +19,7 @@ import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
- * Edits the details of an existing person in the task manager.
+ * Edits the details of an existing task in the task manager.
  */
 public class EditCommand extends Command {
 
@@ -28,7 +28,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the last task listing. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) [NAME] [st/STARTTIME] [et/ENDTIME] [des/DESCRIPTION ] [t/TAG]...\n"
+            + "Parameters: INDEX (must be a positive integer) [NAME] [beg/STARTTIME] [end/ENDTIME] [des/DESCRIPTION ] [t/TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 st/2017-3-1-2359 des/go to ntuc";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
@@ -88,8 +88,9 @@ public class EditCommand extends Command {
         Priority updatedPriority=editTaskDescriptor.getPriority().orElseGet(taskToEdit::getPriority);
         Status updatedStatus=editTaskDescriptor.getStatus().orElseGet(taskToEdit::getStatus);
         ID updatedID= taskToEdit.getId();
-        UniqueTagList updatedTags = editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
-
+        UniqueTagList updatedTags =new UniqueTagList(taskToEdit,editTaskDescriptor);//editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
+        System.out.print(updatedTags);
+        
         return new Task(updatedName, updatedDescription, updatedStartTime,
         		updatedEndTime, updatedID, updatedPriority, updatedStatus,updatedTags);
         
@@ -97,8 +98,8 @@ public class EditCommand extends Command {
 
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the task with. Each non-empty field value will replace the
+     * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
         private Optional<Name> name = Optional.empty();
@@ -125,7 +126,7 @@ public class EditCommand extends Command {
             this.tags = toCopy.getTags();
         }
 
-        /**
+		/**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
@@ -177,15 +178,6 @@ public class EditCommand extends Command {
             return endTime;
         }
         
-        public void setPriority(Optional<Priority> priority) {
-            assert priority != null;
-            this.priority = priority;
-        }
-
-        public Optional<Priority> getPriority() {
-			return priority;
-		}
-        
         public void setTags(Optional<UniqueTagList> tags) {
             assert tags != null;
             this.tags = tags;
@@ -193,6 +185,14 @@ public class EditCommand extends Command {
 
         public Optional<UniqueTagList> getTags() {
             return tags;
+        }
+        
+        private Optional<Priority> getPriority() {
+			return priority;
+		}
+        
+        public void setPriority(Optional<Priority> priority){
+        	this.priority = priority;
         }
     }
 }

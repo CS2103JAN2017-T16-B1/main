@@ -13,8 +13,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("des/");
     public static final Prefix PREFIX_STATUS = new Prefix("sta/");
     public static final Prefix PREFIX_PRIORITY = new Prefix("pr/");
-    public static final Prefix PREFIX_ENDTIME = new Prefix("et/");
-    public static final Prefix PREFIX_STARTTIME = new Prefix("st/");
+    public static final Prefix PREFIX_ENDTIME = new Prefix("end/");
+    public static final Prefix PREFIX_STARTTIME = new Prefix("beg/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     private static final char PREFIX_HASHTAG = '#';
 
