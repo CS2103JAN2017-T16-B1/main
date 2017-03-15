@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javafx.collections.FXCollections;
@@ -35,11 +36,24 @@ public class UniqueTagList implements Iterable<Tag> {
     public UniqueTagList() {}
 
     /**
-     * Constructs TagList that combines
+     * Constructs TagList that takes in tags from an old task and new edited task.
+     * Any tags that are the same in both tasks are deleted and new ones are merged into a single list
      */
     public UniqueTagList(ReadOnlyTask task, EditTaskDescriptor editedTask){
-    	final List<Tag> tagList = new ArrayList<Tag>();
-    	for(String tag : task.getTags())
+       	for(Tag tag : task.getTags()){
+    		internalList.add(tag);
+    	}
+       	if(editedTask.getTags().isPresent()){
+       		for(Tag tag: editedTask.getTags().get()){
+       			if(internalList.contains(tag)){
+       				internalList.remove(tag);
+       			}else 
+       				if(!internalList.contains(tag)){
+       					internalList.add(tag);
+       				}
+       		}
+       	}
+    	
     }
     /**
      * Creates a UniqueTagList using given String tags.
