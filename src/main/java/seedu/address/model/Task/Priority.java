@@ -10,7 +10,7 @@ public class Priority {
 
     public static final String MESSAGE_NAME_CONSTRAINTS =
             "Task/Event Priority should only be labelled as \"h\" for high, \"m\" for medium and \"l\" for low";
-    
+
     /*
      * The urgency of the task must be either h,m or l,
      * otherwise " " (a blank string) becomes a valid input.
@@ -30,7 +30,7 @@ public class Priority {
         if (!isValidName(trimmedpriority)) {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
         }
-       this.priority=priority;
+       this.priority = priority;
     }
 
     /**

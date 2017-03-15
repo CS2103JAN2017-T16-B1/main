@@ -10,8 +10,8 @@ import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.events.model.TaskManagerChangedEvent;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.Task.Task;
 import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.Task.UniqueTaskList.TaskNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -36,6 +36,7 @@ public class ModelManager extends ComponentManager implements Model {
         logger.fine("Initializing with task manager: " + taskManager + " and user prefs " + userPrefs);
 
         this.taskManager = new TaskManager(taskManager);
+
 
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
 
@@ -64,12 +65,14 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
+
         taskManager.removeTask(target);
+
         indicateTaskManagerChanged();
     }
 
     @Override
-    public synchronized void addPerson(Task task) throws UniqueTaskList.DuplicatetaskException {
+    public synchronized void addTask(Task task) throws UniqueTaskList.DuplicatetaskException {
         taskManager.addTask(task);
         updateFilteredListToShowAll();
         indicateTaskManagerChanged();
@@ -185,6 +188,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
 
         @Override
+
         public boolean run(ReadOnlyTask task) {
             return (nameKeyWords.stream()
                     .filter(keyword -> StringUtil.containsWordIgnoreCase(task.getName().fullName, keyword))
@@ -199,6 +203,7 @@ public class ModelManager extends ComponentManager implements Model {
             		|| (nameKeyWords.stream()
                     		.filter(keyword -> StringUtil.containsWordIgnoreCase(task.getDescription().description, keyword))
                     		.findAny().isPresent());
+
         }
 
         @Override

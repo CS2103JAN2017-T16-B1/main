@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
@@ -30,6 +31,7 @@ public class EditCommandParser {
      * and returns an EditCommand object for execution.
      */
     public Command parse(String args) {
+        
         assert args != null;
         ArgumentTokenizer argsTokenizer =
         		 new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_ENDTIME, PREFIX_STARTTIME,
@@ -62,6 +64,8 @@ public class EditCommandParser {
         }
 
         return new EditCommand(index.get(), editTaskDescriptor);
+        
+       // return null;
     }
 
     /**

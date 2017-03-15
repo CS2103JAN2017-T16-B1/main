@@ -3,8 +3,8 @@ package seedu.address.model;
 import java.util.Set;
 
 import seedu.address.commons.core.UnmodifiableObservableList;
-import seedu.address.model.Task.Task;
 import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.Task.UniqueTaskList.DuplicatetaskException;
 import seedu.address.model.tag.Tag;
@@ -23,7 +23,7 @@ public interface Model {
     void deleteTask(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
     
     /** Adds the given person */
-    void addPerson(Task task) throws UniqueTaskList.DuplicatetaskException;
+    void addTask(Task task) throws UniqueTaskList.DuplicatetaskException;
 
     /**
      * Updates the Task located at {@code filteredPersonListIndex} with {@code editedPerson}.
