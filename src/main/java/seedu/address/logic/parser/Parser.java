@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -60,7 +61,11 @@ public class Parser {
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            try {
+				return new FindCommandParser().parse(arguments);
+			} catch (IllegalValueException e) {
+				return new IncorrectCommand(e.getMessage());
+			}
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

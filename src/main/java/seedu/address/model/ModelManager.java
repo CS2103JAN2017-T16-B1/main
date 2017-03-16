@@ -14,6 +14,7 @@ import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.Task.UniqueTaskList.TaskNotFoundException;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the task manager data.
@@ -102,12 +103,50 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Set<String> keywords) {
-        updateFilteredPersonList(new PredicateExpression(new NameQualifier(keywords)));
+    public void updateFilteredTaskListByKeywords(Set<String> keywords) {
+        updateFilteredTaskListByKeywords(new PredicateExpression(new NameQualifier(keywords)));
     }
 
-    private void updateFilteredPersonList(Expression expression) {
+    private void updateFilteredTaskListByKeywords(Expression expression) {
         filteredTasks.setPredicate(expression::satisfies);
+    }
+    public void updateFilteredTaskListByHighPriority() {
+    	filteredTasks.setPredicate(task -> {
+            if(task.getPriority().toString() == ("h")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    
+    public void updateFilteredTaskListByMediumPriority() {
+    	filteredTasks.setPredicate(task -> {
+            if(task.getPriority().toString() == ("m")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    
+    public void updateFilteredTaskListByLowPriority() {
+    	filteredTasks.setPredicate(task -> {
+            if(task.getPriority().toString() == "l") {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    public void updateFilteredTaskListByTag(Tag tag){
+        filteredTasks.setPredicate(task -> {
+            if(task.getTags().contains(tag)) {
+                return true;
+            } else {
+                return false;
+            }
+        });
     }
 
     //========== Inner classes/interfaces used for filtering =================================================
@@ -154,8 +193,8 @@ public class ModelManager extends ComponentManager implements Model {
             return (nameKeyWords.stream()
                     .filter(keyword -> StringUtil.containsWordIgnoreCase(task.getName().fullName, keyword))
                     .findAny()
-                    .isPresent())
-            		|| (nameKeyWords.stream()
+                    .isPresent());
+            		/*|| (nameKeyWords.stream()
             		.filter(keyword -> StringUtil.containsWordIgnoreCase(task.getStartTime().startTime, keyword))
             		.findAny().isPresent())
             		|| (nameKeyWords.stream()
@@ -163,7 +202,7 @@ public class ModelManager extends ComponentManager implements Model {
                     		.findAny().isPresent())
             		|| (nameKeyWords.stream()
                     		.filter(keyword -> StringUtil.containsWordIgnoreCase(task.getDescription().description, keyword))
-                    		.findAny().isPresent());
+                    		.findAny().isPresent())*/
 
         }
 
