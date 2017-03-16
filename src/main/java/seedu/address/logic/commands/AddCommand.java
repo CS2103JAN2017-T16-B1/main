@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -73,7 +74,6 @@ public class AddCommand extends Command {
         }
         this.toAdd = new Task(
                 new Name(name),
-
                 new Description(description),
                 new StartTime(null),
                 new EndTime(endTime),
