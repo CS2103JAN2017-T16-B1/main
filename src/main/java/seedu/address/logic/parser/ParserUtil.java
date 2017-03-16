@@ -1,6 +1,11 @@
 package seedu.address.logic.parser;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -29,9 +34,12 @@ import seedu.address.model.tag.UniqueTagList;
  * Contains utility methods used for parsing strings in the various *Parser classes
  */
 public class ParserUtil {
-
-    private static final Pattern INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
-    /**
+	private static final String TIME_VALIDATION_REGEX = "(((18|19|20|21)\\d\\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])-[0-9]{4})*";
+	private static final String DATETIME_VALIDATION_REGEX ="^(((M|m)onday|(T|t)uesday|(W|w)ednesday|(T|t)hursday|(F|f)riday|(S|s)aturday|(S|s)unday) [0-9]{4})";
+	private static final Pattern INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+	public static final String MESSAGE_DAY_CONSTRAINTS =
+            "Dates must be in the form of full names of days of the week i.e. Monday 1000";
+	/**
      * Returns the specified index in the {@code command} if it is a positive unsigned integer
      * Returns an {@code Optional.empty()} otherwise.
      */
@@ -99,7 +107,59 @@ public class ParserUtil {
      */
     public static Optional<StartTime> parseStartTime(Optional<String> startTime) throws IllegalValueException {
         assert startTime != null;
-        return startTime.isPresent() ? Optional.of(new StartTime(startTime.get())) : Optional.empty();
+        String Time=null;
+        
+        if(startTime.isPresent()){
+        	Time =startTime.get();
+        }else{
+        	return Optional.empty();
+        }
+        
+        
+        if(Time.matches(TIME_VALIDATION_REGEX)){
+        	return Optional.of(new StartTime(startTime.get()));
+        }else{
+        	if(!Time.matches(DATETIME_VALIDATION_REGEX)){
+        		throw new IllegalValueException(MESSAGE_DAY_CONSTRAINTS);
+        	}
+        	
+        	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm");
+        	LocalDateTime date = LocalDateTime.now();
+            int intTime = 0;
+            switch(Time){
+            
+            	case("Monday"):
+            	intTime=1;break;
+            	
+            	case("Tuesday"):
+               	 intTime=2;break;
+            	
+            	case("Wednesday"):
+               	 intTime=3;break;
+            	
+            	case("Thursday"):
+               	 intTime=4;break;
+            	
+            	case("Friday"):
+               	 intTime=5;break;
+            	
+            	case("Saturday"):
+                 intTime=6;break;
+            	
+            	case("Sunday"):
+                 intTime=7;break;
+            	
+            }
+
+            System.out.println(Time);
+            System.out.println(intTime);
+            System.out.println(dtf.format(date));
+            while (date.getDayOfWeek().getValue() != intTime) {
+                date=date.plusDays(1);
+            }
+            return Optional.of(new StartTime(dtf.format(date)));
+        }
+        
     }
 
     /**
