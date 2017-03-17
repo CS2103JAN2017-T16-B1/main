@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -25,10 +26,10 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task manager. "
-            + "Parameters: add event EVENT_NAME st/START_TIME et/END_TIME [des/DESCRIPTION] [t/TAG]...\n"
+            + "Parameters: add EVENT_NAME [s/START_TIME] [e/END_TIME or DEADLINE] [d/DESCRIPTION] [t/TAG]...\n"
             + "Example: " + COMMAND_WORD
 
-            + " Midterms st/2017-3-1-1300 et/2017-3-1-1500 des/CS2103 t/school";
+            + " Midterms s/2017-03-01-1300 e/2017-03-01-1500 d/CS2103 t/school";
 
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
@@ -73,7 +74,6 @@ public class AddCommand extends Command {
         }
         this.toAdd = new Task(
                 new Name(name),
-
                 new Description(description),
                 new StartTime(null),
                 new EndTime(endTime),

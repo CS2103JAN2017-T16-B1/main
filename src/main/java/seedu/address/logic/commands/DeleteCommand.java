@@ -15,9 +15,9 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
 
-            + ": Deletes the item identified by the type of item and index number used in last task listing.\n"
-            + "Parameters: TYPE (must be 'e' for event,'t' for task or 'f' for floating task), INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " e1";
+            + ": Deletes the item identified by the index number used in last task listing.\n"
+            + "Parameters:  INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Item: %1$s";
 

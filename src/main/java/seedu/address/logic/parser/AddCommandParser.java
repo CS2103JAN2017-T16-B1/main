@@ -30,37 +30,16 @@ public class AddCommandParser {
 
         argsTokenizer.tokenize(args);
         String taskType = argsTokenizer.getCommandType(args);
+ 
         try {
-
-            switch(taskType) {
-            case "task":
                 return new AddCommand(
                         argsTokenizer.getPreamble().get(),
-                        argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),
-                        argsTokenizer.getValue(PREFIX_ENDTIME).get(),
+                        argsTokenizer.getValue(PREFIX_DESCRIPTION).orElse(null),
+                        argsTokenizer.getValue(PREFIX_STARTTIME).orElse(null),
+                        argsTokenizer.getValue(PREFIX_ENDTIME).orElse(null),
                         ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
                 );
-
-            case "event":
-                return new AddCommand(
-                        argsTokenizer.getPreamble().get(),
-                        argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),
-                        argsTokenizer.getValue(PREFIX_STARTTIME).get(),
-                        argsTokenizer.getValue(PREFIX_ENDTIME).get(),
-                        ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
-                );
-            case "floating":
-                return new AddCommand(
-                        argsTokenizer.getPreamble().get(),
-                        argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),
-                        ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
-                );
-            default:
-                System.out.println("Please specify the type of Task to add (task/event/floating)");
-            }
-            return null;
-
-
+                
         } catch (NoSuchElementException nsee) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         } catch (IllegalValueException ive) {
