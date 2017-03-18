@@ -58,8 +58,8 @@ public class EndTime {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof EndTime // instanceof handles nulls
-                && this.endTime.equals(((EndTime) other).endTime)); // state check
+               // || (other instanceof EndTime // instanceof handles nulls
+                && this.endTime.equals(((EndTime) other).endTime); // state check
     }
 
     @Override

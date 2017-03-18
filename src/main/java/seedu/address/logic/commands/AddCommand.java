@@ -75,7 +75,7 @@ public class AddCommand extends Command {
         this.toAdd = new Task(
                 new Name(name),
                 new Description(description),
-                new StartTime(null),
+                new StartTime(" "),
                 new EndTime(endTime),
                 new ID(id),
                 new Priority("m"),
@@ -96,8 +96,8 @@ public class AddCommand extends Command {
                 new Name(name),
 
                 new Description(description),
-                new StartTime(null),
-                new EndTime(null),
+                new StartTime(" "),
+                new EndTime(" "),
                 new ID(id),
                 new Priority("m"),
                 new Status("undone"),
