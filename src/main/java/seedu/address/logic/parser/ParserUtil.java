@@ -36,16 +36,9 @@ import seedu.address.model.tag.UniqueTagList;
  * Contains utility methods used for parsing strings in the various *Parser classes
  */
 public class ParserUtil {
-	private static final String DATETIME_VALIDATION_REGEX = "(((18|19|20|21)\\d\\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])-[0-9]{4})*";
-	private static final String DATE_VALIDATION_REGEX ="^(monday|tuesday|wednesday|thursday|friday|saturday|sunday)";
-	private static final String TIME_VALIDATION_REGEX ="^([0-9]{4})";
+
 	private static final Pattern INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
-	public static final String MESSAGE_DAY_CONSTRAINTS =
-            "Dates must be in the form of full names of days of the week i.e. Monday";
-	public static final String MESSAGE_TIME_CONSTRAINTS =
-            "Times must be in the form of HHMM i.e. 1000";
-	public static final String MESSAGE_INVALID_INPUT =
-            "Format of date and time must be a day followed by a 24H time i.e. Monday 1000";
+
 	/**
      * Returns the specified index in the {@code command} if it is a positive unsigned integer
      * Returns an {@code Optional.empty()} otherwise.
@@ -112,137 +105,21 @@ public class ParserUtil {
     /**
      * Parses a {@code Optional<String> start time} into an {@code Optional<Phone>} if {@code start time} is present.
      */
-    public static Optional<StartTime> parseStartTime(Optional<String> startTime) throws IllegalValueException {
+        public static Optional<StartTime> parseStartTime(Optional<String> startTime) throws IllegalValueException {
         assert startTime != null;
-        String time=null;
         
-        //Returns empty if no user input
-        if(startTime.isPresent()){
-        	time =startTime.get();
-        }else{
-        	return Optional.empty();
-        }
-        
-        //Returns start time object if user input was in the correct format
-        if(time.matches(DATETIME_VALIDATION_REGEX)){
-        	return Optional.of(new StartTime(startTime.get()));
-        }else{
-        	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-");
-            int intTime = 0;
-        	ArrayList<String> times = parseDayAndTime(time);
-        	checkForCorrectFormats(times);
-        	LocalDateTime date = LocalDateTime.now();
-            intTime = getDayAsInt(times, intTime);
-            date = getNearestDate(date, intTime);
-            return Optional.of(new StartTime(dtf.format(date)+times.get(1)));
-        }
-        
+        return startTime.isPresent() ? Optional.of(new StartTime(startTime.get())) : Optional.empty();
     }
-    /**
-     * splits date and time into different
-     * @param time
-     * @return
-     */
-	private static ArrayList<String> parseDayAndTime(String time) {
-		
-		time=time.toLowerCase();
-		ArrayList<String> times= new ArrayList<String>(Arrays.asList(time.split(" ")));
-		return times;
-	}
-	/**
-	 * 
-	 * @param times
-	 * @throws IllegalValueException when format of date and time is not right
-	 */
-
-	private static void checkForCorrectFormats(ArrayList<String> times) throws IllegalValueException {
-		if(times.size()!=2){
-			throw new IllegalValueException(MESSAGE_INVALID_INPUT);
-		}
-		
-		if(!times.get(0).matches(DATE_VALIDATION_REGEX)){
-			throw new IllegalValueException(MESSAGE_DAY_CONSTRAINTS);
-		}
-		if(!times.get(1).matches(TIME_VALIDATION_REGEX)){
-			throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
-		}
-	}
-/**
- * 
- * @param times is an array that holds both the day and time
- * @param intTime 
- * @return intTime to match the day of the week specified as an integer
- */
-	private static int getDayAsInt(ArrayList<String> times, int intTime) {
-		switch(times.get(0)){
-		
-			case("monday"):
-			intTime=1;break;
-			
-			case("tuesday"):
-		   	 intTime=2;break;
-			
-			case("wednesday"):
-		   	 intTime=3;break;
-			
-			case("thursday"):
-		   	 intTime=4;break;
-			
-			case("friday"):
-		   	 intTime=5;break;
-			
-			case("saturday"):
-		     intTime=6;break;
-			
-			case("sunday"):
-		     intTime=7;break;
-			
-		}
-		return intTime;
-	}
-	/**
-	 * 
-	 * @param date is the current date time on the users computer
-	 * @param intTime is the user specified date 
-	 * @return the closest date from current date 
-	 */
-	private static LocalDateTime getNearestDate(LocalDateTime date, int intTime) {
-		while (date.getDayOfWeek().getValue() != intTime) {
-		    date=date.plusDays(1);
-		}
-		return date;
-	}
-
+    
     /**
      * Parses a {@code Optional<String> end time} into an {@code Optional<EndTime>} if {@code end time} is present.
      */
     public static Optional<EndTime> parseEndTime(Optional<String> endTime) throws IllegalValueException {
         assert endTime != null;
-        String time=null;
-        
-        //Returns empty if no user input
-        if(endTime.isPresent()){
-        	time =endTime.get();
-        }else{
-        	return Optional.empty();
-        }
-        
-        //Returns start time object if user input was in the correct format
-        if(time.matches(DATETIME_VALIDATION_REGEX)){
-        	return Optional.of(new EndTime(endTime.get()));
-        }else{
-        	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-");
-            int intTime = 0;
-        	ArrayList<String> times = parseDayAndTime(time);
-        	checkForCorrectFormats(times);
-        	LocalDateTime date = LocalDateTime.now();
-            intTime = getDayAsInt(times, intTime);
-            date = getNearestDate(date, intTime);
-            return Optional.of(new EndTime(dtf.format(date)+times.get(1)));
-        }
+        return endTime.isPresent() ? Optional.of(new EndTime(endTime.get())) : Optional.empty();
         
     }
-
+    //@@A0138998B
     /**
      * Parses a {@code Optional<String> description} into an {@code Optional<Description>} if {@code description} is present.
      */

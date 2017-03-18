@@ -6,6 +6,8 @@ import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Task.Description;
 import seedu.address.model.Task.EndTime;
 import seedu.address.model.Task.ID;
@@ -36,7 +38,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This task already exists in the task manager";
     public static String id = "1";
     private final Task toAdd;
-
+    
     /**
      * Creates an AddCommand using raw values.
      *
@@ -50,6 +52,7 @@ public class AddCommand extends Command {
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
+        
         this.toAdd = new Task(
                 new Name(name),
 
