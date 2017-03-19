@@ -19,14 +19,14 @@ public interface Model {
     /** Returns the TaskManager */
     ReadOnlyTaskManager getTaskManager();
 
-    /** Deletes the given person. */
+    /** Deletes the given task. */
     void deleteTask(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
     
-    /** Adds the given person */
+    /** Adds the given task */
     void addTask(Task task) throws UniqueTaskList.DuplicatetaskException;
 
     /**
-     * Updates the Task located at {@code filteredPersonListIndex} with {@code editedPerson}.
+     * Updates the Task located at {@code filteredTaskListIndex} with {@code editedTask}.
      *
      * @throws DuplicatetaskException if updating the person's details causes the person to be equivalent to
      *      another existing person in the list.
@@ -35,7 +35,7 @@ public interface Model {
     void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)
             throws UniqueTaskList.DuplicatetaskException;
 
-    /** Returns the filtered person list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */
+    /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
 
     /** Updates the filter of the filtered person list to show all persons */
