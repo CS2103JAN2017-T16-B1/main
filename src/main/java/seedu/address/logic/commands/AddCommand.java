@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + " Midterms s/2017-03-01-1300 e/2017-03-01-1500 d/CS2103 t/school";
 
 
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+    public static final String MESSAGE_SUCCESS = " Added:\n %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This task already exists in the task manager";
     public static String id = "1";
     private final Task toAdd;

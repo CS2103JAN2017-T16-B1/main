@@ -31,7 +31,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) [NAME] [beg/STARTTIME] [end/ENDTIME] [des/DESCRIPTION ] [t/TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 st/2017-3-1-2359 des/go to ntuc";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited:\n %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
 
