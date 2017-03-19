@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javafx.collections.FXCollections;
@@ -14,6 +15,8 @@ import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.exceptions.DuplicateDataException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
+import seedu.address.model.Task.ReadOnlyTask;
 
 /**
  * A list of tags that enforces no nulls and uniqueness between its elements.
@@ -31,7 +34,28 @@ public class UniqueTagList implements Iterable<Tag> {
      * Constructs empty TagList.
      */
     public UniqueTagList() {}
-
+  //@@A0138998B
+    /**
+     * Constructs TagList that takes in tags from an old task and new edited task.
+     * Any tags that are the same in both tasks are deleted and new ones are merged into a single list
+     */
+    public UniqueTagList(ReadOnlyTask task, EditTaskDescriptor editedTask){
+       	for(Tag tag : task.getTags()){
+    		internalList.add(tag);
+    	}
+       	if(editedTask.getTags().isPresent()){
+       		for(Tag tag: editedTask.getTags().get()){
+       			if(internalList.contains(tag)){
+       				internalList.remove(tag);
+       			}else 
+       				if(!internalList.contains(tag)){
+       					internalList.add(tag);
+       				}
+       		}
+       	}
+    	
+    }
+  //@@A0138998B
     /**
      * Creates a UniqueTagList using given String tags.
      * Enforces no nulls or duplicates.
@@ -90,7 +114,7 @@ public class UniqueTagList implements Iterable<Tag> {
     public Set<Tag> toSet() {
         return new HashSet<>(internalList);
     }
-
+    
     /**
      * Replaces the Tags in this list with those in the argument tag list.
      */

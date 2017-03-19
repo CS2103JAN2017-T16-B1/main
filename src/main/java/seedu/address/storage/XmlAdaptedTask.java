@@ -19,7 +19,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
- * JAXB-friendly version of the Person.
+ * JAXB-friendly version of the Task.
  */
 public class XmlAdaptedTask {
 
@@ -27,12 +27,12 @@ public class XmlAdaptedTask {
     private String id;
 	@XmlElement(required = true)
     private String name;
-    @XmlElement(required = true)
-    private String phone;
-    @XmlElement(required = true)
-    private String email;
-    @XmlElement(required = true)
-    private String address;
+    @XmlElement(required = false)
+    private String description;
+    @XmlElement(required = false)
+    private String starttime;
+    @XmlElement(required = false)
+    private String endtime;
     @XmlElement(required = true)
 	private String priority;
     @XmlElement(required = true)
@@ -43,22 +43,25 @@ public class XmlAdaptedTask {
 
 
     /**
-     * Constructs an XmlAdaptedPerson.
+     * Constructs an XmlAdaptedTask.
      * This is the no-arg constructor that is required by JAXB.
      */
     public XmlAdaptedTask() {}
 
 
     /**
-     * Converts a given Person into this class for JAXB use.
+     * Converts a given Task into this class for JAXB use.
      *
      * @param source future changes to this will not affect the created XmlAdaptedPerson
      */
     public XmlAdaptedTask(ReadOnlyTask source) {
+        id = source.getId().id;
         name = source.getName().fullName;
-        phone = source.getDescription().description;
-        email = source.getStartTime().startTime;
-        address = source.getEndTime().endTime;
+        description = source.getDescription().description;
+        starttime = source.getStartTime().startTime;
+        endtime = source.getEndTime().endTime;
+        priority = source.getPriority().priority;
+        status = source.getStatus().status;
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -66,23 +69,25 @@ public class XmlAdaptedTask {
     }
 
     /**
-     * Converts this jaxb-friendly adapted person object into the model's Person object.
+     * Converts this jaxb-friendly adapted task object into the model's Task object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person
+     * @throws IllegalValueException if there were any data constraints violated in the adapted task
      */
     public Task toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> taskTags = new ArrayList<>();
         for (XmlAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            taskTags.add(tag.toModelType());
         }
         final Name name = new Name(this.name);
-        final Description description = new Description(this.phone);
-        final StartTime startTime = new StartTime(this.email);
-        final EndTime endTime = new EndTime(this.address);
-        final ID id = new ID(this.id);
+        final Description description = new Description(this.description);
+        final StartTime startTime = new StartTime(this.starttime);
+        final EndTime endTime = new EndTime(this.endtime);
+
+        final ID id = new ID(String.valueOf(this.id));
+
         final Priority priority = new Priority(this.priority);
         final Status status = new Status(this.status);
-        final UniqueTagList tags = new UniqueTagList(personTags);
+        final UniqueTagList tags = new UniqueTagList(taskTags);
         return new Task(name, description, startTime, endTime, id, priority, status, tags);
     }
 }

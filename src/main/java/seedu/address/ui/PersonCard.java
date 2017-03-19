@@ -20,23 +20,23 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
     private Label email;
+    @FXML
+    private Label address;
     @FXML
     private FlowPane tags;
 
-    public PersonCard(ReadOnlyTask person, int displayedIndex) {
+    public PersonCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
-        name.setText(person.getName().fullName);
+        name.setText(task.getName().fullName);
         id.setText(displayedIndex + ". ");
-        phone.setText(person.getDescription().description);
-        address.setText(person.getEndTime().endTime);
-        email.setText(person.getStartTime().startTime);
-        initTags(person);
+        phone.setText("Description : " + task.getDescription().description);
+        email.setText("Start Time : " + task.getStartTime().startTime);
+        address.setText("End Time : " +task.getEndTime().endTime);
+        initTags(task);
     }
 
-    private void initTags(ReadOnlyTask person) {
-        person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    private void initTags(ReadOnlyTask task) {
+        task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }

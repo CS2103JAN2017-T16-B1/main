@@ -11,10 +11,10 @@ import seedu.address.model.tag.Tag;
 public interface ReadOnlyTaskManager {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the tasks list.
+     * This list will not contain any duplicate tasks.
      */
-    ObservableList<ReadOnlyTask> getPersonList();
+    ObservableList<ReadOnlyTask> getTaskList();
 
     /**
      * Returns an unmodifiable view of the tags list.

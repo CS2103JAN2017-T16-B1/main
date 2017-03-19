@@ -33,7 +33,6 @@ public interface ReadOnlyTask {
                 && other.getStartTime().equals(this.getStartTime())
                 && other.getEndTime().equals(this.getEndTime()))
                 && other.getPriority().equals(this.getPriority())
-                && other.getId().equals(this.getId())
                 && other.getStatus().equals(this.getStatus());
     }
 

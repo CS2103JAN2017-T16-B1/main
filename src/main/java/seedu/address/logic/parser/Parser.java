@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -27,7 +28,8 @@ public class Parser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-
+    public static final String STARTTIME_VARIANTS_REGEX = "(FROM )";
+    public static final String ENDTIME_VARIANTS_REGEX = "(TO |BY )";
     /**
      * Parses user input into command for execution.
      *
@@ -60,7 +62,11 @@ public class Parser {
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            try {
+				return new FindCommandParser().parse(arguments);
+			} catch (IllegalValueException e) {
+				return new IncorrectCommand(e.getMessage());
+			}
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -75,5 +81,11 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
+    //@@A0138998B
+    public String parseArguments(String args){
+    	args=args.replaceAll(STARTTIME_VARIANTS_REGEX, "s/");
+    	args=args.replaceAll(ENDTIME_VARIANTS_REGEX, "e/");
+    	return args;
+    }
+    //@@A0138998B
 }
