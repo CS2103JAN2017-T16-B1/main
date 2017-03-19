@@ -64,47 +64,8 @@ public class AddCommand extends Command {
         );
         incrementID();
     }
-  //Add Task
-    public AddCommand(String name, String description, String endTime, Set<String> tags)
-
-            throws IllegalValueException {
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(new Tag(tagName));
-        }
-        this.toAdd = new Task(
-                new Name(name),
-                new Description(description),
-                new StartTime(null),
-                new EndTime(endTime),
-                new ID(id),
-                new Priority("m"),
-                new Status("undone"),
-                new UniqueTagList(tagSet)
-        );
-        incrementID();
-    }
-  //Add Floating
-    public AddCommand(String name, String description,  Set<String> tags)
-
-            throws IllegalValueException {
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(new Tag(tagName));
-        }
-        this.toAdd = new Task(
-                new Name(name),
-
-                new Description(description),
-                new StartTime(null),
-                new EndTime(null),
-                new ID(id),
-                new Priority("m"),
-                new Status("undone"),
-                new UniqueTagList(tagSet)
-        );
-        incrementID();
-    }
+  
+    
     private void incrementID() {
         Integer intid = Integer.parseInt(id);
         intid++;
