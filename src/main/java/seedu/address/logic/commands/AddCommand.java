@@ -6,6 +6,8 @@ import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Task.Description;
 import seedu.address.model.Task.EndTime;
 import seedu.address.model.Task.ID;
@@ -36,7 +38,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This task already exists in the task manager";
     public static String id = "1";
     private final Task toAdd;
-
+    
     /**
      * Creates an AddCommand using raw values.
      *
@@ -50,6 +52,7 @@ public class AddCommand extends Command {
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
+        
         this.toAdd = new Task(
                 new Name(name),
 
@@ -64,8 +67,48 @@ public class AddCommand extends Command {
         );
         incrementID();
     }
-  
-    
+
+  //Add Task
+    public AddCommand(String name, String description, String endTime, Set<String> tags)
+
+            throws IllegalValueException {
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(new Tag(tagName));
+        }
+        this.toAdd = new Task(
+                new Name(name),
+                new Description(description),
+                new StartTime(""),
+                new EndTime(endTime),
+                new ID(id),
+                new Priority("m"),
+                new Status("undone"),
+                new UniqueTagList(tagSet)
+        );
+        incrementID();
+    }
+  //Add Floating
+    public AddCommand(String name, String description,  Set<String> tags)
+
+            throws IllegalValueException {
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(new Tag(tagName));
+        }
+        this.toAdd = new Task(
+                new Name(name),
+
+                new Description(description),
+                new StartTime(""),
+                new EndTime(""),
+                new ID(id),
+                new Priority("m"),
+                new Status("undone"),
+                new UniqueTagList(tagSet)
+        );
+        incrementID();
+    }
     private void incrementID() {
         Integer intid = Integer.parseInt(id);
         intid++;

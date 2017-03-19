@@ -9,7 +9,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 public class Description {
 
     public static final String MESSAGE_PHONE_CONSTRAINTS = "Description should only contain alphanumeric characters and whitespace";
-    public static final String DESCRIPTION_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String DESCRIPTION_VALIDATION_REGEX = ".*";
 
     public final String description;
 
@@ -44,8 +44,10 @@ public class Description {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                //|| (other instanceof Description // instanceof handles nulls
+
+               ||(other instanceof Description) // instanceof handles nulls
                 && this.description.equals(((Description) other).description); // state check
+                
     }
 
     @Override

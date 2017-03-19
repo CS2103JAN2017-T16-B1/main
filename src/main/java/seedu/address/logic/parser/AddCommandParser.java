@@ -30,13 +30,13 @@ public class AddCommandParser {
 
         argsTokenizer.tokenize(args);
         String taskType = argsTokenizer.getCommandType(args);
- 
+
         try {
                 return new AddCommand(
                         argsTokenizer.getPreamble().get(),
-                        argsTokenizer.getValue(PREFIX_DESCRIPTION).orElse(null),
-                        argsTokenizer.getValue(PREFIX_STARTTIME).orElse(null),
-                        argsTokenizer.getValue(PREFIX_ENDTIME).orElse(null),
+                        argsTokenizer.getValue(PREFIX_DESCRIPTION).orElse(""),
+                        argsTokenizer.getValue(PREFIX_STARTTIME).orElse(""),
+                        argsTokenizer.getValue(PREFIX_ENDTIME).orElse(""),
                         ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
                 );
                 

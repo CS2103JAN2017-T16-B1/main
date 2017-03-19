@@ -1,6 +1,13 @@
 package seedu.address.logic.parser;
 
+import java.sql.Array;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -30,8 +37,9 @@ import seedu.address.model.tag.UniqueTagList;
  */
 public class ParserUtil {
 
-    private static final Pattern INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
-    /**
+	private static final Pattern INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+
+	/**
      * Returns the specified index in the {@code command} if it is a positive unsigned integer
      * Returns an {@code Optional.empty()} otherwise.
      */
@@ -97,19 +105,21 @@ public class ParserUtil {
     /**
      * Parses a {@code Optional<String> start time} into an {@code Optional<Phone>} if {@code start time} is present.
      */
-    public static Optional<StartTime> parseStartTime(Optional<String> startTime) throws IllegalValueException {
+        public static Optional<StartTime> parseStartTime(Optional<String> startTime) throws IllegalValueException {
         assert startTime != null;
+        
         return startTime.isPresent() ? Optional.of(new StartTime(startTime.get())) : Optional.empty();
     }
-
+    
     /**
      * Parses a {@code Optional<String> end time} into an {@code Optional<EndTime>} if {@code end time} is present.
      */
     public static Optional<EndTime> parseEndTime(Optional<String> endTime) throws IllegalValueException {
         assert endTime != null;
         return endTime.isPresent() ? Optional.of(new EndTime(endTime.get())) : Optional.empty();
+        
     }
-
+ 
     /**
      * Parses a {@code Optional<String> description} into an {@code Optional<Description>} if {@code description} is present.
      */

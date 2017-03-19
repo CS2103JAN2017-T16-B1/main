@@ -28,7 +28,8 @@ public class Parser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-
+    public static final String STARTTIME_VARIANTS_REGEX = "(FROM )";
+    public static final String ENDTIME_VARIANTS_REGEX = "(TO |BY )";
     /**
      * Parses user input into command for execution.
      *
@@ -80,5 +81,11 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
+    //@@A0138998B
+    public String parseArguments(String args){
+    	args=args.replaceAll(STARTTIME_VARIANTS_REGEX, "s/");
+    	args=args.replaceAll(ENDTIME_VARIANTS_REGEX, "e/");
+    	return args;
+    }
+    //@@A0138998B
 }
