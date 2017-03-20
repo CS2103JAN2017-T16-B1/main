@@ -118,6 +118,7 @@ public class Task implements ReadOnlyTask {
     public boolean noEndTime(){
     	assert endTime != null;
     	if(this.endTime.isEmpty()){
+    		
     		return true;
     	}else {
     		return false;

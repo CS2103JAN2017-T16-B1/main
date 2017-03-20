@@ -41,25 +41,24 @@ public interface ReadOnlyTask {
      */
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Description: ")
+        builder.append(" Description: ")
                 .append(getDescription());
         		if(noEndTime() && noStartTime()){
         			
         		}else 
         		if(noEndTime() && !noStartTime()){
-        			builder.append(" DeadLine: ")
+        			builder.append("\n DeadLine: ")
         			.append(getStartTime());
         		}else
         		if(!noEndTime() && !noStartTime()){
-        			builder.append(" Event Start time: ")
+        			builder.append(" \n Event Start time: ")
         			.append(getStartTime())
-        			.append(" Event end time: ")
+        			.append("\n Event end time: ")
         			.append(getEndTime());
         		}
                 
-                builder.append(" Tags: ");
-        getTags().forEach(builder::append);
+                /*builder.append("\n Tags: ");
+        getTags().forEach(builder::append);*/
         return builder.toString();
     }
 	boolean noEndTime();

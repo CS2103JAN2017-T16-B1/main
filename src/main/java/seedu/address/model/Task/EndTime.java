@@ -85,9 +85,11 @@ public class EndTime {
     }
     public boolean isEmpty() {
         if (endTime == "") {
+        	
             return true;
         }
         else {
+        	
             return false;
         }
     }
