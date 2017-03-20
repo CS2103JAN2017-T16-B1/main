@@ -6,13 +6,12 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.UndoCommand;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new UndoCommand object
  */
 public class UndoCommandParser {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns an DeleteCommand object for execution.
+     * Returns an UndoCommand object for execution.
      */
     public Command parse() {
 
