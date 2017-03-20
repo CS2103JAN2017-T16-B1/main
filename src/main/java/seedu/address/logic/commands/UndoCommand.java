@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.model.TaskManager;
 
 /**
- * Clears the address book.
+ * Undo the previous add/edit/delete/undo Command.
  */
 public class UndoCommand extends Command {
 

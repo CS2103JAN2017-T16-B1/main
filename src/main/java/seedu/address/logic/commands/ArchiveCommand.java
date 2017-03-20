@@ -57,7 +57,7 @@ public class ArchiveCommand extends Command {
         catch (IllegalValueException ive) {
             throw new CommandException(MESSAGE_ILLEGAL_VALUE);
         } 
-       
+       model.updateFilteredListToShowAll();
 
         return new CommandResult(String.format(MESSAGE_ARCHIVE_TASK_SUCCESS, taskToArchive));
 

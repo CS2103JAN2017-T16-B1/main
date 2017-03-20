@@ -57,4 +57,6 @@ public interface Model {
     void updateFilteredTaskListByHighPriority();
 
     boolean undoTask();
+
+    void updateFilteredTaskListByArchived();
 }

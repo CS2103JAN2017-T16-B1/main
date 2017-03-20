@@ -120,6 +120,16 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredListToShowAll() {
         filteredTasks.setPredicate(null);
     }
+    public void updateFilteredTaskListByArchived() {
+        updateFilteredListToShowAll();
+        filteredTasks.setPredicate(task -> {
+            if(!task.getStatus().toString().contains("undone")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
 
     @Override
     public void updateFilteredTaskListByKeywords(Set<String> keywords) {
