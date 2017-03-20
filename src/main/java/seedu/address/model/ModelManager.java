@@ -23,7 +23,8 @@ import seedu.address.model.tag.Tag;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final TaskManager taskManager;
+    private TaskManager taskManager;
+    private TaskManager previousTaskMgr;
     private final FilteredList<ReadOnlyTask> filteredTasks;
 
     /**
@@ -65,7 +66,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
-
+        setPrevious();
         taskManager.removeTask(target);
 
         indicateTaskManagerChanged();
@@ -73,16 +74,34 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public synchronized void addTask(Task task) throws UniqueTaskList.DuplicatetaskException {
+        setPrevious();
         taskManager.addTask(task);
         updateFilteredListToShowAll();
         indicateTaskManagerChanged();
     }
-
+    
+    private void setPrevious(){
+        previousTaskMgr = new TaskManager(taskManager);
+    }
+    
+    public boolean undoTask(){
+        if(previousTaskMgr == null) {
+            return false;
+        }
+        else {
+            TaskManager currentTaskMgr = new TaskManager(taskManager);
+            taskManager.resetData(previousTaskMgr);
+            previousTaskMgr.resetData(currentTaskMgr);
+            return true;
+        }
+        
+    }
+    
     @Override
     public void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)
             throws UniqueTaskList.DuplicatetaskException {
         assert editedTask != null;
-
+        setPrevious();
 
         int taskManagerIndex = filteredTasks.getSourceIndex(filteredTaskListIndex);
         taskManager.updateTask(taskManagerIndex, editedTask);
