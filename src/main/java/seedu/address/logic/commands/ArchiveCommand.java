@@ -49,7 +49,6 @@ public class ArchiveCommand extends Command {
         try {
             Task updatedTask = new Task(taskToArchive.getName(), taskToArchive.getDescription(), taskToArchive.getStartTime(),taskToArchive.getEndTime(), taskToArchive.getId(), taskToArchive.getPriority(),new Status("done"),taskToArchive.getTags());
             model.updateTask(targetIndex, updatedTask);
-
         }
         catch (UniqueTaskList.DuplicatetaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);

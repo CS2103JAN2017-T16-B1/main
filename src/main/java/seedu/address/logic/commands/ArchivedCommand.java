@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
 public class ArchivedCommand extends Command {
 
     public static final String COMMAND_WORD = "archived";
-   // private static final String HIGH_PRIORITY = "h";
+
 
 
     public ArchivedCommand() {
@@ -26,7 +26,7 @@ public class ArchivedCommand extends Command {
     	
     	model.updateFilteredTaskListByArchived();
 
-    	return new CommandResult(getMessageForTaskListShownSummary(model.getFilteredTaskList().size()));
+    	return new CommandResult(getMessageForArchivedTaskListShownSummary(model.getFilteredTaskList().size()));
     }
 
 	
