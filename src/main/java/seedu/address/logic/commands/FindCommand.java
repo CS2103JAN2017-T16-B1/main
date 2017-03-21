@@ -11,6 +11,7 @@ import seedu.address.model.tag.Tag;
  * Keyword matching is case sensitive.
  */
 public class FindCommand extends Command {
+
     public static final String COMMAND_WORD = "find";
     private static final String HIGH_PRIORITY = "h";
     private static final String MEDIUM_PRIORITY = "m";
@@ -63,7 +64,7 @@ public class FindCommand extends Command {
     }
 
 	private void updateByPriorityLevel(Priority priority) {
-		if(priority.toString().equals(HIGH_PRIORITY)){
+		if(this.priority.toString() == HIGH_PRIORITY) {
             model.updateFilteredTaskListByHighPriority();
         } else if(this.priority.toString() == MEDIUM_PRIORITY) {
             model.updateFilteredTaskListByMediumPriority();
