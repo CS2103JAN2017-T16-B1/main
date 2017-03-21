@@ -191,10 +191,10 @@ public class ModelManager extends ComponentManager implements Model {
         @Override
 
         public boolean run(ReadOnlyTask task) {
-        	for(String item: nameKeyWords){
-            	if((StringUtil.containsWordIgnoreCase(task.getName().fullName,item))
-    			|| (StringUtil.containsWordIgnoreCase(task.getDescription().description,item))
-    			|| (StringUtil.containsTagIgnoreCase(task.getTags(),item)))
+        	for(String keyword: nameKeyWords){
+            	if((StringUtil.containsWordIgnoreCase(task.getName().fullName,keyword))
+    			|| (StringUtil.containsWordIgnoreCase(task.getDescription().description,keyword))
+    			|| (StringUtil.containsTagIgnoreCase(task.getTags(),keyword)))
             		return true;
             }
             return false;
