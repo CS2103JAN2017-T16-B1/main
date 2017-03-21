@@ -41,28 +41,28 @@ public class FindCommandParser {
         final String[] keywords = matcher.group("keywords").split("\\s+");
         
         if(keywords[0].charAt(0) == PREFIX_HASHTAG){
-        	return returnFindCommandForHashtagPrefix(keywords);
+        	return returnFindCommandForHashtagPrefix(keywords[0]);
         }
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
 
-	private Command returnFindCommandForHashtagPrefix(String[] keywords) throws IllegalValueException {
-		 if (keywords[0].substring(1).isEmpty()) {
+	private Command returnFindCommandForHashtagPrefix(String keywords) throws IllegalValueException {
+		 if (keywords.substring(1).isEmpty()) {
 	            return new IncorrectCommand(
 	                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 	        }
-	        if (keywords[0].substring(1).equalsIgnoreCase(HIGH_PRIORITY)) {
-	        	Priority priority = new Priority(keywords[0].substring(1));
+	        if (keywords.substring(1).equalsIgnoreCase(HIGH_PRIORITY)) {
+	        	Priority priority = new Priority(keywords.substring(1));
 	            return new FindCommand(priority);
-	        } else if (keywords[0].substring(1).equalsIgnoreCase(MEDIUM_PRIORITY)) {
-	        	Priority priority = new Priority(keywords[0].substring(1));
+	        } else if (keywords.substring(1).equalsIgnoreCase(MEDIUM_PRIORITY)) {
+	        	Priority priority = new Priority(keywords.substring(1));
 	            return new FindCommand(priority);
-	        } else if (keywords[0].substring(1) == LOW_PRIORITY) {
-	        	Priority priority = new Priority(keywords[0].substring(1));
+	        } else if (keywords.substring(1) == LOW_PRIORITY) {
+	        	Priority priority = new Priority(keywords.substring(1));
 	            return new FindCommand(priority);
 	        } else {
-	            Tag tag = new Tag(keywords[0].substring(1));
+	            Tag tag = new Tag(keywords.substring(1));
 	            return new FindCommand(tag);
 	        }
 	}

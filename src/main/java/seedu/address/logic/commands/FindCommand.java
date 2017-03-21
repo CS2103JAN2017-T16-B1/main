@@ -64,11 +64,11 @@ public class FindCommand extends Command {
     }
 
 	private void updateByPriorityLevel(Priority priority) {
-		if(this.priority.toString() == HIGH_PRIORITY) {
+		if(this.priority.toString().equals(HIGH_PRIORITY)) {
             model.updateFilteredTaskListByHighPriority();
-        } else if(this.priority.toString() == MEDIUM_PRIORITY) {
+        } else if(this.priority.toString().equals(MEDIUM_PRIORITY)) {
             model.updateFilteredTaskListByMediumPriority();
-        } else if(this.priority.toString() == LOW_PRIORITY) {
+        } else if(this.priority.toString().equals(LOW_PRIORITY)) {
             model.updateFilteredTaskListByLowPriority();
         } else {
             Assert.fail("unable to execute FindCommand due to incorrect Priority");
