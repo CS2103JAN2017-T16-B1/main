@@ -3,6 +3,10 @@ package seedu.address.commons.util;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueTagList;
+
 /**
  * Helper functions for handling strings.
  */
@@ -55,4 +59,24 @@ public class StringUtil {
     public static boolean isUnsignedInteger(String s) {
         return s != null && s.matches("^0*[1-9]\\d*$");
     }
+
+	public static boolean containsTagIgnoreCase(UniqueTagList tags, String item) {
+		assert item != null: "Tag parameter cannot be empty";
+		assert tags != null: "Taglist parameter cannot be empty";
+		
+		String preppedTag = item.trim();
+        assert !preppedTag.isEmpty() : "Tag parameter cannot be empty";
+        assert preppedTag.split("\\s+").length == 1 : "Tag parameter should be a single word";
+
+        UniqueTagList preppedList = tags;
+ 
+		try {
+			Tag toCheck = new Tag(item);
+			return preppedList.contains(toCheck);
+		} catch (IllegalValueException e) {
+			e.printStackTrace();
+		}
+		return false;
+
+	}
 }
