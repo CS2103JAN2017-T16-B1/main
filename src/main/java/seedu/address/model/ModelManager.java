@@ -40,7 +40,14 @@ public class ModelManager extends ComponentManager implements Model {
 
 
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
-
+        
+        filteredTasks.setPredicate(task -> {
+            if(task.getStatus().toString().contains("un")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
 
     }
 
@@ -118,7 +125,15 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateFilteredListToShowAll() {
-        filteredTasks.setPredicate(null);
+        //filteredTasks.setPredicate(null);
+        filteredTasks.setPredicate(task -> {
+            if(task.getStatus().toString().contains("un")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+
     }
     public void updateFilteredTaskListByArchived() {
         updateFilteredListToShowAll();
