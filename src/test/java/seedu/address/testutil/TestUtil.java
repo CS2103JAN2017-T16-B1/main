@@ -31,8 +31,11 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.XmlUtil;
 import seedu.address.model.TaskManager;
 import seedu.address.model.Task.EndTime;
+import seedu.address.model.Task.ID;
 import seedu.address.model.Task.StartTime;
+import seedu.address.model.Task.Status;
 import seedu.address.model.Task.Name;
+import seedu.address.model.Task.Priority;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.Description;
 import seedu.address.model.Task.ReadOnlyTask;
@@ -75,15 +78,15 @@ public class TestUtil {
         try {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
-                new Task(new Name("Ali Muster"), new Description("9482424"), new StartTime("hans@google.com"), new EndTime("4th street"), new UniqueTagList()),
-                new Task(new Name("Boris Mueller"), new Description("87249245"), new StartTime("ruth@google.com"), new EndTime("81th street"), new UniqueTagList()),
-                new Task(new Name("Carl Kurz"), new Description("95352563"), new StartTime("heinz@yahoo.com"), new EndTime("wall street"), new UniqueTagList()),
-                new Task(new Name("Daniel Meier"), new Description("87652533"), new StartTime("cornelia@google.com"), new EndTime("10th street"), new UniqueTagList()),
-                new Task(new Name("Elle Meyer"), new Description("9482224"), new StartTime("werner@gmail.com"), new EndTime("michegan ave"), new UniqueTagList()),
-                new Task(new Name("Fiona Kunz"), new Description("9482427"), new StartTime("lydia@gmail.com"), new EndTime("little tokyo"), new UniqueTagList()),
-                new Task(new Name("George Best"), new Description("9482442"), new StartTime("anna@google.com"), new EndTime("4th street"), new UniqueTagList()),
-                new Task(new Name("Hoon Meier"), new Description("8482424"), new StartTime("stefan@mail.com"), new EndTime("little india"), new UniqueTagList()),
-                new Task(new Name("Ida Mueller"), new Description("8482131"), new StartTime("hans@google.com"), new EndTime("chicago ave"), new UniqueTagList())
+                new Task(new Name("School"), new Description("go to school"), new StartTime("2017-03-03-2100"), new EndTime("2017-05-04-2000"), new ID("20000"),new Priority("m"), new Status("done"), new UniqueTagList()),
+                new Task(new Name("Homework"), new Description("do homework"), new StartTime("2017-03-03-2100"), new EndTime("2017-06-02-1000"),new ID("20001"),new Priority("h"), new Status("done"), new UniqueTagList()),
+                new Task(new Name("Mid-term"), new Description("study for midterm"), new StartTime("2017-02-01-2100"), new EndTime("2017-08-08-2100"),new ID("20002"),new Priority("m"), new Status("done"), new UniqueTagList()),
+                new Task(new Name("Exam"), new Description("study for exam"), new StartTime("2017-06-06-1200"), new EndTime("2017-03-03-2100"),new ID("20003"),new Priority("l"), new Status("done"), new UniqueTagList()),
+                new Task(new Name("buy milk"), new Description("buy milk at ntuc"), new StartTime("2017-10-10-1400"), new EndTime("2017-03-03-2100"),new ID("20004"),new Priority("m"), new Status("done"), new UniqueTagList()),
+                new Task(new Name("buy dinner"), new Description("buy dinner at coffeeshop"), new StartTime("2017-08-09-2100"), new EndTime("2017-12-11-2100"),new ID("20005"),new Priority("l"), new Status("done"), new UniqueTagList()),
+                new Task(new Name("cook dinner"), new Description("cook steak for dinner"), new StartTime("2017-01-03-2100"), new EndTime("2017-05-05-2100"),new ID("20006"),new Priority("h"), new Status("undone"), new UniqueTagList()),
+                new Task(new Name("go to bed"), new Description("time to sleep"), new StartTime("2017-03-01-2200"), new EndTime("2017-07-07-2100"),new ID("20007"),new Priority("l"), new Status("undone"), new UniqueTagList()),
+                new Task(new Name("Sleeping"), new Description("zzzzz...."), new StartTime("2017-03-03-1500"), new EndTime("2017-05-05-2100"),new ID("20008"),new Priority("m"), new Status("undone"), new UniqueTagList())
             };
             //CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {

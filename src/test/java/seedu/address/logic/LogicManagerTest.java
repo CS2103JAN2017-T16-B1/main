@@ -37,8 +37,11 @@ import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.TaskManager;
 import seedu.address.model.Task.EndTime;
+import seedu.address.model.Task.ID;
 import seedu.address.model.Task.StartTime;
+import seedu.address.model.Task.Status;
 import seedu.address.model.Task.Name;
+import seedu.address.model.Task.Priority;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.Description;
 import seedu.address.model.Task.ReadOnlyTask;
@@ -199,7 +202,7 @@ public class LogicManagerTest {
         assertCommandFailure("add []\\[;] p/12345 e/valid@e.mail a/valid, address",
                 Name.MESSAGE_NAME_CONSTRAINTS);
         assertCommandFailure("add Valid Name p/not_numbers e/valid@e.mail a/valid, address",
-                Description.DESCRIPTION_PHONE_CONSTRAINTS);
+                Description.MESSAGE_PHONE_CONSTRAINTS);
         assertCommandFailure("add Valid Name p/12345 e/notAnEmail a/valid, address",
                 StartTime.MESSAGE_TIME_CONSTRAINTS);
         assertCommandFailure("add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag",
@@ -537,7 +540,7 @@ public class LogicManagerTest {
                     new Description("1"),
                     new StartTime("1@email"),
                     new EndTime("House of 1"),
-                    new UniqueTagList(new Tag("tag"))
+                    new ID("20000"),new Priority("m"), new Status("done"), new UniqueTagList(new Tag("tag"))
             );
         }
     }
