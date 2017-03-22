@@ -1,4 +1,4 @@
-# AddressBook Level 4 - User Guide
+﻿# AddressBook Level 4 - User Guide
 
 By : `Team SE-EDU`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2016`  &nbsp;&nbsp;&nbsp;&nbsp; Licence: `MIT`
 
@@ -84,7 +84,7 @@ Examples:
 * `Add Kaili Birthday s/2017-8-30-0000 e/2017-8-31-2359 t/friends`
 * `Add Gym legs day s/2017-3-4-0600 e/2017-3-4-0700 t/health`
 
-### 2.3. Finding all tasks/events containing any keyword in their name or tag : `find`
+### 2.3.1 Finding all tasks/events containing any keyword in their names, description or tag : `find`
 
 
 Finds tasks/events whose names contain any of the given keywords.<br>
@@ -93,14 +93,44 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 > * The search is case sensitive. e.g homework will not match Homework
 > * The order of the keywords does not matter. e.g. homework due will match due homework
-> * Only names and tags are searched.
-> * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans will match Hans Bo
+> * Only names, description and tags are searched.
+> * Tasks matching at least one keyword will be returned (i.e. OR search). e.g. CS2103 final exams will match finals bo rawr
 
 Examples:
 * find Milk
-* Returns a numbered list of undone tasks/events whose names/ tags contain buy Milk but not milk
+* Returns a numbered list of undone tasks/events whose names/description/tags contain buy Milk but not milk
 * find work family friends
-* Returns a numbered list of undone tasks/events whose names/ tags contain work, family or friends
+* Returns a numbered list of undone tasks/events whose names/description/tags contain work, family or friends
+
+### 2.3.1 Finding all tasks/events that matches the given priority level : `find `
+
+
+Finds tasks/events that matches a priority level.<br>
+
+Format: `find #KEYWORD`
+
+> * The search is case sensitive. e.g. h will not match H
+> * Only priority is searched
+> * Tasks matching the given priority will be returned.
+
+Examples:
+* find #h
+* Returns a numbered list of tasks/events that are labelled as high priority
+
+### 2.3.3 Finding all archived tasks/events containing the keyword in their names, description or tag : `find @`
+
+
+Finds tasks/events whose name/description/tags match a given keyword.<br>
+
+Format: `find @KEYWORD`
+
+> * The search is case sensitive. e.g homework will not match Homework
+> * Only names/descriptions/tags will be searched
+> * Task matching the keyword given will be returned.
+
+Examples:
+* find @Milk
+* Returns a numbered list of tasks/events that are archived and whose name/description/tags contain buy Milk but not milk
 
 
 ### 2.4. Listing all tasks/events : `list`
