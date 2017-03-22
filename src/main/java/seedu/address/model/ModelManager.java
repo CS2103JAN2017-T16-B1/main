@@ -86,11 +86,11 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredListToShowAll();
         indicateTaskManagerChanged();
     }
-    
+    //@@author A0140072X
     private void setPrevious(){
         previousTaskMgr = new TaskManager(taskManager);
     }
-    
+    //@@author A0140072X
     public boolean undoTask(){
         if(previousTaskMgr == null) {
             return false;
@@ -135,6 +135,7 @@ public class ModelManager extends ComponentManager implements Model {
         });
 
     }
+    //@@author A0140072X
     public void updateFilteredTaskListByArchived() {
         updateFilteredListToShowAll();
         filteredTasks.setPredicate(task -> {
