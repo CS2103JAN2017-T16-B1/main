@@ -58,18 +58,18 @@ Adds a task/event to the address book<br>
 
 Task: 
 
-Format: `add task TASK_NAME [dl/DEADLINE] [des/DESCRIPTION] [t/TAG]...`
+Format: `add task TASK_NAME [d/DESCRIPTION] [e/ENDTIME] [t/TAG]...`
 
-> Tasks can have a deadline
-> Tasks can have a description
+> Tasks can have a deadline which is denoted by the prefix corresponding to end time
+> Tasks can have a description 
 > Tasks can have any number of tags (including 0)
 
 
 Examples:
-* `add Do laundry dl/2017-3-1-2359 `
-* `add Study for midterms dl/2017-3-2-2359 des/CS2103 at lt7 `
-* `add Buy milk for baby dl/2017-3-3-2100 des/yaas milk t/family`
-* `add Create user story dl/2017-4-1-1300 t/work t/computing` 
+* `add Do laundry e/2017-03-01-2359 `
+* `add Study for midterms e/2017-03-02-2359 d/CS2103 at lt7 `
+* `add Buy milk for baby e/2017-03-03-2100 d/yaas milk t/family`
+* `add Create user story e/2017-04-01-1300 t/work t/computing` 
 
 Event: 
 
@@ -80,9 +80,9 @@ Format: `add event EVENT_NAME st/START_TIME et/END_TIME [des/DESCRIPTION] [t/TAG
 
 
 Examples:
-* `Add Midterms st/2017-3-1-1300 et/2017-3-1-1500 des/CS2103 t/school`
-* `Add Kaili Birthday st/2017-8-30-0000 et/2017-8-31-2359 t/friends`
-* `Add Gym legs day st/2017-3-4-0600 et/2017-3-4-0700 t/health`
+* `Add Midterms s/2017-03-01-1300 e/2017-03-01-1500 des/CS2103 t/school`
+* `Add Kaili Birthday s/2017-08-30-0000 e/2017-08-31-2359 t/friends`
+* `Add Gym legs day s/2017-03-04-0600 e/2017-03-04-0700 t/health`
 
 ### 2.3. Finding all tasks/events containing any keyword in their name or tag : `find`
 
@@ -137,7 +137,7 @@ Examples:
 ### 2.6. Editing a Task/event : `edit`
 
 Edits an existing task/event in the address book.<br>
-Format: `edit INDEX [n/NAME] [dl/DEADLINE] [st/START_TIME] [et/END_TIME] [des/DESCRIPTION] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]...`
 
 >Edits the task/event at the specified INDEX. The index refers to the index number shown in the last task listing printed out when the search or list function was called.<br>
 
@@ -151,9 +151,9 @@ Format: `edit INDEX [n/NAME] [dl/DEADLINE] [st/START_TIME] [et/END_TIME] [des/DE
 
 Examples:
 
-* `edit 1 n/buy milk dl/2017-3-2-2359`<br>
+* `edit 1 n/buy milk e/2017-03-02-2359`<br>
   Edits the name and deadline of the task ( numbered 1 on the list) to be buy milk and 2017-3-2-2359 respectively.
-* `edit 2 n/midterm exam st/2017-3-3-1000`<br>
+* `edit 2 n/midterm exam s/2017-3-3-1000 e/2017-03-03-1200`<br>
   Edits the name and start time of the event(numbered 2 on the list) to be midterm exam and st/2017-3-3-1000 respectively
 
 
@@ -221,9 +221,9 @@ There is no need to save manually.
 
 * **Add :** <br>
 > * **Task :**<br>
-> *`add task TASK_NAME [dl/DEADLINE] [des/DESCRIPTION] [t/TAG]...` <br>
+> *`add task TASK_NAME [e/DEADLINE] [d/DESCRIPTION] [t/TAG]...` <br>
 > * **Event :**<br>
-> *`add event EVENT_NAME st/START_TIME et/END_TIME [des/DESCRIPTION] [t/TAG]...` <br>
+> *`add event EVENT_NAME s/START_TIME e/END_TIME [d/DESCRIPTION] [t/TAG]...` <br>
 
 * **Clear** : `clear`<br>
 
@@ -245,7 +245,7 @@ There is no need to save manually.
 * **Archive** : `archive [/task][/event]` <br>
   e.g. `archive /task`
 
-* **edit** : `edit TASK_ID[n/NAME] [dl/DEADLINE] [st/START_TIME] [et/END_TIME] [des/DESCRIPTION] [t/TAG]...` <br>
+* **edit** : `edit TASK_ID[n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]...` <br>
 
 * **Help** : `help` <br>
  
