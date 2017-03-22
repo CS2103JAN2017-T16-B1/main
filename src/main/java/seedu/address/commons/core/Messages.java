@@ -11,5 +11,5 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The item index provided is invalid";
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
-
+    public static final String MESSAGE_ARCHIVED_TASKS_LISTED_OVERVIEW = "%1$d archived tasks listed!";
 }

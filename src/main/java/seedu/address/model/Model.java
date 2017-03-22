@@ -7,7 +7,6 @@ import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.Task.UniqueTaskList.DuplicatetaskException;
-import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -44,8 +43,11 @@ public interface Model {
     /** Updates the filter of the filtered person list to filter by the given keywords*/
     void updateFilteredTaskListByKeywords(Set<String> keywords);
 
-    /** Updates the filter of the filtered task list to filter by the given tags*/
-    void updateFilteredTaskListByTag(Tag tag);
+    /** Updates the filter of the filtered task list to filter by done status*/
+    void updateFilteredTaskListByDoneStatus();
+    
+    /** Updates the filter of the filtered task list to filter by undone status*/
+    void updateFilteredTaskListByUnDoneStatus();
     
     /** Updates the filter of the filtered task list to filter by low priority*/
     void updateFilteredTaskListByLowPriority();
@@ -55,4 +57,8 @@ public interface Model {
     
     /** Updates the filter of the filtered task list to filter by high priority*/
     void updateFilteredTaskListByHighPriority();
+
+    boolean undoTask();
+
+    void updateFilteredTaskListByArchived();
 }
