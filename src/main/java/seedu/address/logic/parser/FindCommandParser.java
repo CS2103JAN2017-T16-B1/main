@@ -13,7 +13,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.model.Task.Priority;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.Task.Status;
 
 
 /**
@@ -25,6 +25,8 @@ public class FindCommandParser {
     private static final String HIGH_PRIORITY = "h";
     private static final String MEDIUM_PRIORITY = "m";
     private static final String LOW_PRIORITY = "l";
+	private static final String DONE_PREFIX = "done";
+	private static final String UNDONE_PREFIX = "undone";
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns an FindCommand object for execution.
@@ -52,18 +54,26 @@ public class FindCommandParser {
 	            return new IncorrectCommand(
 	                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 	        }
-	        if (keywords.substring(1).equalsIgnoreCase(HIGH_PRIORITY)) {
+		 if (keywords.substring(1).equalsIgnoreCase(DONE_PREFIX)){
+			 Status status = new Status(keywords.substring(1));
+			 return new FindCommand(status);
+		 }
+		 else if(keywords.substring(1).equalsIgnoreCase(UNDONE_PREFIX)){
+			 Status status = new Status(keywords.substring(1));
+			 return new FindCommand(status);
+		 }
+		 else if (keywords.substring(1).equalsIgnoreCase(HIGH_PRIORITY)) {
 	        	Priority priority = new Priority(keywords.substring(1));
 	            return new FindCommand(priority);
 	        } else if (keywords.substring(1).equalsIgnoreCase(MEDIUM_PRIORITY)) {
 	        	Priority priority = new Priority(keywords.substring(1));
 	            return new FindCommand(priority);
-	        } else if (keywords.substring(1) == LOW_PRIORITY) {
+	        } else if (keywords.substring(1).equalsIgnoreCase(LOW_PRIORITY)) {
 	        	Priority priority = new Priority(keywords.substring(1));
 	            return new FindCommand(priority);
 	        } else {
-	            Tag tag = new Tag(keywords.substring(1));
-	            return new FindCommand(tag);
+	        	return new IncorrectCommand(
+	                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 	        }
 	}
 

@@ -14,7 +14,6 @@ import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.Task.UniqueTaskList.TaskNotFoundException;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the task manager data.
@@ -140,9 +139,9 @@ public class ModelManager extends ComponentManager implements Model {
             }
         });
     }
-    public void updateFilteredTaskListByTag(Tag tag){
+    public void updateFilteredTaskListByDoneStatus(){
         filteredTasks.setPredicate(task -> {
-            if(task.getTags().contains(tag)) {
+            if(task.getStatus().toString().equals("done")) {
                 return true;
             } else {
                 return false;
@@ -150,6 +149,15 @@ public class ModelManager extends ComponentManager implements Model {
         });
     }
 
+    public void updateFilteredTaskListByUnDoneStatus(){
+        filteredTasks.setPredicate(task -> {
+            if(task.getStatus().toString().equals("undone")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
     //========== Inner classes/interfaces used for filtering =================================================
 
     interface Expression {
@@ -199,20 +207,6 @@ public class ModelManager extends ComponentManager implements Model {
             }
             return false;
 
-/*        	return (nameKeyWords.stream()
-                    .filter(keyword -> StringUtil.containsWordIgnoreCase(task.getName().fullName, keyword))
-                    .findAny()
-                    .isPresent())
-            		|| (nameKeyWords.stream()
-        					.filter(keyword -> StringUtil.containsWordIgnoreCase(task.getStartTime().startTime, keyword))
-            				.findAny().isPresent())
-            		|| (nameKeyWords.stream()
-                    		.filter(keyword -> StringUtil.containsWordIgnoreCase(task.getEndTime().endTime, keyword))
-                    		.findAny().isPresent())
-            		|| (nameKeyWords.stream()
-                   .filter(keyword -> StringUtil.containsWordIgnoreCase(task.getDescription().description, keyword))
-                    		.findAny()
-                    		.isPresent());*/
         }
 
         @Override
