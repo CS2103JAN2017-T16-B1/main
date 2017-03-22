@@ -1,5 +1,8 @@
 package seedu.address.model.Task;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 
 public class RecurEndDate {
@@ -24,7 +27,7 @@ public class RecurEndDate {
 		if (!isValidEndDate(trimmedEndDate)) {
             throw new IllegalValueException(MESSAGE_ENDDATE_CONSTRAINTS);
         }
-		this.endDate = trimmedEndDate + "2359";
+		this.endDate = trimmedEndDate + "-2359\n";
 		}
 		else this.endDate = endDate;
 	}
@@ -38,10 +41,15 @@ public class RecurEndDate {
 	}
 	
 	public boolean hasPassedEndDate(String date){
-		String endDate = this.endDate.replace('-', '0');
-		date.replace('-', '0');		
-		return (Integer.parseInt(date) >= Integer.parseInt(endDate));
+		if (date != null){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm\n");
+			LocalDateTime a = LocalDateTime.parse(date,formatter);
+			LocalDateTime b = LocalDateTime.parse(this.endDate,formatter);
+			return a.isAfter(b);
+		}
+		return false;
 	}
+		
 	
 	@Override
     public String toString() {

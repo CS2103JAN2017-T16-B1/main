@@ -46,20 +46,20 @@ public class RecurPeriod {
 	
 	
 	public String updatedDate(String date){
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd-kkmm");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm\n");
 		LocalDateTime oldDate = LocalDateTime.parse(date,formatter);
 		String newDate;
 
 		switch(this.period){
 		
 		case("weekly"):
-		oldDate = oldDate.plusWeeks(1);
+		oldDate = oldDate.plusWeeks(1); break;
 					
 		case("monthly"):
-		oldDate = oldDate.plusMonths(1);		
+		oldDate = oldDate.plusMonths(1); break;
 		
 		case("annually"):
-		oldDate = oldDate.plusYears(1); 
+		oldDate = oldDate.plusYears(1); break;
 		
 		default:
 			oldDate = oldDate.plusDays(Integer.parseInt(this.period)) ;

@@ -6,7 +6,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Task.EndTime;
 import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.Task.StartTime;
 import seedu.address.model.Task.Status;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
@@ -47,8 +49,18 @@ public class ArchiveCommand extends Command {
         ReadOnlyTask taskToArchive = lastShownList.get(targetIndex);
                 
         try {
-            Task updatedTask = new Task(taskToArchive.getName(), taskToArchive.getDescription(), taskToArchive.getStartTime(),taskToArchive.getEndTime(), taskToArchive.getId(), taskToArchive.getPriority(),new Status("done"),taskToArchive.getTags());
+            Task updatedTask = new Task(taskToArchive.getName(), taskToArchive.getDescription(), taskToArchive.getStartTime(),taskToArchive.getEndTime(), taskToArchive.getId(), taskToArchive.getPriority(),new Status("done"), taskToArchive.getRecurPeriod(), taskToArchive.getRecurEndDate(), taskToArchive.getTags());
+            Task toAdd = new Task(taskToArchive.getName(), taskToArchive.getDescription(), taskToArchive.getStartTime(),taskToArchive.getEndTime(), taskToArchive.getId(), taskToArchive.getPriority(),new Status("undone"), taskToArchive.getRecurPeriod(), taskToArchive.getRecurEndDate(), taskToArchive.getTags());
             model.updateTask(targetIndex, updatedTask);
+            if (toAdd.getRecurPeriod() != null){
+            	if(toAdd.getRecurEndDate().toString() == null || toAdd.getRecurEndDate().hasPassedEndDate(toAdd.getEndTime().toString()) == false ){
+            	StartTime newStartTime = new StartTime(taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getStartTime().toString()));
+            	EndTime newEndTime = new EndTime(taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getEndTime().toString()));
+            	toAdd.setEndTime(newEndTime);
+            	toAdd.setStartTime(newStartTime);
+            	model.addTask(toAdd);
+            	}
+            }
         }
         catch (UniqueTaskList.DuplicatetaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
