@@ -54,6 +54,7 @@ public class StartTime {
             if (!isValidTime(trimmedTime)) {
                 throw new IllegalValueException(MESSAGE_DATETIME_CONSTRAINTS);
             }
+            trimmedTime = trimmedTime + "\n";
             this.startTime = trimmedTime;
         }
         else{
