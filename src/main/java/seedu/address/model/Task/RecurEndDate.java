@@ -18,12 +18,15 @@ public class RecurEndDate {
      */
 	
 	public RecurEndDate(String endDate) throws IllegalValueException {
+		if(endDate != null){
 		String trimmedEndDate = endDate.trim();
 		
 		if (!isValidEndDate(trimmedEndDate)) {
             throw new IllegalValueException(MESSAGE_ENDDATE_CONSTRAINTS);
         }
-		this.endDate = trimmedEndDate;
+		this.endDate = trimmedEndDate + "2359";
+		}
+		else this.endDate = endDate;
 	}
 	
 	 /**
@@ -32,6 +35,12 @@ public class RecurEndDate {
 	
 	private boolean isValidEndDate(String test) {
 		return test.matches(ENDDATE_VALIDATION_REGEX);
+	}
+	
+	public boolean hasPassedEndDate(String date){
+		String endDate = this.endDate.replace('-', '0');
+		date.replace('-', '0');		
+		return (Integer.parseInt(date) >= Integer.parseInt(endDate));
 	}
 	
 	@Override

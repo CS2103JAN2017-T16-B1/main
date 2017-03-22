@@ -15,6 +15,8 @@ import seedu.address.model.Task.Priority;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.Description;
 import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.Task.RecurEndDate;
+import seedu.address.model.Task.RecurPeriod;
 import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -88,11 +90,13 @@ public class EditCommand extends Command {
         Priority updatedPriority=editTaskDescriptor.getPriority().orElseGet(taskToEdit::getPriority);
         Status updatedStatus=editTaskDescriptor.getStatus().orElseGet(taskToEdit::getStatus);
         ID updatedID= taskToEdit.getId();
+        RecurEndDate updatedRecurEndDate = taskToEdit.getRecurEndDate();
+		RecurPeriod updatedRecurPeriod = taskToEdit.getRecurPeriod(); 
         UniqueTagList updatedTags =new UniqueTagList(taskToEdit,editTaskDescriptor);//editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
         System.out.print(updatedTags);
         
-        return new Task(updatedName, updatedDescription, updatedStartTime,
-        		updatedEndTime, updatedID, updatedPriority, updatedStatus,updatedTags);
+		return new Task(updatedName, updatedDescription, updatedStartTime,
+        		updatedEndTime, updatedID, updatedPriority, updatedStatus, updatedRecurPeriod, updatedRecurEndDate, updatedTags);
         
         }
 
@@ -109,7 +113,8 @@ public class EditCommand extends Command {
         private Optional<Priority> priority = Optional.empty();
 
         private Optional<Status> status = Optional.empty();
-
+        private Optional<RecurPeriod> recurPeriod = Optional.empty();
+        private Optional<RecurEndDate> recurEndDate = Optional.empty();
         private Optional<UniqueTagList> tags = Optional.empty();
 
         public EditTaskDescriptor() {}
@@ -123,6 +128,8 @@ public class EditCommand extends Command {
             this.endTime = toCopy.getEndTime();
             this.priority= toCopy.getPriority();
             this.status= toCopy.getStatus();
+            this.recurPeriod = toCopy.getRecurPeriod();
+            this.recurEndDate = toCopy.getRecurEndDate();
             this.tags = toCopy.getTags();
         }
 
@@ -194,5 +201,14 @@ public class EditCommand extends Command {
         public void setPriority(Optional<Priority> priority){
         	this.priority = priority;
         }
+        
+        public Optional<RecurPeriod> getRecurPeriod() {
+            return recurPeriod;
+        }
+
+        public Optional<RecurEndDate> getRecurEndDate() {
+            return recurEndDate;
+        }
+
     }
 }

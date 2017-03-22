@@ -6,6 +6,8 @@ import seedu.address.model.Task.EndTime;
 import seedu.address.model.Task.ID;
 
 import seedu.address.model.Task.Priority;
+import seedu.address.model.Task.RecurEndDate;
+import seedu.address.model.Task.RecurPeriod;
 import seedu.address.model.Task.Status;
 
 import seedu.address.model.Task.StartTime;
@@ -26,13 +28,13 @@ public class SampleDataUtil {
 
             		new Task(new Name("buy milk"), new Description("87438807"), new StartTime(""),
                             new EndTime("2017-03-04-1000"), new ID("1"), new Priority("h"), new Status("undone"),
-                            new UniqueTagList("friends")),
+                            new RecurPeriod(""), new RecurEndDate (""), new UniqueTagList("friends")),
             		new Task(new Name("buy house"), new Description("87438807"), new StartTime(""),
-                            new EndTime("2017-03-04-1000"), new ID("1"), new Priority("h"), new Status("undone"),
-                            new UniqueTagList("friends")),
+                            new EndTime("2017-03-04-1000"), new ID("1"), new Priority("h"), new Status("undone"), 
+                            new RecurPeriod(""), new RecurEndDate (""), new UniqueTagList("friends")),
             		new Task(new Name("study"), new Description("87438807"), new StartTime(""),
                             new EndTime("2017-03-04-1000"), new ID("1"), new Priority("h"), new Status("undone"),
-                            new UniqueTagList("friends"))
+                            new RecurPeriod(""), new RecurEndDate (""),new UniqueTagList("friends"))
 
             };
         } catch (IllegalValueException e) {
