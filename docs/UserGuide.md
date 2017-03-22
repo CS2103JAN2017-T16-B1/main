@@ -67,8 +67,8 @@ Format: `add TASK_NAME [e/ENDTIME] [d/DESCRIPTION] [t/TAG]...`
 
 Examples:
 * `add Do laundry e/2017-3-1-2359 `
-* `add Study for midterms e/2017-3-2-2359 d/CS2103 at lt7 `
-* `add Buy milk for baby e/2017-3-3-2100 d/yaas milk t/family`
+* `add Study for midterms e/Monday 1000 d/CS2103 at lt7 `
+* `add Buy milk for baby BY tuesday 0800 d/yaas milk t/family`
 * `add Create user story e/2017-4-1-1300 t/work t/computing` 
 
 Event: 
@@ -81,8 +81,8 @@ Format: `add EVENT_NAME s/START_TIME e/END_TIME [d/DESCRIPTION] [t/TAG]...`
 
 Examples:
 * `Add Midterms s/2017-3-1-1300 e/2017-3-1-1500 d/CS2103 t/school`
-* `Add Kaili Birthday s/2017-8-30-0000 e/2017-8-31-2359 t/friends`
-* `Add Gym legs day s/2017-3-4-0600 e/2017-3-4-0700 t/health`
+* `Add Kaili Birthday s/tuesday 0800 e/thursday 1000 t/friends`
+* `Add Gym legs day FROM monday 1000 TO monday 1200 t/health`
 
 ### 2.3. Finding all tasks/events containing any keyword in their name or tag : `find`
 
