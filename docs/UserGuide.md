@@ -132,7 +132,7 @@ Examples:
 ### 2.6. Editing a Task/event : `edit`
 
 Edits an existing task/event in the address book.<br>
-Format: `edit INDEX [n/NAME] [dl/DEADLINE] [st/START_TIME] [et/END_TIME] [des/DESCRIPTION] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]...`
 
 >Edits the task/event at the specified INDEX. The index refers to the index number shown in the last task listing printed out when the search or list function was called.<br>
 
@@ -149,7 +149,7 @@ Examples:
 * `edit 1 buy milk e/2017-3-2-2359`<br>
   Edits the name and deadline of the task ( numbered 1 on the list) to be buy milk and 2017-3-2-2359 respectively.
 * `edit 2 midterm exam s/2017-3-3-1000`<br>
-  Edits the name and start time of the event(numbered 2 on the list) to be midterm exam and st/2017-3-3-1000 respectively
+  Edits the name and start time of the event(numbered 2 on the list) to be midterm exam and s/2017-3-3-1000 respectively
 
 
 ### 2.7.  Deleting task(s): `delete`
