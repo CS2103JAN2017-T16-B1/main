@@ -439,8 +439,8 @@ public class LogicManagerTest {
             return new Task(
                     new Name("Task " + seed),
                     new Description("" + Math.abs(seed)),
-                    new StartTime(seed + "@email"),
-                    new EndTime("House of " + seed),
+                    new StartTime("2017-10-10-1600"),
+                    new EndTime("2017-12-12-2000"),
                     null, null, null, new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
         }

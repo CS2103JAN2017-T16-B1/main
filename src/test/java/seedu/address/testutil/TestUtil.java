@@ -80,7 +80,7 @@ public class TestUtil {
             return new Task[]{
                 new Task(new Name("School"), new Description("go to school"), new StartTime("2017-03-03-2100"), new EndTime("2017-05-04-2000"), new ID("20000"),new Priority("m"), new Status("done"), new UniqueTagList()),
                 new Task(new Name("Homework"), new Description("do homework"), new StartTime("2017-03-03-2100"), new EndTime("2017-06-02-1000"),new ID("20001"),new Priority("h"), new Status("done"), new UniqueTagList()),
-                new Task(new Name("Mid-term"), new Description("study for midterm"), new StartTime("2017-02-01-2100"), new EndTime("2017-08-08-2100"),new ID("20002"),new Priority("m"), new Status("done"), new UniqueTagList()),
+                new Task(new Name("Midterm"), new Description("study for midterm"), new StartTime("2017-02-01-2100"), new EndTime("2017-08-08-2100"),new ID("20002"),new Priority("m"), new Status("done"), new UniqueTagList()),
                 new Task(new Name("Exam"), new Description("study for exam"), new StartTime("2017-06-06-1200"), new EndTime("2017-03-03-2100"),new ID("20003"),new Priority("l"), new Status("done"), new UniqueTagList()),
                 new Task(new Name("buy milk"), new Description("buy milk at ntuc"), new StartTime("2017-10-10-1400"), new EndTime("2017-03-03-2100"),new ID("20004"),new Priority("m"), new Status("done"), new UniqueTagList()),
                 new Task(new Name("buy dinner"), new Description("buy dinner at coffeeshop"), new StartTime("2017-08-09-2100"), new EndTime("2017-12-11-2100"),new ID("20005"),new Priority("l"), new Status("done"), new UniqueTagList()),

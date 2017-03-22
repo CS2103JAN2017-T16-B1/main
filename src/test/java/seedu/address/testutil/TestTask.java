@@ -11,7 +11,7 @@ import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
- * A mutable person object. For testing only.
+ * A mutable task object. For testing only.
  */
 public class TestTask implements ReadOnlyTask {
 
@@ -20,6 +20,10 @@ public class TestTask implements ReadOnlyTask {
     private StartTime startTime;
     private Description description;
     private UniqueTagList tags;
+    private ID id;
+    private Priority priority;
+    private Status status;
+
 
     public TestTask() {
         tags = new UniqueTagList();
@@ -40,15 +44,15 @@ public class TestTask implements ReadOnlyTask {
         this.name = name;
     }
 
-    public void setAddress(EndTime endTime) {
+    public void setEndTime(EndTime endTime) {
         this.endTime = endTime;
     }
 
-    public void setEmail(StartTime startTime) {
+    public void setStartTime(StartTime startTime) {
         this.startTime = startTime;
     }
 
-    public void setPhone(Description description) {
+    public void setDescription(Description description) {
         this.description = description;
     }
 
@@ -89,40 +93,56 @@ public class TestTask implements ReadOnlyTask {
     public String getAddCommand() {
         StringBuilder sb = new StringBuilder();
         sb.append("add " + this.getName().fullName + " ");
-        sb.append("a/" + this.getEndTime().endTime + " ");
-        sb.append("p/" + this.getDescription().description + " ");
-        sb.append("e/" + this.getStartTime().startTime + " ");
+        sb.append("e/" + this.getEndTime().endTime + " ");
+        sb.append("d/" + this.getDescription().description + " ");
+        sb.append("s/" + this.getStartTime().startTime + " ");
         this.getTags().asObservableList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }
 
-	@Override
-	public Priority getPriority() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public void setPriority(Priority priority) {
+        assert priority != null;
+        this.priority = priority;
+    }
 
-	@Override
-	public Status getStatus() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Priority getPriority() {
+        return priority;
+    }
+    
+    public void setStatus(Status status) {
+        assert status != null;
+        this.status = status;
+    }
 
-	@Override
-	public ID getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Status getStatus() {
+        return status;
+    }
+    
+    @Override
+    public ID getId() {
+        return id;
+    }
+	
 
 	@Override
 	public boolean noEndTime() {
-		// TODO Auto-generated method stub
-		return false;
+	    assert endTime != null;
+        if(this.endTime.isEmpty()){
+            return true;
+        }else {
+            return false;
+        }
 	}
 
 	@Override
 	public boolean noStartTime() {
-		// TODO Auto-generated method stub
-		return false;
+	    assert startTime != null;
+        if(this.startTime.isEmpty()){
+            return true;
+        }else {
+            return false;
+        }
 	}
 }
