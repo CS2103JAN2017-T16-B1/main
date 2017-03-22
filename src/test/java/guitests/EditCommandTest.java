@@ -13,7 +13,7 @@ import seedu.address.model.Task.StartTime;
 import seedu.address.model.Task.Name;
 import seedu.address.model.Task.Description;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TestTask;
 
 // TODO: reduce GUI tests by transferring some tests to be covered by lower level tests.
@@ -28,8 +28,8 @@ public class EditCommandTest extends TaskManagerGuiTest {
         String detailsToEdit = "Bobby p/91234567 e/bobby@gmail.com a/Block 123, Bobby Street 3 t/husband";
         int taskManagerIndex = 1;
 
-        TestTask editedPerson = new PersonBuilder().withName("Bobby").withPhone("91234567")
-                .withEmail("bobby@gmail.com").withAddress("Block 123, Bobby Street 3").withTags("husband").build();
+        TestTask editedPerson = new TaskBuilder().withName("Exam").withStartTime("2017-03-03-2100")
+                .withDescription("CS2103 module").withEndTime("2017-10-10-2100").withTags("schoolwork").build();
 
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedPerson);
     }
@@ -40,7 +40,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
         int taskManagerIndex = 2;
 
         TestTask personToEdit = expectedTaskList[taskManagerIndex - 1];
-        TestTask editedPerson = new PersonBuilder(personToEdit).withTags("sweetie", "bestie").build();
+        TestTask editedPerson = new TaskBuilder(personToEdit).withTags("sweetie", "bestie").build();
 
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedPerson);
     }
@@ -51,7 +51,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
         int taskManagerIndex = 2;
 
         TestTask taskToEdit = expectedTaskList[taskManagerIndex - 1];
-        TestTask editedTask = new PersonBuilder(taskToEdit).withTags().build();
+        TestTask editedTask = new TaskBuilder(taskToEdit).withTags().build();
 
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
@@ -65,7 +65,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
         int taskManagerIndex = 5;
 
         TestTask personToEdit = expectedTaskList[taskManagerIndex - 1];
-        TestTask editedPerson = new PersonBuilder(personToEdit).withName("Belle").build();
+        TestTask editedPerson = new TaskBuilder(personToEdit).withName("Belle").build();
 
         assertEditSuccess(filteredPersonListIndex, taskManagerIndex, detailsToEdit, editedPerson);
     }

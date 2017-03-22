@@ -16,7 +16,7 @@ By : `Team SE-EDU`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2016`  &nbsp;&nbsp;&nbs
    > Having any Java 8 version is not enough. <br>
    > This app will not work with earlier versions of Java 8.
 
-1. Download the latest `addressbook.jar` from the [releases](../../../releases) tab.
+1. Download the latest `TaskManager.jar` from the [releases](../../../releases) tab.
 2. Copy the file to the folder you want to use as the home folder for your Address Book.
 3. Double-click the file to start the app. The GUI should appear in a few seconds.
 
@@ -27,8 +27,8 @@ By : `Team SE-EDU`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2016`  &nbsp;&nbsp;&nbs
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.
 5. Some example commands you can try:
    * **`list`** : Returns a numbered list of all tasks/events yet undone in the tasks manager
-   * **`add`**` Study for midterms dl/2017-3-2-2359 des/CS2103 at LT7` :
-        Add a Task named “Study for midterms” with deadline “2017 2nd of March 23:59pm” with 
+   * **`add`**` Study for midterms e/2017-3-2-2359 d/CS2103 at LT7` :
+        Add a Task named “Study for midterms” with endtime “2017 2nd of March 23:59pm” with 
         task description of “CS2103 at LT7”
 
    * **`delete`**` 3` : deletes the 3rd task shown in the current list
@@ -58,31 +58,31 @@ Adds a task/event to the address book<br>
 
 Task: 
 
-Format: `add task TASK_NAME [dl/DEADLINE] [des/DESCRIPTION] [t/TAG]...`
+Format: `add TASK_NAME [e/ENDTIME] [d/DESCRIPTION] [t/TAG]...`
 
-> Tasks can have a deadline
+> Tasks can have a endtime
 > Tasks can have a description
 > Tasks can have any number of tags (including 0)
 
 
 Examples:
-* `add Do laundry dl/2017-3-1-2359 `
-* `add Study for midterms dl/2017-3-2-2359 des/CS2103 at lt7 `
-* `add Buy milk for baby dl/2017-3-3-2100 des/yaas milk t/family`
-* `add Create user story dl/2017-4-1-1300 t/work t/computing` 
+* `add Do laundry e/2017-3-1-2359 `
+* `add Study for midterms e/2017-3-2-2359 d/CS2103 at lt7 `
+* `add Buy milk for baby e/2017-3-3-2100 d/yaas milk t/family`
+* `add Create user story e/2017-4-1-1300 t/work t/computing` 
 
 Event: 
 
-Format: `add event EVENT_NAME st/START_TIME et/END_TIME [des/DESCRIPTION] [t/TAG]...`
+Format: `add EVENT_NAME s/START_TIME e/END_TIME [d/DESCRIPTION] [t/TAG]...`
 
 > * Event can have description
 > * Events can have any number of tags (including 0)
 
 
 Examples:
-* `Add Midterms st/2017-3-1-1300 et/2017-3-1-1500 des/CS2103 t/school`
-* `Add Kaili Birthday st/2017-8-30-0000 et/2017-8-31-2359 t/friends`
-* `Add Gym legs day st/2017-3-4-0600 et/2017-3-4-0700 t/health`
+* `Add Midterms s/2017-3-1-1300 e/2017-3-1-1500 d/CS2103 t/school`
+* `Add Kaili Birthday s/2017-8-30-0000 e/2017-8-31-2359 t/friends`
+* `Add Gym legs day s/2017-3-4-0600 e/2017-3-4-0700 t/health`
 
 ### 2.3. Finding all tasks/events containing any keyword in their name or tag : `find`
 
@@ -115,24 +115,19 @@ Examples:
 * `Returns a numbered list of all tasks/events yet undone in the tasks manager`
 
 
-### Show tasks/events that are done : `archive`
+### 2.5 Show tasks/events that are done : `archived`
 
 Shows a list of all task that are marked as done and events that has passed in the task manager.<br>
-Format: `archive [/task] [/event]`
+Format: `archived`
 
 > * Tasks/events is arranged by deadline, with the most recent dateline first
 > * Only the past one month worth of event/task can be done
 
 Examples:
 
-* `archive`<br>
+* `archived`<br>
   Returns a list of tasks that have been marked as done and or events that have passed
-* `archive task`<br>
-  Returns a list of tasks that have been marked as done 
-* `archive event`<br>
-  Returns a list of events that have passed
-* `archive task event`<br>
-  Returns a list of tasks that have been marked as done and or events that have passed
+
 
 ### 2.6. Editing a Task/event : `edit`
 
@@ -151,9 +146,9 @@ Format: `edit INDEX [n/NAME] [dl/DEADLINE] [st/START_TIME] [et/END_TIME] [des/DE
 
 Examples:
 
-* `edit 1 n/buy milk dl/2017-3-2-2359`<br>
+* `edit 1 buy milk e/2017-3-2-2359`<br>
   Edits the name and deadline of the task ( numbered 1 on the list) to be buy milk and 2017-3-2-2359 respectively.
-* `edit 2 n/midterm exam st/2017-3-3-1000`<br>
+* `edit 2 midterm exam s/2017-3-3-1000`<br>
   Edits the name and start time of the event(numbered 2 on the list) to be midterm exam and st/2017-3-3-1000 respectively
 
 
@@ -176,7 +171,7 @@ Examples:
   `delete 1`<br>
   Deletes the 1st task in the results of the `find` command.
 
-### 2.8. Mark task(s) as done : `done`
+### 2.8. Mark task(s) as done : `archive`
 
 Mark the specified task(s) as done.<br>
 Format: `done INDEX,[INDEX]...`
@@ -188,7 +183,7 @@ Format: `done INDEX,[INDEX]...`
 Examples:
 
 * `list`<br>
-   `done 2,3`<br>
+   `archive 2,3`<br>
    Mark the 2nd and 3rd task in the list as done.
 
 ### 2.9. Clearing all entries : `clear`
@@ -198,7 +193,7 @@ Format: `clear`
 
 ### 2.10. Undo the last command : `undo`
 
-Undo the last command input by the user.<br>
+Undo the last add/edit/archive/undo command input by the user.<br>
 Format: `undo`
 
 ### 2.11. Exiting the program : `exit`
@@ -221,9 +216,9 @@ There is no need to save manually.
 
 * **Add :** <br>
 > * **Task :**<br>
-> *`add task TASK_NAME [dl/DEADLINE] [des/DESCRIPTION] [t/TAG]...` <br>
+> *`add TASK_NAME [d/DEADLINE] [d/DESCRIPTION] [t/TAG]...` <br>
 > * **Event :**<br>
-> *`add event EVENT_NAME st/START_TIME et/END_TIME [des/DESCRIPTION] [t/TAG]...` <br>
+> *`add EVENT_NAME s/START_TIME e/END_TIME [d/DESCRIPTION] [t/TAG]...` <br>
 
 * **Clear** : `clear`<br>
 
@@ -239,13 +234,13 @@ There is no need to save manually.
 * **List** : `undo` <br>
   e.g. `undo`
  
-* **Done** : `done` <br>
-  e.g. `done 2`
+* **Archive** : `archive` <br>
+  e.g. `archive 2`
 
-* **Archive** : `archive [/task][/event]` <br>
-  e.g. `archive /task`
+* **Archived** : `archived` <br>
+  e.g. `archived`
 
-* **edit** : `edit TASK_ID[n/NAME] [dl/DEADLINE] [st/START_TIME] [et/END_TIME] [des/DESCRIPTION] [t/TAG]...` <br>
+* **edit** : `edit TASK_ID[n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]...` <br>
 
 * **Help** : `help` <br>
  
