@@ -55,4 +55,8 @@ public interface Model {
     
     /** Updates the filter of the filtered task list to filter by high priority*/
     void updateFilteredTaskListByHighPriority();
+
+    boolean undoTask();
+
+    void updateFilteredTaskListByArchived();
 }
