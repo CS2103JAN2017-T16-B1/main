@@ -1,13 +1,11 @@
 package seedu.address.logic.commands;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Assert;
 
 import seedu.address.model.Task.Priority;
 import seedu.address.model.Task.Status;
-import seedu.address.model.tag.Tag;
 
 /**
  * Finds and lists all tasks in task manager whose name contains any of the
@@ -22,11 +20,13 @@ public class FindCommand extends Command {
 	private static final Object DONE = "done";
 	private static final Object UNDONE = "undone";
 
-	public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names contain any of "
+	public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names/description/tags contain any of "
 			+ "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
 			+ "When prefix (#) is used, will display all task with the associated status or priority level.\n"
+			+ "When prefix (@) is used, will display all archived task with the associated names/descriptions/tags.\n"
 			+ "Parameters: KEYWORD [MORE_KEYWORDS]...\n" + "Example: " + COMMAND_WORD + " study meeting friend\n"
-			+ "Parameters: #KEYWORD \n" + "Example: " + COMMAND_WORD + " #h\n";
+			+ "Parameters: #KEYWORD \n" + "Example: #" + COMMAND_WORD + " #h\n"
+			+ "Parameters: @KEYWORD \n" + "Example: @" + COMMAND_WORD + " #h\n";
 
 	private final Set<String> keywords;
 
@@ -36,6 +36,7 @@ public class FindCommand extends Command {
 
 	private final String archive;
 
+	// @@author A0139509X
 	public FindCommand(Set<String> keywords) {
 		this.keywords = keywords;
 		this.status = null;
@@ -43,6 +44,7 @@ public class FindCommand extends Command {
 		this.archive = null;
 	}
 
+	// @@author A0139509X
 	public FindCommand(String keyword) {
 		this.keywords = null;
 		this.status = null;
@@ -50,6 +52,7 @@ public class FindCommand extends Command {
 		this.archive = keyword;
 	}
 
+	// @@author A0139509X
 	public FindCommand(Status status) {
 		this.keywords = null;
 		this.status = status;
@@ -57,6 +60,7 @@ public class FindCommand extends Command {
 		this.archive = null;
 	}
 
+	// @@author A0139509X
 	public FindCommand(Priority priority) {
 		this.keywords = null;
 		this.status = null;
@@ -64,6 +68,7 @@ public class FindCommand extends Command {
 		this.archive = null;
 	}
 
+	// @@author A0139509X
 	@Override
 	public CommandResult execute() {
 		if (this.keywords != null) {
@@ -78,14 +83,17 @@ public class FindCommand extends Command {
 		return new CommandResult(getMessageForTaskListShownSummary(model.getFilteredTaskList().size()));
 	}
 
+	// @@author A0139509X
 	public void updateByArchivedKeyword() {
 		model.updateArchivedFilteredTaskListByKeyword(archive);
 	}
 
+	// @@author A0139509X
 	public void updateByKeywords() {
 		model.updateFilteredTaskListByKeywords(keywords);
 	}
 
+	// @@author A0139509X
 	private void updateByStatusLevel(Status status) {
 		if (this.status.toString().equals(DONE)) {
 			model.updateFilteredTaskListByDoneStatus();
@@ -96,6 +104,7 @@ public class FindCommand extends Command {
 		}
 	}
 
+	// @@author A0139509X
 	private void updateByPriorityLevel(Priority priority) {
 		if (this.priority.toString().equals(HIGH_PRIORITY)) {
 			model.updateFilteredTaskListByHighPriority();

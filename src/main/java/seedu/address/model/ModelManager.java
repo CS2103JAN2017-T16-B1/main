@@ -148,6 +148,7 @@ public class ModelManager extends ComponentManager implements Model {
 		});
 	}
 
+	// @@author A0139509X
 	@Override
 	public void updateFilteredTaskListByKeywords(Set<String> keywords) {
 		updateFilteredTaskListByKeywords(new PredicateExpression(new NameQualifier(keywords)));
@@ -157,6 +158,7 @@ public class ModelManager extends ComponentManager implements Model {
 		filteredTasks.setPredicate(expression::satisfies);
 	}
 
+	// @@author A0139509X
 	@Override
 	public void updateFilteredTaskListByHighPriority() {
 		filteredTasks.setPredicate(task -> {
@@ -168,6 +170,7 @@ public class ModelManager extends ComponentManager implements Model {
 		});
 	}
 
+	// @@author A0139509X
 	@Override
 	public void updateFilteredTaskListByMediumPriority() {
 		filteredTasks.setPredicate(task -> {
@@ -190,6 +193,7 @@ public class ModelManager extends ComponentManager implements Model {
 		});
 	}
 
+	// @@author A0139509X
 	@Override
 	public void updateFilteredTaskListByDoneStatus() {
 		filteredTasks.setPredicate(task -> {
@@ -201,6 +205,7 @@ public class ModelManager extends ComponentManager implements Model {
 		});
 	}
 	
+	// @@author A0139509X
 	@Override
 	public void updateFilteredTaskListByUnDoneStatus() {
 		filteredTasks.setPredicate(task -> {
@@ -212,6 +217,7 @@ public class ModelManager extends ComponentManager implements Model {
 		});
 	}
 	
+	// @@author A0139509X
 	@Override
 	public void updateArchivedFilteredTaskListByKeyword(String archive) {
 		filteredTasks.setPredicate(task -> {
@@ -266,8 +272,8 @@ public class ModelManager extends ComponentManager implements Model {
 			this.nameKeyWords = nameKeyWords;
 		}
 
+		// @@author A0139509X
 		@Override
-
 		public boolean run(ReadOnlyTask task) {
 			for (String keyword : nameKeyWords) {
 				if (((StringUtil.containsWordIgnoreCase(task.getName().fullName, keyword))
