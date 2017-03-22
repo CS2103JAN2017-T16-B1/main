@@ -30,7 +30,7 @@ public class AddCommandParser {
 
         argsTokenizer.tokenize(args);
         String taskType = argsTokenizer.getCommandType(args);
-        
+
         try {
                 return new AddCommand(
                         argsTokenizer.getPreamble().get(),
