@@ -56,13 +56,15 @@ Format: `help`
 
 Adds a task/event to the address book<br>
 
-Task: 
+Task/event: 
 
-Format: `add TASK_NAME [e/ENDTIME] [d/DESCRIPTION] [t/TAG]...`
+Format: `add TASK_NAME [s/STARTTIME] [e/ENDTIME] [d/DESCRIPTION] [r/REPEATPERIOD] [l/RECURENDDATE] [t/TAG] ...`
 
-> Tasks can have a endtime
 > Tasks can have a description
 > Tasks can have any number of tags (including 0)
+> Tasks can be flagged as recurring by adding the period to repeat
+> Tasks flagged as recurring can have an end date to stop the recurring task
+> User may use FROM and TO instead of s/ and e/, also may use BY instead of e/
 
 
 Examples:
@@ -70,19 +72,9 @@ Examples:
 * `add Study for midterms e/Monday 1000 d/CS2103 at lt7 `
 * `add Buy milk for baby BY tuesday 0800 d/yaas milk t/family`
 * `add Create user story e/2017-4-1-1300 t/work t/computing` 
-
-Event: 
-
-Format: `add EVENT_NAME s/START_TIME e/END_TIME [d/DESCRIPTION] [t/TAG]...`
-
-> * Event can have description
-> * Events can have any number of tags (including 0)
+* `add Meeting FROM monday 0800 TO monday 1100 t/work r/weekly  
 
 
-Examples:
-* `Add Midterms s/2017-3-1-1300 e/2017-3-1-1500 d/CS2103 t/school`
-* `Add Kaili Birthday s/tuesday 0800 e/thursday 1000 t/friends`
-* `Add Gym legs day FROM monday 1000 TO monday 1200 t/health`
 
 ### 2.3. Finding all tasks/events containing any keyword in their name or tag : `find`
 
