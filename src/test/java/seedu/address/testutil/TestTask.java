@@ -8,6 +8,8 @@ import seedu.address.model.Task.Name;
 import seedu.address.model.Task.Priority;
 import seedu.address.model.Task.Description;
 import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.Task.RecurEndDate;
+import seedu.address.model.Task.RecurPeriod;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
@@ -149,5 +151,17 @@ public class TestTask implements ReadOnlyTask {
         }else {
             return false;
         }
+	}
+
+	@Override
+	public RecurPeriod getRecurPeriod() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RecurEndDate getRecurEndDate() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
