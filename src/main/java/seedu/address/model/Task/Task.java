@@ -41,6 +41,19 @@ public class Task implements ReadOnlyTask {
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
+    public Task(Name name, Description description, StartTime startTime, EndTime endTime, ID id, Priority priority, Status status
+    		, UniqueTagList tags) {
+        assert !CollectionUtil.isAnyNull(name, startTime,id, tags);
+
+        this.name = name;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.id = id;
+        this.priority = priority;
+        this.status=status;
+        this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+    }
     /**
      * Creates a copy of the given ReadOnlyPerson.
      */
