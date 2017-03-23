@@ -17,7 +17,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.TypicalTestPersons;
+import seedu.address.testutil.TypicalTestTasks;
 
 public class TaskManagerTest {
 
@@ -40,14 +40,14 @@ public class TaskManagerTest {
 
     @Test
     public void resetData_withValidReadOnlyTaskManager_replacesData() {
-        TaskManager newData = new TypicalTestPersons().getTypicalTaskManager();
+        TaskManager newData = new TypicalTestTasks().getTypicalTaskManager();
         taskManager.resetData(newData);
         assertEquals(newData, taskManager);
     }
 
     @Test
     public void resetData_withDuplicatePersons_throwsAssertionError() {
-        TypicalTestPersons td = new TypicalTestPersons();
+        TypicalTestTasks td = new TypicalTestTasks();
         // Repeat td.alice twice
         List<Task> newPersons = Arrays.asList(new Task(td.task1), new Task(td.task1));
         List<Tag> newTags = td.task1.getTags().asObservableList();
@@ -59,7 +59,7 @@ public class TaskManagerTest {
 
     @Test
     public void resetData_withDuplicateTags_throwsAssertionError() {
-        TaskManager typicalTaskManager = new TypicalTestPersons().getTypicalTaskManager();
+        TaskManager typicalTaskManager = new TypicalTestTasks().getTypicalTaskManager();
         List<ReadOnlyTask> newPersons = typicalTaskManager.getTaskList();
         List<Tag> newTags = new ArrayList<>(typicalTaskManager.getTagList());
         // Repeat the first tag twice

@@ -18,13 +18,17 @@ public class Task implements ReadOnlyTask {
     private ID id;
     private Priority priority;
     private Status status;
+    private RecurPeriod recurPeriod;
+    private RecurEndDate recurEndDate;
     private UniqueTagList tags;
 
     /**
      * Every name must be present and not null.
      */
-    public Task(Name name, Description description, StartTime startTime, EndTime endTime, ID id, Priority priority, Status status, UniqueTagList tags) {
-        assert !CollectionUtil.isAnyNull(name,id, tags);
+
+    public Task(Name name, Description description, StartTime startTime, EndTime endTime, ID id, Priority priority, Status status, RecurPeriod recurPeriod, RecurEndDate recurEndDate, UniqueTagList tags) {
+        assert !CollectionUtil.isAnyNull(name, startTime,id, tags);
+
         this.name = name;
         this.description = description;
         this.startTime = startTime;
@@ -32,6 +36,8 @@ public class Task implements ReadOnlyTask {
         this.id = id;
         this.priority = priority;
         this.status=status;
+        this.recurPeriod = recurPeriod;
+        this.recurEndDate = recurEndDate;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
@@ -39,7 +45,7 @@ public class Task implements ReadOnlyTask {
      * Creates a copy of the given ReadOnlyPerson.
      */
     public Task(ReadOnlyTask source) {
-        this(source.getName(), source.getDescription(), source.getStartTime(), source.getEndTime(),source.getId(),source.getPriority(), source.getStatus(), source.getTags());
+        this(source.getName(), source.getDescription(), source.getStartTime(), source.getEndTime(),source.getId(),source.getPriority(), source.getStatus(), source.getRecurPeriod(), source.getRecurEndDate(), source.getTags());
     }
 
     public void setName(Name name) {
@@ -70,6 +76,16 @@ public class Task implements ReadOnlyTask {
     @Override
     public Status getStatus() {
         return status;
+    }
+    
+    @Override
+    public RecurPeriod getRecurPeriod() {
+        return recurPeriod;
+    }
+    
+    @Override
+    public RecurEndDate getRecurEndDate() {
+        return recurEndDate;
     }
     
     @Override

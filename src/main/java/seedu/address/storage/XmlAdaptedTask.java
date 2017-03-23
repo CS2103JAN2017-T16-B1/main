@@ -15,6 +15,8 @@ import seedu.address.model.Task.Priority;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.Description;
 import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.Task.RecurEndDate;
+import seedu.address.model.Task.RecurPeriod;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -39,6 +41,10 @@ public class XmlAdaptedTask {
     private String status;
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
+    @XmlElement(required = false)
+	private String recurEndDate;
+    @XmlElement(required = false)
+	private String recurPeriod;
 	
 
 
@@ -87,7 +93,9 @@ public class XmlAdaptedTask {
 
         final Priority priority = new Priority(this.priority);
         final Status status = new Status(this.status);
+        final RecurPeriod recurPeriod = new RecurPeriod(this.recurPeriod);
+        final RecurEndDate recurEndDate = new RecurEndDate(this.recurEndDate);
         final UniqueTagList tags = new UniqueTagList(taskTags);
-        return new Task(name, description, startTime, endTime, id, priority, status, tags);
+        return new Task(name, description, startTime, endTime, id, priority, status, recurPeriod, recurEndDate, tags);
     }
 }

@@ -24,6 +24,7 @@ public class Description {
         if (!isValidDescription(trimmeddescription)) {
             throw new IllegalValueException(MESSAGE_PHONE_CONSTRAINTS);
         }
+        trimmeddescription = trimmeddescription + "\n";
         this.description = trimmeddescription;
         }
         else this.description = description;

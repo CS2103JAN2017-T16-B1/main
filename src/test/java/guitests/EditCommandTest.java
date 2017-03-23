@@ -21,7 +21,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
     // The list of persons in the person list panel is expected to match this list.
     // This list is updated with every successful call to assertEditSuccess().
-    TestTask[] expectedTaskList = td.getTypicalPersons();
+    TestTask[] expectedTaskList = td.getTypicalTasks();
 
     @Test
     public void edit_allFieldsSpecified_success() throws Exception {
