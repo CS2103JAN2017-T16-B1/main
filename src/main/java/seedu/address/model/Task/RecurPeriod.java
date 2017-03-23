@@ -46,6 +46,9 @@ public class RecurPeriod {
 	
 	
 	public String updatedDate(String date){
+		if (date == "\n"){
+			return date;
+		}
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm\n");
 		LocalDateTime oldDate = LocalDateTime.parse(date,formatter);
 		String newDate;
@@ -62,7 +65,7 @@ public class RecurPeriod {
 		oldDate = oldDate.plusYears(1); break;
 		
 		default:
-			oldDate = oldDate.plusDays(Integer.parseInt(this.period)) ;
+			oldDate = oldDate.plusDays(Integer.parseInt(this.period)) ; break;
 		
 		}
 		newDate = oldDate.format(formatter);
@@ -82,4 +85,9 @@ public class RecurPeriod {
 	                && this.period.equals(((RecurPeriod) other).period); // state check
 	                
 	    }
+	 
+	 @Override
+	    public int hashCode() {
+	        return period.hashCode();
+		}
 }

@@ -55,4 +55,10 @@ public class RecurEndDate {
     public String toString() {
         return endDate;
     }
+	
+	@Override
+    public int hashCode() {
+        return endDate.hashCode();
+	}
+
 }
