@@ -94,7 +94,7 @@ Examples:
 * find work family friends
 * Returns a numbered list of undone tasks/events whose names/description/tags contain work, family or friends
 
-### 2.3.1 Finding all tasks/events that matches the given priority level : `find `
+### 2.3.2 Finding all tasks/events that matches the given priority level : `find #`
 
 
 Finds tasks/events that matches a priority level.<br>
