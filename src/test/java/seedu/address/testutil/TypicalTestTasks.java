@@ -8,11 +8,11 @@ import seedu.address.model.Task.UniqueTaskList;
 /**
  *
  */
-public class TypicalTestPersons {
+public class TypicalTestTasks {
 
     public TestTask task1, task2, task3, task4, task5, task6, task7, task8, task9;
 
-    public TypicalTestPersons() {
+    public TypicalTestTasks() {
         try {
             task1 = new TaskBuilder().withName("Study for Midterm").withStartTime("2017-03-03-2100")
                     .withEndTime("2017-04-04-2100").withTags("School").build();
@@ -41,16 +41,16 @@ public class TypicalTestPersons {
     }
 
     public static void loadTaskManagerWithSampleData(TaskManager ab) {
-        for (TestTask person : new TypicalTestPersons().getTypicalPersons()) {
+        for (TestTask task : new TypicalTestTasks().getTypicalTasks()) {
             try {
-                ab.addTask(new Task(person));
+                ab.addTask(new Task(task));
             } catch (UniqueTaskList.DuplicatetaskException e) {
                 assert false : "not possible";
             }
         }
     }
 
-    public TestTask[] getTypicalPersons() {
+    public TestTask[] getTypicalTasks() {
         return new TestTask[]{task1, task2, task3, task4, task5, task6, task7};
     }
 

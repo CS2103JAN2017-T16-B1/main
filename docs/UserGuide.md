@@ -1,4 +1,4 @@
-# AddressBook Level 4 - User Guide
+﻿# Task Manager - User Guide
 
 By : `Team SE-EDU`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2016`  &nbsp;&nbsp;&nbsp;&nbsp; Licence: `MIT`
 
@@ -56,35 +56,27 @@ Format: `help`
 
 Adds a task/event to the address book<br>
 
-Task: 
+Task/event: 
 
-Format: `add TASK_NAME [e/ENDTIME] [d/DESCRIPTION] [t/TAG]...`
+Format: `add TASK_NAME [s/STARTTIME] [e/ENDTIME] [d/DESCRIPTION] [r/REPEATPERIOD] [l/RECURENDDATE] [t/TAG] ...`
 
-> Tasks can have a endtime
 > Tasks can have a description
 > Tasks can have any number of tags (including 0)
+> Tasks can be flagged as recurring by adding the period to repeat
+> Tasks flagged as recurring can have an end date to stop the recurring task
+> User may use FROM and TO instead of s/ and e/, also may use BY instead of e/
 
 
 Examples:
 * `add Do laundry e/2017-3-1-2359 `
-* `add Study for midterms e/2017-3-2-2359 d/CS2103 at lt7 `
-* `add Buy milk for baby e/2017-3-3-2100 d/yaas milk t/family`
+* `add Study for midterms e/Monday 1000 d/CS2103 at lt7 `
+* `add Buy milk for baby BY tuesday 0800 d/yaas milk t/family`
 * `add Create user story e/2017-4-1-1300 t/work t/computing` 
-
-Event: 
-
-Format: `add EVENT_NAME s/START_TIME e/END_TIME [d/DESCRIPTION] [t/TAG]...`
-
-> * Event can have description
-> * Events can have any number of tags (including 0)
+* `add Meeting FROM monday 0800 TO monday 1100 t/work r/weekly  
 
 
-Examples:
-* `Add Midterms s/2017-3-1-1300 e/2017-3-1-1500 d/CS2103 t/school`
-* `Add Kaili Birthday s/2017-8-30-0000 e/2017-8-31-2359 t/friends`
-* `Add Gym legs day s/2017-3-4-0600 e/2017-3-4-0700 t/health`
 
-### 2.3. Finding all tasks/events containing any keyword in their name or tag : `find`
+### 2.3.1 Finding all tasks/events containing any keyword in their names, description or tag : `find`
 
 
 Finds tasks/events whose names contain any of the given keywords.<br>
@@ -93,14 +85,44 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 > * The search is case sensitive. e.g homework will not match Homework
 > * The order of the keywords does not matter. e.g. homework due will match due homework
-> * Only names and tags are searched.
-> * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans will match Hans Bo
+> * Only names, description and tags are searched.
+> * Tasks matching at least one keyword will be returned (i.e. OR search). e.g. CS2103 final exams will match finals bo rawr
 
 Examples:
 * find Milk
-* Returns a numbered list of undone tasks/events whose names/ tags contain buy Milk but not milk
+* Returns a numbered list of undone tasks/events whose names/description/tags contain buy Milk but not milk
 * find work family friends
-* Returns a numbered list of undone tasks/events whose names/ tags contain work, family or friends
+* Returns a numbered list of undone tasks/events whose names/description/tags contain work, family or friends
+
+### 2.3.2 Finding all tasks/events that matches the given priority level : `find #`
+
+
+Finds tasks/events that matches a priority level.<br>
+
+Format: `find #KEYWORD`
+
+> * The search is case sensitive. e.g. h will not match H
+> * Only priority is searched
+> * Tasks matching the given priority will be returned.
+
+Examples:
+* find #h
+* Returns a numbered list of tasks/events that are labelled as high priority
+
+### 2.3.3 Finding all archived tasks/events containing the keyword in their names, description or tag : `find @`
+
+
+Finds tasks/events whose name/description/tags match a given keyword.<br>
+
+Format: `find @KEYWORD`
+
+> * The search is case sensitive. e.g homework will not match Homework
+> * Only names/descriptions/tags will be searched
+> * Task matching the keyword given will be returned.
+
+Examples:
+* find @Milk
+* Returns a numbered list of tasks/events that are archived and whose name/description/tags contain buy Milk but not milk
 
 
 ### 2.4. Listing all tasks/events : `list`
@@ -132,7 +154,7 @@ Examples:
 ### 2.6. Editing a Task/event : `edit`
 
 Edits an existing task/event in the address book.<br>
-Format: `edit INDEX [n/NAME] [dl/DEADLINE] [st/START_TIME] [et/END_TIME] [des/DESCRIPTION] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]...`
 
 >Edits the task/event at the specified INDEX. The index refers to the index number shown in the last task listing printed out when the search or list function was called.<br>
 
@@ -149,7 +171,7 @@ Examples:
 * `edit 1 buy milk e/2017-3-2-2359`<br>
   Edits the name and deadline of the task ( numbered 1 on the list) to be buy milk and 2017-3-2-2359 respectively.
 * `edit 2 midterm exam s/2017-3-3-1000`<br>
-  Edits the name and start time of the event(numbered 2 on the list) to be midterm exam and st/2017-3-3-1000 respectively
+  Edits the name and start time of the event(numbered 2 on the list) to be midterm exam and s/2017-3-3-1000 respectively
 
 
 ### 2.7.  Deleting task(s): `delete`

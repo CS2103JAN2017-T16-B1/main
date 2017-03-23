@@ -61,4 +61,7 @@ public interface Model {
     boolean undoTask();
 
     void updateFilteredTaskListByArchived();
+
+    /** Updates the filer of the filtered task list to filter by archived and keyword*/
+	void updateArchivedFilteredTaskListByKeyword(String archive);
 }
