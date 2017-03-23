@@ -2,8 +2,11 @@ package seedu.address.testutil;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Task.EndTime;
+import seedu.address.model.Task.ID;
 import seedu.address.model.Task.StartTime;
+import seedu.address.model.Task.Status;
 import seedu.address.model.Task.Name;
+import seedu.address.model.Task.Priority;
 import seedu.address.model.Task.Description;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
@@ -14,7 +17,7 @@ import seedu.address.model.tag.UniqueTagList;
 public class TaskBuilder {
 
     private TestTask task;
-
+    
     public TaskBuilder() {
         this.task = new TestTask();
     }
@@ -53,9 +56,25 @@ public class TaskBuilder {
         this.task.setStartTime(new StartTime(startTime));
         return this;
     }
+    
+    public TaskBuilder withStatus(String status) throws IllegalValueException {
+        this.task.setStatus(new Status(status));
+        return this;
+    }
+
+    public TaskBuilder withPriority(String priority) throws IllegalValueException {
+        this.task.setPriority(new Priority(priority));
+        return this;
+    }
+    
+    public TaskBuilder withID(String id) throws IllegalValueException {
+        this.task.setId(new ID(id));
+        return this;
+    }
 
     public TestTask build() {
         return this.task;
     }
-
+    
+    
 }
