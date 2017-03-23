@@ -15,6 +15,8 @@ import seedu.address.model.Task.Name;
 import seedu.address.model.Task.Priority;
 import seedu.address.model.Task.StartTime;
 import seedu.address.model.Task.Status;
+import seedu.address.model.Task.RecurPeriod;
+import seedu.address.model.Task.RecurEndDate;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.tag.Tag;
@@ -34,10 +36,12 @@ public class AddCommand extends Command {
             + " Midterms s/2017-03-01-1300 e/2017-03-01-1500 d/CS2103 t/school";
 
 
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+
+    public static final String MESSAGE_SUCCESS = " Added:\n %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
+
     public static String id = "1";
-    private final Task toAdd;
+    private Task toAdd;
     
     /**
      * Creates an AddCommand using raw values.
@@ -45,14 +49,14 @@ public class AddCommand extends Command {
      * @throws IllegalValueException if any of the raw values are invalid
      */
     //Add Event
-    public AddCommand(String name, String description, String startTime, String endTime, Set<String> tags)
+    public AddCommand(String name, String description, String startTime, String endTime, String recurPeriod, String recurEndDate, Set<String> tags)
 
+    		
             throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
-        
         this.toAdd = new Task(
                 new Name(name),
 
@@ -63,12 +67,32 @@ public class AddCommand extends Command {
                 //new ID(id++),
                 new Priority("m"),
                 new Status("undone"),
+                new RecurPeriod(recurPeriod),
+                new RecurEndDate(recurEndDate),
                 new UniqueTagList(tagSet)
         );
         incrementID();
+      /*  while (this.toAdd.getRecurEndDate().hasPassedEndDate(endTime)){
+        	startTime = this.toAdd.getRecurPeriod().updatedDate(startTime);
+        	
+        	this.toAdd = new Task(
+                    new Name(name),
+                    new Description(description),
+                    new StartTime(startTime),
+                    new EndTime(endTime),
+                    new ID(id),
+                    //new ID(id++),
+                    new Priority("m"),
+                    new Status("undone"),
+                    new RecurPeriod(recurPeriod),
+                    new RecurEndDate(recurEndDate),
+                    new UniqueTagList(tagSet)
+            );
+            incrementID();
+        }*/
     }
 
-  //Add Task
+  /*Add Task
     public AddCommand(String name, String description, String endTime, Set<String> tags)
 
             throws IllegalValueException {
@@ -78,7 +102,7 @@ public class AddCommand extends Command {
         }
         this.toAdd = new Task(
                 new Name(name),
-                new Description(description),
+         		new Description(description),
                 new StartTime(""),
                 new EndTime(endTime),
                 new ID(id),
@@ -108,7 +132,7 @@ public class AddCommand extends Command {
                 new UniqueTagList(tagSet)
         );
         incrementID();
-    }
+    }*/
     private void incrementID() {
         Integer intid = Integer.parseInt(id);
         intid++;
