@@ -27,6 +27,8 @@ import seedu.address.model.Task.StartTime;
 import seedu.address.model.Task.Status;
 import seedu.address.model.Task.Name;
 import seedu.address.model.Task.Priority;
+import seedu.address.model.Task.RecurEndDate;
+import seedu.address.model.Task.RecurPeriod;
 import seedu.address.model.Task.Description;
 
 import seedu.address.model.tag.Tag;
@@ -142,8 +144,23 @@ public class ParserUtil {
         return status.isPresent() ? Optional.of(new Status(status.get())) : Optional.empty();
     }
     /**
+     * Parses a {@code Optional<String> recurPeriod} into an {@code Optional<RecurPeriod>} if {@code status} is present.
+     */
+    public static Optional<RecurPeriod> parseRecurPeriod(Optional<String> recurPeriod) throws IllegalValueException {
+        assert recurPeriod != null;
+        return recurPeriod.isPresent() ? Optional.of(new RecurPeriod(recurPeriod.get())) : Optional.empty();
+    }
+    /**
+     * Parses a {@code Optional<String> recurEndDate} into an {@code Optional<RecurEndDate>} if {@code status} is present.
+     */
+    public static Optional<RecurEndDate> parseRecurEndDate(Optional<String> recurEndDate) throws IllegalValueException {
+        assert recurEndDate != null;
+        return recurEndDate.isPresent() ? Optional.of(new RecurEndDate(recurEndDate.get())) : Optional.empty();
+    }
+    /**
      * Parses {@code Collection<String> tags} into an {@code UniqueTagList}.
      */
+    
     public static UniqueTagList parseTags(Collection<String> tags) throws IllegalValueException {
         assert tags != null;
         final Set<Tag> tagSet = new HashSet<>();

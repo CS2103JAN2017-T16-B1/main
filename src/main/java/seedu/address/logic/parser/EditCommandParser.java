@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURPERIOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 
@@ -35,7 +37,7 @@ public class EditCommandParser {
         assert args != null;
         ArgumentTokenizer argsTokenizer =
         		 new ArgumentTokenizer(PREFIX_DESCRIPTION, PREFIX_ENDTIME, PREFIX_STARTTIME,
-                 		PREFIX_PRIORITY, PREFIX_STATUS, PREFIX_TAG);
+                 		PREFIX_PRIORITY, PREFIX_STATUS, PREFIX_RECURPERIOD, PREFIX_RECURENDDATE, PREFIX_TAG);
         argsTokenizer.tokenize(args);
         List<Optional<String>> preambleFields = ParserUtil.splitPreamble(argsTokenizer.getPreamble().orElse(""), 2);
 
@@ -52,7 +54,9 @@ public class EditCommandParser {
             editTaskDescriptor.setStartTime(ParserUtil.parseStartTime(argsTokenizer.getValue(PREFIX_STARTTIME)));
             editTaskDescriptor.setEndTime(ParserUtil.parseEndTime(argsTokenizer.getValue(PREFIX_ENDTIME)));
             editTaskDescriptor.setPriority(ParserUtil.parsePriority(argsTokenizer.getValue(PREFIX_PRIORITY)));
-            editTaskDescriptor.setStatus(ParserUtil.parseStatus(argsTokenizer.getValue(PREFIX_STATUS)));   
+            editTaskDescriptor.setStatus(ParserUtil.parseStatus(argsTokenizer.getValue(PREFIX_STATUS))); 
+            editTaskDescriptor.setRecurPeriod(ParserUtil.parseRecurPeriod(argsTokenizer.getValue(PREFIX_RECURPERIOD))); 
+            editTaskDescriptor.setRecurEndDate(ParserUtil.parseRecurEndDate(argsTokenizer.getValue(PREFIX_RECURENDDATE))); 
             editTaskDescriptor.setTags(parseTagsForEdit(ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))));
 
         } catch (IllegalValueException ive) {
