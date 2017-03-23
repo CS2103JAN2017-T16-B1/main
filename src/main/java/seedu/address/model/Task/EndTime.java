@@ -50,6 +50,7 @@ public class EndTime {
             if (!isValidTime(trimmedTime)) {
                 throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
             }
+            trimmedTime = trimmedTime + "\n";
             this.endTime = trimmedTime;
         }
 
