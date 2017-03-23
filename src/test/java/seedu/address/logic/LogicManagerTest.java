@@ -418,14 +418,17 @@ public class LogicManagerTest {
     class TestDataHelper {
 
         Task adam() throws Exception {
-            Name name = new Name("Adam Brown");
+            Name name = new Name("buy milk");
             Description privatePhone = new Description("111111");
-            StartTime startTime = new StartTime("adam@gmail.com");
-            EndTime privateAddress = new EndTime("111, alpha street");
+            StartTime startTime = new StartTime("2017-04-04-1000");
+            EndTime endTime = new EndTime("2017-04-04-1200");
+            ID id = new ID("1");
+            Priority priority = new Priority("m");
+            Status status = new Status("undone");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("longertag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Task(name, privatePhone, startTime, privateAddress, null, null, null, tags);
+            return new Task(name, privatePhone, startTime, endTime, id, priority, status, tags);
         }
 
         /**
@@ -538,8 +541,8 @@ public class LogicManagerTest {
             return new Task(
                     new Name(name),
                     new Description("1"),
-                    new StartTime("1@email"),
-                    new EndTime("House of 1"),
+                    new StartTime("monday 1000"),
+                    new EndTime("monday 1200"),
                     new ID("20000"),new Priority("m"), new Status("done"), new UniqueTagList(new Tag("tag"))
             );
         }
