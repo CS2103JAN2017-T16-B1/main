@@ -30,11 +30,12 @@ public class Name {
         if (!isValidName(trimmedName)) {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
         }
+        trimmedName = trimmedName + "\n";
         this.fullName = trimmedName;
     }
 
     /**
-     * Returns true if a given string is a valid person name.
+     * Returns true if a given string is a valid task name.
      */
     public static boolean isValidName(String test) {
         return test.matches(NAME_VALIDATION_REGEX);

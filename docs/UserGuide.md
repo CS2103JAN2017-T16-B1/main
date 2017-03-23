@@ -1,4 +1,4 @@
-# AddressBook Level 4 - User Guide
+﻿# Task Manager - User Guide
 
 By : `Team SE-EDU`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2016`  &nbsp;&nbsp;&nbsp;&nbsp; Licence: `MIT`
 
@@ -16,7 +16,7 @@ By : `Team SE-EDU`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2016`  &nbsp;&nbsp;&nbs
    > Having any Java 8 version is not enough. <br>
    > This app will not work with earlier versions of Java 8.
 
-1. Download the latest `addressbook.jar` from the [releases](../../../releases) tab.
+1. Download the latest `TaskManager.jar` from the [releases](../../../releases) tab.
 2. Copy the file to the folder you want to use as the home folder for your Address Book.
 3. Double-click the file to start the app. The GUI should appear in a few seconds.
 
@@ -27,8 +27,8 @@ By : `Team SE-EDU`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2016`  &nbsp;&nbsp;&nbs
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.
 5. Some example commands you can try:
    * **`list`** : Returns a numbered list of all tasks/events yet undone in the tasks manager
-   * **`add`**` Study for midterms dl/2017-3-2-2359 des/CS2103 at LT7` :
-        Add a Task named “Study for midterms” with deadline “2017 2nd of March 23:59pm” with 
+   * **`add`**` Study for midterms e/2017-3-2-2359 d/CS2103 at LT7` :
+        Add a Task named “Study for midterms” with endtime “2017 2nd of March 23:59pm” with 
         task description of “CS2103 at LT7”
 
    * **`delete`**` 3` : deletes the 3rd task shown in the current list
@@ -56,35 +56,32 @@ Format: `help`
 
 Adds a task/event to the address book<br>
 
-Task: 
+Task/event: 
 
-Format: `add task TASK_NAME [d/DESCRIPTION] [e/ENDTIME] [t/TAG]...`
 
-> Tasks can have a deadline which is denoted by the prefix corresponding to end time
-> Tasks can have a description 
+Format: `add TASK_NAME [s/STARTTIME] [e/ENDTIME] [d/DESCRIPTION] [r/REPEATPERIOD] [l/RECURENDDATE] [t/TAG] ...`
+
+> Tasks can have a description
+
 > Tasks can have any number of tags (including 0)
+> Tasks can be flagged as recurring by adding the period to repeat
+> Tasks flagged as recurring can have an end date to stop the recurring task
+> User may use FROM and TO instead of s/ and e/, also may use BY instead of e/
 
 
 Examples:
-* `add Do laundry e/2017-03-01-2359 `
-* `add Study for midterms e/2017-03-02-2359 d/CS2103 at lt7 `
-* `add Buy milk for baby e/2017-03-03-2100 d/yaas milk t/family`
-* `add Create user story e/2017-04-01-1300 t/work t/computing` 
-
-Event: 
-
-Format: `add event EVENT_NAME st/START_TIME et/END_TIME [des/DESCRIPTION] [t/TAG]...`
-
-> * Event can have description
-> * Events can have any number of tags (including 0)
+* `add Do laundry e/2017-3-1-2359 `
+* `add Study for midterms e/Monday 1000 d/CS2103 at lt7 `
+* `add Buy milk for baby BY tuesday 0800 d/yaas milk t/family`
+* `add Create user story e/2017-4-1-1300 t/work t/computing` 
+* `add Meeting FROM monday 0800 TO monday 1100 t/work r/weekly  
 
 
-Examples:
-* `Add Midterms s/2017-03-01-1300 e/2017-03-01-1500 des/CS2103 t/school`
-* `Add Kaili Birthday s/2017-08-30-0000 e/2017-08-31-2359 t/friends`
-* `Add Gym legs day s/2017-03-04-0600 e/2017-03-04-0700 t/health`
 
-### 2.3. Finding all tasks/events containing any keyword in their name or tag : `find`
+
+
+### 2.3.1 Finding all tasks/events containing any keyword in their names, description or tag : `find`
+
 
 
 Finds tasks/events whose names contain any of the given keywords.<br>
@@ -93,14 +90,44 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 > * The search is case sensitive. e.g homework will not match Homework
 > * The order of the keywords does not matter. e.g. homework due will match due homework
-> * Only names and tags are searched.
-> * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans will match Hans Bo
+> * Only names, description and tags are searched.
+> * Tasks matching at least one keyword will be returned (i.e. OR search). e.g. CS2103 final exams will match finals bo rawr
 
 Examples:
 * find Milk
-* Returns a numbered list of undone tasks/events whose names/ tags contain buy Milk but not milk
+* Returns a numbered list of undone tasks/events whose names/description/tags contain buy Milk but not milk
 * find work family friends
-* Returns a numbered list of undone tasks/events whose names/ tags contain work, family or friends
+* Returns a numbered list of undone tasks/events whose names/description/tags contain work, family or friends
+
+### 2.3.2 Finding all tasks/events that matches the given priority level : `find #`
+
+
+Finds tasks/events that matches a priority level.<br>
+
+Format: `find #KEYWORD`
+
+> * The search is case sensitive. e.g. h will not match H
+> * Only priority is searched
+> * Tasks matching the given priority will be returned.
+
+Examples:
+* find #h
+* Returns a numbered list of tasks/events that are labelled as high priority
+
+### 2.3.3 Finding all archived tasks/events containing the keyword in their names, description or tag : `find @`
+
+
+Finds tasks/events whose name/description/tags match a given keyword.<br>
+
+Format: `find @KEYWORD`
+
+> * The search is case sensitive. e.g homework will not match Homework
+> * Only names/descriptions/tags will be searched
+> * Task matching the keyword given will be returned.
+
+Examples:
+* find @Milk
+* Returns a numbered list of tasks/events that are archived and whose name/description/tags contain buy Milk but not milk
 
 
 ### 2.4. Listing all tasks/events : `list`
@@ -115,24 +142,19 @@ Examples:
 * `Returns a numbered list of all tasks/events yet undone in the tasks manager`
 
 
-### Show tasks/events that are done : `archive`
+### 2.5 Show tasks/events that are done : `archived`
 
 Shows a list of all task that are marked as done and events that has passed in the task manager.<br>
-Format: `archive [/task] [/event]`
+Format: `archived`
 
 > * Tasks/events is arranged by deadline, with the most recent dateline first
 > * Only the past one month worth of event/task can be done
 
 Examples:
 
-* `archive`<br>
+* `archived`<br>
   Returns a list of tasks that have been marked as done and or events that have passed
-* `archive task`<br>
-  Returns a list of tasks that have been marked as done 
-* `archive event`<br>
-  Returns a list of events that have passed
-* `archive task event`<br>
-  Returns a list of tasks that have been marked as done and or events that have passed
+
 
 ### 2.6. Editing a Task/event : `edit`
 
@@ -151,10 +173,12 @@ Format: `edit INDEX [n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]
 
 Examples:
 
-* `edit 1 n/buy milk e/2017-03-02-2359`<br>
+
+* `edit 1 buy milk e/2017-3-2-2359`<br>
   Edits the name and deadline of the task ( numbered 1 on the list) to be buy milk and 2017-3-2-2359 respectively.
-* `edit 2 n/midterm exam s/2017-3-3-1000 e/2017-03-03-1200`<br>
-  Edits the name and start time of the event(numbered 2 on the list) to be midterm exam and st/2017-3-3-1000 respectively
+* `edit 2 midterm exam s/2017-3-3-1000`<br>
+  Edits the name and start time of the event(numbered 2 on the list) to be midterm exam and s/2017-3-3-1000 respectively
+
 
 
 ### 2.7.  Deleting task(s): `delete`
@@ -176,7 +200,7 @@ Examples:
   `delete 1`<br>
   Deletes the 1st task in the results of the `find` command.
 
-### 2.8. Mark task(s) as done : `done`
+### 2.8. Mark task(s) as done : `archive`
 
 Mark the specified task(s) as done.<br>
 Format: `done INDEX,[INDEX]...`
@@ -188,7 +212,7 @@ Format: `done INDEX,[INDEX]...`
 Examples:
 
 * `list`<br>
-   `done 2,3`<br>
+   `archive 2,3`<br>
    Mark the 2nd and 3rd task in the list as done.
 
 ### 2.9. Clearing all entries : `clear`
@@ -198,7 +222,7 @@ Format: `clear`
 
 ### 2.10. Undo the last command : `undo`
 
-Undo the last command input by the user.<br>
+Undo the last add/edit/archive/undo command input by the user.<br>
 Format: `undo`
 
 ### 2.11. Exiting the program : `exit`
@@ -221,9 +245,11 @@ There is no need to save manually.
 
 * **Add :** <br>
 > * **Task :**<br>
-> *`add task TASK_NAME [e/DEADLINE] [d/DESCRIPTION] [t/TAG]...` <br>
+
+> *`add TASK_NAME [d/DEADLINE] [d/DESCRIPTION] [t/TAG]...` <br>
 > * **Event :**<br>
-> *`add event EVENT_NAME s/START_TIME e/END_TIME [d/DESCRIPTION] [t/TAG]...` <br>
+> *`add EVENT_NAME s/START_TIME e/END_TIME [d/DESCRIPTION] [t/TAG]...` <br>
+
 
 * **Clear** : `clear`<br>
 
@@ -239,11 +265,11 @@ There is no need to save manually.
 * **List** : `undo` <br>
   e.g. `undo`
  
-* **Done** : `done` <br>
-  e.g. `done 2`
+* **Archive** : `archive` <br>
+  e.g. `archive 2`
 
-* **Archive** : `archive [/task][/event]` <br>
-  e.g. `archive /task`
+* **Archived** : `archived` <br>
+  e.g. `archived`
 
 * **edit** : `edit TASK_ID[n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]...` <br>
 

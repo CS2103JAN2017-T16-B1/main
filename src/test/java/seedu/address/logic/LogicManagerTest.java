@@ -37,8 +37,11 @@ import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.TaskManager;
 import seedu.address.model.Task.EndTime;
+import seedu.address.model.Task.ID;
 import seedu.address.model.Task.StartTime;
+import seedu.address.model.Task.Status;
 import seedu.address.model.Task.Name;
+import seedu.address.model.Task.Priority;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.Description;
 import seedu.address.model.Task.ReadOnlyTask;
@@ -177,9 +180,9 @@ public class LogicManagerTest {
     @Test
     public void execute_clear() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        model.addPerson(helper.generatePerson(1));
-        model.addPerson(helper.generatePerson(2));
-        model.addPerson(helper.generatePerson(3));
+        model.addTask(helper.generatePerson(1));
+        model.addTask(helper.generatePerson(2));
+        model.addTask(helper.generatePerson(3));
 
         assertCommandSuccess("clear", ClearCommand.MESSAGE_SUCCESS, new TaskManager(), Collections.emptyList());
     }
@@ -219,7 +222,7 @@ public class LogicManagerTest {
         assertCommandSuccess(helper.generateAddCommand(toBeAdded),
                 String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
                 expectedAB,
-                expectedAB.getPersonList());
+                expectedAB.getTaskList());
 
     }
 
@@ -230,10 +233,10 @@ public class LogicManagerTest {
         Task toBeAdded = helper.adam();
 
         // setup starting state
-        model.addPerson(toBeAdded); // person already in internal task manager
+        model.addTask(toBeAdded); // person already in internal task manager
 
         // execute command and verify result
-        assertCommandFailure(helper.generateAddCommand(toBeAdded),  AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(helper.generateAddCommand(toBeAdded),  AddCommand.MESSAGE_DUPLICATE_TASK);
 
     }
 
@@ -243,7 +246,7 @@ public class LogicManagerTest {
         // prepare expectations
         TestDataHelper helper = new TestDataHelper();
         TaskManager expectedAB = helper.generateTaskManager(2);
-        List<? extends ReadOnlyTask> expectedList = expectedAB.getPersonList();
+        List<? extends ReadOnlyTask> expectedList = expectedAB.getTaskList();
 
         // prepare task manager state
         helper.addToModel(model, 2);
@@ -284,7 +287,7 @@ public class LogicManagerTest {
         // set AB state to 2 persons
         model.resetData(new TaskManager());
         for (Task p : personList) {
-            model.addPerson(p);
+            model.addTask(p);
         }
 
         assertCommandFailure(commandWord + " 3", expectedMessage);
@@ -312,7 +315,7 @@ public class LogicManagerTest {
         assertCommandSuccess("select 2",
                 String.format(SelectCommand.MESSAGE_SELECT_PERSON_SUCCESS, 2),
                 expectedAB,
-                expectedAB.getPersonList());
+                expectedAB.getTaskList());
         assertEquals(1, targetedJumpIndex);
         assertEquals(model.getFilteredTaskList().get(1), threePersons.get(1));
     }
@@ -335,13 +338,13 @@ public class LogicManagerTest {
         List<Task> threePersons = helper.generatePersonList(3);
 
         TaskManager expectedAB = helper.generateTaskManager(threePersons);
-        expectedAB.removePerson(threePersons.get(1));
+        expectedAB.removeTask(threePersons.get(1));
         helper.addToModel(model, threePersons);
 
         assertCommandSuccess("delete 2",
                 String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, threePersons.get(1)),
                 expectedAB,
-                expectedAB.getPersonList());
+                expectedAB.getTaskList());
     }
 
 
@@ -415,14 +418,17 @@ public class LogicManagerTest {
     class TestDataHelper {
 
         Task adam() throws Exception {
-            Name name = new Name("Adam Brown");
+            Name name = new Name("buy milk");
             Description privatePhone = new Description("111111");
-            StartTime startTime = new StartTime("adam@gmail.com");
-            EndTime privateAddress = new EndTime("111, alpha street");
+            StartTime startTime = new StartTime("2017-04-04-1000");
+            EndTime endTime = new EndTime("2017-04-04-1200");
+            ID id = new ID("1");
+            Priority priority = new Priority("m");
+            Status status = new Status("undone");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("longertag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Task(name, privatePhone, startTime, privateAddress, tags);
+            return new Task(name, privatePhone, startTime, endTime, id, priority, status, tags);
         }
 
         /**
@@ -436,9 +442,9 @@ public class LogicManagerTest {
             return new Task(
                     new Name("Task " + seed),
                     new Description("" + Math.abs(seed)),
-                    new StartTime(seed + "@email"),
-                    new EndTime("House of " + seed),
-                    new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
+                    new StartTime("2017-10-10-1600"),
+                    new EndTime("2017-12-12-2000"),
+                    null, null, null, new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
         }
 
@@ -509,7 +515,7 @@ public class LogicManagerTest {
          */
         void addToModel(Model model, List<Task> personsToAdd) throws Exception {
             for (Task p: personsToAdd) {
-                model.addPerson(p);
+                model.addTask(p);
             }
         }
 
@@ -535,9 +541,9 @@ public class LogicManagerTest {
             return new Task(
                     new Name(name),
                     new Description("1"),
-                    new StartTime("1@email"),
-                    new EndTime("House of 1"),
-                    new UniqueTagList(new Tag("tag"))
+                    new StartTime("monday 1000"),
+                    new EndTime("monday 1200"),
+                    new ID("20000"),new Priority("m"), new Status("done"), new UniqueTagList(new Tag("tag"))
             );
         }
     }

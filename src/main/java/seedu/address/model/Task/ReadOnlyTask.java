@@ -8,12 +8,15 @@ import seedu.address.model.tag.UniqueTagList;
  */
 public interface ReadOnlyTask {
 
-    Name getName();
+   
+	Name getName();
     Description getDescription();
     StartTime getStartTime();
     EndTime getEndTime();
     Priority getPriority();
 	Status getStatus();
+	RecurPeriod getRecurPeriod();
+	RecurEndDate getRecurEndDate();
 	ID getId();
 
     /**
@@ -33,7 +36,6 @@ public interface ReadOnlyTask {
                 && other.getStartTime().equals(this.getStartTime())
                 && other.getEndTime().equals(this.getEndTime()))
                 && other.getPriority().equals(this.getPriority())
-                && other.getId().equals(this.getId())
                 && other.getStatus().equals(this.getStatus());
     }
 

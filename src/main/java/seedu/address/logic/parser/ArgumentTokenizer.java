@@ -73,6 +73,22 @@ public class ArgumentTokenizer {
             return Optional.empty();
         }
     }
+    /**
+     * Returns the add command types of the ArgumentTokenizer.
+     *     Check for prefix, start time, end time to categorize the command.
+     */
+    public String getCommandType(String args) {
+        
+        if (args.contains("s/") && args.contains("e/")) {
+            return "event";
+        }
+        else {
+            if (args.contains("e/")) {
+                return "task";
+            }
+            return "floating";
+        }
+    }
 
     private void resetTokenizerState() {
         this.tokenizedArguments.clear();

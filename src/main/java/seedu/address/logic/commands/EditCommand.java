@@ -15,11 +15,13 @@ import seedu.address.model.Task.Priority;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.Description;
 import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.Task.RecurEndDate;
+import seedu.address.model.Task.RecurPeriod;
 import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
- * Edits the details of an existing person in the task manager.
+ * Edits the details of an existing task in the task manager.
  */
 public class EditCommand extends Command {
 
@@ -28,10 +30,10 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the last task listing. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) [NAME] [st/STARTTIME] [et/ENDTIME] [des/DESCRIPTION ] [t/TAG]...\n"
+            + "Parameters: INDEX (must be a positive integer) [NAME] [beg/STARTTIME] [end/ENDTIME] [des/DESCRIPTION ] [t/TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 st/2017-3-1-2359 des/go to ntuc";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited:\n %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
 
@@ -88,16 +90,20 @@ public class EditCommand extends Command {
         Priority updatedPriority=editTaskDescriptor.getPriority().orElseGet(taskToEdit::getPriority);
         Status updatedStatus=editTaskDescriptor.getStatus().orElseGet(taskToEdit::getStatus);
         ID updatedID= taskToEdit.getId();
-        UniqueTagList updatedTags = editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
-
-        return new Task(updatedName, updatedDescription, updatedStartTime, updatedEndTime, updatedID, updatedPriority, updatedStatus,updatedTags);
+        RecurEndDate updatedRecurEndDate = editTaskDescriptor.getRecurEndDate().orElseGet(taskToEdit::getRecurEndDate); 
+		RecurPeriod updatedRecurPeriod = editTaskDescriptor.getRecurPeriod().orElseGet(taskToEdit::getRecurPeriod); 
+        UniqueTagList updatedTags =new UniqueTagList(taskToEdit,editTaskDescriptor);//editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
+        System.out.print(updatedTags);
+        
+		return new Task(updatedName, updatedDescription, updatedStartTime,
+        		updatedEndTime, updatedID, updatedPriority, updatedStatus, updatedRecurPeriod, updatedRecurEndDate, updatedTags);
         
         }
 
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the task with. Each non-empty field value will replace the
+     * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
         private Optional<Name> name = Optional.empty();
@@ -107,7 +113,8 @@ public class EditCommand extends Command {
         private Optional<Priority> priority = Optional.empty();
 
         private Optional<Status> status = Optional.empty();
-
+        private Optional<RecurPeriod> recurPeriod = Optional.empty();
+        private Optional<RecurEndDate> recurEndDate = Optional.empty();
         private Optional<UniqueTagList> tags = Optional.empty();
 
         public EditTaskDescriptor() {}
@@ -119,17 +126,18 @@ public class EditCommand extends Command {
             this.description = toCopy.getDescription();
             this.startTime = toCopy.getStartTime();
             this.endTime = toCopy.getEndTime();
-
             this.priority= toCopy.getPriority();
             this.status= toCopy.getStatus();
+            this.recurPeriod = toCopy.getRecurPeriod();
+            this.recurEndDate = toCopy.getRecurEndDate();
             this.tags = toCopy.getTags();
         }
 
-        /**
+		/**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyPresent(this.name, this.description, this.startTime, this.endTime, this.priority, this.status, this.tags);
+            return CollectionUtil.isAnyPresent(this.name, this.description, this.startTime, this.endTime, this.priority, this.status, this.recurPeriod, this.recurEndDate, this.tags);
         }
 
         public void setName(Optional<Name> name) {
@@ -141,13 +149,7 @@ public class EditCommand extends Command {
             return name;
         }
         
-        public void setPriority(Optional<Priority> priority) {
-            assert priority != null;
-            this.priority = priority;
-        }
-        public Optional<Priority> getPriority() {
-            return priority;
-        }
+
         public void setStatus(Optional<Status> status) {
             assert status != null;
             this.status = status;
@@ -191,5 +193,32 @@ public class EditCommand extends Command {
         public Optional<UniqueTagList> getTags() {
             return tags;
         }
+        
+        private Optional<Priority> getPriority() {
+			return priority;
+		}
+        
+        public void setPriority(Optional<Priority> priority){
+        	this.priority = priority;
+        }
+        
+        public void setRecurPeriod(Optional<RecurPeriod> recurPeriod) {
+            assert recurPeriod != null;
+            this.recurPeriod = recurPeriod;
+        }
+        
+        public Optional<RecurPeriod> getRecurPeriod() {
+            return recurPeriod;
+        }
+
+        public void setRecurEndDate(Optional<RecurEndDate> recurEndDate) {
+            assert recurEndDate != null;
+            this.recurEndDate = recurEndDate;
+        }
+        
+        public Optional<RecurEndDate> getRecurEndDate() {
+            return recurEndDate;
+        }
+
     }
 }

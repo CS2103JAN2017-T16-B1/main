@@ -13,23 +13,23 @@ import seedu.address.model.Task.StartTime;
 import seedu.address.model.Task.Name;
 import seedu.address.model.Task.Description;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.TestPerson;
+import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.TestTask;
 
 // TODO: reduce GUI tests by transferring some tests to be covered by lower level tests.
 public class EditCommandTest extends TaskManagerGuiTest {
 
     // The list of persons in the person list panel is expected to match this list.
     // This list is updated with every successful call to assertEditSuccess().
-    TestPerson[] expectedPersonsList = td.getTypicalPersons();
+    TestTask[] expectedTaskList = td.getTypicalTasks();
 
     @Test
     public void edit_allFieldsSpecified_success() throws Exception {
         String detailsToEdit = "Bobby p/91234567 e/bobby@gmail.com a/Block 123, Bobby Street 3 t/husband";
         int taskManagerIndex = 1;
 
-        TestPerson editedPerson = new PersonBuilder().withName("Bobby").withPhone("91234567")
-                .withEmail("bobby@gmail.com").withAddress("Block 123, Bobby Street 3").withTags("husband").build();
+        TestTask editedPerson = new TaskBuilder().withName("Exam").withStartTime("2017-03-03-2100")
+                .withDescription("CS2103 module").withEndTime("2017-10-10-2100").withTags("schoolwork").build();
 
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedPerson);
     }
@@ -39,8 +39,8 @@ public class EditCommandTest extends TaskManagerGuiTest {
         String detailsToEdit = "t/sweetie t/bestie";
         int taskManagerIndex = 2;
 
-        TestPerson personToEdit = expectedPersonsList[taskManagerIndex - 1];
-        TestPerson editedPerson = new PersonBuilder(personToEdit).withTags("sweetie", "bestie").build();
+        TestTask personToEdit = expectedTaskList[taskManagerIndex - 1];
+        TestTask editedPerson = new TaskBuilder(personToEdit).withTags("sweetie", "bestie").build();
 
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedPerson);
     }
@@ -50,10 +50,10 @@ public class EditCommandTest extends TaskManagerGuiTest {
         String detailsToEdit = "t/";
         int taskManagerIndex = 2;
 
-        TestPerson personToEdit = expectedPersonsList[taskManagerIndex - 1];
-        TestPerson editedPerson = new PersonBuilder(personToEdit).withTags().build();
+        TestTask taskToEdit = expectedTaskList[taskManagerIndex - 1];
+        TestTask editedTask = new TaskBuilder(taskToEdit).withTags().build();
 
-        assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedPerson);
+        assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
 
     @Test
@@ -64,8 +64,8 @@ public class EditCommandTest extends TaskManagerGuiTest {
         int filteredPersonListIndex = 1;
         int taskManagerIndex = 5;
 
-        TestPerson personToEdit = expectedPersonsList[taskManagerIndex - 1];
-        TestPerson editedPerson = new PersonBuilder(personToEdit).withName("Belle").build();
+        TestTask personToEdit = expectedTaskList[taskManagerIndex - 1];
+        TestTask editedPerson = new TaskBuilder(personToEdit).withName("Belle").build();
 
         assertEditSuccess(filteredPersonListIndex, taskManagerIndex, detailsToEdit, editedPerson);
     }
@@ -123,7 +123,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
      * @param editedPerson the expected person after editing the person's details
      */
     private void assertEditSuccess(int filteredPersonListIndex, int taskManagerIndex,
-                                    String detailsToEdit, TestPerson editedPerson) {
+                                    String detailsToEdit, TestTask editedPerson) {
         commandBox.runCommand("edit " + filteredPersonListIndex + " " + detailsToEdit);
 
         // confirm the new card contains the right data
@@ -131,8 +131,8 @@ public class EditCommandTest extends TaskManagerGuiTest {
         assertMatching(editedPerson, editedCard);
 
         // confirm the list now contains all previous persons plus the person with updated details
-        expectedPersonsList[taskManagerIndex - 1] = editedPerson;
-        assertTrue(personListPanel.isListMatching(expectedPersonsList));
+        expectedTaskList[taskManagerIndex - 1] = editedPerson;
+        assertTrue(personListPanel.isListMatching(expectedTaskList));
         assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedPerson));
     }
 }

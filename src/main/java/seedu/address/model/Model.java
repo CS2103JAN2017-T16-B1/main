@@ -3,8 +3,8 @@ package seedu.address.model;
 import java.util.Set;
 
 import seedu.address.commons.core.UnmodifiableObservableList;
-import seedu.address.model.Task.Task;
 import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.Task.UniqueTaskList.DuplicatetaskException;
 
@@ -18,29 +18,50 @@ public interface Model {
     /** Returns the TaskManager */
     ReadOnlyTaskManager getTaskManager();
 
-    /** Deletes the given person. */
-    void deletePerson(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
-
-    /** Adds the given person */
-    void addPerson(Task task) throws UniqueTaskList.DuplicatetaskException;
+    /** Deletes the given task. */
+    void deleteTask(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
+    
+    /** Adds the given task */
+    void addTask(Task task) throws UniqueTaskList.DuplicatetaskException;
 
     /**
-     * Updates the person located at {@code filteredPersonListIndex} with {@code editedPerson}.
+     * Updates the Task located at {@code filteredTaskListIndex} with {@code editedTask}.
      *
      * @throws DuplicatetaskException if updating the person's details causes the person to be equivalent to
      *      another existing person in the list.
      * @throws IndexOutOfBoundsException if {@code filteredPersonListIndex} < 0 or >= the size of the filtered list.
      */
-    void updateTask(int filteredPersonListIndex, ReadOnlyTask editedPerson)
+    void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)
             throws UniqueTaskList.DuplicatetaskException;
 
-    /** Returns the filtered person list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */
+    /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
 
     /** Updates the filter of the filtered person list to show all persons */
     void updateFilteredListToShowAll();
 
     /** Updates the filter of the filtered person list to filter by the given keywords*/
-    void updateFilteredPersonList(Set<String> keywords);
+    void updateFilteredTaskListByKeywords(Set<String> keywords);
 
+    /** Updates the filter of the filtered task list to filter by done status*/
+    void updateFilteredTaskListByDoneStatus();
+    
+    /** Updates the filter of the filtered task list to filter by undone status*/
+    void updateFilteredTaskListByUnDoneStatus();
+    
+    /** Updates the filter of the filtered task list to filter by low priority*/
+    void updateFilteredTaskListByLowPriority();
+    
+    /** Updates the filter of the filtered task list to filter by priority*/
+    void updateFilteredTaskListByMediumPriority();
+    
+    /** Updates the filter of the filtered task list to filter by high priority*/
+    void updateFilteredTaskListByHighPriority();
+
+    boolean undoTask();
+
+    void updateFilteredTaskListByArchived();
+
+    /** Updates the filer of the filtered task list to filter by archived and keyword*/
+	void updateArchivedFilteredTaskListByKeyword(String archive);
 }

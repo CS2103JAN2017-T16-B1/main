@@ -20,10 +20,10 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.TaskManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTaskManager;
+import seedu.address.model.TaskManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.Storage;
@@ -36,7 +36,6 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
-    private String name;
     public static final Version VERSION = new Version(1, 0, 0, true);
 
     protected Ui ui;
@@ -187,6 +186,7 @@ public class MainApp extends Application {
     }
 
     public static void main(String[] args) {
+    
         launch(args);
     }
 }

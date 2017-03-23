@@ -1,4 +1,4 @@
-# AddressBook Level 4 - Developer Guide
+﻿# Task Manager - Developer Guide
 
 By : `Team SE-EDU`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2016`  &nbsp;&nbsp;&nbsp;&nbsp; Licence: `MIT`
 
@@ -522,9 +522,6 @@ Priority | As a ... | I want to ... | So that I can...
 
 > Windows, Linux, Unix, OS-X
 
-##### Private contact detail
-
-> A contact detail that is not meant to be shared with others
 
 ## Appendix E : Product Survey
 

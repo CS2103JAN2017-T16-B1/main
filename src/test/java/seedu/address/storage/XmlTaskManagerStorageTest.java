@@ -16,7 +16,7 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.model.TaskManager;
 import seedu.address.model.Task.Task;
 import seedu.address.model.ReadOnlyTaskManager;
-import seedu.address.testutil.TypicalTestPersons;
+import seedu.address.testutil.TypicalTestTasks;
 
 public class XmlTaskManagerStorageTest {
     private static final String TEST_DATA_FOLDER = FileUtil.getPath("./src/test/data/XmlTaskManagerStorageTest/");
@@ -62,7 +62,7 @@ public class XmlTaskManagerStorageTest {
     @Test
     public void readAndSaveTaskManager_allInOrder_success() throws Exception {
         String filePath = testFolder.getRoot().getPath() + "TempTaskManager.xml";
-        TypicalTestPersons td = new TypicalTestPersons();
+        TypicalTestTasks td = new TypicalTestTasks();
         TaskManager original = td.getTypicalTaskManager();
         XmlTaskManagerStorage xmlTaskManagerStorage = new XmlTaskManagerStorage(filePath);
 
@@ -72,14 +72,14 @@ public class XmlTaskManagerStorageTest {
         assertEquals(original, new TaskManager(readBack));
 
         //Modify data, overwrite exiting file, and read back
-        original.addTask(new Task(td.hoon));
-        original.removePerson(new Task(td.alice));
+        original.addTask(new Task(td.task8));
+        original.removeTask(new Task(td.task1));
         xmlTaskManagerStorage.saveTaskManager(original, filePath);
         readBack = xmlTaskManagerStorage.readTaskManager(filePath).get();
         assertEquals(original, new TaskManager(readBack));
 
         //Save and read without specifying file path
-        original.addTask(new Task(td.ida));
+        original.addTask(new Task(td.task9));
         xmlTaskManagerStorage.saveTaskManager(original); //file path not specified
         readBack = xmlTaskManagerStorage.readTaskManager().get(); //file path not specified
         assertEquals(original, new TaskManager(readBack));

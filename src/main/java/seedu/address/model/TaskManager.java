@@ -10,8 +10,8 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.UnmodifiableObservableList;
-import seedu.address.model.Task.Task;
 import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.Task.UniqueTaskList.DuplicatetaskException;
 import seedu.address.model.tag.Tag;
@@ -62,9 +62,11 @@ public class TaskManager implements ReadOnlyTaskManager {
     public void resetData(ReadOnlyTaskManager newData) {
         assert newData != null;
         try {
-            setTasks(newData.getPersonList());
+            setTasks(newData.getTaskList());
         } catch (UniqueTaskList.DuplicatetaskException e) {
-            assert false : "TaskManager should not have duplicate persons";
+
+            assert false : "TaskManager should not have duplicate tasks";
+
         }
         try {
             setTags(newData.getTagList());
@@ -79,7 +81,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     /**
      * Adds a task to the task manager.
      * Also checks the new task's tags and updates {@link #tags} with any new tags found,
-     * and updates the Tag objects in the person to point to those in {@link #tags}.
+     * and updates the Tag objects in the task to point to those in {@link #tags}.
      *
      * @throws UniqueTaskList.DuplicatetaskException if an equivalent task already exists.
      */
@@ -89,57 +91,57 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     /**
-     * Updates the person in the list at position {@code index} with {@code editedReadOnlyPerson}.
+     * Updates the task in the list at position {@code index} with {@code editedReadOnlyPerson}.
      * {@code TaskManager}'s tag list will be updated with the tags of {@code editedReadOnlyPerson}.
      * @see #syncMasterTagListWith(Task)
      *
-     * @throws DuplicatetaskException if updating the person's details causes the person to be equivalent to
-     *      another existing person in the list.
+     * @throws DuplicatetaskException if updating the task's details causes the task to be equivalent to
+     *      another existing task in the list.
      * @throws IndexOutOfBoundsException if {@code index} < 0 or >= the size of the list.
      */
-    public void updatePerson(int index, ReadOnlyTask editedReadOnlyPerson)
+    public void updateTask(int index, ReadOnlyTask editedReadOnlyTask)
             throws UniqueTaskList.DuplicatetaskException {
-        assert editedReadOnlyPerson != null;
+        assert editedReadOnlyTask != null;
 
-        Task editedPerson = new Task(editedReadOnlyPerson);
-        syncMasterTagListWith(editedPerson);
+        Task editedTask = new Task(editedReadOnlyTask);
+        syncMasterTagListWith(editedTask);
         // TODO: the tags master list will be updated even though the below line fails.
-        // This can cause the tags master list to have additional tags that are not tagged to any person
-        // in the person list.
-        tasks.updateTask(index, editedPerson);
+        // This can cause the tags master list to have additional tags that are not tagged to any task
+        // in the task list.
+        tasks.updateTask(index, editedTask);
     }
 
     /**
-     * Ensures that every tag in this person:
+     * Ensures that every tag in this task:
      *  - exists in the master list {@link #tags}
      *  - points to a Tag object in the master list
      */
     private void syncMasterTagListWith(Task task) {
-        final UniqueTagList personTags = task.getTags();
-        tags.mergeFrom(personTags);
+        final UniqueTagList taskTags = task.getTags();
+        tags.mergeFrom(taskTags);
 
         // Create map with values = tag object references in the master list
-        // used for checking person tag references
+        // used for checking task tag references
         final Map<Tag, Tag> masterTagObjects = new HashMap<>();
         tags.forEach(tag -> masterTagObjects.put(tag, tag));
 
-        // Rebuild the list of person tags to point to the relevant tags in the master tag list.
+        // Rebuild the list of task tags to point to the relevant tags in the master tag list.
         final Set<Tag> correctTagReferences = new HashSet<>();
-        personTags.forEach(tag -> correctTagReferences.add(masterTagObjects.get(tag)));
+        taskTags.forEach(tag -> correctTagReferences.add(masterTagObjects.get(tag)));
         task.setTags(new UniqueTagList(correctTagReferences));
     }
 
     /**
-     * Ensures that every tag in these persons:
+     * Ensures that every tag in these tasks:
      *  - exists in the master list {@link #tags}
      *  - points to a Tag object in the master list
      *  @see #syncMasterTagListWith(Task)
      */
-    private void syncMasterTagListWith(UniqueTaskList persons) {
-        persons.forEach(this::syncMasterTagListWith);
+    private void syncMasterTagListWith(UniqueTaskList tasks) {
+        tasks.forEach(this::syncMasterTagListWith);
     }
 
-    public boolean removePerson(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {
+    public boolean removeTask(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {
         if (tasks.remove(key)) {
             return true;
         } else {
@@ -157,12 +159,12 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     @Override
     public String toString() {
-        return tasks.asObservableList().size() + " persons, " + tags.asObservableList().size() +  " tags";
+        return tasks.asObservableList().size() + " tasks, " + tags.asObservableList().size() +  " tags";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<ReadOnlyTask> getPersonList() {
+    public ObservableList<ReadOnlyTask> getTaskList() {
         return new UnmodifiableObservableList<>(tasks.asObservableList());
     }
 
