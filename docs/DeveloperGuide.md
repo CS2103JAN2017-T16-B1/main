@@ -141,7 +141,7 @@ The sections below give more details of each component.
 
 Author: Edward Tan
 
-<img src="images/UiClassDiagram.png" width="800"><br>
+<img src="images/UiClassDiagram.png" width="700"><br>
 _Figure 2.2.1 : Structure of the UI Component_
 
 **API** : [`Ui.java`](../src/main/java/seedu/address/ui/Ui.java)
