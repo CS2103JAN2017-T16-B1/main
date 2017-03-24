@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-
+//@@ Author A0139375W
 public class RecurEndDate {
 	
 	public static final String MESSAGE_ENDDATE_CONSTRAINTS =
@@ -55,4 +55,10 @@ public class RecurEndDate {
     public String toString() {
         return endDate;
     }
+	
+	@Override
+    public int hashCode() {
+        return endDate.hashCode();
+	}
+
 }

@@ -35,7 +35,7 @@ public class Task implements ReadOnlyTask {
         this.endTime = endTime;
         this.id = id;
         this.priority = priority;
-        this.status=status;
+        this.status = status;
         this.recurPeriod = recurPeriod;
         this.recurEndDate = recurEndDate;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
@@ -91,9 +91,19 @@ public class Task implements ReadOnlyTask {
         return status;
     }
     
+    public void setRecurPeriod(RecurPeriod recurPeriod) {
+        assert recurPeriod != null;
+        this.recurPeriod = recurPeriod;
+    }
+    
     @Override
     public RecurPeriod getRecurPeriod() {
         return recurPeriod;
+    }
+    
+    public void setRecurEndDate(RecurEndDate recurEndDate) {
+        assert recurEndDate != null;
+        this.recurEndDate = recurEndDate;
     }
     
     @Override
@@ -176,6 +186,8 @@ public class Task implements ReadOnlyTask {
         this.setEndTime(replacement.getEndTime());
         this.setPriority(replacement.getPriority());
         this.setStatus(replacement.getStatus());
+        this.setRecurPeriod(replacement.getRecurPeriod());
+        this.setRecurEndDate(replacement.getRecurEndDate());
         this.setTags(replacement.getTags());
     }
 

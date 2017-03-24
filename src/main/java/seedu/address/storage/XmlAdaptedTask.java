@@ -68,6 +68,8 @@ public class XmlAdaptedTask {
         endtime = source.getEndTime().endTime;
         priority = source.getPriority().priority;
         status = source.getStatus().status;
+        recurPeriod = source.getRecurPeriod().period;
+        recurEndDate = source.getRecurEndDate().endDate;
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
