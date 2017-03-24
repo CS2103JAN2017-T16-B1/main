@@ -11,11 +11,7 @@ public class DescriptionTest {
 
     @Test
     public void isValidDescription() {
-        // invalid phone numbers
-        assertFalse(Description.isValidDescription("dkfsnd^")); // empty string
-        assertFalse(Description.isValidDescription("-^")); // spaces only
-        assertFalse(Description.isValidDescription("^^")); // non-numeric
-
+     
         // valid phone numbers
         assertTrue(Description.isValidDescription("93121534"));
         assertTrue(Description.isValidDescription("4")); // short phone numbers

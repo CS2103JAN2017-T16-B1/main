@@ -125,6 +125,11 @@ public class TestTask implements ReadOnlyTask {
         return id;
     }
 	
+    
+    public void setId(ID id) {
+        assert id != null;
+        this.id=id;
+    }
 
 	@Override
 	public boolean noEndTime() {

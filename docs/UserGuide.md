@@ -58,9 +58,11 @@ Adds a task/event to the address book<br>
 
 Task/event: 
 
+
 Format: `add TASK_NAME [s/STARTTIME] [e/ENDTIME] [d/DESCRIPTION] [r/REPEATPERIOD] [l/RECURENDDATE] [t/TAG] ...`
 
 > Tasks can have a description
+
 > Tasks can have any number of tags (including 0)
 > Tasks can be flagged as recurring by adding the period to repeat
 > Tasks flagged as recurring can have an end date to stop the recurring task
@@ -76,7 +78,10 @@ Examples:
 
 
 
+
+
 ### 2.3.1 Finding all tasks/events containing any keyword in their names, description or tag : `find`
+
 
 
 Finds tasks/events whose names contain any of the given keywords.<br>
@@ -168,10 +173,12 @@ Format: `edit INDEX [n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]
 
 Examples:
 
+
 * `edit 1 buy milk e/2017-3-2-2359`<br>
   Edits the name and deadline of the task ( numbered 1 on the list) to be buy milk and 2017-3-2-2359 respectively.
 * `edit 2 midterm exam s/2017-3-3-1000`<br>
   Edits the name and start time of the event(numbered 2 on the list) to be midterm exam and s/2017-3-3-1000 respectively
+
 
 
 ### 2.7.  Deleting task(s): `delete`
@@ -238,9 +245,11 @@ There is no need to save manually.
 
 * **Add :** <br>
 > * **Task :**<br>
+
 > *`add TASK_NAME [d/DEADLINE] [d/DESCRIPTION] [t/TAG]...` <br>
 > * **Event :**<br>
 > *`add EVENT_NAME s/START_TIME e/END_TIME [d/DESCRIPTION] [t/TAG]...` <br>
+
 
 * **Clear** : `clear`<br>
 
