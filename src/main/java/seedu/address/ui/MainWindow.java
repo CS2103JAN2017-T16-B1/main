@@ -33,12 +33,8 @@ public class MainWindow extends UiPart<Region> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private BrowserPanel browserPanel;
     private PersonListPanel taskListPanel;
     private Config config;
-
-    @FXML
-    private AnchorPane browserPlaceholder;
 
     @FXML
     private AnchorPane commandBoxPlaceholder;
@@ -113,7 +109,6 @@ public class MainWindow extends UiPart<Region> {
     }
 
     void fillInnerParts() {
-        browserPanel = new BrowserPanel(browserPlaceholder);
         taskListPanel = new PersonListPanel(getPersonListPlaceholder(), logic.getFilteredPersonList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());
@@ -200,11 +195,11 @@ public class MainWindow extends UiPart<Region> {
     }
 
     void loadPersonPage(ReadOnlyTask task) {
-        browserPanel.loadPersonPage(task);
+        //browserPanel.loadPersonPage(task);
     }
 
     void releaseResources() {
-        browserPanel.freeResources();
+        //browserPanel.freeResources();
     }
 
 }
