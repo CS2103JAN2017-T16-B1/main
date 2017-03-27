@@ -7,6 +7,8 @@ import seedu.address.model.Task.StartTime;
 import seedu.address.model.Task.Status;
 import seedu.address.model.Task.Name;
 import seedu.address.model.Task.Priority;
+import seedu.address.model.Task.RecurEndDate;
+import seedu.address.model.Task.RecurPeriod;
 import seedu.address.model.Task.Description;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
@@ -70,6 +72,16 @@ public class TaskBuilder {
     public TaskBuilder withID(String id) throws IllegalValueException {
         this.task.setId(new ID(id));
         return this;
+    }
+    
+    public TaskBuilder withRecurPeriod(String recurPeriod) throws IllegalValueException {
+    	this.task.setRecurPeriod(new RecurPeriod(recurPeriod));
+    	return this;
+    }
+    
+    public TaskBuilder withRecurEndDate(String recurEndDate) throws IllegalValueException {
+    	this.task.setRecurEndDate(new RecurEndDate(recurEndDate));
+    	return this;
     }
 
     public TestTask build() {

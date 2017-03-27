@@ -96,9 +96,19 @@ public class Task implements ReadOnlyTask {
         return recurPeriod;
     }
     
+    public void setRecurPeriod(RecurPeriod recurPeriod) {
+        this.recurPeriod=recurPeriod;
+    }
+    
+    
     @Override
     public RecurEndDate getRecurEndDate() {
         return recurEndDate;
+    }
+    
+   
+    public void setRecurEndDate(RecurEndDate recurEndDate) {
+        this.recurEndDate=recurEndDate;
     }
     
     @Override
