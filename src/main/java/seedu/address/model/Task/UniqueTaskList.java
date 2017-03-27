@@ -1,5 +1,11 @@
 package seedu.address.model.Task;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -77,7 +83,25 @@ public class UniqueTaskList implements Iterable<Task> {
         }
         return taskFoundAndDeleted;
     }
-
+    //@@author A0138998B
+    /**
+     * Sorts tasks in the list
+     *
+     * 
+     */
+    public void sort() {
+    	List<TaskAndDueDate> list = new ArrayList<TaskAndDueDate>();
+        for(Task task:internalList){
+        	list.add(new TaskAndDueDate(task,task.getEndTime().toString()));
+        }
+        sort(list);
+        internalList.clear();
+        for(TaskAndDueDate object:list){
+        	internalList.add(new Task(object.task));
+        }
+       
+    }
+    //@@author A0138998B
     public void setTasks(UniqueTaskList replacement) {
         this.internalList.setAll(replacement.internalList);
     }
@@ -126,5 +150,46 @@ public class UniqueTaskList implements Iterable<Task> {
      * there is no such matching task in the list.
      */
     public static class TaskNotFoundException extends Exception {}
-
+    //@@author A0138998B
+    /**
+     * Sorts list of tasks by duedate
+     * Floating tasks will be sorted to the end
+     */
+    public void sort(List<TaskAndDueDate> list){
+    	Collections.sort(list, new Comparator<TaskAndDueDate>() {
+    		  public int compare(TaskAndDueDate task1, TaskAndDueDate task2) {
+    			  if(task1.dueDate!=null && task2.dueDate!=null){
+    		      return task1.dueDate.compareTo(task2.dueDate);
+    			  }
+    			  else if(task1.dueDate==null && task2.dueDate!=null){
+    				 return 1;
+    			  }
+    			  else if(task1.dueDate!=null && task2.dueDate==null){
+    				  return -1;
+    			  }
+    			  else if(task1.dueDate==null && task2.dueDate==null){
+    				  return 0;
+    			  }
+    			  return 0;
+    		  }
+    		});
+    }
+    /**
+     * Utility class to store pairs of tasks and their endTimes as LocalDateTime variables to enable easy sorting
+     */
+    public class TaskAndDueDate{
+    	public final ReadOnlyTask task;
+    	public LocalDateTime dueDate;
+    	
+    	public TaskAndDueDate(ReadOnlyTask task,String dueDate){
+    		this.task=task;
+    		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm");
+    		try{
+    		this.dueDate= LocalDateTime.parse(dueDate, dtf);
+    		} catch(DateTimeParseException e){
+    			this.dueDate=null;
+    		}
+    	}
+    }
+    //@@author A0138998B
 }

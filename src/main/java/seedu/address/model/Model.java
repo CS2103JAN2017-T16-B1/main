@@ -64,4 +64,7 @@ public interface Model {
 
     /** Updates the filer of the filtered task list to filter by archived and keyword*/
 	void updateArchivedFilteredTaskListByKeyword(String archive);
+
+	void sortTasks();
+	
 }

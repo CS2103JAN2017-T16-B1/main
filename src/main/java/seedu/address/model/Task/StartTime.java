@@ -36,24 +36,25 @@ public class StartTime {
      * @throws IllegalValueException if given email address string is invalid.
      */
     public StartTime(String startTime) throws IllegalValueException {
-        assert startTime != null;
+        int intTime = 0;
         if(startTime!=null){
             String trimmedTime = startTime.trim();
             
-            
+          
             if(!isValidTime(trimmedTime)){
             	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-");
-                int intTime = 0;
             	ArrayList<String> times = parseDayAndTime(startTime);
             	checkForCorrectFormats(times);
             	LocalDateTime date = LocalDateTime.now();
                 intTime = getDayAsInt(times, intTime);
                 date = getNearestDate(date, intTime);
                 trimmedTime=dtf.format(date)+times.get(1);
+                if (!isValidTime(trimmedTime)) {
+                    throw new IllegalValueException(MESSAGE_DATETIME_CONSTRAINTS);
+                }
             }
-            if (!isValidTime(trimmedTime)) {
-                throw new IllegalValueException(MESSAGE_DATETIME_CONSTRAINTS);
-            }
+            
+            
             trimmedTime = trimmedTime + "\n";
             this.startTime = trimmedTime;
         }
