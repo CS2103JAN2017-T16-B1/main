@@ -25,6 +25,8 @@ public class TestTask implements ReadOnlyTask {
     private ID id;
     private Priority priority;
     private Status status;
+    private RecurPeriod recurPeriod;
+    private RecurEndDate recurEndDate;
 
 
     public TestTask() {
@@ -60,6 +62,14 @@ public class TestTask implements ReadOnlyTask {
 
     public void setTags(UniqueTagList tags) {
         this.tags = tags;
+    }
+    
+    public void setRecurPeriod(RecurPeriod recurPeriod){
+    	this.recurPeriod=recurPeriod;
+    }
+    
+    public void setRecurEndDate(RecurEndDate recurEndDate){
+    	this.recurEndDate=recurEndDate;
     }
 
     @Override
@@ -155,13 +165,12 @@ public class TestTask implements ReadOnlyTask {
 
 	@Override
 	public RecurPeriod getRecurPeriod() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.recurPeriod;
 	}
 
 	@Override
 	public RecurEndDate getRecurEndDate() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.recurEndDate;
 	}
 }

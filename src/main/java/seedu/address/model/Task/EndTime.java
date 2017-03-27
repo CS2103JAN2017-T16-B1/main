@@ -46,11 +46,11 @@ public class EndTime {
                 intTime = getDayAsInt(times, intTime);
                 date = getNearestDate(date, intTime);
                 trimmedTime=dtf.format(date)+times.get(1);
+                if (!isValidTime(trimmedTime)) {
+                    throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
+                }
             }
-            if (!isValidTime(trimmedTime)) {
-                throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
-            }
-            trimmedTime = trimmedTime + "\n";
+            //trimmedTime = trimmedTime + "\n";
             this.endTime = trimmedTime;
         }
 
@@ -70,7 +70,7 @@ public class EndTime {
 
     @Override
     public String toString() {
-        return endTime;
+        return endTime+"\n";
     }
 
     @Override

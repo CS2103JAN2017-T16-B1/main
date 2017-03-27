@@ -102,7 +102,12 @@ public class ModelManager extends ComponentManager implements Model {
 		}
 
 	}
-
+	//@@author A0138998B
+	@Override
+	public void sortTasks(){
+		taskManager.sortTasks();
+	}
+	//@@author A0138998B
 	@Override
 	public void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)
 			throws UniqueTaskList.DuplicatetaskException {
@@ -204,6 +209,7 @@ public class ModelManager extends ComponentManager implements Model {
 			}
 		});
 	}
+	// @@author A0139509X
 	
 	// @@author A0139509X
 	@Override

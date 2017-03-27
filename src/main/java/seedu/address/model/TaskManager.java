@@ -148,7 +148,11 @@ public class TaskManager implements ReadOnlyTaskManager {
             throw new UniqueTaskList.TaskNotFoundException();
         }
     }
-
+    //@@author A0138998B
+    public void sortTasks(){
+    	tasks.sort();
+    }
+    //@@author A0138998B
 //// tag-level operations
 
     public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {
@@ -186,4 +190,6 @@ public class TaskManager implements ReadOnlyTaskManager {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(tasks, tags);
     }
+    
+    
 }

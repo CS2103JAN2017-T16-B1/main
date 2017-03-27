@@ -20,6 +20,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
 
 /**
@@ -88,6 +89,9 @@ public class Parser {
             
         case ArchivedCommand.COMMAND_WORD:
             return new ArchivedCommand();
+            
+        case SortCommand.COMMAND_WORD:
+        	return new SortCommand();
 
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
