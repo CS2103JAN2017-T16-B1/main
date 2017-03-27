@@ -55,7 +55,7 @@ public class StartTime {
             }
             
             
-            trimmedTime = trimmedTime + "\n";
+           
             this.startTime = trimmedTime;
         }
         else{
@@ -73,7 +73,7 @@ public class StartTime {
 
     @Override
     public String toString() {
-        return startTime;
+        return startTime+"\n";
     }
 
     @Override

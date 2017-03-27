@@ -92,12 +92,14 @@ public class UniqueTaskList implements Iterable<Task> {
     public void sort() {
     	List<TaskAndDueDate> list = new ArrayList<TaskAndDueDate>();
         for(Task task:internalList){
-        	list.add(new TaskAndDueDate(task,task.getEndTime().toString()));
+        	list.add(new TaskAndDueDate(task,task.getEndTime()));
         }
         sort(list);
+
         internalList.clear();
         for(TaskAndDueDate object:list){
         	internalList.add(new Task(object.task));
+        	
         }
        
     }
@@ -181,11 +183,12 @@ public class UniqueTaskList implements Iterable<Task> {
     	public final ReadOnlyTask task;
     	public LocalDateTime dueDate;
     	
-    	public TaskAndDueDate(ReadOnlyTask task,String dueDate){
+    	public TaskAndDueDate(ReadOnlyTask task,EndTime endTime){
     		this.task=task;
     		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm");
+    		
     		try{
-    		this.dueDate= LocalDateTime.parse(dueDate, dtf);
+    		this.dueDate= LocalDateTime.parse(endTime.toString().replaceAll("\n",""), dtf);
     		} catch(DateTimeParseException e){
     			this.dueDate=null;
     		}

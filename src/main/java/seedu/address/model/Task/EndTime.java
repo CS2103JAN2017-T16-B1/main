@@ -70,7 +70,7 @@ public class EndTime {
 
     @Override
     public String toString() {
-        return endTime;
+        return endTime+"\n";
     }
 
     @Override
