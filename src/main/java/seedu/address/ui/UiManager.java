@@ -118,10 +118,4 @@ public class UiManager extends ComponentManager implements Ui {
         mainWindow.getPersonListPanel().scrollTo(event.targetIndex);
     }
 
-    /*@Subscribe
-    private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        mainWindow.loadPersonPage(event.getNewSelection());
-    }*/
-
 }
