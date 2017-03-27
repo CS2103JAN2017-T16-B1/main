@@ -8,6 +8,8 @@ import seedu.address.model.Task.Name;
 import seedu.address.model.Task.Priority;
 import seedu.address.model.Task.Description;
 import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.Task.RecurEndDate;
+import seedu.address.model.Task.RecurPeriod;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
@@ -23,6 +25,8 @@ public class TestTask implements ReadOnlyTask {
     private ID id;
     private Priority priority;
     private Status status;
+    private RecurPeriod recurPeriod;
+    private RecurEndDate recurEndDate;
 
 
     public TestTask() {
@@ -58,6 +62,14 @@ public class TestTask implements ReadOnlyTask {
 
     public void setTags(UniqueTagList tags) {
         this.tags = tags;
+    }
+    
+    public void setRecurPeriod(RecurPeriod recurPeriod){
+    	this.recurPeriod=recurPeriod;
+    }
+    
+    public void setRecurEndDate(RecurEndDate recurEndDate){
+    	this.recurEndDate=recurEndDate;
     }
 
     @Override
@@ -149,5 +161,16 @@ public class TestTask implements ReadOnlyTask {
         }else {
             return false;
         }
+	}
+
+	@Override
+	public RecurPeriod getRecurPeriod() {
+		
+		return this.recurPeriod;
+	}
+
+	@Override
+	public RecurEndDate getRecurEndDate() {
+		return this.recurEndDate;
 	}
 }
