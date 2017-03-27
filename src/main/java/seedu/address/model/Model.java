@@ -66,5 +66,7 @@ public interface Model {
 	void updateArchivedFilteredTaskListByKeyword(String archive);
 
 	void sortTasks();
+
+    void indicateLoadEvent();
 	
 }

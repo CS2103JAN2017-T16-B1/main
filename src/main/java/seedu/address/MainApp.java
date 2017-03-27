@@ -1,5 +1,6 @@
 package seedu.address;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
@@ -9,12 +10,16 @@ import com.google.common.eventbus.Subscribe;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
+import seedu.address.commons.events.model.TaskManagerChangedEvent;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
+import seedu.address.commons.events.ui.LoadRequestEvent;
+import seedu.address.commons.events.ui.SaveRequestEvent;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
@@ -28,6 +33,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
+import seedu.address.ui.MainWindow;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -178,7 +184,37 @@ public class MainApp extends Application {
         Platform.exit();
         System.exit(0);
     }
+  //@@author A0140072X
+    @Subscribe
+    private void handleDataSavingEvent(SaveRequestEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+      //HelpWindow helpWindow = new HelpWindow();
+        //storage.setTaskManagerFilePath(file.toString());
+        storage.setTaskManagerFilePath(event.getFilePath()); 
+        config.setTaskManagerFilePath(event.filePath.toString());
+        ui.refresh();
+       
+        //mainWindow.handleSave();
+        //showFileOperationAlertAndWait("Could not save data", "Could not save data to file", event.exception);
+    }
+  //@@author A0140072X
+    @Subscribe
+    private void handleDataLoadingEvent(LoadRequestEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+      //HelpWindow helpWindow = new HelpWindow();
+        //storage.setTaskManagerFilePath(file.toString());
+        storage.setTaskManagerFilePath(event.getFilePath()); 
+        config.setTaskManagerFilePath(event.filePath.toString());
+        ui.refresh();
+        model = initModelManager(storage, userPrefs);
+        model.indicateLoadEvent();
+        //raise(new TaskManagerChangedEvent());
 
+       
+        //mainWindow.handleSave();
+        //showFileOperationAlertAndWait("Could not save data", "Could not save data to file", event.exception);
+    }
+    
     @Subscribe
     public void handleExitAppRequestEvent(ExitAppRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
