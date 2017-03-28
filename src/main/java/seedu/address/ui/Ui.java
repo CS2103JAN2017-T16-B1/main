@@ -18,4 +18,7 @@ public interface Ui {
 
     void loadData(Logic logic);
 
+    void show();
+
+    void hide();
 }

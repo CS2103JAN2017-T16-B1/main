@@ -17,6 +17,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
 import seedu.address.commons.events.ui.LoadRequestEvent;
 import seedu.address.commons.events.ui.SaveRequestEvent;
@@ -24,8 +25,8 @@ import seedu.address.commons.util.FxViewUtil;
 import seedu.address.logic.Logic;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.Task.ReadOnlyTask;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
+
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -40,12 +41,14 @@ public class MainWindow extends UiPart<Region> {
 
     private Stage primaryStage;
     private Logic logic;
-    private StorageManager storage;
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
     private PersonListPanel taskListPanel;
     private Config config;
+    
+    
+   
 
     @FXML
     private AnchorPane browserPlaceholder;
@@ -88,6 +91,7 @@ public class MainWindow extends UiPart<Region> {
         primaryStage.setScene(scene);
 
         setAccelerators();
+
     }
 
     public Stage getPrimaryStage() {
@@ -98,7 +102,7 @@ public class MainWindow extends UiPart<Region> {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
       //@@author A0140072X
         setAccelerator(saveMenuItem, new KeyCodeCombination(KeyCode.S,KeyCombination.CONTROL_DOWN));
-        setAccelerator(saveMenuItem, new KeyCodeCombination(KeyCode.L,KeyCombination.CONTROL_DOWN));       
+        setAccelerator(loadMenuItem, new KeyCodeCombination(KeyCode.L,KeyCombination.CONTROL_DOWN));       
     }
 
     /**
@@ -230,6 +234,7 @@ public class MainWindow extends UiPart<Region> {
         }
         
     }
+   
 
     void show() {
         primaryStage.show();

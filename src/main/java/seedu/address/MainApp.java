@@ -18,8 +18,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
 import seedu.address.commons.events.model.TaskManagerChangedEvent;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
+import seedu.address.commons.events.ui.HideWindowEvent;
 import seedu.address.commons.events.ui.LoadRequestEvent;
 import seedu.address.commons.events.ui.SaveRequestEvent;
+import seedu.address.commons.events.ui.ShowWindowEvent;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
@@ -56,6 +58,8 @@ public class MainApp extends Application {
     public void init() throws Exception {
         logger.info("=============================[ Initializing TaskManager ]===========================");
         super.init();
+        Platform.setImplicitExit(false);
+
 
         config = initConfig(getApplicationParameter("config"));
         storage = new StorageManager(config.getTaskManagerFilePath(), config.getUserPrefsFilePath());
@@ -213,11 +217,23 @@ public class MainApp extends Application {
             logger.warning("Problem while trying to save config file");            
         }   
     }
+    //@@author A0140072X
+    @Subscribe
+    private void handleShowWindowEvent(ShowWindowEvent event) {
+        Platform.runLater(new Runnable(){@Override public void run() {ui.show();}});       
+    }
+    @Subscribe
+    private void handleHideWindowEvent(HideWindowEvent event) {
+      // ui.hide();
+        Platform.runLater(new Runnable(){@Override public void run() {ui.hide();}});
+    }
+    
     
     @Subscribe
     public void handleExitAppRequestEvent(ExitAppRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         this.stop();
+        
     }
 
     public static void main(String[] args) {

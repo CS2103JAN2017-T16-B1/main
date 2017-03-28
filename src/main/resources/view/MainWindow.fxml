@@ -13,6 +13,7 @@
       <MenuBar VBox.vgrow="NEVER">
          <menus>
             <Menu mnemonicParsing="false" text="File">
+            <!-- @@author A0140072X -->
            		<items>
                   <MenuItem fx:id="saveMenuItem" mnemonicParsing="true" onAction="#handleSave" text="_Save..." />
                 </items>
