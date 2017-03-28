@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -13,9 +15,13 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
+import seedu.address.commons.events.ui.NewResultAvailableEvent;
 import seedu.address.commons.util.FxViewUtil;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.UserPrefs;
 
 /**
@@ -28,11 +34,13 @@ public class MainWindow extends UiPart<Region> {
     private static final String FXML = "MainWindow.fxml";
     private static final int MIN_HEIGHT = 600;
     private static final int MIN_WIDTH = 450;
+	private static final String TOGGLE = "toggle";
 
     private Stage primaryStage;
     private Logic logic;
     private CommandBox commandBox;
-
+    private final Logger logger = LogsCenter.getLogger(MainWindow.class);
+    
     // Independent Ui parts residing in this Ui container
     private PersonListPanel taskListPanel;
     private Config config;
@@ -68,16 +76,24 @@ public class MainWindow extends UiPart<Region> {
         Scene scene = new Scene(getRoot());
         primaryStage.setScene(scene);
 
+        //add keyboard shortcuts
         setAccelerators();
         addKeyPressedFilters(scene);
     }
+    //@@author A0139509X
+    /**
+     * Listener and filter for keyboard shortcuts.
++    * Pressing letter keys focuses on the command box.
++    * Pressing TAB updates the task list shown, from event to task to floating task and to event again
+     */
 
     private void addKeyPressedFilters(Scene scene) {
     	scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             KeyCode code = event.getCode();
             if (code.isLetterKey()){
                 commandBox.getTextField().requestFocus();
-            } else if (code.equals(KeyCode.TAB)) {
+            } 
+            if (code.equals(KeyCode.TAB)) {
                 toggleListView();
             }
         });
@@ -85,8 +101,18 @@ public class MainWindow extends UiPart<Region> {
 	}
 
 	private void toggleListView() {
-		// TODO Auto-generated method stub
-		
+		 try {
+	            CommandResult commandResult = logic.execute(TOGGLE);
+
+	            // process result of the command
+	            logger.info("Result: " + commandResult.feedbackToUser);
+	            raise(new NewResultAvailableEvent(commandResult.feedbackToUser));
+
+	        } catch (CommandException e) {
+	            // handle command failure
+	            logger.info("Invalid command: " + TOGGLE);
+	            raise(new NewResultAvailableEvent(e.getMessage()));
+	        }
 	}
 
 	public Stage getPrimaryStage() {
