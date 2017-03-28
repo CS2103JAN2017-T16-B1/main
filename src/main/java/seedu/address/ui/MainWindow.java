@@ -1,22 +1,32 @@
 package seedu.address.ui;
 
+import java.io.File;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
+import seedu.address.commons.events.ui.LoadRequestEvent;
+import seedu.address.commons.events.ui.SaveRequestEvent;
 import seedu.address.commons.util.FxViewUtil;
 import seedu.address.logic.Logic;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.Task.ReadOnlyTask;
+
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -36,6 +46,9 @@ public class MainWindow extends UiPart<Region> {
     private BrowserPanel browserPanel;
     private PersonListPanel taskListPanel;
     private Config config;
+    
+    
+   
 
     @FXML
     private AnchorPane browserPlaceholder;
@@ -45,6 +58,12 @@ public class MainWindow extends UiPart<Region> {
 
     @FXML
     private MenuItem helpMenuItem;
+    
+    @FXML
+    private MenuItem saveMenuItem;
+    
+    @FXML
+    private MenuItem loadMenuItem;
 
     @FXML
     private AnchorPane taskListPanelPlaceholder;
@@ -72,6 +91,7 @@ public class MainWindow extends UiPart<Region> {
         primaryStage.setScene(scene);
 
         setAccelerators();
+
     }
 
     public Stage getPrimaryStage() {
@@ -80,6 +100,9 @@ public class MainWindow extends UiPart<Region> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+      //@@author A0140072X
+        setAccelerator(saveMenuItem, new KeyCodeCombination(KeyCode.S,KeyCombination.CONTROL_DOWN));
+        setAccelerator(loadMenuItem, new KeyCodeCombination(KeyCode.L,KeyCombination.CONTROL_DOWN));       
     }
 
     /**
@@ -119,6 +142,10 @@ public class MainWindow extends UiPart<Region> {
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());
         new CommandBox(getCommandBoxPlaceholder(), logic);
     }
+    void loadLogic(Logic logic){
+        this.logic = logic;
+    }
+    
 
     private AnchorPane getCommandBoxPlaceholder() {
         return commandBoxPlaceholder;
@@ -182,6 +209,32 @@ public class MainWindow extends UiPart<Region> {
         HelpWindow helpWindow = new HelpWindow();
         helpWindow.show();
     }
+  //@@author A0140072X
+    @FXML
+    public void handleSave() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Save File");
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home"))); 
+        File file = fileChooser.showSaveDialog(primaryStage);
+        if (file != null) {
+            raise(new SaveRequestEvent(file.toString()));            
+        }
+
+        
+    }
+    //@@author A0140072X
+    @FXML
+    public void handleLoad() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Load File");
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home"))); 
+        File file = fileChooser.showOpenDialog(primaryStage);
+        if (file != null) {
+            raise(new LoadRequestEvent(file.toString()));     
+        }
+        
+    }
+   
 
     void show() {
         primaryStage.show();

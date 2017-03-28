@@ -61,6 +61,7 @@ public class ArchiveCommand extends Command {
             	model.addTask(toAdd);
             	}
             }
+            
         }
         catch (UniqueTaskList.DuplicatetaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
