@@ -91,17 +91,17 @@ public class Parser {
             return new ArchivedCommand();
             
         case SortCommand.COMMAND_WORD:
-        	return new SortCommand();
+        	return new SortCommandParser().parse(arguments);
 
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-    //@@A0138998B
+    //@@author A0138998B
     public String parseArguments(String args){
     	args=args.replaceAll(STARTTIME_VARIANTS_REGEX, "s/");
     	args=args.replaceAll(ENDTIME_VARIANTS_REGEX, "e/");
     	return args;
     }
-    //@@A0138998B
+
 }
