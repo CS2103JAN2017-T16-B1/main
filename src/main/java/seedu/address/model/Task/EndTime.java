@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a event's end time in the task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
+//@@author A0138998B
 public class EndTime {
 
 	 public static final String MESSAGE_DATETIME_CONSTRAINTS =
