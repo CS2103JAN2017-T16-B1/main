@@ -60,6 +60,7 @@ public class UiManager extends ComponentManager implements Ui {
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
     }
+  //@@author A0140072X
     @Override
     public void refresh() {
 
@@ -72,13 +73,12 @@ public class UiManager extends ComponentManager implements Ui {
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
     }
+  //@@author A0140072X
     @Override
     public void loadData(Logic logic) {
-
         try {
             mainWindow.loadLogic(logic);
             mainWindow.fillInnerParts();
-
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);

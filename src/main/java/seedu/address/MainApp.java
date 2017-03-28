@@ -188,21 +188,15 @@ public class MainApp extends Application {
     @Subscribe
     private void handleDataSavingEvent(SaveRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-      //HelpWindow helpWindow = new HelpWindow();
-        //storage.setTaskManagerFilePath(file.toString());
         storage.setTaskManagerFilePath(event.getFilePath()); 
         config.setTaskManagerFilePath(event.filePath.toString());
         ui.refresh();
         try {
             storage.saveTaskManager(model.getTaskManager(), event.getFilePath());
             ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
-
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-                //mainWindow.handleSave();
-        //showFileOperationAlertAndWait("Could not save data", "Could not save data to file", event.exception);
+            logger.warning("Problem while trying to save config file");            
+        }        
     }
   //@@author A0140072X
     @Subscribe
@@ -212,11 +206,12 @@ public class MainApp extends Application {
         config.setTaskManagerFilePath(event.filePath.toString());
         model = initModelManager(storage, userPrefs);
         logic = new LogicManager(model, storage);
-        ui.loadData(logic);
-        
-        initEventsCenter();
-
-
+        ui.loadData(logic);        
+        try {
+            ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
+        } catch (IOException e) {
+            logger.warning("Problem while trying to save config file");            
+        }   
     }
     
     @Subscribe
