@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -30,6 +31,7 @@ public class MainWindow extends UiPart<Region> {
 
     private Stage primaryStage;
     private Logic logic;
+    private CommandBox commandBox;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel taskListPanel;
@@ -67,9 +69,27 @@ public class MainWindow extends UiPart<Region> {
         primaryStage.setScene(scene);
 
         setAccelerators();
+        addKeyPressedFilters(scene);
     }
 
-    public Stage getPrimaryStage() {
+    private void addKeyPressedFilters(Scene scene) {
+    	scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            KeyCode code = event.getCode();
+            if (code.isLetterKey()){
+                commandBox.getTextField().requestFocus();
+            } else if (code.equals(KeyCode.TAB)) {
+                toggleListView();
+            }
+        });
+		
+	}
+
+	private void toggleListView() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Stage getPrimaryStage() {
         return primaryStage;
     }
 
@@ -111,7 +131,7 @@ public class MainWindow extends UiPart<Region> {
         taskListPanel = new PersonListPanel(getPersonListPlaceholder(), logic.getFilteredPersonList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());
-        new CommandBox(getCommandBoxPlaceholder(), logic);
+        commandBox = new CommandBox(getCommandBoxPlaceholder(), logic);
     }
 
     private AnchorPane getCommandBoxPlaceholder() {
