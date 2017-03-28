@@ -104,9 +104,20 @@ public class ModelManager extends ComponentManager implements Model {
 	}
 	//@@author A0138998B
 	@Override
-	public void sortTasks(){
-		taskManager.sortTasks();
+	public void sortTasksByEndTime(){
+		taskManager.sortTasksByEndTime();
 	}
+	
+	@Override
+	public void sortTasksByName(){
+		taskManager.sortTasksByName();
+	}
+	
+	@Override
+	public void sortTasksByPriority(){
+		taskManager.sortTaskByPriority();
+	}
+	
 	//@@author A0138998B
 	@Override
 	public void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)

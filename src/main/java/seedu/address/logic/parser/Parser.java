@@ -91,7 +91,7 @@ public class Parser {
             return new ArchivedCommand();
             
         case SortCommand.COMMAND_WORD:
-        	return new SortCommand();
+        	return new SortCommandParser().parse(arguments);
 
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);

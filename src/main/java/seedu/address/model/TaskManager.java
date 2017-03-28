@@ -149,9 +149,16 @@ public class TaskManager implements ReadOnlyTaskManager {
         }
     }
     //@@author A0138998B
-    public void sortTasks(){
-    	tasks.sort();
+    public void sortTasksByEndTime(){
+    	tasks.sortByEndTime();
     }
+    public void sortTasksByName(){
+    	tasks.sortByName();
+    }
+    public void sortTaskByPriority(){
+    	tasks.sortByPriority();
+    }
+    
     //@@author A0138998B
 //// tag-level operations
 
