@@ -195,11 +195,13 @@ public class MainApp extends Application {
         ui.refresh();
         try {
             storage.saveTaskManager(model.getTaskManager(), event.getFilePath());
+            ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        //mainWindow.handleSave();
+                //mainWindow.handleSave();
         //showFileOperationAlertAndWait("Could not save data", "Could not save data to file", event.exception);
     }
   //@@author A0140072X
