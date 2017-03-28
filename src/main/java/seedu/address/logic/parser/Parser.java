@@ -97,11 +97,11 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-    //@@A0138998B
+    //@@author A0138998B
     public String parseArguments(String args){
     	args=args.replaceAll(STARTTIME_VARIANTS_REGEX, "s/");
     	args=args.replaceAll(ENDTIME_VARIANTS_REGEX, "e/");
     	return args;
     }
-    //@@A0138998B
+
 }

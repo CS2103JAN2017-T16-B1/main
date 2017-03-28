@@ -118,7 +118,7 @@ public class ModelManager extends ComponentManager implements Model {
 		taskManager.sortTaskByPriority();
 	}
 	
-	//@@author A0138998B
+	
 	@Override
 	public void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)
 			throws UniqueTaskList.DuplicatetaskException {
@@ -130,7 +130,7 @@ public class ModelManager extends ComponentManager implements Model {
 
 		indicateTaskManagerChanged();
 	}
-
+    //@@author 
 	// =========== Filtered Person List Accessors
 	// =============================================================
 

@@ -14,7 +14,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a event's start time or task's due date in the task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
-//@@A0138998B
+//@@author A0138998B
 
 public class StartTime {
 
@@ -173,5 +173,5 @@ public class StartTime {
 
     
 }
-//@@A0138998B
+
 

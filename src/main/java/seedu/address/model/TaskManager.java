@@ -159,7 +159,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     	tasks.sortByPriority();
     }
     
-    //@@author A0138998B
+    //@@author
 //// tag-level operations
 
     public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {

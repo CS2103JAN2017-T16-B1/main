@@ -127,7 +127,7 @@ public class UniqueTaskList implements Iterable<Task> {
     		}
     	});
     }
-    //@@author A0138998B
+    //@@author 
     public void setTasks(UniqueTaskList replacement) {
         this.internalList.setAll(replacement.internalList);
     }
@@ -234,5 +234,5 @@ public class UniqueTaskList implements Iterable<Task> {
     		return 0;
     	}
     }
-    //@@author A0138998B
+
 }

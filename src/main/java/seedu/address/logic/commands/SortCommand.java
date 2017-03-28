@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 /**
  * Sorts the entire task list in the task manager and displays the last shown list in a sorted format
  */
+//@@author A0138998B
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
