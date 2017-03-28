@@ -193,7 +193,12 @@ public class MainApp extends Application {
         storage.setTaskManagerFilePath(event.getFilePath()); 
         config.setTaskManagerFilePath(event.filePath.toString());
         ui.refresh();
-       
+        try {
+            storage.saveTaskManager(model.getTaskManager(), event.getFilePath());
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         //mainWindow.handleSave();
         //showFileOperationAlertAndWait("Could not save data", "Could not save data to file", event.exception);
     }
@@ -201,18 +206,15 @@ public class MainApp extends Application {
     @Subscribe
     private void handleDataLoadingEvent(LoadRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-      //HelpWindow helpWindow = new HelpWindow();
-        //storage.setTaskManagerFilePath(file.toString());
         storage.setTaskManagerFilePath(event.getFilePath()); 
         config.setTaskManagerFilePath(event.filePath.toString());
-        ui.refresh();
         model = initModelManager(storage, userPrefs);
-        model.indicateLoadEvent();
-        //raise(new TaskManagerChangedEvent());
+        logic = new LogicManager(model, storage);
+        ui.loadData(logic);
+        
+        initEventsCenter();
 
-       
-        //mainWindow.handleSave();
-        //showFileOperationAlertAndWait("Could not save data", "Could not save data to file", event.exception);
+
     }
     
     @Subscribe

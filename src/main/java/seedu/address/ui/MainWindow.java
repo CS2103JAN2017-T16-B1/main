@@ -133,6 +133,9 @@ public class MainWindow extends UiPart<Region> {
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());
         new CommandBox(getCommandBoxPlaceholder(), logic);
     }
+    void loadLogic(Logic logic){
+        this.logic = logic;
+    }
     
 
     private AnchorPane getCommandBoxPlaceholder() {
