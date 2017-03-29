@@ -101,14 +101,19 @@ public class MainWindow extends UiPart<Region> {
 	}
 
 	private void toggleListView() {
+		boolean success;
 		 try {
 	            CommandResult commandResult = logic.execute(TOGGLE);
 
+	            success=true;
+	            commandBox.setStyleAfterTab(success);
 	            // process result of the command
 	            logger.info("Result: " + commandResult.feedbackToUser);
 	            raise(new NewResultAvailableEvent(commandResult.feedbackToUser));
 
 	        } catch (CommandException e) {
+	        	success=false;
+	        	commandBox.setStyleAfterTab(success);
 	            // handle command failure
 	            logger.info("Invalid command: " + TOGGLE);
 	            raise(new NewResultAvailableEvent(e.getMessage()));
