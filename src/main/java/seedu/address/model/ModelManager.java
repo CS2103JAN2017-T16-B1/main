@@ -192,7 +192,9 @@ public class ModelManager extends ComponentManager implements Model {
 	@Override
 	public void updateFilteredTaskListByEvent() {
 		filteredTasks.setPredicate(task -> {
-			if (!(task.getStartTime().toString().equalsIgnoreCase("\n")) && !(task.getEndTime().toString().equalsIgnoreCase("\n"))) {
+			if ((!(task.getStartTime().toString().equalsIgnoreCase("\n")) 
+					&& !(task.getEndTime().toString().equalsIgnoreCase("\n"))
+					&& (task.getStatus().toString().contains("un")))) {
 				return true;
 			} else {
 				return false;
@@ -204,7 +206,9 @@ public class ModelManager extends ComponentManager implements Model {
 	@Override
 	public void updateFilteredTaskListByTask() {
 		filteredTasks.setPredicate(task -> {
-			if ((task.getStartTime().toString().equalsIgnoreCase("\n")) && !(task.getEndTime().toString().equalsIgnoreCase("\n"))) {
+			if (((task.getStartTime().toString().equalsIgnoreCase("\n")) 
+					&& !(task.getEndTime().toString().equalsIgnoreCase("\n"))
+					&& (task.getStatus().toString().contains("un")))) {
 				return true;
 			} else {
 				return false;
@@ -217,7 +221,9 @@ public class ModelManager extends ComponentManager implements Model {
 	@Override
 	public void updateFilteredTaskListByFloatingTask() {
 		filteredTasks.setPredicate(task -> {
-			if ((task.getStartTime().toString().equalsIgnoreCase("\n")) && (task.getEndTime().toString().equalsIgnoreCase("\n"))) {
+			if (((task.getStartTime().toString().equalsIgnoreCase("\n")) 
+					&& (task.getEndTime().toString().equalsIgnoreCase("\n"))
+					&& (task.getStatus().toString().contains("un")))) {
 				return true;
 			} else {
 				return false;
@@ -231,7 +237,8 @@ public class ModelManager extends ComponentManager implements Model {
 	@Override
 	public void updateFilteredTaskListByHighPriority() {
 		filteredTasks.setPredicate(task -> {
-			if ((task.getPriority().toString().equals("h")) && (task.getStatus().toString().equals("undone"))) {
+			if ((task.getPriority().toString().equals("h")) 
+					&& (task.getStatus().toString().equals("undone"))) {
 				return true;
 			} else {
 				return false;
@@ -243,7 +250,8 @@ public class ModelManager extends ComponentManager implements Model {
 	@Override
 	public void updateFilteredTaskListByMediumPriority() {
 		filteredTasks.setPredicate(task -> {
-			if ((task.getPriority().toString().equals("m")) && (task.getStatus().toString().equals("undone"))) {
+			if ((task.getPriority().toString().equals("m")) 
+					&& (task.getStatus().toString().equals("undone"))) {
 				return true;
 			} else {
 				return false;
@@ -254,7 +262,8 @@ public class ModelManager extends ComponentManager implements Model {
 	@Override
 	public void updateFilteredTaskListByLowPriority() {
 		filteredTasks.setPredicate(task -> {
-			if ((task.getPriority().toString().equals("l")) && (task.getStatus().toString().equals("undone"))) {
+			if ((task.getPriority().toString().equals("l")) 
+					&& (task.getStatus().toString().equals("undone"))) {
 				return true;
 			} else {
 				return false;
