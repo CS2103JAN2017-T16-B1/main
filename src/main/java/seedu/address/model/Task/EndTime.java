@@ -1,10 +1,16 @@
 package seedu.address.model.Task;
 
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import com.joestelmach.natty.*;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 
@@ -16,7 +22,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 public class EndTime {
 
 	 public static final String MESSAGE_DATETIME_CONSTRAINTS =
-	            "Event start times must be in the form of yyyy-mm-dd-HHMM or Monday HHMM";;
+	            "Event end times must be in the form of yyyy-mm-dd-HHMM or other relaxed forms of it";;
 	 private static final String DATETIME_VALIDATION_REGEX = "(((18|19|20|21)\\d\\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])-[0-9]{4})*";
 	 private static final String DATE_VALIDATION_REGEX ="^(monday|tuesday|wednesday|thursday|friday|saturday|sunday)";
 	 private static final String TIME_VALIDATION_REGEX ="^([0-9]{4})";
@@ -33,34 +39,42 @@ public class EndTime {
      */
     public EndTime(String endTime) throws IllegalValueException {
         assert endTime != null;
-
+        String trimmedTime = endTime.trim();
+        
         if(endTime!=null){
-        	String trimmedTime = endTime.trim();
-            
-            
-            if(!isValidTime(trimmedTime)){
-            	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-");
-                int intTime = 0;
-            	ArrayList<String> times = parseDayAndTime(trimmedTime);
-            	checkForCorrectFormats(times);
-            	LocalDateTime date = LocalDateTime.now();
-                intTime = getDayAsInt(times, intTime);
-                date = getNearestDate(date, intTime);
-                trimmedTime=dtf.format(date)+times.get(1);
-                if (!isValidTime(trimmedTime)) {
-                    throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
-                }
-            }
-            //trimmedTime = trimmedTime + "\n";
-            this.endTime = trimmedTime;
-        }
-
-        else{
-            this.endTime=null;
+        	trimmedTime = parseDate(trimmedTime);
         }
         
-
+        if(!isValidTime(trimmedTime)){
+        	throw new IllegalValueException(MESSAGE_DATETIME_CONSTRAINTS);
+        }
+        
+        this.endTime=trimmedTime;
+      
     }
+    /**
+     * Uses Natty to parse a possibly relaxed user input for end Time
+     *
+     * @throws IllegalValueException if given address string is invalid.
+     */
+	private String parseDate(String trimmedTime) throws IllegalValueException {
+		if(!isValidTime(trimmedTime)){
+			Parser parser = new Parser();
+			List<DateGroup> groups = parser.parse(trimmedTime);
+			List<Date> dates = null;
+			if(groups.isEmpty()){
+				throw new IllegalValueException(MESSAGE_DATETIME_CONSTRAINTS);
+			}
+			for(DateGroup group:groups) {
+			  dates = group.getDates();
+			}
+			DateTimeFormatter nattyDateFormat = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss zzz yyyy");
+			nattyDateFormat.parse(dates.get(0).toString());
+			SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd-HHmm");
+			trimmedTime=dateFormat.format(dates.get(0));
+		}
+		return trimmedTime;
+	}
 
     /**
      * Returns true if a given string is a valid time.
