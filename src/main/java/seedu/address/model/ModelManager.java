@@ -47,11 +47,11 @@ public class ModelManager extends ComponentManager implements Model {
 				return false;
 			}
 		});
-		
+		//@@author A0139509X
 		setCurrentToggleStatus("ALL");
 
 	}
-
+	//@@author
 	public ModelManager() {
 		this(new TaskManager(), new UserPrefs());
 	}
@@ -167,7 +167,7 @@ public class ModelManager extends ComponentManager implements Model {
 				return false;
 			}
 		});
-
+		//@@author A0139509X
 		setCurrentToggleStatus("ALL");
 	}
 
@@ -183,7 +183,7 @@ public class ModelManager extends ComponentManager implements Model {
 		});
 	}
 
-	// @@author A0139509X
+	// @@author
 	@Override
 	public void updateFilteredTaskListByKeywords(Set<String> keywords) {
 		updateFilteredTaskListByKeywords(new PredicateExpression(new NameQualifier(keywords)));
@@ -192,7 +192,8 @@ public class ModelManager extends ComponentManager implements Model {
 	private void updateFilteredTaskListByKeywords(Expression expression) {
 		filteredTasks.setPredicate(expression::satisfies);
 	}
-
+	
+	//@@author A0139509X
 	@Override
 	public void updateFilteredTaskListByEvent() {
 		filteredTasks.setPredicate(task -> {
@@ -206,7 +207,7 @@ public class ModelManager extends ComponentManager implements Model {
 		});
 		setCurrentToggleStatus("EVENT");
 	}
-
+	
 	@Override
 	public void updateFilteredTaskListByTask() {
 		filteredTasks.setPredicate(task -> {
@@ -221,7 +222,7 @@ public class ModelManager extends ComponentManager implements Model {
 		setCurrentToggleStatus("TASK");
 		
 	}
-
+	
 	@Override
 	public void updateFilteredTaskListByFloatingTask() {
 		filteredTasks.setPredicate(task -> {
@@ -237,7 +238,6 @@ public class ModelManager extends ComponentManager implements Model {
 		
 	}
 	
-	// @@author A0139509X
 	@Override
 	public void updateFilteredTaskListByHighPriority() {
 		filteredTasks.setPredicate(task -> {
@@ -250,7 +250,6 @@ public class ModelManager extends ComponentManager implements Model {
 		});
 	}
 
-	// @@author A0139509X
 	@Override
 	public void updateFilteredTaskListByMediumPriority() {
 		filteredTasks.setPredicate(task -> {
@@ -262,7 +261,7 @@ public class ModelManager extends ComponentManager implements Model {
 			}
 		});
 	}
-
+	
 	@Override
 	public void updateFilteredTaskListByLowPriority() {
 		filteredTasks.setPredicate(task -> {
@@ -275,7 +274,6 @@ public class ModelManager extends ComponentManager implements Model {
 		});
 	}
 
-	// @@author A0139509X
 	@Override
 	public void updateFilteredTaskListByDoneStatus() {
 		filteredTasks.setPredicate(task -> {
@@ -286,9 +284,7 @@ public class ModelManager extends ComponentManager implements Model {
 			}
 		});
 	}
-	// @@author A0139509X
-	
-	// @@author A0139509X
+
 	@Override
 	public void updateFilteredTaskListByUnDoneStatus() {
 		filteredTasks.setPredicate(task -> {
@@ -300,7 +296,6 @@ public class ModelManager extends ComponentManager implements Model {
 		});
 	}
 	
-	// @@author A0139509X
 	@Override
 	public void updateArchivedFilteredTaskListByKeyword(String archive) {
 		filteredTasks.setPredicate(task -> {
@@ -314,6 +309,7 @@ public class ModelManager extends ComponentManager implements Model {
 			}
 		});
 	}
+	//@@author
 	// ========== Inner classes/interfaces used for filtering
 	// =================================================
 

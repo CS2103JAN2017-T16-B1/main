@@ -7,7 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import seedu.address.model.Task.ReadOnlyTask;
 
 
@@ -38,6 +37,7 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         name.setText(task.getName().fullName);
         id.setText(displayedIndex + ". ");
+        //@@author A0139509X
         setTextForDescription(task);
         setTextForStartTime(task);
         setTextForEndTime(task);
@@ -45,7 +45,7 @@ public class PersonCard extends UiPart<Region> {
         //setPriorityIcons(task);
         setColours(task);
     }
-
+    //@@author A0139509X
     private void setColours(ReadOnlyTask task) {
 		if(task.getPriority().toString().equals("h")) {
 			cardPane.setStyle("-fx-background-color: #FEF0ED;");

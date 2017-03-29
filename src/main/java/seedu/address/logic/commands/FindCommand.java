@@ -12,7 +12,7 @@ import seedu.address.model.Task.Status;
  * argument keywords. Keyword matching is case sensitive.
  */
 public class FindCommand extends Command {
-
+	//@@author A0139509X
 	public static final String COMMAND_WORD = "find";
 	private static final String HIGH_PRIORITY = "h";
 	private static final String MEDIUM_PRIORITY = "m";
@@ -36,7 +36,6 @@ public class FindCommand extends Command {
 
 	private final String archive;
 
-	// @@author A0139509X
 	public FindCommand(Set<String> keywords) {
 		this.keywords = keywords;
 		this.status = null;
@@ -44,7 +43,6 @@ public class FindCommand extends Command {
 		this.archive = null;
 	}
 
-	// @@author A0139509X
 	public FindCommand(String keyword) {
 		this.keywords = null;
 		this.status = null;
@@ -52,7 +50,6 @@ public class FindCommand extends Command {
 		this.archive = keyword;
 	}
 
-	// @@author A0139509X
 	public FindCommand(Status status) {
 		this.keywords = null;
 		this.status = status;
@@ -60,7 +57,6 @@ public class FindCommand extends Command {
 		this.archive = null;
 	}
 
-	// @@author A0139509X
 	public FindCommand(Priority priority) {
 		this.keywords = null;
 		this.status = null;
@@ -68,7 +64,6 @@ public class FindCommand extends Command {
 		this.archive = null;
 	}
 
-	// @@author A0139509X
 	@Override
 	public CommandResult execute() {
 		if (this.keywords != null) {
@@ -83,17 +78,14 @@ public class FindCommand extends Command {
 		return new CommandResult(getMessageForTaskListShownSummary(model.getFilteredTaskList().size()));
 	}
 
-	// @@author A0139509X
 	public void updateByArchivedKeyword() {
 		model.updateArchivedFilteredTaskListByKeyword(archive);
 	}
 
-	// @@author A0139509X
 	public void updateByKeywords() {
 		model.updateFilteredTaskListByKeywords(keywords);
 	}
 
-	// @@author A0139509X
 	private void updateByStatusLevel(Status status) {
 		if (this.status.toString().equals(DONE)) {
 			model.updateFilteredTaskListByDoneStatus();
@@ -104,7 +96,6 @@ public class FindCommand extends Command {
 		}
 	}
 
-	// @@author A0139509X
 	private void updateByPriorityLevel(Priority priority) {
 		if (this.priority.toString().equals(HIGH_PRIORITY)) {
 			model.updateFilteredTaskListByHighPriority();

@@ -57,6 +57,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
 
+    //@@author A0139509X
     public void setStyleAfterTab(Boolean success){
     	if(success){
     		setStyleToIndicateCommandSuccess();
@@ -64,6 +65,7 @@ public class CommandBox extends UiPart<Region> {
     		setStyleToIndicateCommandFailure();
     	}
     }
+    //@@author
     /**
      * Sets the command box style to indicate a successful command.
      */

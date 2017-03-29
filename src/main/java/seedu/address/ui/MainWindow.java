@@ -53,9 +53,6 @@ public class MainWindow extends UiPart<Region> {
     private PersonListPanel taskListPanel;
     private Config config;
     
-    
-   
-
     @FXML
     private AnchorPane commandBoxPlaceholder;
 
@@ -95,7 +92,7 @@ public class MainWindow extends UiPart<Region> {
 
         //add keyboard shortcuts
         setAccelerators();
-
+        //@@author A0139509X
         addKeyPressedFilters(scene);
 
     }
@@ -105,7 +102,6 @@ public class MainWindow extends UiPart<Region> {
 +    * Pressing letter keys focuses on the command box.
 +    * Pressing TAB updates the task list shown, from event to task to floating task and to event again
      */
-
     private void addKeyPressedFilters(Scene scene) {
     	scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             KeyCode code = event.getCode();
@@ -119,6 +115,7 @@ public class MainWindow extends UiPart<Region> {
 		
 	}
 
+    //@@author A0139509X
 	private void toggleListView() {
 		boolean success;
 		 try {
@@ -138,7 +135,7 @@ public class MainWindow extends UiPart<Region> {
 	            raise(new NewResultAvailableEvent(e.getMessage()));
 	        }
 	}
-
+	//@@author
 	public Stage getPrimaryStage() {
         return primaryStage;
     }

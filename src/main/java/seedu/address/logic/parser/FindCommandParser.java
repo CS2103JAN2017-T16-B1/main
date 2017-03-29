@@ -19,7 +19,7 @@ import seedu.address.model.Task.Status;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser {
-
+	//@@author A0139509X
 	private static final char PREFIX_HASHTAG = '#';
 	private static final char PREFIX_AT = '@';
 	private static final String HIGH_PRIORITY = "h";
@@ -56,7 +56,6 @@ public class FindCommandParser {
 		return new FindCommand(keywordSet);
 	}
 
-	// @@author A0139509X
 	private Command returnFindCommandForAtPrefix(String keywords) {
 		if (keywords.substring(1).isEmpty()) {
 			return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -64,7 +63,6 @@ public class FindCommandParser {
 		return new FindCommand(keywords.substring(1));
 	}
 
-	// @@author A0139509X
 	private Command returnFindCommandForHashtagPrefix(String keywords) throws IllegalValueException {
 		if (keywords.substring(1).isEmpty()) {
 			return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));

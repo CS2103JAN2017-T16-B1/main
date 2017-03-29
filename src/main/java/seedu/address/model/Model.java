@@ -36,7 +36,8 @@ public interface Model {
 
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
-
+    
+    //@@author A0139509X
     /** Returns the current toggle status */
     String getCurrentToggleStatus();
     
@@ -64,13 +65,14 @@ public interface Model {
     /** Updates the filter of the filtered task list to filter by high priority*/
     void updateFilteredTaskListByHighPriority();
 
+  //@@author
     boolean undoTask();
 
     void updateFilteredTaskListByArchived();
 
+    //@@author A0139509X
     /** Updates the filer of the filtered task list to filter by archived and keyword*/
 	void updateArchivedFilteredTaskListByKeyword(String archive);
-
 
 	/* Updates the filter of the filtered task list to filter by events only*/
 	void updateFilteredTaskListByEvent();
@@ -81,8 +83,8 @@ public interface Model {
 	/** Updates the filter of the filtered task list to filter by floating task only*/
 	void updateFilteredTaskListByFloatingTask();
 
-  void indicateLoadEvent();
-
+	//@@author
+	void indicateLoadEvent();
 
 	void sortTasksByEndTime();
 
