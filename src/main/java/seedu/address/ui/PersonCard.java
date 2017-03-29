@@ -36,8 +36,8 @@ public class PersonCard extends UiPart<Region> {
         setTextForDescription(task);
         setTextForStartTime(task);
         setTextForEndTime(task);
-        address.setText("End Time : " +task.getEndTime().endTime);
         initTags(task);
+        setPriorityIcons(task);
         //setColours(task);
     }
 
