@@ -85,6 +85,5 @@ public interface Model {
 	void sortTasksByName();
 
 	void sortTasksByPriority();
-
 	
 }
