@@ -2,9 +2,12 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.address.model.Task.ReadOnlyTask;
 
 
@@ -27,6 +30,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     //@FXML
+    //private ImageView pinimage;
+    //@FXML
     //private ImageView icon;
 
     public PersonCard(ReadOnlyTask task, int displayedIndex) {
@@ -37,17 +42,23 @@ public class PersonCard extends UiPart<Region> {
         setTextForStartTime(task);
         setTextForEndTime(task);
         initTags(task);
-        setPriorityIcons(task);
-        //setColours(task);
+        //setPriorityIcons(task);
+        setColours(task);
     }
 
-    /*private void setColours(ReadOnlyTask task) {
-		if((task.getStartTime().toString().equals("\n") && task.getEndTime().toString().equals("\n"))){
-			name.getStyleClass().add("label-red");
-			//icon.setImage(new Image("/images/GUI.PNG"));
-			//icon.setImage(null);
+    private void setColours(ReadOnlyTask task) {
+		if(task.getPriority().toString().equals("h")) {
+			cardPane.setStyle("-fx-background-color: #FEF0ED;");
+		} else if(task.getPriority().toString().equals("m")){
+			cardPane.setStyle("-fx-background-color: #EDF5FE;");
+		} else if(task.getPriority().toString().equals("l")){
+			cardPane.setStyle("-fx-background-color: #EEFEED;");
 		}
 		
+	}
+
+	/*private void setPriorityIcons(ReadOnlyTask task) {
+		pinimage.setImage(new Image("/images/clock.png"));
 	}*/
 
 	private void setTextForEndTime(ReadOnlyTask task) {
