@@ -1,5 +1,6 @@
 package seedu.address;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
@@ -9,12 +10,18 @@ import com.google.common.eventbus.Subscribe;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
+import seedu.address.commons.events.model.TaskManagerChangedEvent;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
+import seedu.address.commons.events.ui.HideWindowEvent;
+import seedu.address.commons.events.ui.LoadRequestEvent;
+import seedu.address.commons.events.ui.SaveRequestEvent;
+import seedu.address.commons.events.ui.ShowWindowEvent;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
@@ -28,6 +35,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
+import seedu.address.ui.MainWindow;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -50,6 +58,8 @@ public class MainApp extends Application {
     public void init() throws Exception {
         logger.info("=============================[ Initializing TaskManager ]===========================");
         super.init();
+        Platform.setImplicitExit(false);
+
 
         config = initConfig(getApplicationParameter("config"));
         storage = new StorageManager(config.getTaskManagerFilePath(), config.getUserPrefsFilePath());
@@ -178,11 +188,52 @@ public class MainApp extends Application {
         Platform.exit();
         System.exit(0);
     }
-
+  //@@author A0140072X
+    @Subscribe
+    private void handleDataSavingEvent(SaveRequestEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        storage.setTaskManagerFilePath(event.getFilePath()); 
+        config.setTaskManagerFilePath(event.filePath.toString());
+        ui.refresh();
+        try {
+            storage.saveTaskManager(model.getTaskManager(), event.getFilePath());
+            ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
+        } catch (IOException e) {
+            logger.warning("Problem while trying to save config file");            
+        }        
+    }
+  //@@author A0140072X
+    @Subscribe
+    private void handleDataLoadingEvent(LoadRequestEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        storage.setTaskManagerFilePath(event.getFilePath()); 
+        config.setTaskManagerFilePath(event.filePath.toString());
+        model = initModelManager(storage, userPrefs);
+        logic = new LogicManager(model, storage);
+        ui.loadData(logic);        
+        try {
+            ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
+        } catch (IOException e) {
+            logger.warning("Problem while trying to save config file");            
+        }   
+    }
+    //@@author A0140072X
+    @Subscribe
+    private void handleShowWindowEvent(ShowWindowEvent event) {
+        Platform.runLater(new Runnable(){@Override public void run() {ui.show();}});       
+    }
+    @Subscribe
+    private void handleHideWindowEvent(HideWindowEvent event) {
+      // ui.hide();
+        Platform.runLater(new Runnable(){@Override public void run() {ui.hide();}});
+    }
+    
+    
     @Subscribe
     public void handleExitAppRequestEvent(ExitAppRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         this.stop();
+        
     }
 
     public static void main(String[] args) {

@@ -72,4 +72,10 @@ public class XmlTaskManagerStorage implements TaskManagerStorage {
         XmlFileStorage.saveDataToFile(file, new XmlSerializableTaskManager(taskManager));
     }
 
+    @Override
+    public void setTaskManagerFilePath(String filePath) {
+        this.filePath = filePath;
+        
+    }
+
 }
