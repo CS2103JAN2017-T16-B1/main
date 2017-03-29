@@ -85,16 +85,16 @@ public class UniqueTaskList implements Iterable<Task> {
     }
     //@@author A0138998B
     /**
-     * Sorts tasks in the list
-     *
+     * Sorts tasks in the list according to end times.
+     * floating tasks are sorted to the back
      * 
      */
-    public void sort() {
+    public void sortByEndTime() {
     	List<TaskAndDueDate> list = new ArrayList<TaskAndDueDate>();
         for(Task task:internalList){
         	list.add(new TaskAndDueDate(task,task.getEndTime()));
         }
-        sort(list);
+        sortByEndTime(list);
 
         internalList.clear();
         for(TaskAndDueDate object:list){
@@ -103,7 +103,31 @@ public class UniqueTaskList implements Iterable<Task> {
         }
        
     }
-    //@@author A0138998B
+    /**
+     * Sorts tasks in the list according to their names.
+     *
+     * 
+     */
+    public void sortByName(){
+    	internalList.sort(new Comparator<Task>(){
+    		public int compare(Task task1, Task task2){
+    			return task1.getName().toString().compareTo(task2.getName().toString());
+    		}
+    	});
+    }
+    /**
+     * Sorts tasks in the list according to priorities.
+     * 
+     * 
+     */
+    public void sortByPriority(){
+    	internalList.sort(new Comparator<Task>(){
+    		public int compare(Task task1, Task task2){
+    			return turnPriorityIntoInt(task1.getPriority())-turnPriorityIntoInt(task2.getPriority());
+    		}
+    	});
+    }
+    //@@author 
     public void setTasks(UniqueTaskList replacement) {
         this.internalList.setAll(replacement.internalList);
     }
@@ -157,7 +181,7 @@ public class UniqueTaskList implements Iterable<Task> {
      * Sorts list of tasks by duedate
      * Floating tasks will be sorted to the end
      */
-    public void sort(List<TaskAndDueDate> list){
+    public void sortByEndTime(List<TaskAndDueDate> list){
     	Collections.sort(list, new Comparator<TaskAndDueDate>() {
     		  public int compare(TaskAndDueDate task1, TaskAndDueDate task2) {
     			  if(task1.dueDate!=null && task2.dueDate!=null){
@@ -176,6 +200,9 @@ public class UniqueTaskList implements Iterable<Task> {
     		  }
     		});
     }
+    
+    
+    
     /**
      * Utility class to store pairs of tasks and their endTimes as LocalDateTime variables to enable easy sorting
      */
@@ -194,5 +221,18 @@ public class UniqueTaskList implements Iterable<Task> {
     		}
     	}
     }
-    //@@author A0138998B
+    
+    public int turnPriorityIntoInt(Priority priority){
+    	switch(priority.toString()){
+    	case("h"):
+    		return 1;
+    	case("m"):
+    		return 2;
+    	case("l"):
+    		return 3;
+    	default:
+    		return 0;
+    	}
+    }
+
 }

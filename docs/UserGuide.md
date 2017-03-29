@@ -179,7 +179,22 @@ Examples:
 * `edit 2 midterm exam s/2017-3-3-1000`<br>
   Edits the name and start time of the event(numbered 2 on the list) to be midterm exam and s/2017-3-3-1000 respectively
 
+### 2.7.  Sorting Tasks/Events : `sort`
 
+Sorts the list of tasks/events in the address book by a given parameter <br>
+Format: `sort PARAMETER`
+
+> * The parameter must be strictly in the form of name/duedate/priority
+> * Sorting by name will sort all tasks in the Task Manager in alphabetical order
+> * Sorting by duedate will sort all tasks in the Task Manager by EndTimes of Tasks or Events. Floating Tasks will be sorted to the back
+> * Sorting by priority will sort all tasks with those with high priority at the top and low priority at the bottom
+
+* `list`<br>
+  `sort duedate`<br>
+  Sorts all tasks in the list by duedate
+* `find homework` <br>
+  `sort priority`<br>
+  Sorts all tasks with names/descriptions/tags containing homework by priority.
 
 ### 2.7.  Deleting task(s): `delete`
 

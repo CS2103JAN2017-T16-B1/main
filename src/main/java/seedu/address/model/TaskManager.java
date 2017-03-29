@@ -149,10 +149,17 @@ public class TaskManager implements ReadOnlyTaskManager {
         }
     }
     //@@author A0138998B
-    public void sortTasks(){
-    	tasks.sort();
+    public void sortTasksByEndTime(){
+    	tasks.sortByEndTime();
     }
-    //@@author A0138998B
+    public void sortTasksByName(){
+    	tasks.sortByName();
+    }
+    public void sortTaskByPriority(){
+    	tasks.sortByPriority();
+    }
+    
+    //@@author
 //// tag-level operations
 
     public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {
