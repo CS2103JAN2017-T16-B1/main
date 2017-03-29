@@ -70,6 +70,8 @@ allprojects {
         testCompile "org.testfx:testfx-legacy:$testFxVersion", {
             exclude group: "junit", module: "junit"
         }
+        // https://mvnrepository.com/artifact/com.joestelmach/natty
+		compile group: 'com.joestelmach', name: 'natty', version: '0.13'
         testCompile "org.testfx:openjfx-monocle:$monocleVersion"
     }
 
