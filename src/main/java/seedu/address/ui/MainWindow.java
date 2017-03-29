@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+
+import java.util.logging.Logger;
 import java.io.File;
 
 import javafx.event.ActionEvent;
@@ -19,12 +21,14 @@ import seedu.address.commons.core.Config;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
+import seedu.address.commons.events.ui.NewResultAvailableEvent;
 import seedu.address.commons.events.ui.LoadRequestEvent;
 import seedu.address.commons.events.ui.SaveRequestEvent;
 import seedu.address.commons.util.FxViewUtil;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.Task.ReadOnlyTask;
 
 
 
@@ -34,24 +38,23 @@ import seedu.address.model.Task.ReadOnlyTask;
  */
 public class MainWindow extends UiPart<Region> {
 
-    private static final String ICON = "/images/address_book_32.png";
+    private static final String ICON = "/images/task_manager_pic.png";
     private static final String FXML = "MainWindow.fxml";
     private static final int MIN_HEIGHT = 600;
     private static final int MIN_WIDTH = 450;
+	private static final String TOGGLE = "toggle";
 
     private Stage primaryStage;
     private Logic logic;
-
+    private CommandBox commandBox;
+    private final Logger logger = LogsCenter.getLogger(MainWindow.class);
+    
     // Independent Ui parts residing in this Ui container
-    private BrowserPanel browserPanel;
     private PersonListPanel taskListPanel;
     private Config config;
     
     
    
-
-    @FXML
-    private AnchorPane browserPlaceholder;
 
     @FXML
     private AnchorPane commandBoxPlaceholder;
@@ -90,11 +93,53 @@ public class MainWindow extends UiPart<Region> {
         Scene scene = new Scene(getRoot());
         primaryStage.setScene(scene);
 
+        //add keyboard shortcuts
         setAccelerators();
 
-    }
+        addKeyPressedFilters(scene);
 
-    public Stage getPrimaryStage() {
+    }
+    //@@author A0139509X
+    /**
+     * Listener and filter for keyboard shortcuts.
++    * Pressing letter keys focuses on the command box.
++    * Pressing TAB updates the task list shown, from event to task to floating task and to event again
+     */
+
+    private void addKeyPressedFilters(Scene scene) {
+    	scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            KeyCode code = event.getCode();
+            if (code.isLetterKey()){
+                commandBox.getTextField().requestFocus();
+            } 
+            if (code.equals(KeyCode.TAB)) {
+                toggleListView();
+            }
+        });
+		
+	}
+
+	private void toggleListView() {
+		boolean success;
+		 try {
+	            CommandResult commandResult = logic.execute(TOGGLE);
+
+	            success=true;
+	            commandBox.setStyleAfterTab(success);
+	            // process result of the command
+	            logger.info("Result: " + commandResult.feedbackToUser);
+	            raise(new NewResultAvailableEvent(commandResult.feedbackToUser));
+
+	        } catch (CommandException e) {
+	        	success=false;
+	        	commandBox.setStyleAfterTab(success);
+	            // handle command failure
+	            logger.info("Invalid command: " + TOGGLE);
+	            raise(new NewResultAvailableEvent(e.getMessage()));
+	        }
+	}
+
+	public Stage getPrimaryStage() {
         return primaryStage;
     }
 
@@ -136,11 +181,10 @@ public class MainWindow extends UiPart<Region> {
     }
 
     void fillInnerParts() {
-        browserPanel = new BrowserPanel(browserPlaceholder);
         taskListPanel = new PersonListPanel(getPersonListPlaceholder(), logic.getFilteredPersonList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());
-        new CommandBox(getCommandBoxPlaceholder(), logic);
+        commandBox = new CommandBox(getCommandBoxPlaceholder(), logic);
     }
     void loadLogic(Logic logic){
         this.logic = logic;
@@ -250,14 +294,6 @@ public class MainWindow extends UiPart<Region> {
 
     public PersonListPanel getPersonListPanel() {
         return this.taskListPanel;
-    }
-
-    void loadPersonPage(ReadOnlyTask task) {
-        browserPanel.loadPersonPage(task);
-    }
-
-    void releaseResources() {
-        browserPanel.freeResources();
     }
 
 }

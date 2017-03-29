@@ -62,7 +62,7 @@ public class RecurPeriod {
 		oldDate = oldDate.plusYears(1); break;
 		
 		default:
-			oldDate = oldDate.plusDays(Integer.parseInt(this.period)) ;
+			oldDate = oldDate.plusDays(Integer.parseInt(this.period)) ; break;
 		
 		}
 		newDate = oldDate.format(formatter);
