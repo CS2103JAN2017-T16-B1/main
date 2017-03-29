@@ -522,6 +522,13 @@ Priority | As a ... | I want to ... | So that I can...
 
 > Windows, Linux, Unix, OS-X
 
+#####NLP: 
+	Natural Language Processing
+
+#####Task:
+	Event: Tasks that has both start time and end time
+	Tasks: Tasks that has only end time
+	Floating Tasks: Tasks that has no start time or end time
 
 ## Appendix E : Product Survey
 
