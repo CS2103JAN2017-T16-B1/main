@@ -25,6 +25,7 @@ public class ModelManager extends ComponentManager implements Model {
 	private TaskManager taskManager;
 	private TaskManager previousTaskMgr;
 	private final FilteredList<ReadOnlyTask> filteredTasks;
+	private String currentToggleStatus;
 
 	/**
 	 * Initializes a ModelManager with the given taskManager and userPrefs.
@@ -46,6 +47,8 @@ public class ModelManager extends ComponentManager implements Model {
 				return false;
 			}
 		});
+		
+		setCurrentToggleStatus("ALL");
 
 	}
 
@@ -130,6 +133,17 @@ public class ModelManager extends ComponentManager implements Model {
 
 		indicateTaskManagerChanged();
 	}
+
+	//@@author A0139509X
+	public String getCurrentToggleStatus() {
+		return currentToggleStatus;
+	}
+
+	//@@author A0139509X
+	public void setCurrentToggleStatus(String currentToggleStatus) {
+		this.currentToggleStatus = currentToggleStatus;
+	}
+	
     //@@author 
 	// =========== Filtered Person List Accessors
 	// =============================================================
@@ -150,6 +164,7 @@ public class ModelManager extends ComponentManager implements Model {
 			}
 		});
 
+		setCurrentToggleStatus("ALL");
 	}
 
 	// @@author A0140072X
@@ -174,6 +189,44 @@ public class ModelManager extends ComponentManager implements Model {
 		filteredTasks.setPredicate(expression::satisfies);
 	}
 
+	@Override
+	public void updateFilteredTaskListByEvent() {
+		filteredTasks.setPredicate(task -> {
+			if (!(task.getStartTime().toString().equalsIgnoreCase("\n")) && !(task.getEndTime().toString().equalsIgnoreCase("\n"))) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+		setCurrentToggleStatus("EVENT");
+	}
+
+	@Override
+	public void updateFilteredTaskListByTask() {
+		filteredTasks.setPredicate(task -> {
+			if ((task.getStartTime().toString().equalsIgnoreCase("\n")) && !(task.getEndTime().toString().equalsIgnoreCase("\n"))) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+		setCurrentToggleStatus("TASK");
+		
+	}
+
+	@Override
+	public void updateFilteredTaskListByFloatingTask() {
+		filteredTasks.setPredicate(task -> {
+			if ((task.getStartTime().toString().equalsIgnoreCase("\n")) && (task.getEndTime().toString().equalsIgnoreCase("\n"))) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+		setCurrentToggleStatus("FLOATING_TASK");
+		
+	}
+	
 	// @@author A0139509X
 	@Override
 	public void updateFilteredTaskListByHighPriority() {
