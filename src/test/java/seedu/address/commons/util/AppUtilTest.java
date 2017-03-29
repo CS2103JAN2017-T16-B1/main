@@ -15,7 +15,7 @@ public class AppUtilTest {
 
     @Test
     public void getImage_exitingImage() {
-        assertNotNull(AppUtil.getImage("/images/test_manager_pic.png"));
+        assertNotNull(AppUtil.getImage("/images/task_manager_pic.png"));
     }
 
 
