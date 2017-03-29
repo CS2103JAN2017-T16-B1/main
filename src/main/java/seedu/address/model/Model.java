@@ -71,6 +71,7 @@ public interface Model {
     /** Updates the filer of the filtered task list to filter by archived and keyword*/
 	void updateArchivedFilteredTaskListByKeyword(String archive);
 
+
 	/* Updates the filter of the filtered task list to filter by events only*/
 	void updateFilteredTaskListByEvent();
 
@@ -80,10 +81,14 @@ public interface Model {
 	/** Updates the filter of the filtered task list to filter by floating task only*/
 	void updateFilteredTaskListByFloatingTask();
 
+  void indicateLoadEvent();
+
+
 	void sortTasksByEndTime();
 
 	void sortTasksByName();
 
 	void sortTasksByPriority();
+
 	
 }
