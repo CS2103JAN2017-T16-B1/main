@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-
+//@@ Author A0139375W
 public class RecurPeriod {
 	
 	public static final String MESSAGE_PERIOD_CONSTRAINTS =
@@ -46,6 +46,9 @@ public class RecurPeriod {
 	
 	
 	public String updatedDate(String date){
+		if (date == "\n"){
+			return date;
+		}
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm\n");
 		LocalDateTime oldDate = LocalDateTime.parse(date,formatter);
 		String newDate;
@@ -82,4 +85,9 @@ public class RecurPeriod {
 	                && this.period.equals(((RecurPeriod) other).period); // state check
 	                
 	    }
+	 
+	 @Override
+	    public int hashCode() {
+	        return period.hashCode();
+		}
 }
