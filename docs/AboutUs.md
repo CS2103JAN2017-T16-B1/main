@@ -22,11 +22,11 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/kailii.jpg" width="150"><br>
 
-**Components in charge of**: Logic
+**Components in charge of**: Model
 
 **Aspects/tools in charge of**: Testing, Code Quality,
 
-**Features implemented**: 
+**Features implemented**: Recur task, Delete command, Select command
 
 
 **Other major contribution**:
