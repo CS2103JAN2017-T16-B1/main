@@ -26,9 +26,9 @@ public class RecurPeriod {
 		if(period != null){
 		String trimmedPeriod = period.trim();
 	
-		if (!isValidPeriod(trimmedPeriod)) {
-            throw new IllegalValueException(MESSAGE_PERIOD_CONSTRAINTS);
-        }
+	//	if (!isValidPeriod(trimmedPeriod)) {
+    //        throw new IllegalValueException(MESSAGE_PERIOD_CONSTRAINTS);
+    //    }
 		
 		this.period = trimmedPeriod;
 		}
