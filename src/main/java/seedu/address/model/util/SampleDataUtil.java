@@ -40,7 +40,10 @@ public class SampleDataUtil {
                             new RecurPeriod(""), new RecurEndDate (""),new UniqueTagList("friends")),
             		new Task(new Name("review CS code"), new Description("after the tutorial"), new StartTime(""),
                             new EndTime("2017-03-04-1000"), new ID("1"), new Priority("h"), new Status("undone"),
-                            new RecurPeriod(""), new RecurEndDate (""),new UniqueTagList("friends"))
+                            new RecurPeriod(""), new RecurEndDate (""),new UniqueTagList("friends")),
+            		new Task(new Name("skip class"), new Description("maybe it is for the better"), new StartTime(""),
+                            new EndTime("2017-03-04-1000"), new ID("1"), new Priority("h"), new Status("done"),
+                            new RecurPeriod(""), new RecurEndDate (""),new UniqueTagList("friends","awesome"))
             };
         } catch (IllegalValueException e) {
             throw new AssertionError("sample data cannot be invalid", e);
