@@ -8,14 +8,14 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/bennettgo.jpg" width="150"><br>
 
-**Components in charge of**: Storage <br>
+**Components in charge of**: Logic <br>
 
-**Aspects/tools in charge of**: Storage, Deliverables and deadlines <br>
+**Aspects/tools in charge of**: Logic, Deliverables and deadlines <br>
 
-**Features implemented**: 
+**Features implemented**: Edit functionality, Sort command, Date parsing, User input parsing
 
 
-**Other major contribution**:
+**Other major contribution**: Contributed to Junit testing
 
 
 #### [ONG KAI LI](https://github.com/kailii) <br>
