@@ -29,6 +29,8 @@ allprojects {
         mavenCentral()
         maven { url "https://repo.eclipse.org/content/repositories/egit-releases/" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    	maven { url "https://mvnrepository.com/artifact/com.joestelmach/natty"}
+		
     }
 
     // This part is similar to global variables
@@ -70,8 +72,7 @@ allprojects {
         testCompile "org.testfx:testfx-legacy:$testFxVersion", {
             exclude group: "junit", module: "junit"
         }
-        // https://mvnrepository.com/artifact/com.joestelmach/natty
-		compile group: 'com.joestelmach', name: 'natty', version: '0.13'
+        compile group: 'com.joestelmach', name: 'natty', version: '0.13'
         testCompile "org.testfx:openjfx-monocle:$monocleVersion"
     }
 

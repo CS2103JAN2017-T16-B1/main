@@ -53,6 +53,7 @@ public class PersonCard extends UiPart<Region> {
 			cardPane.setStyle("-fx-background-color: #EDF5FE;");
 		} else if(task.getPriority().toString().equals("l")){
 			cardPane.setStyle("-fx-background-color: #EEFEED;");
+			cardPane.setStyle(".red");
 		}
 		
 	}
