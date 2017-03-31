@@ -8,14 +8,18 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/bennettgo.jpg" width="150"><br>
 
-**Components in charge of**: Logic <br>
+**Components in charge of**: [Logic] (https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/DeveloperGuide.md#23-logic-component) <br>
 
 **Aspects/tools in charge of**: Logic, Deliverables and deadlines <br>
 
-**Features implemented**: Edit functionality, Sort command, Date parsing, User input parsing
+**Features implemented**: 
+* [Sort command] 
+* [Date parsing] (https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#22-adding-a-taskevent--add)
 
 
-**Other major contribution**: Contributed to Junit testing
+**Other major contribution**:
+* Contributed to Junit testing
+* Did the initial refactoring of the edit functionality as well as added in new required Task objects such as start time and end Time
 
 
 #### [ONG KAI LI](https://github.com/kailii) <br>
