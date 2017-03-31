@@ -1,12 +1,18 @@
 package seedu.address.model.Task;
 
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
+
+import com.joestelmach.natty.DateGroup;
+import com.joestelmach.natty.Parser;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 
@@ -14,16 +20,15 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a event's start time or task's due date in the task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
-//@@A0138998B
+//@@author A0138998B
 
 public class StartTime {
 
     public static final String MESSAGE_DATETIME_CONSTRAINTS =
-            "Event start times must be in the form of yyyy-mm-dd-HHMM or Monday HHMM";;
+            "Event start times must be in the form of yyyy-mm-dd-HHMM or other relaxed forms";;
     private static final String DATETIME_VALIDATION_REGEX = "(((18|19|20|21)\\d\\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])-[0-9]{4})*";
 	private static final String DATE_VALIDATION_REGEX ="^(monday|tuesday|wednesday|thursday|friday|saturday|sunday)";
 	private static final String TIME_VALIDATION_REGEX ="^([0-9]{4})";
-	private static final Pattern INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
 	public static final String MESSAGE_DAY_CONSTRAINTS =
             "Dates must be in the form of full names of days of the week i.e. Monday";
 	public static final String MESSAGE_TIME_CONSTRAINTS =
@@ -36,33 +41,44 @@ public class StartTime {
      * @throws IllegalValueException if given email address string is invalid.
      */
     public StartTime(String startTime) throws IllegalValueException {
-        int intTime = 0;
+        
+        String trimmedTime = startTime.trim();
         if(startTime!=null){
-            String trimmedTime = startTime.trim();
-            
-          
-            if(!isValidTime(trimmedTime)){
-            	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-");
-            	ArrayList<String> times = parseDayAndTime(startTime);
-            	checkForCorrectFormats(times);
-            	LocalDateTime date = LocalDateTime.now();
-                intTime = getDayAsInt(times, intTime);
-                date = getNearestDate(date, intTime);
-                trimmedTime=dtf.format(date)+times.get(1);
-                if (!isValidTime(trimmedTime)) {
-                    throw new IllegalValueException(MESSAGE_DATETIME_CONSTRAINTS);
-                }
-            }
-            
-            
-           
-            this.startTime = trimmedTime;
+        	
+        	trimmedTime = parseDate(trimmedTime);
         }
-        else{
-            this.startTime=null;
+        
+        if(!isValidTime(trimmedTime)){
+        	throw new IllegalValueException(MESSAGE_DATETIME_CONSTRAINTS);
         }
+        
+        this.startTime=trimmedTime;
                
     }
+
+	/**
+	 * @param trimmedTime
+	 * @return a string parsed using natty. 
+	 * @throws IllegalValueException
+	 */
+	private String parseDate(String trimmedTime) throws IllegalValueException {
+		if(!isValidTime(trimmedTime)){
+			Parser parser = new Parser();
+			List<DateGroup> groups = parser.parse(trimmedTime);
+			List<Date> dates = null;
+			if(groups.isEmpty()){
+				throw new IllegalValueException(MESSAGE_DATETIME_CONSTRAINTS);
+			}
+			for(DateGroup group:groups) {
+			  dates = group.getDates();
+			}
+			DateTimeFormatter nattyDateFormat = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss zzz yyyy");
+			nattyDateFormat.parse(dates.get(0).toString());
+			SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd-HHmm");
+			trimmedTime=dateFormat.format(dates.get(0));
+		}
+		return trimmedTime;
+	}
 
     /**
      * Returns if a given string is a valid time.
@@ -95,7 +111,7 @@ public class StartTime {
     		return false;
     	}
     }
-    
+   
     /**
      * splits date and time into different
      * @param time
@@ -173,5 +189,5 @@ public class StartTime {
 
     
 }
-//@@A0138998B
+
 

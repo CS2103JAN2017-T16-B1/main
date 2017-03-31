@@ -139,15 +139,15 @@ The sections below give more details of each component.
 
 ### 2.2. UI component
 
-Author: Alice Bee
+Author: Edward Tan
 
 <img src="images/UiClassDiagram.png" width="800"><br>
 _Figure 2.2.1 : Structure of the UI Component_
 
 **API** : [`Ui.java`](../src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`,
-`StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`,
+`StatusBarFooter`, etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
  that are in the `src/main/resources/view` folder.<br>
@@ -522,6 +522,13 @@ Priority | As a ... | I want to ... | So that I can...
 
 > Windows, Linux, Unix, OS-X
 
+#####NLP: 
+	Natural Language Processing
+
+#####Task:
+	Event: Tasks that has both start time and end time
+	Tasks: Tasks that has only end time
+	Floating Tasks: Tasks that has no start time or end time
 
 ## Appendix E : Product Survey
 

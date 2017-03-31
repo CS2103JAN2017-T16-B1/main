@@ -21,6 +21,7 @@ import org.junit.rules.TemporaryFolder;
 import com.google.common.eventbus.Subscribe;
 
 import seedu.address.commons.core.EventsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.events.model.TaskManagerChangedEvent;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
@@ -34,6 +35,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.TaskManager;
 import seedu.address.model.Task.EndTime;
@@ -272,7 +274,20 @@ public class LogicManagerTest {
         assertCommandFailure(commandWord + " 0", expectedMessage); //index cannot be 0
         assertCommandFailure(commandWord + " not_a_number", expectedMessage);
     }
-
+    /**
+     * Confirms the 'invalid argument input parameter behaviour' for the given command
+     * 
+     */
+    @Test
+    public void assertIncorrectInputFormatBehaviorForSortCommand()
+            throws Exception {
+    	String expectedMessage= String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,SortCommand.MESSAGE_USAGE);
+        assertCommandFailure("sort" , expectedMessage); //parameter missing
+        assertCommandFailure("sort" + " endTime", expectedMessage); //parameter must be duedate
+        assertCommandFailure("sort" + " startTime", expectedMessage); //parameter cannot be startTime
+        assertCommandFailure("sort" + " NAME", expectedMessage); //parameter must be lowercase
+        assertCommandFailure("sort" + " not_a_number", expectedMessage);
+    }
     /**
      * Confirms the 'invalid argument index number behaviour' for the given command
      * targeting a single person in the shown list, using visible index.
@@ -325,6 +340,12 @@ public class LogicManagerTest {
     public void execute_deleteInvalidArgsFormat_errorMessageShown() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
         assertIncorrectIndexFormatBehaviorForCommand("delete", expectedMessage);
+    }
+    
+    @Test
+    public void execute_SortInvalidArgsFormat_errorMessageShown() throws Exception {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
+        assertIncorrectIndexFormatBehaviorForCommand("sort", expectedMessage);
     }
 
     @Test

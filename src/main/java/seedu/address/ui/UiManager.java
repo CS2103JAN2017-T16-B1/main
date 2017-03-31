@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import com.google.common.eventbus.Subscribe;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -14,25 +15,37 @@ import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.storage.DataSavingExceptionEvent;
+import seedu.address.commons.events.ui.ExitAppRequestEvent;
+import seedu.address.commons.events.ui.HideWindowEvent;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
-import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
+import seedu.address.commons.events.ui.ShowWindowEvent;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.model.UserPrefs;
+
+import com.tulskiy.keymaster.common.HotKey;
+import com.tulskiy.keymaster.common.HotKeyListener;
+import com.tulskiy.keymaster.common.Provider;
+
+import javafx.stage.WindowEvent;
+import javax.swing.*;
+
 
 /**
  * The manager of the UI component.
  */
 public class UiManager extends ComponentManager implements Ui {
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String ICON_APPLICATION = "/images/task_manager_pic.png";
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private Logic logic;
     private Config config;
     private UserPrefs prefs;
     private MainWindow mainWindow;
+    
+    private boolean isShown = true;
 
     public UiManager(Logic logic, Config config, UserPrefs prefs) {
         super();
@@ -53,18 +66,72 @@ public class UiManager extends ComponentManager implements Ui {
             mainWindow = new MainWindow(primaryStage, config, prefs, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
+            
+          //@@author A0140072X
+            primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                public void handle(WindowEvent we) {
+                    Platform.runLater(new Runnable(){@Override public void run() {raise(new ExitAppRequestEvent());}});
+                }
+            });                 
+            final Provider provider = Provider.getCurrentProvider(false);
+            HotKeyListener listener = new HotKeyListener() {
+                public void onHotKey(HotKey hotKey) {
+                    if(isShown) {
+                        raise(new HideWindowEvent());                            
+                        isShown = !isShown;
+                    }
+                    else {
+                        raise(new ShowWindowEvent());     
+                        isShown = true;
+                    }
+                }
+            };
+            provider.register(KeyStroke.getKeyStroke("control SPACE"), listener);
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
     }
+  //@@author A0140072X
+    @Override
+    public void refresh() {
+
+        try {
+
+            mainWindow.fillInnerParts();
+
+        } catch (Throwable e) {
+            logger.severe(StringUtil.getDetails(e));
+            showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
+        }
+    }
+  //@@author A0140072X
+    @Override
+    public void loadData(Logic logic) {
+        try {
+            mainWindow.loadLogic(logic);
+            mainWindow.fillInnerParts();
+        } catch (Throwable e) {
+            logger.severe(StringUtil.getDetails(e));
+            showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
+        }
+    }
+  //@@author A0140072X
+    @Override
+    public void show() {        
+        mainWindow.show();
+    }
+  //@@author A0140072X
+    @Override
+    public void hide() {
+        mainWindow.hide();
+    }
 
     @Override
     public void stop() {
         prefs.updateLastUsedGuiSetting(mainWindow.getCurrentGuiSetting());
         mainWindow.hide();
-        mainWindow.releaseResources();
     }
 
     private void showFileOperationAlertAndWait(String description, String details, Throwable cause) {
@@ -100,7 +167,8 @@ public class UiManager extends ComponentManager implements Ui {
     }
 
     //==================== Event Handling Code ===============================================================
-
+   
+   
     @Subscribe
     private void handleDataSavingExceptionEvent(DataSavingExceptionEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
@@ -117,12 +185,6 @@ public class UiManager extends ComponentManager implements Ui {
     private void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         mainWindow.getPersonListPanel().scrollTo(event.targetIndex);
-    }
-
-    @Subscribe
-    private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        mainWindow.loadPersonPage(event.getNewSelection());
     }
 
 }
