@@ -8,6 +8,7 @@ import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.events.model.TaskManagerChangedEvent;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.Task.ReadOnlyTask;
@@ -112,7 +113,12 @@ public class ModelManager extends ComponentManager implements Model {
 	//@@author A0138998B
 	@Override
 	public void sortTasksByEndTime(){
-		taskManager.sortTasksByEndTime();
+		try {
+			taskManager.sortTasksByEndTime();
+		} catch (IllegalValueException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -133,7 +139,12 @@ public class ModelManager extends ComponentManager implements Model {
 		setPrevious();
 
 		int taskManagerIndex = filteredTasks.getSourceIndex(filteredTaskListIndex);
-		taskManager.updateTask(taskManagerIndex, editedTask);
+		try {
+			taskManager.updateTask(taskManagerIndex, editedTask);
+		} catch (IllegalValueException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		indicateTaskManagerChanged();
 	}

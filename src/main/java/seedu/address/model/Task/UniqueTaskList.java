@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.exceptions.DuplicateDataException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
 
 /**
@@ -87,9 +88,10 @@ public class UniqueTaskList implements Iterable<Task> {
     /**
      * Sorts tasks in the list according to end times.
      * floating tasks are sorted to the back
+     * @throws IllegalValueException 
      * 
      */
-    public void sortByEndTime() {
+    public void sortByEndTime() throws IllegalValueException {
     	List<TaskAndDueDate> list = new ArrayList<TaskAndDueDate>();
         for(Task task:internalList){
         	list.add(new TaskAndDueDate(task,task.getEndTime()));
@@ -132,7 +134,7 @@ public class UniqueTaskList implements Iterable<Task> {
         this.internalList.setAll(replacement.internalList);
     }
 
-    public void setTasks(List<? extends ReadOnlyTask> tasks) throws DuplicatetaskException {
+    public void setTasks(List<? extends ReadOnlyTask> tasks) throws IllegalValueException {
         final UniqueTaskList replacement = new UniqueTaskList();
         for (final ReadOnlyTask task : tasks) {
             replacement.add(new Task(task));
