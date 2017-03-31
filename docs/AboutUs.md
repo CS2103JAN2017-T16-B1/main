@@ -8,14 +8,15 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/bennettgo.jpg" width="150"><br>
 
-**Components in charge of**: [Logic] (https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/DeveloperGuide.md#23-logic-component) <br>
+**Components in charge of**: [Logic](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/DeveloperGuide.md#23-logic-component) <br>
 
 **Aspects/tools in charge of**: Logic, Deliverables and deadlines <br>
 
 **Features implemented**: 
 * [Sort command] 
-* [Date parsing] (https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#22-adding-a-taskevent--add)
+* [Date parsing](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#22-adding-a-taskevent--add)
 
+**Code written:** [[functional code](../collated/main/A0138998B.md)]
 
 **Other major contribution**:
 * Contributed to Junit testing
