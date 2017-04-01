@@ -50,55 +50,55 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/EdCS2103.jpg" width="150"><br>
 
-**Components in charge of**: Model
+**Components in charge of**: [UI](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/DeveloperGuide.md#UI-component)
 
 **Aspects/tools in charge of**: Scheduling and tracking, Documentation,
 
 **Features implemented**: 
+* find task(s)
+* toggle function
+* auto focus with keywords
+* UI design
 
+**Code written:** [[functional code](../collated/main/A0139509X.md)]
 
 **Other major contribution**:
-
+* Did up initial refactoring from AddressBook to TaskManager
 
 
 ## Source Code Team
 
 #### [Damith C. Rajapakse](http://www.comp.nus.edu.sg/~damithch) <br>
-<img src="images/DamithRajapakse.jpg" width="150"><br>
 **Role**: Project Advisor
 
 -----
 
 #### [Joshua Lee](http://github.com/lejolly)
-<img src="images/JoshuaLee.jpg" width="150"><br>
-Role: Developer <br>
+Role: Developer
 Responsibilities: UI
 
 -----
 
 #### [Leow Yijin](http://github.com/yijinl)
-<img src="images/LeowYijin.jpg" width="150"><br>
-Role: Developer <br>
+Role: Developer
 Responsibilities: Data
 
 -----
 
 #### [Martin Choo](http://github.com/m133225)
-<img src="images/MartinChoo.jpg" width="150"><br>
-Role: Developer <br>
+Role: Developer
 Responsibilities: Dev Ops
 
 -----
 
 #### [Thien Nguyen](https://github.com/ndt93)
- Role: Developer <br>
+ Role: Developer
  Responsibilities: Threading
 
  -----
 
 #### [You Liang](http://github.com/yl-coder)
-<img src="images/YouLiang.jpg" width="150"><br>
- Role: Developer <br>
+ Role: Developer
  Responsibilities: UI
 
  -----
