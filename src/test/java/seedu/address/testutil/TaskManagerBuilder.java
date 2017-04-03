@@ -9,7 +9,7 @@ import seedu.address.model.tag.Tag;
 /**
  * A utility class to help with building TaskManager objects.
  * Example usage: <br>
- *     {@code TaskManager ab = new TaskManagerBuilder().withPerson("John", "Doe").withTag("Friend").build();}
+ *     {@code TaskManager ab = new TaskManagerBuilder().withTask("John", "Doe").withTag("Friend").build();}
  */
 public class TaskManagerBuilder {
 
@@ -19,7 +19,7 @@ public class TaskManagerBuilder {
         this.taskManager = taskManager;
     }
 
-    public TaskManagerBuilder withPerson(Task task) throws UniqueTaskList.DuplicatetaskException {
+    public TaskManagerBuilder withTask(Task task) throws UniqueTaskList.DuplicatetaskException {
         taskManager.addTask(task);
         return this;
     }

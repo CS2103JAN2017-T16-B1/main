@@ -34,14 +34,14 @@ public class TestTask implements ReadOnlyTask {
     }
 
     /**
-     * Creates a copy of {@code personToCopy}.
+     * Creates a copy of {@code taskToCopy}.
      */
-    public TestTask(TestTask personToCopy) {
-        this.name = personToCopy.getName();
-        this.description = personToCopy.getDescription();
-        this.startTime = personToCopy.getStartTime();
-        this.endTime = personToCopy.getEndTime();
-        this.tags = personToCopy.getTags();
+    public TestTask(TestTask taskToCopy) {
+        this.name = taskToCopy.getName();
+        this.description = taskToCopy.getDescription();
+        this.startTime = taskToCopy.getStartTime();
+        this.endTime = taskToCopy.getEndTime();
+        this.tags = taskToCopy.getTags();
     }
 
     public void setName(Name name) {
