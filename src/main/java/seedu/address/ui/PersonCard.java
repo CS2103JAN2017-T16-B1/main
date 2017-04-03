@@ -12,7 +12,13 @@ import seedu.address.model.Task.ReadOnlyTask;
 
 public class PersonCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String LOW_PRIORITY_COLOR = "-fx-background-color: #EEFEED;";
+
+	private static final String MEDIUM_PRIORITY_COLOR = "-fx-background-color: #EDF5FE;";
+
+	private static final String HIGH_PRIORITY_COLOR = "-fx-background-color: #FEF0ED;";
+
+	private static final String FXML = "PersonListCard.fxml";
 
     @FXML
     private HBox cardPane;
@@ -48,12 +54,12 @@ public class PersonCard extends UiPart<Region> {
     //@@author A0139509X
     private void setColours(ReadOnlyTask task) {
 		if(task.getPriority().toString().equals("h")) {
-			cardPane.setStyle("-fx-background-color: #FEF0ED;");
+			cardPane.setStyle(HIGH_PRIORITY_COLOR);
+			//cardPane.setStyle(".label-red");
 		} else if(task.getPriority().toString().equals("m")){
-			cardPane.setStyle("-fx-background-color: #EDF5FE;");
+			cardPane.setStyle(MEDIUM_PRIORITY_COLOR);
 		} else if(task.getPriority().toString().equals("l")){
-			cardPane.setStyle("-fx-background-color: #EEFEED;");
-			cardPane.setStyle(".red");
+			cardPane.setStyle(LOW_PRIORITY_COLOR);
 		}
 		
 	}
