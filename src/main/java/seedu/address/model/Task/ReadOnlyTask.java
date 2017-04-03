@@ -38,7 +38,7 @@ public interface ReadOnlyTask {
                 && other.getPriority().equals(this.getPriority())
                 && other.getStatus().equals(this.getStatus());
     }
-
+//@@author A0138998B
     /**
      * Formats the Task/event as text, showing all task/event details.
      */
@@ -60,8 +60,9 @@ public interface ReadOnlyTask {
         			.append(" Event end time: ")
         			.append(getEndTime());
         		}
-                
-                builder.append(" Tags: ");
+        		builder.append(" priority: ")
+        		.append(getPriority())
+        		.append("\n Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }

@@ -39,6 +39,7 @@ public class AddCommandParser {
                         argsTokenizer.getValue(PREFIX_ENDTIME).orElse(""),
                         argsTokenizer.getValue(PREFIX_RECURPERIOD).orElse(null),
                         argsTokenizer.getValue(PREFIX_RECURENDDATE).orElse(null),
+                        argsTokenizer.getValue(PREFIX_PRIORITY).orElse("m"),
                         ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
                 );
                 
