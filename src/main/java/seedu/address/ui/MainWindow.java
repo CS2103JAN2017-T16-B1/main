@@ -50,7 +50,7 @@ public class MainWindow extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(MainWindow.class);
     
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel taskListPanel;
+    private TaskListPanel taskListPanel;
     private Config config;
     
     @FXML
@@ -178,7 +178,7 @@ public class MainWindow extends UiPart<Region> {
     }
 
     void fillInnerParts() {
-        taskListPanel = new PersonListPanel(getPersonListPlaceholder(), logic.getFilteredPersonList());
+        taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());
         commandBox = new CommandBox(getCommandBoxPlaceholder(), logic);
@@ -200,7 +200,7 @@ public class MainWindow extends UiPart<Region> {
         return resultDisplayPlaceholder;
     }
 
-    private AnchorPane getPersonListPlaceholder() {
+    private AnchorPane getTaskListPlaceholder() {
         return taskListPanelPlaceholder;
     }
 
@@ -289,7 +289,7 @@ public class MainWindow extends UiPart<Region> {
         raise(new ExitAppRequestEvent());
     }
 
-    public PersonListPanel getPersonListPanel() {
+    public TaskListPanel getTaskListPanel() {
         return this.taskListPanel;
     }
 
