@@ -52,13 +52,18 @@ public class ArchiveCommand extends Command {
             Task updatedTask = new Task(taskToArchive.getName(), taskToArchive.getDescription(), taskToArchive.getStartTime(),taskToArchive.getEndTime(), taskToArchive.getId(), taskToArchive.getPriority(),new Status("done"), taskToArchive.getRecurPeriod(), taskToArchive.getRecurEndDate(), taskToArchive.getTags());
             Task toAdd = new Task(taskToArchive.getName(), taskToArchive.getDescription(), taskToArchive.getStartTime(),taskToArchive.getEndTime(), taskToArchive.getId(), taskToArchive.getPriority(),new Status("undone"), taskToArchive.getRecurPeriod(), taskToArchive.getRecurEndDate(), taskToArchive.getTags());
             model.updateTask(targetIndex, updatedTask);
-            if (toAdd.getRecurPeriod() != null){
-            	if(toAdd.getRecurEndDate().toString() == null || toAdd.getRecurEndDate().hasPassedEndDate(toAdd.getEndTime().toString()) == false ){
-            	StartTime newStartTime = new StartTime(taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getStartTime().toString()));
+  //@@author A0139375W
+            if (toAdd.getRecurPeriod().toString() != null){
             	EndTime newEndTime = new EndTime(taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getEndTime().toString()));
+            	if(toAdd.getRecurEndDate().toString() == null || toAdd.getRecurEndDate().hasPassedEndDate(newEndTime.toString()) == false ){
+            	if (toAdd.getStartTime() != null) {
+            		StartTime newStartTime = new StartTime(taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getStartTime().toString()));
+            		toAdd.setStartTime(newStartTime);
+            	}
             	toAdd.setEndTime(newEndTime);
-            	toAdd.setStartTime(newStartTime);
+            	
             	model.addTask(toAdd);
+  //@@author A0139375W         	
             	}
             }
             
