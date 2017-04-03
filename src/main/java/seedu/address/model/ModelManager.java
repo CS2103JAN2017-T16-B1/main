@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.ComponentManager;
-import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.events.model.TaskManagerChangedEvent;
@@ -94,7 +93,7 @@ public class ModelManager extends ComponentManager implements Model {
 		updateFilteredListToShowAll();
 		indicateTaskManagerChanged();
 		//@@author A0139509X
-		EventsCenter.getInstance().post(new JumpToListRequestEvent(filteredTasks.size() - 1));
+		raise (new JumpToListRequestEvent(filteredTasks.indexOf(task)));
 	}
 
 	// @@author A0140072X
@@ -142,7 +141,7 @@ public class ModelManager extends ComponentManager implements Model {
 
 		indicateTaskManagerChanged();
 		//@@author A0139509X
-		EventsCenter.getInstance().post(new JumpToListRequestEvent(filteredTasks.size() - 1));
+		raise (new JumpToListRequestEvent((filteredTaskListIndex)));
 	}
 
 	//@@author A0139509X
