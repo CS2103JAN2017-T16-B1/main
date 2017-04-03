@@ -49,7 +49,8 @@ public class AddCommand extends Command {
      * @throws IllegalValueException if any of the raw values are invalid
      */
     //Add Event
-    public AddCommand(String name, String description, String startTime, String endTime, String recurPeriod, String recurEndDate, Set<String> tags)
+    public AddCommand(String name, String description, String startTime, 
+    		String endTime, String recurPeriod, String recurEndDate,String priority, Set<String> tags)
 
     		
             throws IllegalValueException {
@@ -65,7 +66,7 @@ public class AddCommand extends Command {
                 new EndTime(endTime),
                 new ID(id),
                 //new ID(id++),
-                new Priority("m"),
+                new Priority(priority),
                 new Status("undone"),
                 new RecurPeriod(recurPeriod),
                 new RecurEndDate(recurEndDate),

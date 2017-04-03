@@ -1,8 +1,11 @@
 package seedu.address.model.Task;
 
+import java.text.ParseException;
 import java.util.Objects;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
@@ -11,6 +14,7 @@ import seedu.address.model.tag.UniqueTagList;
  */
 public class Task implements ReadOnlyTask {
 
+	
     private Name name;
     private Description description;
     private StartTime startTime;
@@ -24,11 +28,14 @@ public class Task implements ReadOnlyTask {
 
     /**
      * Every name must be present and not null.
+     * @throws IllegalValueException 
      */
 
-    public Task(Name name, Description description, StartTime startTime, EndTime endTime, ID id, Priority priority, Status status, RecurPeriod recurPeriod, RecurEndDate recurEndDate, UniqueTagList tags) {
+    public Task(Name name, Description description, StartTime startTime, EndTime endTime, ID id, Priority priority, Status status, RecurPeriod recurPeriod, RecurEndDate recurEndDate, UniqueTagList tags) throws IllegalValueException {
         assert !CollectionUtil.isAnyNull(name, startTime,id, tags);
-
+        
+        ParserUtil.isAfter(startTime.toString(), endTime.toString());
+			
         this.name = name;
         this.description = description;
         this.startTime = startTime;
@@ -42,9 +49,10 @@ public class Task implements ReadOnlyTask {
     }
 
     public Task(Name name, Description description, StartTime startTime, EndTime endTime, ID id, Priority priority, Status status
-    		, UniqueTagList tags) {
+    		, UniqueTagList tags) throws IllegalValueException {
         assert !CollectionUtil.isAnyNull(name, startTime,id, tags);
-
+        ParserUtil.isAfter(startTime.toString(), endTime.toString());
+		
         this.name = name;
         this.description = description;
         this.startTime = startTime;
@@ -56,10 +64,11 @@ public class Task implements ReadOnlyTask {
     }
     /**
      * Creates a copy of the given ReadOnlyPerson.
+     * @throws IllegalValueException 
      */
-    public Task(ReadOnlyTask source) {
+    public Task(ReadOnlyTask source) throws IllegalValueException {
         this(source.getName(), source.getDescription(), source.getStartTime(), source.getEndTime(),source.getId(),source.getPriority(), source.getStatus(), source.getRecurPeriod(), source.getRecurEndDate(), source.getTags());
-    }
+        }
 
     public void setName(Name name) {
         assert name != null;

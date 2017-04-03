@@ -10,6 +10,7 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.UnmodifiableObservableList;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
@@ -51,7 +52,7 @@ public class TaskManager implements ReadOnlyTaskManager {
 //// list overwrite operations
 
     public void setTasks(List<? extends ReadOnlyTask> tasks)
-            throws UniqueTaskList.DuplicatetaskException {
+            throws IllegalValueException {
         this.tasks.setTasks(tasks);
     }
 
@@ -67,7 +68,9 @@ public class TaskManager implements ReadOnlyTaskManager {
 
             assert false : "TaskManager should not have duplicate tasks";
 
-        }
+        } catch (IllegalValueException e) {
+        	assert false : "Please change me";
+		}
         try {
             setTags(newData.getTagList());
         } catch (UniqueTagList.DuplicateTagException e) {
@@ -93,14 +96,13 @@ public class TaskManager implements ReadOnlyTaskManager {
     /**
      * Updates the task in the list at position {@code index} with {@code editedReadOnlyPerson}.
      * {@code TaskManager}'s tag list will be updated with the tags of {@code editedReadOnlyPerson}.
+     * @throws IllegalValueException 
      * @see #syncMasterTagListWith(Task)
      *
-     * @throws DuplicatetaskException if updating the task's details causes the task to be equivalent to
-     *      another existing task in the list.
      * @throws IndexOutOfBoundsException if {@code index} < 0 or >= the size of the list.
      */
     public void updateTask(int index, ReadOnlyTask editedReadOnlyTask)
-            throws UniqueTaskList.DuplicatetaskException {
+            throws IllegalValueException {
         assert editedReadOnlyTask != null;
 
         Task editedTask = new Task(editedReadOnlyTask);
@@ -149,7 +151,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         }
     }
     //@@author A0138998B
-    public void sortTasksByEndTime(){
+    public void sortTasksByEndTime() throws IllegalValueException{
     	tasks.sortByEndTime();
     }
     public void sortTasksByName(){
