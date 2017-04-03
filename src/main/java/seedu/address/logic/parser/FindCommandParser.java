@@ -14,6 +14,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.model.Task.Priority;
 import seedu.address.model.Task.Status;
+import seedu.address.model.Task.TaskStringReference;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -22,11 +23,6 @@ public class FindCommandParser {
 	//@@author A0139509X
 	private static final char PREFIX_HASHTAG = '#';
 	private static final char PREFIX_AT = '@';
-	private static final String HIGH_PRIORITY = "h";
-	private static final String MEDIUM_PRIORITY = "m";
-	private static final String LOW_PRIORITY = "l";
-	private static final String DONE_PREFIX = "done";
-	private static final String UNDONE_PREFIX = "undone";
 
 	// @@author A0139509X
 	/**
@@ -35,7 +31,7 @@ public class FindCommandParser {
 	 * 
 	 * @throws IllegalValueException
 	 */
-	public Command parse(String args) throws IllegalValueException {
+	public Command parse(String args) {
 		final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
 		if (!matcher.matches()) {
 			return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -44,8 +40,13 @@ public class FindCommandParser {
 		// keywords delimited by whitespace
 		final String[] keywords = matcher.group("keywords").split("\\s+");
 
-		if (keywords[0].charAt(0) == PREFIX_HASHTAG) {
-			return returnFindCommandForHashtagPrefix(keywords[0]);
+		try {
+				if (keywords[0].charAt(0) == PREFIX_HASHTAG) {
+					return returnFindCommandForHashtagPrefix(keywords[0]);
+				}
+			}
+		catch(IllegalValueException e){
+			return new IncorrectCommand(e.getMessage());
 		}
 		
 		if (keywords[0].charAt(0) == PREFIX_AT) {
@@ -67,19 +68,19 @@ public class FindCommandParser {
 		if (keywords.substring(1).isEmpty()) {
 			return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 		}
-		if (keywords.substring(1).equalsIgnoreCase(DONE_PREFIX)) {
+		if (keywords.substring(1).equalsIgnoreCase(TaskStringReference.STATUS_DONE)) {
 			Status status = new Status(keywords.substring(1));
 			return new FindCommand(status);
-		} else if (keywords.substring(1).equalsIgnoreCase(UNDONE_PREFIX)) {
+		} else if (keywords.substring(1).equalsIgnoreCase(TaskStringReference.STATUS_UNDONE)) {
 			Status status = new Status(keywords.substring(1));
 			return new FindCommand(status);
-		} else if (keywords.substring(1).equalsIgnoreCase(HIGH_PRIORITY)) {
+		} else if (keywords.substring(1).equalsIgnoreCase(TaskStringReference.PRIORITY_HIGH)) {
 			Priority priority = new Priority(keywords.substring(1));
 			return new FindCommand(priority);
-		} else if (keywords.substring(1).equalsIgnoreCase(MEDIUM_PRIORITY)) {
+		} else if (keywords.substring(1).equalsIgnoreCase(TaskStringReference.PRIORITY_MEDIUM)) {
 			Priority priority = new Priority(keywords.substring(1));
 			return new FindCommand(priority);
-		} else if (keywords.substring(1).equalsIgnoreCase(LOW_PRIORITY)) {
+		} else if (keywords.substring(1).equalsIgnoreCase(TaskStringReference.PRIORITY_LOW)) {
 			Priority priority = new Priority(keywords.substring(1));
 			return new FindCommand(priority);
 		} else {

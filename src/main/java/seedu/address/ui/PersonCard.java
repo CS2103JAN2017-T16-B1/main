@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.Task.TaskStringReference;
 
 
 public class PersonCard extends UiPart<Region> {
@@ -53,12 +54,12 @@ public class PersonCard extends UiPart<Region> {
     }
     //@@author A0139509X
     private void setColours(ReadOnlyTask task) {
-		if(task.getPriority().toString().equals("h")) {
+		if(task.getPriority().toString().equals(TaskStringReference.PRIORITY_HIGH)) {
 			cardPane.setStyle(HIGH_PRIORITY_COLOR);
 			//cardPane.setStyle(".label-red");
-		} else if(task.getPriority().toString().equals("m")){
+		} else if(task.getPriority().toString().equals(TaskStringReference.PRIORITY_MEDIUM)){
 			cardPane.setStyle(MEDIUM_PRIORITY_COLOR);
-		} else if(task.getPriority().toString().equals("l")){
+		} else if(task.getPriority().toString().equals(TaskStringReference.PRIORITY_LOW)){
 			cardPane.setStyle(LOW_PRIORITY_COLOR);
 		}
 		
@@ -69,25 +70,25 @@ public class PersonCard extends UiPart<Region> {
 	}*/
 
 	private void setTextForEndTime(ReadOnlyTask task) {
-		if(!(task.getEndTime().endTime.equals(""))){
+		if(!(task.getEndTime().toString().equals(TaskStringReference.EMPTY_TIME))){
 			address.setText("End Time : " +task.getEndTime().endTime);
-        } else if(task.getStartTime().startTime.equals("")){
+        } else if(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME)){
         	address.setManaged(false);
         }
 	}
 
 	private void setTextForStartTime(ReadOnlyTask task) {
-		if(!(task.getStartTime().startTime.equals(""))){
+		if(!(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME))){
         	email.setText("Start Time : " + task.getStartTime().startTime);
-        } else if(task.getStartTime().startTime.equals("")){
+        } else if(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME)){
         	email.setManaged(false);
         }
 	}
 
 	private void setTextForDescription(ReadOnlyTask task) {
-		if(!(task.getDescription().description.equals("\n"))){
+		if(!(task.getDescription().description.equals(TaskStringReference.EMPTY_DESCRIPTION))){
         	phone.setText("Description : " + task.getDescription().description);
-        } else if(task.getDescription().description.equals("\n")){
+        } else if(task.getDescription().description.equals(TaskStringReference.EMPTY_DESCRIPTION)){
         	phone.setManaged(false);
         }
 	}

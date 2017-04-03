@@ -14,6 +14,7 @@ import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.Task.UniqueTaskList.TaskNotFoundException;
+import seedu.address.model.Task.TaskStringReference;
 
 /**
  * Represents the in-memory model of the task manager data. All changes to any
@@ -41,14 +42,14 @@ public class ModelManager extends ComponentManager implements Model {
 		filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
 
 		filteredTasks.setPredicate(task -> {
-			if (task.getStatus().toString().contains("un")) {
+			if (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE)) {
 				return true;
 			} else {
 				return false;
 			}
 		});
 		//@@author A0139509X
-		setCurrentToggleStatus("ALL");
+		setCurrentToggleStatus(TaskStringReference.SHOWING_ALL);
 
 	}
 	//@@author
@@ -60,6 +61,7 @@ public class ModelManager extends ComponentManager implements Model {
 	public void resetData(ReadOnlyTaskManager newData) {
 		taskManager.resetData(newData);
 		indicateTaskManagerChanged();
+		setCurrentToggleStatus(TaskStringReference.SHOWING_SPECIAL);
 	}
 
 	@Override
@@ -80,7 +82,6 @@ public class ModelManager extends ComponentManager implements Model {
 	public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
 		setPrevious();
 		taskManager.removeTask(target);
-
 		indicateTaskManagerChanged();
 	}
 
@@ -161,21 +162,21 @@ public class ModelManager extends ComponentManager implements Model {
 	public void updateFilteredListToShowAll() {
 		// filteredTasks.setPredicate(null);
 		filteredTasks.setPredicate(task -> {
-			if (task.getStatus().toString().contains("un")) {
+			if (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE)) {
 				return true;
 			} else {
 				return false;
 			}
 		});
 		//@@author A0139509X
-		setCurrentToggleStatus("ALL");
+		setCurrentToggleStatus(TaskStringReference.SHOWING_ALL);
 	}
 
 	// @@author A0140072X
 	public void updateFilteredTaskListByArchived() {
 		updateFilteredListToShowAll();
 		filteredTasks.setPredicate(task -> {
-			if (!task.getStatus().toString().contains("undone")) {
+			if (task.getStatus().toString().equals(TaskStringReference.STATUS_DONE)) {
 				return true;
 			} else {
 				return false;
@@ -187,8 +188,11 @@ public class ModelManager extends ComponentManager implements Model {
 	@Override
 	public void updateFilteredTaskListByKeywords(Set<String> keywords) {
 		updateFilteredTaskListByKeywords(new PredicateExpression(new NameQualifier(keywords)));
+		//@@author A0139509X
+		setCurrentToggleStatus(TaskStringReference.SHOWING_SPECIAL);
 	}
 
+	//@@author
 	private void updateFilteredTaskListByKeywords(Expression expression) {
 		filteredTasks.setPredicate(expression::satisfies);
 	}
@@ -197,103 +201,108 @@ public class ModelManager extends ComponentManager implements Model {
 	@Override
 	public void updateFilteredTaskListByEvent() {
 		filteredTasks.setPredicate(task -> {
-			if ((!(task.getStartTime().toString().equalsIgnoreCase("\n")) 
-					&& !(task.getEndTime().toString().equalsIgnoreCase("\n"))
-					&& (task.getStatus().toString().contains("un")))) {
+			if ((!(task.getStartTime().toString().equalsIgnoreCase(TaskStringReference.EMPTY_TIME)) 
+					&& !(task.getEndTime().toString().equalsIgnoreCase(TaskStringReference.EMPTY_TIME))
+					&& (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE)))) {
 				return true;
 			} else {
 				return false;
 			}
 		});
-		setCurrentToggleStatus("EVENT");
+		setCurrentToggleStatus(TaskStringReference.SHOWING_EVENT);
 	}
 	
 	@Override
 	public void updateFilteredTaskListByTask() {
 		filteredTasks.setPredicate(task -> {
-			if (((task.getStartTime().toString().equalsIgnoreCase("\n")) 
-					&& !(task.getEndTime().toString().equalsIgnoreCase("\n"))
-					&& (task.getStatus().toString().contains("un")))) {
+			if (((task.getStartTime().toString().equalsIgnoreCase(TaskStringReference.EMPTY_TIME)) 
+					&& !(task.getEndTime().toString().equalsIgnoreCase(TaskStringReference.EMPTY_TIME))
+					&& (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE)))) {
 				return true;
 			} else {
 				return false;
 			}
 		});
-		setCurrentToggleStatus("TASK");
+		setCurrentToggleStatus(TaskStringReference.SHOWING_TASK);
 		
 	}
 	
 	@Override
 	public void updateFilteredTaskListByFloatingTask() {
 		filteredTasks.setPredicate(task -> {
-			if (((task.getStartTime().toString().equalsIgnoreCase("\n")) 
-					&& (task.getEndTime().toString().equalsIgnoreCase("\n"))
-					&& (task.getStatus().toString().contains("un")))) {
+			if (((task.getStartTime().toString().equalsIgnoreCase(TaskStringReference.EMPTY_TIME)) 
+					&& (task.getEndTime().toString().equalsIgnoreCase(TaskStringReference.EMPTY_TIME))
+					&& (task.getStatus().toString().equals((TaskStringReference.STATUS_UNDONE))))) {
 				return true;
 			} else {
 				return false;
 			}
 		});
-		setCurrentToggleStatus("FLOATING_TASK");
+		setCurrentToggleStatus(TaskStringReference.SHOWING_FLOATING_TASK);
 		
 	}
 	
 	@Override
 	public void updateFilteredTaskListByHighPriority() {
 		filteredTasks.setPredicate(task -> {
-			if ((task.getPriority().toString().equals("h")) 
-					&& (task.getStatus().toString().equals("undone"))) {
+			if ((task.getPriority().toString().equals(TaskStringReference.PRIORITY_HIGH)) 
+					&& (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE))) {
 				return true;
 			} else {
 				return false;
 			}
 		});
+		setCurrentToggleStatus(TaskStringReference.SHOWING_SPECIAL);
 	}
 
 	@Override
 	public void updateFilteredTaskListByMediumPriority() {
 		filteredTasks.setPredicate(task -> {
-			if ((task.getPriority().toString().equals("m")) 
-					&& (task.getStatus().toString().equals("undone"))) {
+			if ((task.getPriority().toString().equals(TaskStringReference.PRIORITY_MEDIUM)) 
+					&& (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE))) {
 				return true;
 			} else {
 				return false;
 			}
 		});
+		setCurrentToggleStatus(TaskStringReference.SHOWING_SPECIAL);
 	}
 	
 	@Override
 	public void updateFilteredTaskListByLowPriority() {
 		filteredTasks.setPredicate(task -> {
-			if ((task.getPriority().toString().equals("l")) 
-					&& (task.getStatus().toString().equals("undone"))) {
+			if ((task.getPriority().toString().equals(TaskStringReference.PRIORITY_LOW)) 
+					&& (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE))) {
 				return true;
 			} else {
 				return false;
 			}
 		});
+		setCurrentToggleStatus(TaskStringReference.SHOWING_SPECIAL);
 	}
 
 	@Override
 	public void updateFilteredTaskListByDoneStatus() {
 		filteredTasks.setPredicate(task -> {
-			if (task.getStatus().toString().equals("done")) {
+			if (task.getStatus().toString().equals(TaskStringReference.STATUS_DONE)) {
 				return true;
 			} else {
 				return false;
 			}
 		});
+		setCurrentToggleStatus(TaskStringReference.SHOWING_SPECIAL);
 	}
 
 	@Override
 	public void updateFilteredTaskListByUnDoneStatus() {
 		filteredTasks.setPredicate(task -> {
-			if (task.getStatus().toString().equals("undone")) {
+			if (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE)) {
 				return true;
 			} else {
 				return false;
 			}
 		});
+		setCurrentToggleStatus(TaskStringReference.SHOWING_SPECIAL);
 	}
 	
 	@Override
@@ -302,12 +311,13 @@ public class ModelManager extends ComponentManager implements Model {
 			if (((StringUtil.containsWordIgnoreCase(task.getName().fullName, archive))
 					|| (StringUtil.containsWordIgnoreCase(task.getDescription().description, archive))
 					|| (StringUtil.containsTagIgnoreCase(task.getTags(), archive)))
-					&& (task.getStatus().toString().equalsIgnoreCase("done")))
+					&& (task.getStatus().toString().equalsIgnoreCase(TaskStringReference.STATUS_DONE)))
 				return true;
 			else {
 				return false;
 			}
 		});
+		setCurrentToggleStatus(TaskStringReference.SHOWING_SPECIAL);
 	}
 	//@@author
 	// ========== Inner classes/interfaces used for filtering
@@ -358,7 +368,7 @@ public class ModelManager extends ComponentManager implements Model {
 				if (((StringUtil.containsWordIgnoreCase(task.getName().fullName, keyword))
 						|| (StringUtil.containsWordIgnoreCase(task.getDescription().description, keyword))
 						|| (StringUtil.containsTagIgnoreCase(task.getTags(), keyword)))
-						&& (task.getStatus().toString().equalsIgnoreCase("undone")))
+						&& (task.getStatus().toString().equalsIgnoreCase(TaskStringReference.STATUS_UNDONE)))
 					return true;
 			}
 			return false;

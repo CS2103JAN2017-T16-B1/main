@@ -6,6 +6,7 @@ import org.junit.Assert;
 
 import seedu.address.model.Task.Priority;
 import seedu.address.model.Task.Status;
+import seedu.address.model.Task.TaskStringReference;
 
 /**
  * Finds and lists all tasks in task manager whose name contains any of the
@@ -14,19 +15,14 @@ import seedu.address.model.Task.Status;
 public class FindCommand extends Command {
 	//@@author A0139509X
 	public static final String COMMAND_WORD = "find";
-	private static final String HIGH_PRIORITY = "h";
-	private static final String MEDIUM_PRIORITY = "m";
-	private static final String LOW_PRIORITY = "l";
-	private static final Object DONE = "done";
-	private static final Object UNDONE = "undone";
 
 	public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names/description/tags contain any of "
 			+ "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
 			+ "When prefix (#) is used, will display all task with the associated status or priority level.\n"
 			+ "When prefix (@) is used, will display all archived task with the associated names/descriptions/tags.\n"
-			+ "Parameters: KEYWORD [MORE_KEYWORDS]...\n" + "Example: " + COMMAND_WORD + " study meeting friend\n"
-			+ "Parameters: #KEYWORD \n" + "Example: #" + COMMAND_WORD + " #h\n"
-			+ "Parameters: @KEYWORD \n" + "Example: @" + COMMAND_WORD + " #h\n";
+			+ "(Usage 1) Parameters: KEYWORD [MORE_KEYWORDS]...\n" + "Example: " + COMMAND_WORD + " study meeting friend\n"
+			+ "(Usage 2) Parameters: #KEYWORD \n" + "Example: " + COMMAND_WORD + " #h\n"
+			+ "(Usage 3) Parameters: @KEYWORD \n" + "Example: " + COMMAND_WORD + " @study\n";
 
 	private final Set<String> keywords;
 
@@ -87,9 +83,9 @@ public class FindCommand extends Command {
 	}
 
 	private void updateByStatusLevel(Status status) {
-		if (this.status.toString().equals(DONE)) {
+		if (this.status.toString().equals(TaskStringReference.STATUS_DONE)) {
 			model.updateFilteredTaskListByDoneStatus();
-		} else if (this.status.toString().equals(UNDONE)) {
+		} else if (this.status.toString().equals(TaskStringReference.STATUS_UNDONE)) {
 			model.updateFilteredTaskListByUnDoneStatus();
 		} else {
 			Assert.fail("unable to execute FindCommand due to incorrect Status");
@@ -97,11 +93,11 @@ public class FindCommand extends Command {
 	}
 
 	private void updateByPriorityLevel(Priority priority) {
-		if (this.priority.toString().equals(HIGH_PRIORITY)) {
+		if (this.priority.toString().equals(TaskStringReference.PRIORITY_HIGH)) {
 			model.updateFilteredTaskListByHighPriority();
-		} else if (this.priority.toString().equals(MEDIUM_PRIORITY)) {
+		} else if (this.priority.toString().equals(TaskStringReference.PRIORITY_MEDIUM)) {
 			model.updateFilteredTaskListByMediumPriority();
-		} else if (this.priority.toString().equals(LOW_PRIORITY)) {
+		} else if (this.priority.toString().equals(TaskStringReference.PRIORITY_LOW)) {
 			model.updateFilteredTaskListByLowPriority();
 		} else {
 			Assert.fail("unable to execute FindCommand due to incorrect Priority");
