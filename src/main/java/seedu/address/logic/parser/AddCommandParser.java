@@ -39,10 +39,10 @@ public class AddCommandParser {
                         argsTokenizer.getValue(PREFIX_ENDTIME).orElse(""),
                         argsTokenizer.getValue(PREFIX_RECURPERIOD).orElse(null),
                         argsTokenizer.getValue(PREFIX_RECURENDDATE).orElse(null),
+                        argsTokenizer.getValue(PREFIX_PRIORITY).orElse("m"),
                         ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
                 );
                 
-            
         } catch (NoSuchElementException nsee) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         } catch (IllegalValueException ive) {
