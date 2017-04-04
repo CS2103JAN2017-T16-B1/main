@@ -206,8 +206,8 @@ public class ModelManager extends ComponentManager implements Model {
 	@Override
 	public void updateFilteredTaskListByEvent() {
 		filteredTasks.setPredicate(task -> {
-			if ((!(task.getStartTime().toString().equalsIgnoreCase(TaskStringReference.EMPTY_TIME)) 
-					&& !(task.getEndTime().toString().equalsIgnoreCase(TaskStringReference.EMPTY_TIME))
+			if ((!(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME)) 
+					&& !(task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME))
 					&& (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE)))) {
 				return true;
 			} else {
@@ -220,8 +220,8 @@ public class ModelManager extends ComponentManager implements Model {
 	@Override
 	public void updateFilteredTaskListByTask() {
 		filteredTasks.setPredicate(task -> {
-			if (((task.getStartTime().toString().equalsIgnoreCase(TaskStringReference.EMPTY_TIME)) 
-					&& !(task.getEndTime().toString().equalsIgnoreCase(TaskStringReference.EMPTY_TIME))
+			if (((task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME)) 
+					&& !(task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME))
 					&& (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE)))) {
 				return true;
 			} else {
@@ -235,8 +235,8 @@ public class ModelManager extends ComponentManager implements Model {
 	@Override
 	public void updateFilteredTaskListByFloatingTask() {
 		filteredTasks.setPredicate(task -> {
-			if (((task.getStartTime().toString().equalsIgnoreCase(TaskStringReference.EMPTY_TIME)) 
-					&& (task.getEndTime().toString().equalsIgnoreCase(TaskStringReference.EMPTY_TIME))
+			if (((task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME)) 
+					&& (task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME))
 					&& (task.getStatus().toString().equals((TaskStringReference.STATUS_UNDONE))))) {
 				return true;
 			} else {

@@ -70,9 +70,9 @@ public class TaskCard extends UiPart<Region> {
 	}*/
 
 	private void setTextForEndTime(ReadOnlyTask task) {
-		if(!(task.getEndTime().toString().equals(TaskStringReference.EMPTY_TIME))){
+		if(!(task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME))){
 			endTime.setText("End Time : " +task.getEndTime().endTime);
-        } else if(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME)){
+        } else if(task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME)){
         	endTime.setManaged(false);
         }
 	}

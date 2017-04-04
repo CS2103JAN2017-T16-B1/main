@@ -14,6 +14,5 @@ public class TaskStringReference {
     public static final String STATUS_UNDONE = "undone";
     public static final String STATUS_DONE = "done";
     public static final String EMPTY_DESCRIPTION = "\n";
-    public static final String EMPTY_TIME = "\n";
-    
+    public static final String EMPTY_TIME = "";
 }
