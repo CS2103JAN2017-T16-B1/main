@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Task.EndTime;
@@ -63,13 +64,17 @@ public class EditCommand extends Command {
         }
 
         ReadOnlyTask taskToEdit = lastShownList.get(filteredTaskListIndex);
-        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        
+        
 
         try {
+        	Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
             model.updateTask(filteredTaskListIndex, editedTask);
         } catch (UniqueTaskList.DuplicatetaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        }
+        } catch (IllegalValueException e) {
+        	throw new CommandException("Start Time should not be before endTime");
+		}
         model.updateFilteredListToShowAll();
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
@@ -77,10 +82,11 @@ public class EditCommand extends Command {
     /**
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
+     * @throws IllegalValueException 
      */
 
     private static Task createEditedTask(ReadOnlyTask taskToEdit,
-                                             EditTaskDescriptor editTaskDescriptor) {
+                                             EditTaskDescriptor editTaskDescriptor) throws IllegalValueException {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
@@ -95,9 +101,9 @@ public class EditCommand extends Command {
         UniqueTagList updatedTags =new UniqueTagList(taskToEdit,editTaskDescriptor);//editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
         System.out.print(updatedTags);
         
-		return new Task(updatedName, updatedDescription, updatedStartTime,
-        		updatedEndTime, updatedID, updatedPriority, updatedStatus, updatedRecurPeriod, updatedRecurEndDate, updatedTags);
-        
+      		return new Task(updatedName, updatedDescription, updatedStartTime,
+              		updatedEndTime, updatedID, updatedPriority, updatedStatus, updatedRecurPeriod, updatedRecurEndDate, updatedTags);
+              
         }
 
 

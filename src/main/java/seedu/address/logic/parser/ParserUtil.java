@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import java.sql.Array;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -10,6 +11,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -47,6 +49,8 @@ public class ParserUtil {
      */
     
     private static final Pattern LIST_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+
+	private static final String STARTTIME_WITHOUT_ENDTIME_MESSAGE = "Cannot have StartTime without End Time";
 
     public static Optional<Integer> parseIndex(String command) {
         final Matcher matcher = INDEX_ARGS_FORMAT.matcher(command.trim());
@@ -168,5 +172,35 @@ public class ParserUtil {
             tagSet.add(new Tag(tagName));
         }
         return new UniqueTagList(tagSet);
+    }
+    //@@author A0138998B
+    /**
+     * Parses endTime and StartTime to validate that startTime is before endTime
+     * @throws ParseException 
+     * @throws IllegalValueException 
+     */
+    public static void isAfter(String startTimeString,String endTimeString) throws IllegalValueException{
+    	SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd-HHmm");
+    	Date startTime;
+    	Date endTime;
+    	
+    	if(endTimeString=="" && startTimeString!=""){
+			throw new IllegalValueException(STARTTIME_WITHOUT_ENDTIME_MESSAGE);
+    	}
+    	
+    	try{
+    	startTime=dateFormat.parse(startTimeString);
+    	endTime=dateFormat.parse(endTimeString);
+    	}
+    	catch (ParseException e){
+    		return;
+    	} 
+    	
+    	if(startTime.after(endTime)){
+    		throw new IllegalValueException("StartTime must be before EndTime");
+    	}else{
+    		return;
+    	}
+    	
     }
 }

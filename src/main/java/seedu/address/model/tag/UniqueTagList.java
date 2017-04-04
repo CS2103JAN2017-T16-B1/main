@@ -34,15 +34,17 @@ public class UniqueTagList implements Iterable<Tag> {
      * Constructs empty TagList.
      */
     public UniqueTagList() {}
-  //@@A0138998B
+  //@@author A0138998B
     /**
      * Constructs TagList that takes in tags from an old task and new edited task.
      * Any tags that are the same in both tasks are deleted and new ones are merged into a single list
      */
     public UniqueTagList(ReadOnlyTask task, EditTaskDescriptor editedTask){
+    	
        	for(Tag tag : task.getTags()){
     		internalList.add(tag);
     	}
+       	
        	if(editedTask.getTags().isPresent()){
        		for(Tag tag: editedTask.getTags().get()){
        			if(internalList.contains(tag)){
@@ -55,7 +57,7 @@ public class UniqueTagList implements Iterable<Tag> {
        	}
     	
     }
-  //@@A0138998B
+  //@@author
     /**
      * Creates a UniqueTagList using given String tags.
      * Enforces no nulls or duplicates.

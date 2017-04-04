@@ -16,11 +16,11 @@ public class TypicalTestTasks {
         try {
             task1 = new TaskBuilder().withName("Study for Midterm").withStartTime("2017-03-03-2100")
                     .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
-                    .withPriority("h").withID("1").withDescription("").withRecurPeriod("")
+                    .withPriority("m").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
             task2 = new TaskBuilder().withName("Study for Midterm2").withStartTime("2017-03-03-2100")
                     .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
-                    .withPriority("h").withID("1").withDescription("").withRecurPeriod("")
+                    .withPriority("l").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
             task3 = new TaskBuilder().withName("Study for Midterm3").withStartTime("2017-03-03-2100")
                     .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
@@ -28,29 +28,29 @@ public class TypicalTestTasks {
                     .withRecurEndDate("").build();
             task4 = new TaskBuilder().withName("Study for Midterm4").withStartTime("2017-03-03-2100")
                     .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
-                    .withPriority("h").withID("1").withDescription("").withRecurPeriod("")
+                    .withPriority("m").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
-            task5 = new TaskBuilder().withName("Study for Midterm5").withStartTime("2017-03-03-2100")
-                    .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
-                    .withPriority("h").withID("1").withDescription("").withRecurPeriod("")
+            task5 = new TaskBuilder().withName("Study for Midterm5").withStartTime("2009-03-03-2100")
+                    .withEndTime("2010-04-04-2100").withTags("School").withStatus("undone")
+                    .withPriority("m").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
-            task6 = new TaskBuilder().withName("Study for Midterm6").withStartTime("2017-03-03-2100")
+            task6 = new TaskBuilder().withName("ABC Study for Midterm6").withStartTime("2017-03-03-2100")
                     .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
-                    .withPriority("h").withID("1").withDescription("").withRecurPeriod("")
+                    .withPriority("m").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
             task7 = new TaskBuilder().withName("Study for Midterm7").withStartTime("2017-03-03-2100")
                     .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
-                    .withPriority("h").withID("1").withDescription("").withRecurPeriod("")
+                    .withPriority("m").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
 
             // Manually added
             task8 = new TaskBuilder().withName("Study for Midterm8").withStartTime("2017-03-03-2100")
                     .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
-                    .withPriority("h").withID("1").withDescription("").withRecurPeriod("")
+                    .withPriority("m").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
             task9 = new TaskBuilder().withName("Study for Midterm9").withStartTime("2017-03-03-2100")
                     .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
-                    .withPriority("h").withID("1").withDescription("").withRecurPeriod("")
+                    .withPriority("m").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
         } catch (IllegalValueException e) {
             e.printStackTrace();
@@ -58,7 +58,7 @@ public class TypicalTestTasks {
         }
     }
 
-    public static void loadTaskManagerWithSampleData(TaskManager ab) {
+    public static void loadTaskManagerWithSampleData(TaskManager ab) throws IllegalValueException {
         for (TestTask task : new TypicalTestTasks().getTypicalTasks()) {
             try {
                 ab.addTask(new Task(task));
@@ -72,7 +72,7 @@ public class TypicalTestTasks {
         return new TestTask[]{task1, task2, task3, task4, task5, task6, task7};
     }
 
-    public TaskManager getTypicalTaskManager() {
+    public TaskManager getTypicalTaskManager() throws IllegalValueException {
         TaskManager ab = new TaskManager();
         loadTaskManagerWithSampleData(ab);
         return ab;

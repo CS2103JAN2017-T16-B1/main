@@ -30,7 +30,6 @@ public class Name {
         if (!isValidName(trimmedName)) {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
         }
-        //trimmedName = trimmedName + "\n";
         this.fullName = trimmedName;
     }
 

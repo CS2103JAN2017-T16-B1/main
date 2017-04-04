@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import seedu.address.TestApp;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.events.BaseEvent;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.TaskManager;
 import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.testutil.TestUtil;
@@ -70,10 +71,19 @@ public abstract class TaskManagerGuiTest {
             taskListPanel = mainGui.getTaskListPanel();
             resultDisplay = mainGui.getResultDisplay();
             commandBox = mainGui.getCommandBox();
+
             this.stage = stage;
         });
         EventsCenter.clearSubscribers();
-        testApp = (TestApp) FxToolkit.setupApplication(() -> new TestApp(this::getInitialData, getDataFileLocation()));
+        testApp = (TestApp) FxToolkit.setupApplication(() -> new TestApp(() -> {
+			try {
+				return getInitialData();
+			} catch (IllegalValueException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}, getDataFileLocation()));
         FxToolkit.showStage();
         while (!stage.isShowing());
         mainGui.focusOnMainApp();
@@ -82,8 +92,9 @@ public abstract class TaskManagerGuiTest {
     /**
      * Override this in child classes to set the initial local data.
      * Return null to use the data in the file specified in {@link #getDataFileLocation()}
+     * @throws IllegalValueException 
      */
-    protected TaskManager getInitialData() {
+    protected TaskManager getInitialData() throws IllegalValueException {
         TaskManager ab = new TaskManager();
         TypicalTestTasks.loadTaskManagerWithSampleData(ab);
         return ab;
