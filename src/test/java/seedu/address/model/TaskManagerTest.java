@@ -61,11 +61,11 @@ public class TaskManagerTest {
     @Test
     public void resetData_withDuplicateTags_throwsAssertionError() throws IllegalValueException {
         TaskManager typicalTaskManager = new TypicalTestTasks().getTypicalTaskManager();
-        List<ReadOnlyTask> newPersons = typicalTaskManager.getTaskList();
+        List<ReadOnlyTask> newTasks = typicalTaskManager.getTaskList();
         List<Tag> newTags = new ArrayList<>(typicalTaskManager.getTagList());
         // Repeat the first tag twice
         newTags.add(newTags.get(0));
-        TaskManagerStub newData = new TaskManagerStub(newPersons, newTags);
+        TaskManagerStub newData = new TaskManagerStub(newTasks, newTags);
 
         thrown.expect(AssertionError.class);
         taskManager.resetData(newData);
@@ -149,20 +149,20 @@ public class TaskManagerTest {
     //@@author 
 
     /**
-     * A stub ReadOnlyTaskManager whose persons and tags lists can violate interface constraints.
+     * A stub ReadOnlyTaskManager whose tasks and tags lists can violate interface constraints.
      */
     private static class TaskManagerStub implements ReadOnlyTaskManager {
-        private final ObservableList<ReadOnlyTask> persons = FXCollections.observableArrayList();
+        private final ObservableList<ReadOnlyTask> tasks = FXCollections.observableArrayList();
         private final ObservableList<Tag> tags = FXCollections.observableArrayList();
 
-        TaskManagerStub(Collection<? extends ReadOnlyTask> persons, Collection<? extends Tag> tags) {
-            this.persons.setAll(persons);
+        TaskManagerStub(Collection<? extends ReadOnlyTask> tasks, Collection<? extends Tag> tags) {
+            this.tasks.setAll(tasks);
             this.tags.setAll(tags);
         }
 
         @Override
         public ObservableList<ReadOnlyTask> getTaskList() {
-            return persons;
+            return tasks;
         }
 
         @Override

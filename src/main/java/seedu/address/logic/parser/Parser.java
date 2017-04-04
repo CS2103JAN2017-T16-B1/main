@@ -67,11 +67,7 @@ public class Parser {
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-            try {
-				return new FindCommandParser().parse(arguments);
-			} catch (IllegalValueException e) {
-				return new IncorrectCommand(e.getMessage());
-			}
+			return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

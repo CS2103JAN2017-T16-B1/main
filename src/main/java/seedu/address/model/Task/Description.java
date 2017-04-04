@@ -8,7 +8,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  */
 public class Description {
 
-    public static final String MESSAGE_PHONE_CONSTRAINTS = "Description should only contain alphanumeric characters and whitespace";
+    public static final String MESSAGE_DESCRIPTION_CONSTRAINTS = "Description should only contain alphanumeric characters and whitespace";
     public static final String DESCRIPTION_VALIDATION_REGEX = ".*";
 
     public final String description;
@@ -22,7 +22,7 @@ public class Description {
         if (description != null){
         String trimmeddescription = description.trim();
         if (!isValidDescription(trimmeddescription)) {
-            throw new IllegalValueException(MESSAGE_PHONE_CONSTRAINTS);
+            throw new IllegalValueException(MESSAGE_DESCRIPTION_CONSTRAINTS);
         }
         trimmeddescription = trimmeddescription + "\n";
         this.description = trimmeddescription;

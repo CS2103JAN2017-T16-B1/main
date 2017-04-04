@@ -9,6 +9,7 @@ import seedu.address.model.Task.UniqueTaskList.TaskNotFoundException;
 /**
  * Deletes a task identified using it's last displayed index from the task manager.
  */
+//@@author A0139375W
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
@@ -19,7 +20,7 @@ public class DeleteCommand extends Command {
             + "Parameters:  INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted:\n %1$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted:\n %1$s";
 
     public final int targetIndex;
     
@@ -51,7 +52,7 @@ public class DeleteCommand extends Command {
             assert false : "The target task cannot be missing";
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, taskToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
 
     }
 

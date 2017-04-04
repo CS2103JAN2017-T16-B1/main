@@ -12,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.NewResultAvailableEvent;
-import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
+import seedu.address.commons.events.ui.TaskPanelSelectionChangedEvent;
 import seedu.address.commons.util.FxViewUtil;
 
 /**
@@ -47,7 +47,7 @@ public class ResultDisplay extends UiPart<Region> {
     }
     //@@author A0139509X
     @Subscribe
-    private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
+    private void handleTaskPanelSelectionChangedEvent(TaskPanelSelectionChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         displayed.setValue(event.getNewSelection().getAsText());
     }

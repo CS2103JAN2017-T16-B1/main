@@ -11,21 +11,21 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
+import seedu.address.commons.events.ui.TaskPanelSelectionChangedEvent;
 import seedu.address.commons.util.FxViewUtil;
 import seedu.address.model.Task.ReadOnlyTask;
 
 /**
  * Panel containing the list of tasks.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
-    private static final String FXML = "PersonListPanel.fxml";
+public class TaskListPanel extends UiPart<Region> {
+    private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
+    private static final String FXML = "TaskListPanel.fxml";
 
     @FXML
     private ListView<ReadOnlyTask> taskListView;
 
-    public PersonListPanel(AnchorPane taskListPlaceholder, ObservableList<ReadOnlyTask> taskList) {
+    public TaskListPanel(AnchorPane taskListPlaceholder, ObservableList<ReadOnlyTask> taskList) {
         super(FXML);
         setConnections(taskList);
         addToPlaceholder(taskListPlaceholder);
@@ -33,7 +33,7 @@ public class PersonListPanel extends UiPart<Region> {
 
     private void setConnections(ObservableList<ReadOnlyTask> taskList) {
         taskListView.setItems(taskList);
-        taskListView.setCellFactory(listView -> new PersonListViewCell());
+        taskListView.setCellFactory(listView -> new TaskListViewCell());
         setEventHandlerForSelectionChangeEvent();
     }
 
@@ -48,7 +48,7 @@ public class PersonListPanel extends UiPart<Region> {
                 .addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
                         logger.fine("Selection in task list panel changed to : '" + newValue + "'");
-                        raise(new PersonPanelSelectionChangedEvent(newValue));
+                        raise(new TaskPanelSelectionChangedEvent(newValue));
                     }
                 });
     }
@@ -60,7 +60,7 @@ public class PersonListPanel extends UiPart<Region> {
         });
     }
 
-    class PersonListViewCell extends ListCell<ReadOnlyTask> {
+    class TaskListViewCell extends ListCell<ReadOnlyTask> {
 
         @Override
         protected void updateItem(ReadOnlyTask task, boolean empty) {
@@ -70,7 +70,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(task, getIndex() + 1).getRoot());
+                setGraphic(new TaskCard(task, getIndex() + 1).getRoot());
             }
         }
     }
