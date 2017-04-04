@@ -2,56 +2,14 @@
 <taskmanager>
     <tasks>
         <id>2</id>
-        <name>hello</name>
-        <description></description>
-        <starttime>2017-03-27-1200</starttime>
-        <endtime>2017-03-28-1500</endtime>
-        <priority>m</priority>
-        <status>done</status>
-    </tasks>
-    <tasks>
-        <id>1</id>
-        <name>milk</name>
-        <description></description>
-        <starttime></starttime>
-        <endtime></endtime>
-        <priority>m</priority>
-        <status>done</status>
-        <tagged>friends</tagged>
-    </tasks>
-    <tasks>
-        <id>2</id>
-        <name>milk</name>
-        <description></description>
-        <starttime>2017-03-27-0900</starttime>
-        <endtime></endtime>
-        <priority>m</priority>
-        <status>done</status>
-    </tasks>
-    <tasks>
-        <id>2</id>
-        <name>eat dinner with cell</name>
-        <description>at holland village</description>
-        <starttime>2017-03-29-1000</starttime>
-        <endtime>2017-03-29-1500</endtime>
-        <priority>m</priority>
-        <status>done</status>
-    </tasks>
-    <tasks>
-        <id>1</id>
-        <name>milk</name>
-        <description></description>
+        <name>test</name>
+        <description>
+</description>
         <starttime></starttime>
         <endtime></endtime>
         <priority>m</priority>
         <status>undone</status>
+        <tagged>hello</tagged>
     </tasks>
-    <tags>friends</tags>
-    <tags>milk</tags>
-    <tags>is</tags>
-    <tags>good</tags>
-    <tags>family</tags>
-    <tags>yo</tags>
     <tags>hello</tags>
-    <tags>fun</tags>
 </taskmanager>
