@@ -8,7 +8,6 @@ import seedu.address.model.tag.UniqueTagList;
  */
 public interface ReadOnlyTask {
 
-   
 	Name getName();
     Description getDescription();
     StartTime getStartTime();
@@ -38,6 +37,7 @@ public interface ReadOnlyTask {
                 && other.getPriority().equals(this.getPriority())
                 && other.getStatus().equals(this.getStatus());
     }
+    
 //@@author A0138998B
     /**
      * Formats the Task/event as text, showing all task/event details.
@@ -47,26 +47,31 @@ public interface ReadOnlyTask {
         builder.append(getName())
                 .append(" Description: ")
                 .append(getDescription());
-        		if(noEndTime() && noStartTime()){
-        			
-        		}else 
-        		if(noEndTime() && !noStartTime()){
-        			builder.append(" DeadLine: ")
-        			.append(getStartTime());
-        		}else
-        		if(!noEndTime() && !noStartTime()){
-        			builder.append(" Event Start time: ")
-        			.append(getStartTime())
-        			.append(" Event end time: ")
-        			.append(getEndTime());
-        		}
-        		builder.append(" priority: ")
-        		.append(getPriority())
-        		.append("\n Tags: ");
+        
+        if(noEndTime() && noStartTime()){
+        		//Nothing is shown
+        }
+        else if(noEndTime() && !noStartTime()){
+        		builder.append(" DeadLine: ")
+        		.append(getStartTime());
+        }
+        else if(!noEndTime() && !noStartTime()){
+        		builder.append(" Event Start time: ")
+        		.append(getStartTime())
+        		.append(" Event end time: ")
+        		.append(getEndTime());
+        }
+        
+        builder.append(" priority: ")
+        .append(getPriority())
+        .append("\n Tags: ");
         getTags().forEach(builder::append);
+        
         return builder.toString();
     }
+    
 	boolean noEndTime();
+	
 	boolean noStartTime();
 	
 }

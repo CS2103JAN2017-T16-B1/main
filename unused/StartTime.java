@@ -26,13 +26,19 @@ public class StartTime {
 
     public static final String MESSAGE_DATETIME_CONSTRAINTS =
             "Event start times must be in the form of yyyy-mm-dd-HHMM or other relaxed forms";;
+    
     private static final String DATETIME_VALIDATION_REGEX = "(((18|19|20|21)\\d\\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])-[0-9]{4})*";
-	private static final String DATE_VALIDATION_REGEX ="^(monday|tuesday|wednesday|thursday|friday|saturday|sunday)";
-	private static final String TIME_VALIDATION_REGEX ="^([0-9]{4})";
-	public static final String MESSAGE_DAY_CONSTRAINTS =
+	
+    private static final String DATE_VALIDATION_REGEX ="^(monday|tuesday|wednesday|thursday|friday|saturday|sunday)";
+	
+    private static final String TIME_VALIDATION_REGEX ="^([0-9]{4})";
+	
+    public static final String MESSAGE_DAY_CONSTRAINTS =
             "Dates must be in the form of full names of days of the week i.e. Monday";
-	public static final String MESSAGE_TIME_CONSTRAINTS =
+	
+    public static final String MESSAGE_TIME_CONSTRAINTS =
             "Times must be in the form of HHMM i.e. 1000";
+    
     public final String startTime;
 
     /**
@@ -43,8 +49,8 @@ public class StartTime {
     public StartTime(String startTime) throws IllegalValueException {
         
         String trimmedTime = startTime.trim();
+        
         if(startTime!=null){
-        	
         	trimmedTime = parseDate(trimmedTime);
         }
         
@@ -118,13 +124,16 @@ public class StartTime {
     /**
      * splits date and time into different
      * @param time
-     * @return
+     * @return a list of arrays of day and time seperate from each other
      */
 	private static ArrayList<String> parseDayAndTime(String time) {
 		
 		time=time.toLowerCase();
+		
 		ArrayList<String> times= new ArrayList<String>(Arrays.asList(time.split(" ")));
+		
 		return times;
+		
 	}
 	/**
 	 * 
@@ -133,6 +142,7 @@ public class StartTime {
 	 */
 
 	private static void checkForCorrectFormats(ArrayList<String> times) throws IllegalValueException {
+		
 		if(times.size()!=2){
 			throw new IllegalValueException(MESSAGE_DATETIME_CONSTRAINTS);
 		}
@@ -140,17 +150,21 @@ public class StartTime {
 		if(!times.get(0).matches(DATE_VALIDATION_REGEX)){
 			throw new IllegalValueException(MESSAGE_DAY_CONSTRAINTS);
 		}
+		
 		if(!times.get(1).matches(TIME_VALIDATION_REGEX)){
 			throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
 		}
+		
 	}
-/**
- * 
- * @param times is an array that holds both the day and time
- * @param intTime 
- * @return intTime to match the day of the week specified as an integer
- */
+	
+	/**
+	 * 
+	 * @param times is an array that holds both the day and time
+	 * @param intTime 
+	 * @return intTime to match the day of the week specified as an integer
+	 */
 	private static int getDayAsInt(ArrayList<String> times, int intTime) {
+		
 		switch(times.get(0)){
 		
 			case("monday"):
@@ -175,8 +189,11 @@ public class StartTime {
 		     intTime=7;break;
 			
 		}
+		
 		return intTime;
+		
 	}
+	
 	/**
 	 * 
 	 * @param date is the current date time on the users computer
@@ -184,9 +201,11 @@ public class StartTime {
 	 * @return the closest date from current date 
 	 */
 	private static LocalDateTime getNearestDate(LocalDateTime date, int intTime) {
+		
 		while (date.getDayOfWeek().getValue() != intTime) {
 		    date=date.plusDays(1);
 		}
+		
 		return date;
 	}
 

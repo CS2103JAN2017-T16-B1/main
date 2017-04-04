@@ -73,7 +73,7 @@ public abstract class TaskManagerGuiTest {
             personListPanel = mainGui.getPersonListPanel();
             resultDisplay = mainGui.getResultDisplay();
             commandBox = mainGui.getCommandBox();
-            browserPanel = mainGui.getBrowserPanel();
+            //browserPanel = mainGui.getBrowserPanel();
             this.stage = stage;
         });
         EventsCenter.clearSubscribers();

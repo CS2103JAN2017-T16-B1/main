@@ -27,7 +27,7 @@ public class Task implements ReadOnlyTask {
     private UniqueTagList tags;
 
     /**
-     * Every name must be present and not null.
+     * Every parameter must be present and not null.
      * @throws IllegalValueException 
      */
 
@@ -51,7 +51,7 @@ public class Task implements ReadOnlyTask {
     public Task(Name name, Description description, StartTime startTime, EndTime endTime, ID id, Priority priority, Status status
     		, UniqueTagList tags) throws IllegalValueException {
         assert !CollectionUtil.isAnyNull(name, startTime,id, tags);
-        ParserUtil.isAfter(startTime.toString(), endTime.toString());
+        ParserUtil.isAfter(startTime.startTime, endTime.endTime);
 		
         this.name = name;
         this.description = description;

@@ -183,8 +183,6 @@ public class ParserUtil {
     	SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd-HHmm");
     	Date startTime;
     	Date endTime;
-    	startTimeString.replaceAll("\n", "");
-    	endTimeString.replaceAll("\n", "");
     	
     	if(endTimeString=="" && startTimeString!=""){
 			throw new IllegalValueException(STARTTIME_WITHOUT_ENDTIME_MESSAGE);
@@ -197,6 +195,7 @@ public class ParserUtil {
     	catch (ParseException e){
     		return;
     	} 
+    	
     	if(startTime.after(endTime)){
     		throw new IllegalValueException("StartTime must be before EndTime");
     	}else{
