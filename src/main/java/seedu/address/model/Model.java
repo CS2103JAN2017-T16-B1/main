@@ -27,8 +27,8 @@ public interface Model {
     /**
      * Updates the Task located at {@code filteredTaskListIndex} with {@code editedTask}.
      *
-     * @throws DuplicatetaskException if updating the person's details causes the person to be equivalent to
-     *      another existing person in the list.
+     * @throws DuplicatetaskException if updating the task's details causes the task to be equivalent to
+     *      another existing task in the list.
      * @throws IndexOutOfBoundsException if {@code filteredPersonListIndex} < 0 or >= the size of the filtered list.
      */
     void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)
@@ -44,10 +44,10 @@ public interface Model {
     /** sets the current toggle status*/
     void setCurrentToggleStatus(String currentToggleStatus);
     
-    /** Updates the filter of the filtered person list to show all persons */
+    /** Updates the filter of the filtered task list to show all tasks */
     void updateFilteredListToShowAll();
 
-    /** Updates the filter of the filtered person list to filter by the given keywords*/
+    /** Updates the filter of the filtered task list to filter by the given keywords*/
     void updateFilteredTaskListByKeywords(Set<String> keywords);
 
     /** Updates the filter of the filtered task list to filter by done status*/

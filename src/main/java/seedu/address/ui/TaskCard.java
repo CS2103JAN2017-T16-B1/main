@@ -11,7 +11,7 @@ import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.model.Task.TaskStringReference;
 
 
-public class PersonCard extends UiPart<Region> {
+public class TaskCard extends UiPart<Region> {
 
     private static final String LOW_PRIORITY_COLOR = "-fx-background-color: #EEFEED;";
 
@@ -19,7 +19,7 @@ public class PersonCard extends UiPart<Region> {
 
 	private static final String HIGH_PRIORITY_COLOR = "-fx-background-color: #FEF0ED;";
 
-	private static final String FXML = "PersonListCard.fxml";
+	private static final String FXML = "TaskListCard.fxml";
 
     @FXML
     private HBox cardPane;
@@ -28,11 +28,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label description;
     @FXML
-    private Label email;
+    private Label startTime;
     @FXML
-    private Label address;
+    private Label endTime;
     @FXML
     private FlowPane tags;
     //@FXML
@@ -40,7 +40,7 @@ public class PersonCard extends UiPart<Region> {
     //@FXML
     //private ImageView icon;
 
-    public PersonCard(ReadOnlyTask task, int displayedIndex) {
+    public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
         name.setText(task.getName().fullName);
         id.setText(displayedIndex + ". ");
@@ -71,25 +71,25 @@ public class PersonCard extends UiPart<Region> {
 
 	private void setTextForEndTime(ReadOnlyTask task) {
 		if(!(task.getEndTime().toString().equals(TaskStringReference.EMPTY_TIME))){
-			address.setText("End Time : " +task.getEndTime().endTime);
+			endTime.setText("End Time : " +task.getEndTime().endTime);
         } else if(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME)){
-        	address.setManaged(false);
+        	endTime.setManaged(false);
         }
 	}
 
 	private void setTextForStartTime(ReadOnlyTask task) {
 		if(!(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME))){
-        	email.setText("Start Time : " + task.getStartTime().startTime);
+        	startTime.setText("Start Time : " + task.getStartTime().startTime);
         } else if(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME)){
-        	email.setManaged(false);
+        	startTime.setManaged(false);
         }
 	}
 
 	private void setTextForDescription(ReadOnlyTask task) {
 		if(!(task.getDescription().description.equals(TaskStringReference.EMPTY_DESCRIPTION))){
-        	phone.setText("Description : " + task.getDescription().description);
+        	description.setText("Description : " + task.getDescription().description);
         } else if(task.getDescription().description.equals(TaskStringReference.EMPTY_DESCRIPTION)){
-        	phone.setManaged(false);
+        	description.setManaged(false);
         }
 	}
 
