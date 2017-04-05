@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import seedu.address.TestApp;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.testutil.TestUtil;
@@ -52,8 +53,9 @@ public class TaskListPanelHandle extends GuiHandle {
      * Returns true if the list is showing the task details correctly and in correct order.
      * @param startPosition The starting position of the sub list.
      * @param tasks A list of task in the correct order.
+     * @throws IllegalValueException 
      */
-    public boolean isListMatching(int startPosition, ReadOnlyTask... tasks) throws IllegalArgumentException {
+    public boolean isListMatching(int startPosition, ReadOnlyTask... tasks) throws IllegalArgumentException{
         if (tasks.length + startPosition != getListView().getItems().size()) {
             throw new IllegalArgumentException("List size mismatched\n" +
                     "Expected " + (getListView().getItems().size() - 1) + " tasks");
@@ -63,9 +65,14 @@ public class TaskListPanelHandle extends GuiHandle {
             final int scrollTo = i + startPosition;
             guiRobot.interact(() -> getListView().scrollTo(scrollTo));
             guiRobot.sleep(200);
-            if (!TestUtil.compareCardAndTask(getTaskCardHandle(startPosition + i), tasks[i])) {
-                return false;
-            }
+            try {
+				if (!TestUtil.compareCardAndTask(getTaskCardHandle(startPosition + i), tasks[i])) {
+				    return false;
+				}
+			} catch (IllegalValueException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
         return true;
     }
@@ -147,7 +154,7 @@ public class TaskListPanelHandle extends GuiHandle {
         return getListView().getItems().get(index);
     }
 
-    public TaskCardHandle getTaskCardHandle(int index) {
+    public TaskCardHandle getTaskCardHandle(int index) throws IllegalValueException {
         return getTaskCardHandle(new Task(getListView().getItems().get(index)));
     }
 

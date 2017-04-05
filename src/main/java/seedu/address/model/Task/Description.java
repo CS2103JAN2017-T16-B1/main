@@ -24,7 +24,6 @@ public class Description {
         if (!isValidDescription(trimmeddescription)) {
             throw new IllegalValueException(MESSAGE_DESCRIPTION_CONSTRAINTS);
         }
-        trimmeddescription = trimmeddescription + "\n";
         this.description = trimmeddescription;
         }
         else this.description = description;
@@ -39,7 +38,7 @@ public class Description {
 
     @Override
     public String toString() {
-        return description;
+        return description + "\n";
     }
 
     @Override
