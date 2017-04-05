@@ -10,7 +10,7 @@ import seedu.address.model.Task.UniqueTaskList;
  */
 public class TypicalTestTasks {
 
-    public TestTask task1, task2, task3, task4, task5, task6, task7, task8, task9;
+    public TestTask task1, task2, task3, task4, task5, task6, task7, task8, task9, task10;
 
     public TypicalTestTasks() {
         try {
@@ -51,6 +51,10 @@ public class TypicalTestTasks {
             task9 = new TaskBuilder().withName("Study for Midterm9").withStartTime("2017-03-03-2100")
                     .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
                     .withPriority("m").withID("1").withDescription("").withRecurPeriod("")
+                    .withRecurEndDate("").build();
+            task10 = new TaskBuilder().withName("Study for Midterm3").withStartTime("2017-03-03-2100")
+                    .withEndTime("2017-04-04-2100").withTags("School").withStatus("done")
+                    .withPriority("h").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
         } catch (IllegalValueException e) {
             e.printStackTrace();

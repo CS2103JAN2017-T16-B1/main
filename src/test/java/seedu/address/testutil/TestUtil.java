@@ -58,7 +58,7 @@ public class TestUtil {
     public static final Task[] SAMPLE_TASK_DATA = getSampleTaskData();
 
     public static final Tag[] SAMPLE_TAG_DATA = getSampleTagData();
-
+    
     public static void assertThrows(Class<? extends Throwable> expected, Runnable executable) {
         try {
             executable.run();
@@ -90,7 +90,7 @@ public class TestUtil {
             };
             //CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {
-            assert false;
+
             // not possible
             return null;
         }
