@@ -75,7 +75,7 @@ allprojects {
             exclude group: "junit", module: "junit"
         }
         compile group: 'com.joestelmach', name: 'natty', version: '0.13'
-        compile group: 'org.slf4j', name: 'slf4j-nop', version: '1.7.25'
+
         testCompile "org.testfx:openjfx-monocle:$monocleVersion"
     }
 
