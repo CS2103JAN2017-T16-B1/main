@@ -53,7 +53,7 @@ public class RecurEndDate {
 	
 	@Override
     public String toString() {
-        return endDate;
+	        return endDate+"\n";
     }
 	
 	@Override
