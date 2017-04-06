@@ -22,6 +22,5 @@ public class NameTest {
         assertTrue(Name.isValidName("12345")); // numbers only
         assertTrue(Name.isValidName("NUS 2017")); // alphanumeric characters
         assertTrue(Name.isValidName("National University of Singapore")); // with capital letters
-        assertTrue(Name.isValidName("Buying milk in the afternoon & buy flour apple to make apple tart")); // long names
-    }
+         }
 }

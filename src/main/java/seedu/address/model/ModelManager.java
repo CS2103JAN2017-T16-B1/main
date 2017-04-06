@@ -13,6 +13,8 @@ import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.commons.events.ui.ScrollToListRequestEvent;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
@@ -139,18 +141,19 @@ public class ModelManager extends ComponentManager implements Model {
 	
 	
 	@Override
-	public void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)
-			throws UniqueTaskList.DuplicatetaskException {
+	public void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask) throws CommandException
+			 {
 		assert editedTask != null;
 		setPrevious();
 
 		int taskManagerIndex = filteredTasks.getSourceIndex(filteredTaskListIndex);
-		try {
-			taskManager.updateTask(taskManagerIndex, editedTask);
-		} catch (IllegalValueException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+			try {
+				taskManager.updateTask(taskManagerIndex, editedTask);
+			} catch (IllegalValueException e) {
+				throw new CommandException(EditCommand.MESSAGE_DUPLICATE_TASK);
+			}
+		
 
 		indicateTaskManagerChanged();
 		//@@author A0139509X

@@ -60,7 +60,7 @@ public class UniqueTaskList implements Iterable<Task> {
         assert editedTask != null;
 
         Task taskToUpdate = internalList.get(index);
-        if (!taskToUpdate.equals(editedTask) && internalList.contains(editedTask) && editedTask.getStatus().toString()=="undone") {
+        if (taskToUpdate.equals(editedTask) || internalList.contains(editedTask) ){//&& editedTask.getStatus().toString()=="undone") {
             throw new DuplicatetaskException();
         }
         
@@ -168,7 +168,7 @@ public class UniqueTaskList implements Iterable<Task> {
      * Signals that an operation would have violated the 'no duplicates' property of the list.
      */
     public static class DuplicatetaskException extends DuplicateDataException {
-        protected DuplicatetaskException() {
+        public DuplicatetaskException() {
             super("Operation would result in duplicate tasks");
         }
     }
