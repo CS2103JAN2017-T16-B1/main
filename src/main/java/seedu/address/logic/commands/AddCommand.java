@@ -56,7 +56,7 @@ public class AddCommand extends Command {
             throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
-            tagSet.add(new Tag(tagName));
+            tagSet.add(new Tag(tagName.toLowerCase()));
         }
         this.toAdd = new Task(
                 new Name(name),
