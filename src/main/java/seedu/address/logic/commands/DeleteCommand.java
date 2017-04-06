@@ -23,7 +23,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted:\n %1$s";
 
     public final int targetIndex;
-    
+
     //public final char targetList;
 
     public DeleteCommand(int targetIndex) {

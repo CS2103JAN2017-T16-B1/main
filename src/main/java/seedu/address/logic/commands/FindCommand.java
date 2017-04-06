@@ -13,52 +13,55 @@ import seedu.address.model.Task.TaskStringReference;
  * argument keywords. Keyword matching is case sensitive.
  */
 public class FindCommand extends Command {
-	//@@author A0139509X
-	public static final String COMMAND_WORD = "find";
+    //@@author A0139509X
+    public static final String COMMAND_WORD = "find";
 
-	public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names/description/tags contain any of "
-			+ "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
-			+ "When prefix (#) is used, will display all task with the associated status or priority level.\n"
-			+ "When prefix (@) is used, will display all archived task with the associated names/descriptions/tags.\n"
-			+ "(Usage 1) Parameters: KEYWORD [MORE_KEYWORDS]...\n" + "Example: " + COMMAND_WORD + " study meeting friend\n"
-			+ "(Usage 2) Parameters: #KEYWORD \n" + "Example: " + COMMAND_WORD + " #h\n"
-			+ "(Usage 3) Parameters: @KEYWORD \n" + "Example: " + COMMAND_WORD + " @study\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all tasks whose names/description/tags contain any of "
+            + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
+            + "When prefix (#) is used, will display all task with the associated status or priority level.\n"
+            + "When prefix (@) is used, will display all archived task with the associated names/descriptions/tags.\n"
+            + "(Usage 1) Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD + " study meeting friend\n"
+            + "(Usage 2) Parameters: #KEYWORD \n" + "Example: "
+            + COMMAND_WORD + " #h\n"
+            + "(Usage 3) Parameters: @KEYWORD \n" + "Example: " + COMMAND_WORD + " @study\n";
 
-	private final Set<String> keywords;
+    private final Set<String> keywords;
 
-	private final Status status;
+    private final Status status;
 
-	private final Priority priority;
+    private final Priority priority;
 
-	private final String archive;
+    private final String archive;
 
-	public FindCommand(Set<String> keywords) {
-		this.keywords = keywords;
-		this.status = null;
-		this.priority = null;
-		this.archive = null;
-	}
+    public FindCommand(Set<String> keywords) {
+        this.keywords = keywords;
+        this.status = null;
+        this.priority = null;
+        this.archive = null;
+    }
 
-	public FindCommand(String keyword) {
-		this.keywords = null;
-		this.status = null;
-		this.priority = null;
-		this.archive = keyword;
-	}
+    public FindCommand(String keyword) {
+        this.keywords = null;
+        this.status = null;
+        this.priority = null;
+        this.archive = keyword;
+    }
 
-	public FindCommand(Status status) {
-		this.keywords = null;
-		this.status = status;
-		this.priority = null;
-		this.archive = null;
-	}
+    public FindCommand(Status status) {
+        this.keywords = null;
+        this.status = status;
+        this.priority = null;
+        this.archive = null;
+    }
 
-	public FindCommand(Priority priority) {
-		this.keywords = null;
-		this.status = null;
-		this.priority = priority;
-		this.archive = null;
-	}
+    public FindCommand(Priority priority) {
+        this.keywords = null;
+        this.status = null;
+        this.priority = priority;
+        this.archive = null;
+    }
 
 	@Override
 	public CommandResult execute() {
