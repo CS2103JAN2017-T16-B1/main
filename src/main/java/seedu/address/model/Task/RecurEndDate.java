@@ -27,7 +27,7 @@ public class RecurEndDate {
 //		if (!isValidEndDate(trimmedEndDate)) {
  //           throw new IllegalValueException(MESSAGE_ENDDATE_CONSTRAINTS);
   //      }
-		this.endDate = trimmedEndDate + "-2359\n";
+		this.endDate = trimmedEndDate + "-2359";
 		}
 		else this.endDate = endDate;
 	}
