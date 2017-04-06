@@ -217,7 +217,12 @@ public class MainApp extends Application {
     //@@author A0140072X
     @Subscribe
     private void handleShowWindowEvent(ShowWindowEvent event) {
-        Platform.runLater(new Runnable(){@Override public void run() {ui.show();}});
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                ui.show();
+            }
+        });
     }
     @Subscribe
     private void handleHideWindowEvent(HideWindowEvent event) {
@@ -226,7 +231,10 @@ public class MainApp extends Application {
             @Override
             public void run() {
                 ui.hide();
-            } } );
+
+            }
+        });
+
     }
 
     @Subscribe

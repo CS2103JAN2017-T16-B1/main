@@ -6,17 +6,17 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.Task.Description;
 import seedu.address.model.Task.EndTime;
 import seedu.address.model.Task.ID;
-import seedu.address.model.Task.StartTime;
-import seedu.address.model.Task.Status;
 import seedu.address.model.Task.Name;
 import seedu.address.model.Task.Priority;
-import seedu.address.model.Task.Task;
-import seedu.address.model.Task.Description;
 import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.model.Task.RecurEndDate;
 import seedu.address.model.Task.RecurPeriod;
+import seedu.address.model.Task.StartTime;
+import seedu.address.model.Task.Status;
+import seedu.address.model.Task.Task;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -25,9 +25,9 @@ import seedu.address.model.tag.UniqueTagList;
  */
 public class XmlAdaptedTask {
 
-	@XmlElement(required = true)
+    @XmlElement(required = true)
     private String id;
-	@XmlElement(required = true)
+    @XmlElement(required = true)
     private String name;
     @XmlElement(required = false)
     private String description;
@@ -36,16 +36,16 @@ public class XmlAdaptedTask {
     @XmlElement(required = false)
     private String endtime;
     @XmlElement(required = true)
-	private String priority;
+    private String priority;
     @XmlElement(required = true)
     private String status;
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
     @XmlElement(required = false)
-	private String recurEndDate;
+    private String recurEndDate;
     @XmlElement(required = false)
-	private String recurPeriod;
-	
+    private String recurPeriod;
+
 
 
     /**

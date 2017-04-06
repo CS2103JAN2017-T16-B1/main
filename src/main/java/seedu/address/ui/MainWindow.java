@@ -1,8 +1,7 @@
 package seedu.address.ui;
 
-
-import java.util.logging.Logger;
 import java.io.File;
+import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,8 +20,8 @@ import seedu.address.commons.core.Config;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
-import seedu.address.commons.events.ui.NewResultAvailableEvent;
 import seedu.address.commons.events.ui.LoadRequestEvent;
+import seedu.address.commons.events.ui.NewResultAvailableEvent;
 import seedu.address.commons.events.ui.SaveRequestEvent;
 import seedu.address.commons.util.FxViewUtil;
 import seedu.address.logic.Logic;
@@ -42,26 +41,26 @@ public class MainWindow extends UiPart<Region> {
     private static final String FXML = "MainWindow.fxml";
     private static final int MIN_HEIGHT = 600;
     private static final int MIN_WIDTH = 450;
-	private static final String TOGGLE = "toggle";
+    private static final String TOGGLE = "toggle";
 
     private Stage primaryStage;
     private Logic logic;
     private CommandBox commandBox;
     private final Logger logger = LogsCenter.getLogger(MainWindow.class);
-    
+
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
     private Config config;
-    
+
     @FXML
     private AnchorPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
-    
+
     @FXML
     private MenuItem saveMenuItem;
-    
+
     @FXML
     private MenuItem loadMenuItem;
 
@@ -103,46 +102,46 @@ public class MainWindow extends UiPart<Region> {
 +    * Pressing TAB updates the task list shown, from event to task to floating task and to event again
      */
     private void addKeyPressedFilters(Scene scene) {
-    	scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             KeyCode code = event.getCode();
-            if (code.isLetterKey()){
+            if (code.isLetterKey()) {
                 commandBox.getTextField().requestFocus();
-            } 
+            }
             if (code.equals(KeyCode.TAB)) {
                 toggleListView();
             }
         });
-		
-	}
+
+    }
 
     //@@author A0139509X
-	private void toggleListView() {
-		boolean success;
-		 try {
-	            CommandResult commandResult = logic.execute(TOGGLE);
+    private void toggleListView() {
+        boolean success;
+        try {
+            CommandResult commandResult = logic.execute(TOGGLE);
 
-	            success=true;
-	            commandBox.setStyleAfterTab(success);
-	            // process result of the command
-	            logger.info("Result: " + commandResult.feedbackToUser);
-	            raise(new NewResultAvailableEvent(commandResult.feedbackToUser));
+            success = true;
+            commandBox.setStyleAfterTab(success);
+            // process result of the command
+            logger.info("Result: " + commandResult.feedbackToUser);
+            raise(new NewResultAvailableEvent(commandResult.feedbackToUser));
 
-	        } catch (CommandException e) {
-	        	success=false;
-	        	commandBox.setStyleAfterTab(success);
-	            // handle command failure
-	            logger.info("Invalid command: " + TOGGLE);
-	            raise(new NewResultAvailableEvent(e.getMessage()));
-	        }
-	}
-	//@@author
-	public Stage getPrimaryStage() {
+        } catch (CommandException e) {
+            success = false;
+            commandBox.setStyleAfterTab(success);
+            // handle command failure
+            logger.info("Invalid command: " + TOGGLE);
+            raise(new NewResultAvailableEvent(e.getMessage()));
+        }
+    }
+    //@@author
+    public Stage getPrimaryStage() {
         return primaryStage;
     }
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-      //@@author A0140072X
+        //@@author A0140072X
         setAccelerator(saveMenuItem, new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN));
         setAccelerator(loadMenuItem, new KeyCodeCombination(KeyCode.L, KeyCombination.CONTROL_DOWN));
     }
@@ -183,10 +182,10 @@ public class MainWindow extends UiPart<Region> {
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());
         commandBox = new CommandBox(getCommandBoxPlaceholder(), logic);
     }
-    void loadLogic(Logic logic){
+    void loadLogic(Logic logic) {
         this.logic = logic;
     }
-    
+
 
     private AnchorPane getCommandBoxPlaceholder() {
         return commandBoxPlaceholder;
@@ -250,7 +249,7 @@ public class MainWindow extends UiPart<Region> {
         HelpWindow helpWindow = new HelpWindow();
         helpWindow.show();
     }
-  //@@author A0140072X
+    //@@author A0140072X
     @FXML
     public void handleSave() {
         FileChooser fileChooser = new FileChooser();

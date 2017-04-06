@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <taskmanager>
     <tasks>
-        <id>1</id>
-        <name>nonsense</name>
-        <description></description>
-        <starttime></starttime>
-        <endtime></endtime>
-        <priority>m</priority>
-        <status>undone</status>
-        <recurPeriod>weekly</recurPeriod>
-    </tasks>
-    <tasks>
         <id>2</id>
         <name>another nonsense</name>
-        <description>woo</description>
+        <description>lsjd</description>
         <starttime></starttime>
         <endtime></endtime>
         <priority>m</priority>

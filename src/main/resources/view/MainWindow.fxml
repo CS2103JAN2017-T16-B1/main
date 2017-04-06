@@ -19,7 +19,7 @@
          <menus>
             <Menu mnemonicParsing="false" text="File">
             <!-- @@author A0140072X -->
-           		<items>
+                <items>
                   <MenuItem fx:id="saveMenuItem" mnemonicParsing="true" onAction="#handleSave" text="_Save..." />
                 </items>
                 <items>
