@@ -41,14 +41,21 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/alwinsonauyong.jpg" width="150"><br>
 
-**Components in charge of**: UI
+**Components in charge of**: Storage 
 
-**Aspects/tools in charge of**: GUI, GUI Testing,
+**Aspects/tools in charge of**: Implementation of Backend
 
-**Features implemented**: 
+**Features implemented**:
+* [Add command]
+* [Undo command]
+* [Archive/Archived command]
+* [Save/Load]
+* [Global Quick Launch key]
 
+**Code written:** [[functional code](../collated/main/A0140072X.md)]
 
 **Other major contribution**:
+
 
 
 #### [EDWARD TAN WEI CHONG](https://github.com/EdCS2103) <br>
@@ -57,7 +64,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 **Components in charge of**: [UI](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/DeveloperGuide.md#UI-component)
 
-**Aspects/tools in charge of**: Scheduling and tracking, Documentation,
+**Aspects/tools in charge of**: Scheduling and tracking, Documentation, GUI
 
 **Features implemented**: 
 * find task(s)

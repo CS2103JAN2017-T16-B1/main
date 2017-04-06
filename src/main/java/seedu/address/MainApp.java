@@ -193,52 +193,51 @@ public class MainApp extends Application {
     @Subscribe
     private void handleDataSavingEvent(SaveRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        storage.setTaskManagerFilePath(event.getFilePath()); 
+        storage.setTaskManagerFilePath(event.getFilePath());
         config.setTaskManagerFilePath(event.filePath.toString());
         ui.refresh();
         try {
             storage.saveTaskManager(model.getTaskManager(), event.getFilePath());
             ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
         } catch (IOException e) {
-            logger.warning("Problem while trying to save config file");            
-        }        
+            logger.warning("Problem while trying to save config file");
+        }
     }
   //@@author A0140072X
     @Subscribe
     private void handleDataLoadingEvent(LoadRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        storage.setTaskManagerFilePath(event.getFilePath()); 
+        storage.setTaskManagerFilePath(event.getFilePath());
         config.setTaskManagerFilePath(event.filePath.toString());
         model = initModelManager(storage, userPrefs);
         logic = new LogicManager(model, storage);
-        ui.loadData(logic);        
+        ui.loadData(logic);
         try {
             ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
         } catch (IOException e) {
-            logger.warning("Problem while trying to save config file");            
-        }   
+            logger.warning("Problem while trying to save config file");
+        }
     }
     //@@author A0140072X
     @Subscribe
     private void handleShowWindowEvent(ShowWindowEvent event) {
-        Platform.runLater(new Runnable(){@Override public void run() {ui.show();}});       
+        Platform.runLater(new Runnable(){@Override public void run() {ui.show();}});
     }
     @Subscribe
     private void handleHideWindowEvent(HideWindowEvent event) {
       // ui.hide();
         Platform.runLater(new Runnable(){@Override public void run() {ui.hide();}});
     }
-    
-    
+
     @Subscribe
     public void handleExitAppRequestEvent(ExitAppRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         this.stop();
-        
+
     }
 
     public static void main(String[] args) {
-    
+
         launch(args);
     }
 }

@@ -33,7 +33,7 @@ public class Description {
      * Returns true if a given string is a valid task phone number.
      */
     public static boolean isValidDescription(String test) {
-        return test.matches(DESCRIPTION_VALIDATION_REGEX);
+        return test.matches(DESCRIPTION_VALIDATION_REGEX)&&!test.contains("d/")&&!test.contains("e/")&&!test.contains("s/");
     }
 
     @Override

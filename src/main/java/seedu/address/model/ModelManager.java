@@ -99,20 +99,21 @@ public class ModelManager extends ComponentManager implements Model {
 	}
 
 	// @@author A0140072X
-	private void setPrevious() {
-		previousTaskMgr = new TaskManager(taskManager);
-	}
+    private void setPrevious() {
+	previousTaskMgr = new TaskManager(taskManager);
+    }
 
 	// @@author A0140072X
-	public boolean undoTask() {
-		if (previousTaskMgr == null) {
-			return false;
-		} else {
-			TaskManager currentTaskMgr = new TaskManager(taskManager);
-			taskManager.resetData(previousTaskMgr);
-			previousTaskMgr.resetData(currentTaskMgr);
-			return true;
-		}
+    public boolean undoTask() {
+	if (previousTaskMgr == null) {
+	    return false;
+	}
+	else {
+	    TaskManager currentTaskMgr = new TaskManager(taskManager);
+	    taskManager.resetData(previousTaskMgr);
+	    previousTaskMgr.resetData(currentTaskMgr);
+	    return true;
+	}
 
 	}
 	//@@author A0138998B
@@ -179,7 +180,7 @@ public class ModelManager extends ComponentManager implements Model {
 	public void updateFilteredListToShowAll() {
 		// filteredTasks.setPredicate(null);
 		filteredTasks.setPredicate(task -> {
-			if (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE)) {
+			if (task.getStatus().toString().equalsIgnoreCase(TaskStringReference.STATUS_UNDONE)) {
 				return true;
 			} else {
 				return false;
@@ -191,14 +192,15 @@ public class ModelManager extends ComponentManager implements Model {
 
 	// @@author A0140072X
 	public void updateFilteredTaskListByArchived() {
-		updateFilteredListToShowAll();
-		filteredTasks.setPredicate(task -> {
-			if (task.getStatus().toString().equals(TaskStringReference.STATUS_DONE)) {
-				return true;
-			} else {
-				return false;
-			}
-		});
+	updateFilteredListToShowAll();
+	filteredTasks.setPredicate(task -> {
+	    if (task.getStatus().toString().equalsIgnoreCase(TaskStringReference.STATUS_DONE)) {
+		return true;
+	    }
+	    else {
+		return false;
+	    }
+	});
 	}
 
 	// @@author
@@ -220,7 +222,7 @@ public class ModelManager extends ComponentManager implements Model {
 		filteredTasks.setPredicate(task -> {
 			if ((!(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME)) 
 					&& !(task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME))
-					&& (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE)))) {
+					&& (task.getStatus().toString().equalsIgnoreCase(TaskStringReference.STATUS_UNDONE)))) {
 				return true;
 			} else {
 				return false;
@@ -234,7 +236,7 @@ public class ModelManager extends ComponentManager implements Model {
 		filteredTasks.setPredicate(task -> {
 			if (((task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME)) 
 					&& !(task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME))
-					&& (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE)))) {
+					&& (task.getStatus().toString().equalsIgnoreCase(TaskStringReference.STATUS_UNDONE)))) {
 				return true;
 			} else {
 				return false;
@@ -249,7 +251,7 @@ public class ModelManager extends ComponentManager implements Model {
 		filteredTasks.setPredicate(task -> {
 			if (((task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME)) 
 					&& (task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME))
-					&& (task.getStatus().toString().equals((TaskStringReference.STATUS_UNDONE))))) {
+					&& (task.getStatus().toString().equalsIgnoreCase((TaskStringReference.STATUS_UNDONE))))) {
 				return true;
 			} else {
 				return false;
@@ -262,8 +264,8 @@ public class ModelManager extends ComponentManager implements Model {
 	@Override
 	public void updateFilteredTaskListByHighPriority() {
 		filteredTasks.setPredicate(task -> {
-			if ((task.getPriority().toString().equals(TaskStringReference.PRIORITY_HIGH)) 
-					&& (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE))) {
+			if ((task.getPriority().toString().equalsIgnoreCase(TaskStringReference.PRIORITY_HIGH)) 
+					&& (task.getStatus().toString().equalsIgnoreCase(TaskStringReference.STATUS_UNDONE))) {
 				return true;
 			} else {
 				return false;
@@ -275,8 +277,8 @@ public class ModelManager extends ComponentManager implements Model {
 	@Override
 	public void updateFilteredTaskListByMediumPriority() {
 		filteredTasks.setPredicate(task -> {
-			if ((task.getPriority().toString().equals(TaskStringReference.PRIORITY_MEDIUM)) 
-					&& (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE))) {
+			if ((task.getPriority().toString().equalsIgnoreCase(TaskStringReference.PRIORITY_MEDIUM)) 
+					&& (task.getStatus().toString().equalsIgnoreCase(TaskStringReference.STATUS_UNDONE))) {
 				return true;
 			} else {
 				return false;
@@ -288,8 +290,8 @@ public class ModelManager extends ComponentManager implements Model {
 	@Override
 	public void updateFilteredTaskListByLowPriority() {
 		filteredTasks.setPredicate(task -> {
-			if ((task.getPriority().toString().equals(TaskStringReference.PRIORITY_LOW)) 
-					&& (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE))) {
+			if ((task.getPriority().toString().equalsIgnoreCase(TaskStringReference.PRIORITY_LOW)) 
+					&& (task.getStatus().toString().equalsIgnoreCase(TaskStringReference.STATUS_UNDONE))) {
 				return true;
 			} else {
 				return false;
@@ -301,7 +303,7 @@ public class ModelManager extends ComponentManager implements Model {
 	@Override
 	public void updateFilteredTaskListByDoneStatus() {
 		filteredTasks.setPredicate(task -> {
-			if (task.getStatus().toString().equals(TaskStringReference.STATUS_DONE)) {
+			if (task.getStatus().toString().equalsIgnoreCase(TaskStringReference.STATUS_DONE)) {
 				return true;
 			} else {
 				return false;
@@ -313,7 +315,7 @@ public class ModelManager extends ComponentManager implements Model {
 	@Override
 	public void updateFilteredTaskListByUnDoneStatus() {
 		filteredTasks.setPredicate(task -> {
-			if (task.getStatus().toString().equals(TaskStringReference.STATUS_UNDONE)) {
+			if (task.getStatus().toString().equalsIgnoreCase(TaskStringReference.STATUS_UNDONE)) {
 				return true;
 			} else {
 				return false;

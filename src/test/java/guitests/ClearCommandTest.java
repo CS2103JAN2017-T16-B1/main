@@ -1,6 +1,7 @@
 package guitests;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
@@ -10,10 +11,14 @@ public class ClearCommandTest extends TaskManagerGuiTest {
     public void clear() {
 
         //verify a non-empty list can be cleared
-        assertTrue(taskListPanel.isListMatching(td.getTypicalTasks()));
+
+        assertFalse(taskListPanel.getListView() == null);
+
         assertClearCommandSuccess();
 
         //verify other commands can work after a clear command
+
+
         commandBox.runCommand(td.task8.getAddCommand());
         assertTrue(taskListPanel.isListMatching(td.task8));
         commandBox.runCommand("delete 1");

@@ -29,14 +29,12 @@ public class ArchiveCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_ARCHIVE_TASK_SUCCESS = "Archived Item: %1$s";
-  
+
     public final int targetIndex;
-    
+
 
     public ArchiveCommand(int targetIndex) {
         this.targetIndex = targetIndex - 1;
-        
-
     }
 
 
@@ -47,10 +45,16 @@ public class ArchiveCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
         ReadOnlyTask taskToArchive = lastShownList.get(targetIndex);
-                
+
         try {
-            Task updatedTask = new Task(taskToArchive.getName(), taskToArchive.getDescription(), taskToArchive.getStartTime(),taskToArchive.getEndTime(), taskToArchive.getId(), taskToArchive.getPriority(),new Status("done"), taskToArchive.getRecurPeriod(), taskToArchive.getRecurEndDate(), taskToArchive.getTags());
-            Task toAdd = new Task(taskToArchive.getName(), taskToArchive.getDescription(), taskToArchive.getStartTime(),taskToArchive.getEndTime(), taskToArchive.getId(), taskToArchive.getPriority(),new Status("undone"), taskToArchive.getRecurPeriod(), taskToArchive.getRecurEndDate(), taskToArchive.getTags());
+            Task updatedTask = new Task(taskToArchive.getName(), taskToArchive.getDescription(),
+                    taskToArchive.getStartTime(), taskToArchive.getEndTime(), taskToArchive.getId(),
+                    taskToArchive.getPriority(), new Status("done"), taskToArchive.getRecurPeriod(),
+                    taskToArchive.getRecurEndDate(), taskToArchive.getTags());
+            Task toAdd = new Task(taskToArchive.getName(), taskToArchive.getDescription(),
+                    taskToArchive.getStartTime(), taskToArchive.getEndTime(), taskToArchive.getId(),
+                    taskToArchive.getPriority(), new Status("undone"), taskToArchive.getRecurPeriod(),
+                    taskToArchive.getRecurEndDate(), taskToArchive.getTags());
             model.updateTask(targetIndex, updatedTask);
   //@@author A0139375W
             if (toAdd.getRecurPeriod().toString() != null){
@@ -66,15 +70,15 @@ public class ArchiveCommand extends Command {
   //@@author A0139375W         	
             	}
             }
-            
+
         }
         catch (UniqueTaskList.DuplicatetaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        } 
+        }
         catch (IllegalValueException ive) {
             throw new CommandException(MESSAGE_ILLEGAL_VALUE);
-        } 
-       model.updateFilteredListToShowAll();
+        }
+        model.updateFilteredListToShowAll();
 
         return new CommandResult(String.format(MESSAGE_ARCHIVE_TASK_SUCCESS, taskToArchive));
 
