@@ -80,10 +80,9 @@ Examples:
 
 
 
-### 2.3.1 Finding all tasks/events containing any keyword in their names, description or tag : `find`
+### 2.3 Finding tasks/events : `find`
 
-
-
+**(Usage 1)**<br>
 Finds tasks/events whose names contain any of the given keywords.<br>
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
@@ -99,9 +98,7 @@ Examples:
 * find work family friends
 * Returns a numbered list of undone tasks/events whose names/description/tags contain work, family or friends
 
-### 2.3.2 Finding all tasks/events that matches the given priority level : `find #`
-
-
+**(Usage 2)**<br>
 Finds tasks/events that matches a priority level.<br>
 
 Format: `find #KEYWORD`
@@ -114,10 +111,8 @@ Examples:
 * find #h
 * Returns a numbered list of tasks/events that are labelled as high priority
 
-### 2.3.3 Finding all archived tasks/events containing the keyword in their names, description or tag : `find @`
-
-
-Finds tasks/events whose name/description/tags match a given keyword.<br>
+**(Usage 3)**<br>
+Finds all archived tasks/events/floating task whose name/description/tags match a given keyword.<br>
 
 Format: `find @KEYWORD`
 
