@@ -46,30 +46,44 @@ public class TaskCard extends UiPart<Region> {
 
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
-        name.setText(task.getName().fullName);
+        setValuesForAllNodes(task, displayedIndex);
+    }
+	public void setValuesForAllNodes(ReadOnlyTask task, int displayedIndex) {
+		name.setText(task.getName().fullName);
         id.setText(displayedIndex + ". ");
         //@@author A0139509X
         setTextForDescription(task);
         setTextForStartTime(task);
         setTextForEndTime(task);
         setTextForRecurPeriod(task);
+        setTextForRecurEndDate(task);
         initTags(task);
         //setPriorityIcons(task);
         setColours(task);
-    }
-    private void setTextForRecurPeriod(ReadOnlyTask task) {
-    	if(task.getRecurPeriod().period != null){
-			recurPeriod.setText("Recur Period : " +task.getRecurPeriod().period);
-        } else if(task.getRecurPeriod().period == null){
-        	recurPeriod.setManaged(false);
-        }
-    	
+	}
+    private void setTextForRecurEndDate(ReadOnlyTask task) {
     	if(task.getRecurEndDate().endDate != null){
 			recurEndDate.setText("Recur End Date : " +task.getRecurEndDate().endDate);
         } else if(task.getRecurEndDate().endDate == null){
-        	recurEndDate.setManaged(false);
+        	dontShowLabel(recurEndDate);
+        }
+		
+	}
+	private void setTextForRecurPeriod(ReadOnlyTask task) {
+    	if(task.getRecurPeriod().period != null){
+    		setRecurPeriod(task);
+        } else if(task.getRecurPeriod().period == null){
+        	dontShowLabel(recurPeriod);
         }
     	
+	}
+	public void setRecurPeriod(ReadOnlyTask task) {
+		if(task.getRecurPeriod().period.matches("(0-9)+")){
+			recurPeriod.setText("Recur Period : " +task.getRecurPeriod().period + " days");
+		}
+		else{
+			recurPeriod.setText("Recur Period : " +task.getRecurPeriod().period);
+		}
 	}
 	//@@author A0139509X
     private void setColours(ReadOnlyTask task) {
@@ -92,7 +106,7 @@ public class TaskCard extends UiPart<Region> {
 		if(!(task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME))){
 			endTime.setText("End Time : " +task.getEndTime().endTime);
         } else if(task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME)){
-        	endTime.setManaged(false);
+        	dontShowLabel(endTime);
         }
 	}
 
@@ -100,7 +114,7 @@ public class TaskCard extends UiPart<Region> {
 		if(!(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME))){
         	startTime.setText("Start Time : " + task.getStartTime().startTime);
         } else if(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME)){
-        	startTime.setManaged(false);
+        	dontShowLabel(startTime);
         }
 	}
 
@@ -108,11 +122,15 @@ public class TaskCard extends UiPart<Region> {
 		if(!(task.getDescription().description.equals(TaskStringReference.EMPTY_DESCRIPTION))){
         	description.setText("Description : " + task.getDescription().description);
         } else if(task.getDescription().description.equals(TaskStringReference.EMPTY_DESCRIPTION)){
-        	description.setManaged(false);
+        	dontShowLabel(description);
         }
 	}
 
 	private void initTags(ReadOnlyTask task) {
         task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+	
+	private void dontShowLabel(Label label) {
+		label.setManaged(false);
+	}
 }
