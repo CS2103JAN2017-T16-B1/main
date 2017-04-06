@@ -23,19 +23,21 @@ public class RecurPeriod {
      * @throws IllegalValueException if the given period string is invalid.
      */
 
-    public RecurPeriod(String period) throws IllegalValueException {
-        if (period != null) {
-            String trimmedPeriod = period.trim();
-            this.period = trimmedPeriod;
-        } else {
-            this.period = period;
-        }
-    }
+	public RecurPeriod(String period) throws IllegalValueException{
+		if(period != ""){
+		String trimmedPeriod = period.trim();
+
+	//	if (!isValidPeriod(trimmedPeriod)) {
+    //        throw new IllegalValueException(MESSAGE_PERIOD_CONSTRAINTS);
+    //    }
+
+		this.period = trimmedPeriod;
+		}
+		else this.period = period;
+	}
 
 
-    /**
-     * Returns true if a given string is a valid period.
-     */
+
 
     private boolean isValidPeriod(String test) {
         return test.matches(PERIOD_VALIDATION_REGEX);
@@ -70,10 +72,18 @@ public class RecurPeriod {
         return newDate;
     }
 
-    @Override
-    public String toString() {
-        return period;
-    }
+
+
+	public boolean hasRecurPeriod(){
+		if (period == "") return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+	    return period;
+	}
+
 
     @Override
     public boolean equals(Object other) {

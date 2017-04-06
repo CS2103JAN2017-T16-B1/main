@@ -36,19 +36,25 @@ public class RecurEndDate {
      * Returns true if a given string is a valid endDate.
      */
 
-    private boolean isValidEndDate(String test) {
-        return test.matches(ENDDATE_VALIDATION_REGEX);
-    }
 
-    public boolean hasPassedEndDate(String date) {
-        if (date != null) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm\n");
-            LocalDateTime a = LocalDateTime.parse(date, formatter);
-            LocalDateTime b = LocalDateTime.parse(this.endDate, formatter);
-            return a.isAfter(b);
-        }
-        return false;
-    }
+	private boolean isValidEndDate(String test) {
+		return test.matches(ENDDATE_VALIDATION_REGEX);
+	}
+
+	public boolean hasPassedEndDate(String date){
+		if (date != null && this.endDate != null){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm\n");
+			LocalDateTime a = LocalDateTime.parse(date,formatter);
+			LocalDateTime b = LocalDateTime.parse(this.endDate,formatter);
+			return a.isAfter(b);
+		}
+		return false;
+	}
+
+	public boolean hasRecurEndDate(){
+		if (endDate == null) return false;
+		return true;
+	}
 
 
     @Override

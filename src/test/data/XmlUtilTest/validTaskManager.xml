@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <taskmanager>
     <tasks>
-        <id>2</id>
-        <name>test</name>
-        <description>
-</description>
+        <id>1</id>
+        <name>recur</name>
+        <description></description>
         <starttime></starttime>
-        <endtime></endtime>
+        <endtime>2017-04-10-1719</endtime>
         <priority>m</priority>
         <status>undone</status>
-        <tagged>hello</tagged>
+        <recurPeriod>5</recurPeriod>
     </tasks>
-    <tags>hello</tags>
 </taskmanager>

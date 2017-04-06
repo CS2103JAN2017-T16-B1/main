@@ -90,6 +90,11 @@ public class StartTime {
     public static boolean isValidTime(String test) {
         return test.matches(DATETIME_VALIDATION_REGEX);
     }
+    
+    public boolean hasStartTime(){
+		if (startTime == "") return false;
+		return true;
+	}
 
     @Override
     public String toString() {

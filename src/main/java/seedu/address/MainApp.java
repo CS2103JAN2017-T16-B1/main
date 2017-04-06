@@ -231,8 +231,10 @@ public class MainApp extends Application {
             @Override
             public void run() {
                 ui.hide();
+
             }
         });
+
     }
 
     @Subscribe

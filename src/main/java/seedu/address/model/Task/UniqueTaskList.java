@@ -61,7 +61,11 @@ public class UniqueTaskList implements Iterable<Task> {
         assert editedTask != null;
 
         Task taskToUpdate = internalList.get(index);
-        if (taskToUpdate.equals(editedTask) || internalList.contains(editedTask)) {
+
+        if (editedTask.getStatus().equals("undone") && (taskToUpdate.equals(editedTask) )){//&& editedTask.getStatus().toString()=="undone") { || internalList.contains(editedTask)
+
+   //     if (taskToUpdate.equals(editedTask) || internalList.contains(editedTask)) {
+
             throw new DuplicatetaskException();
         }
 
@@ -100,35 +104,14 @@ public class UniqueTaskList implements Iterable<Task> {
         sortByEndTime(list);
 
         internalList.clear();
+
         for (TaskAndDueDate object:list) {
             internalList.add(new Task(object.task));
+
 
         }
 
     }
-  //@@author A0138998B
-    /**
-     * Sorts list of tasks by duedate
-     * Floating tasks will be sorted to the end
-     */
-    public void sortByEndTime(List<TaskAndDueDate> list) {
-        Collections.sort(list, new Comparator<TaskAndDueDate>() {
-            public int compare(TaskAndDueDate task1, TaskAndDueDate task2) {
-                if (task1.dueDate != null && task2.dueDate != null) {
-                    return task1.dueDate.compareTo(task2.dueDate);
-                    } else if (task1.dueDate == null && task2.dueDate != null) {
-                        return 1;
-                    } else if (task1.dueDate != null && task2.dueDate == null) {
-                        return -1;
-                    } else if (task1.dueDate == null && task2.dueDate == null) {
-                        return 0;
-                    }
-                return 0;
-                }
-            });
-    }
-
-
 
     /**
      * Utility class to store pairs of tasks and their endTimes as LocalDateTime variables to enable easy sorting
@@ -179,12 +162,14 @@ public class UniqueTaskList implements Iterable<Task> {
      *
      *
      */
+
     public void sortByPriority() {
         internalList.sort(new Comparator<Task>() {
             public int compare(Task task1, Task task2) {
                 return turnPriorityIntoInt(task1.getPriority()) - turnPriorityIntoInt(task2.getPriority());
             }
         });
+
     }
     //@@author
     public void setTasks(UniqueTaskList replacement) {
@@ -235,5 +220,36 @@ public class UniqueTaskList implements Iterable<Task> {
      * there is no such matching task in the list.
      */
     public static class TaskNotFoundException extends Exception {}
+
+    //@@author A0138998B
+    /**
+     * Sorts list of tasks by duedate
+     * Floating tasks will be sorted to the end
+     */
+    public void sortByEndTime(List<TaskAndDueDate> list) {
+    	Collections.sort(list, new Comparator<TaskAndDueDate>() {
+    		  public int compare(TaskAndDueDate task1, TaskAndDueDate task2) {
+    			  if(task1.dueDate!=null && task2.dueDate!=null){
+    		      return task1.dueDate.compareTo(task2.dueDate);
+    			  }
+    			  else if(task1.dueDate==null && task2.dueDate!=null){
+    				 return 1;
+    			  }
+    			  else if(task1.dueDate!=null && task2.dueDate==null){
+    				  return -1;
+    			  }
+    			  else if(task1.dueDate==null && task2.dueDate==null){
+    				  return 0;
+    			  }
+    			  return 0;
+    		  }
+    		});
+    }
+
+
+
+    /**
+     * Utility class to store pairs of tasks and their endTimes as LocalDateTime variables to enable easy sorting
+     */
 
 }

@@ -68,9 +68,9 @@ public class TaskCard extends UiPart<Region> {
 
     }
     private void setTextForRecurPeriod(ReadOnlyTask task) {
-        if (task.getRecurPeriod().period != null) {
+        if (task.getRecurPeriod().period != "") {
             setRecurPeriod(task);
-        } else if (task.getRecurPeriod().period == null) {
+        } else if (task.getRecurPeriod().period == "") {
             dontShowLabel(recurPeriod);
         }
 

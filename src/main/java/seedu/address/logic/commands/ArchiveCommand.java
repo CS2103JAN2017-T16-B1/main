@@ -54,25 +54,23 @@ public class ArchiveCommand extends Command {
                     taskToArchive.getPriority(), new Status("undone"), taskToArchive.getRecurPeriod(),
                     taskToArchive.getRecurEndDate(), taskToArchive.getTags());
             model.updateTask(targetIndex, updatedTask);
-            //@@author A0139375W
-            if (toAdd.getRecurPeriod().toString() != null && !toAdd.getEndTime().isEmpty()) {
-                EndTime newEndTime =
-                        new EndTime(taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getEndTime().toString()));
-                if (toAdd.getRecurEndDate().toString() == null
-                        || toAdd.getRecurEndDate().hasPassedEndDate(newEndTime.toString()) == false) {
-                    if (toAdd.getStartTime().toString() != null) {
-                        StartTime newStartTime =
-                                new StartTime(taskToArchive.getRecurPeriod().
-                                        updatedDate(taskToArchive.getStartTime().toString()));
-                        toAdd.setStartTime(newStartTime);
-                    }
-                    toAdd.setEndTime(newEndTime);
 
-                    model.addTask(toAdd);
-                    //@@author A0139375W
-                }
+  //@@author A0139375W
+            if (toAdd.getRecurPeriod().hasRecurPeriod() && !toAdd.getEndTime().isEmpty()){
+            	EndTime newEndTime = new EndTime(taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getEndTime().toString()));
+                if(toAdd.getRecurEndDate().hasRecurEndDate() || toAdd.getRecurEndDate().hasPassedEndDate(newEndTime.toString()) == false ){
+                if (toAdd.getStartTime().hasStartTime()) {
+            		StartTime newStartTime = new StartTime(taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getStartTime().toString()));
+            		toAdd.setStartTime(newStartTime);
+            	}
+            	toAdd.setEndTime(newEndTime);
+
+            	model.addTask(toAdd);
+  //@@author A0139375W
+            	}
             }
         }
+
         catch (UniqueTaskList.DuplicatetaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
