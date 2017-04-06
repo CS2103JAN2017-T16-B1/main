@@ -10,23 +10,24 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.testutil.TestTask;
 
 public class FindCommandTest extends TaskManagerGuiTest {
-//@@author A0139509X
+    //@@author A0139509X
     @Test
     public void find_nonEmptyList() {
 
         assertFindResult("find Final"); // no results
-        assertFindResult("find Midterm", td.task1);//, td.task4); // multiple results
+        assertFindResult("find Midterm", td.task1); //, td.task4); // multiple results
         assertFindResult("find #h", td.task3); //one result
         assertFindResult("find #m", td.task1, td.task4, td.task5, td.task6, td.task7); //5 results
         assertFindResult("find #l", td.task2); //no results
-        assertFindResult("find School", td.task1, td.task2, td.task3, td.task4, td.task5, td.task6, td.task7); //find by tags
+        //find by tags
+        assertFindResult("find School", td.task1, td.task2, td.task3, td.task4, td.task5, td.task6, td.task7);
         assertFindResult("find @School"); //no results
-        
+
         //find after deleting one result
         commandBox.runCommand("delete 1");
         assertFindResult("find Midterms4", td.task4);
         assertFindResult("find Midterms");
-        
+
         //find after editing one result
         commandBox.runCommand("archive 2");
         assertFindResult("find #h"); //no result because task became done

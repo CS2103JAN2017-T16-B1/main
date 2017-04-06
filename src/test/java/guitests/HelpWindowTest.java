@@ -27,7 +27,7 @@ public class HelpWindowTest extends TaskManagerGuiTest {
 
         //use command
         //assertHelpWindowOpen(commandBox.runHelpCommand());
-        
+
         //A0139509X
         //checks output message
         assertResultMessage(String.format(HelpCommand.SHOWING_HELP_MESSAGE));

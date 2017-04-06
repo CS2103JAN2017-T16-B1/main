@@ -37,21 +37,21 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.TaskManager;
-import seedu.address.model.Task.EndTime;
-import seedu.address.model.Task.ID;
-import seedu.address.model.Task.StartTime;
-import seedu.address.model.Task.Status;
-import seedu.address.model.Task.Name;
-import seedu.address.model.Task.Priority;
-import seedu.address.model.Task.Task;
-import seedu.address.model.Task.Description;
-import seedu.address.model.Task.ReadOnlyTask;
-import seedu.address.model.Task.RecurEndDate;
-import seedu.address.model.Task.RecurPeriod;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTaskManager;
+import seedu.address.model.TaskManager;
+import seedu.address.model.Task.Description;
+import seedu.address.model.Task.EndTime;
+import seedu.address.model.Task.ID;
+import seedu.address.model.Task.Name;
+import seedu.address.model.Task.Priority;
+import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.Task.RecurEndDate;
+import seedu.address.model.Task.RecurPeriod;
+import seedu.address.model.Task.StartTime;
+import seedu.address.model.Task.Status;
+import seedu.address.model.Task.Task;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 import seedu.address.storage.StorageManager;
@@ -118,8 +118,8 @@ public class LogicManagerTest {
      * @see #assertCommandBehavior(boolean, String, String, ReadOnlyTaskManager, List)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-                                      ReadOnlyTaskManager expectedTaskManager,
-                                      List<? extends ReadOnlyTask> expectedShownList) {
+            ReadOnlyTaskManager expectedTaskManager,
+            List<? extends ReadOnlyTask> expectedShownList) {
         assertCommandBehavior(false, inputCommand, expectedMessage, expectedTaskManager, expectedShownList);
     }
 
@@ -143,8 +143,8 @@ public class LogicManagerTest {
      *      - {@code expectedTaskManager} was saved to the storage file. <br>
      */
     private void assertCommandBehavior(boolean isCommandExceptionExpected, String inputCommand, String expectedMessage,
-                                       ReadOnlyTaskManager expectedTaskManager,
-                                       List<? extends ReadOnlyTask> expectedShownList) {
+            ReadOnlyTaskManager expectedTaskManager,
+            List<? extends ReadOnlyTask> expectedShownList) {
 
         try {
             CommandResult result = logic.execute(inputCommand);
@@ -278,12 +278,12 @@ public class LogicManagerTest {
     }
     /**
      * Confirms the 'invalid argument input parameter behaviour' for the given command
-     * 
+     *
      */
     @Test
     public void assertIncorrectInputFormatBehaviorForSortCommand()
             throws Exception {
-    	String expectedMessage= String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,SortCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
         assertCommandFailure("sort" , expectedMessage); //parameter missing
         assertCommandFailure("sort" + " endTime", expectedMessage); //parameter must be duedate
         assertCommandFailure("sort" + " startTime", expectedMessage); //parameter cannot be startTime
@@ -343,7 +343,7 @@ public class LogicManagerTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
         assertIncorrectIndexFormatBehaviorForCommand("delete", expectedMessage);
     }
-    
+
     @Test
     public void execute_SortInvalidArgsFormat_errorMessageShown() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
@@ -449,11 +449,12 @@ public class LogicManagerTest {
             Priority priority = new Priority("m");
             Status status = new Status("undone");
             RecurPeriod recurPeriod = new RecurPeriod("");
-            RecurEndDate recurEndDate= new RecurEndDate("");
+            RecurEndDate recurEndDate = new RecurEndDate("");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("longertag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Task(name, privatePhone, startTime, endTime, id, priority, status,recurPeriod,recurEndDate, tags);
+            return new
+                    Task(name, privatePhone, startTime, endTime, id, priority, status, recurPeriod, recurEndDate, tags);
         }
 
         /**
@@ -469,8 +470,9 @@ public class LogicManagerTest {
                     new Description("" + Math.abs(seed)),
                     new StartTime("2017-10-10-1600"),
                     new EndTime("2017-12-12-2000"),
-                    null, null, null, new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
-            );
+                    null, null, null,
+                    new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
+                    );
         }
 
         /** Generates the correct add command based on the task given */
@@ -568,8 +570,8 @@ public class LogicManagerTest {
                     new Description("1"),
                     new StartTime("monday 1000"),
                     new EndTime("monday 1200"),
-                    new ID("20000"),new Priority("m"), new Status("done"), new UniqueTagList(new Tag("tag"))
-            );
+                    new ID("20000"), new Priority("m"), new Status("done"), new UniqueTagList(new Tag("tag"))
+                    );
         }
     }
 }

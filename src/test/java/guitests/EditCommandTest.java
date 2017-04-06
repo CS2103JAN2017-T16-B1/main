@@ -8,10 +8,10 @@ import org.junit.Test;
 import guitests.guihandles.TaskCardHandle;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.model.Task.EndTime;
-import seedu.address.model.Task.StartTime;
-import seedu.address.model.Task.Name;
 import seedu.address.model.Task.Description;
+import seedu.address.model.Task.EndTime;
+import seedu.address.model.Task.Name;
+import seedu.address.model.Task.StartTime;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TestTask;
@@ -113,7 +113,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
     @Test
     public void edit_duplicateTask_failure() {
         commandBox.runCommand("edit 3 Alice Pauline p/85355255 e/alice@gmail.com "
-                                + "a/123, Jurong West Ave 6, #08-111 t/friends");
+                + "a/123, Jurong West Ave 6, #08-111 t/friends");
         assertResultMessage(EditCommand.MESSAGE_DUPLICATE_TASK);
     }
 
@@ -127,7 +127,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
      * @param editedTask the expected task after editing the task's details
      */
     private void assertEditSuccess(int filteredTaskListIndex, int taskManagerIndex,
-                                    String detailsToEdit, TestTask editedTask) {
+            String detailsToEdit, TestTask editedTask) {
 
 
 

@@ -14,9 +14,9 @@ import org.junit.rules.ExpectedException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.Task.Task;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.Task.Task;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TypicalTestTasks;
 
@@ -70,83 +70,83 @@ public class TaskManagerTest {
         thrown.expect(AssertionError.class);
         taskManager.resetData(newData);
     }
-    
+
     //@@author A0138998B
     @Test
     public void sortTasks_byEndTime() throws IllegalValueException {
         TaskManager typicalTaskManager = new TypicalTestTasks().getTypicalTaskManager();
-        
+
         typicalTaskManager.sortTasksByEndTime();
-        
+
         List<ReadOnlyTask> Tasks = typicalTaskManager.getTaskList();
-      
-        assertEquals("Study for Midterm5",Tasks.get(0).getName().fullName);   
+
+        assertEquals("Study for Midterm5", Tasks.get(0).getName().fullName);
     }
-    
+
     @Test
     public void sortTasks_byName() throws IllegalValueException {
         TaskManager typicalTaskManager = new TypicalTestTasks().getTypicalTaskManager();
-        
+
         typicalTaskManager.sortTasksByName();
-        
+
         List<ReadOnlyTask> Tasks = typicalTaskManager.getTaskList();
-        
-        assertEquals("ABC Study for Midterm6",Tasks.get(0).getName().fullName);   
+
+        assertEquals("ABC Study for Midterm6", Tasks.get(0).getName().fullName);
     }
-    
+
     @Test
     public void sortTasks_byPriority() throws IllegalValueException {
         TaskManager typicalTaskManager = new TypicalTestTasks().getTypicalTaskManager();
-        
+
         typicalTaskManager.sortTaskByPriority();
-        
+
         List<ReadOnlyTask> Tasks = typicalTaskManager.getTaskList();
-       //top of the list
-        assertEquals("Study for Midterm3",Tasks.get(0).getName().fullName);   
+        //top of the list
+        assertEquals("Study for Midterm3", Tasks.get(0).getName().fullName);
 
         //bottom of the list
-        assertEquals("Study for Midterm2",Tasks.get(Tasks.size()-1).getName().fullName);   
+        assertEquals("Study for Midterm2", Tasks.get(Tasks.size() - 1).getName().fullName);
     }
-    
+
     @Test
     public void updateTask() throws IllegalValueException {
         TaskManager typicalTaskManager = new TypicalTestTasks().getTypicalTaskManager();
 
-        
-        TypicalTestTasks task=new TypicalTestTasks();
-        
+
+        TypicalTestTasks task = new TypicalTestTasks();
+
         typicalTaskManager.updateTask(0, task.task8);
-        
+
         List<ReadOnlyTask> Tasks = typicalTaskManager.getTaskList();
-       
-        assertEquals(new Task(task.task8),Tasks.get(0));    
+
+        assertEquals(new Task(task.task8), Tasks.get(0));
     }
-    
+
     @Test
     public void addTask_addNewTask() throws IllegalValueException {
         TaskManager typicalTaskManager = new TypicalTestTasks().getTypicalTaskManager();
 
-        TypicalTestTasks task=new TypicalTestTasks();
-        
+        TypicalTestTasks task = new TypicalTestTasks();
+
         typicalTaskManager.addTask(new Task(task.task9));;
-        
+
         List<ReadOnlyTask> Tasks = typicalTaskManager.getTaskList();
-       
-        assertEquals(new Task(task.task9),Tasks.get(Tasks.size()-1));    
+
+        assertEquals(new Task(task.task9), Tasks.get(Tasks.size() - 1));
     }
-    
+
     @Test
     public void addTask_addDuplicateTask_ThrowException() throws IllegalValueException {
         TaskManager typicalTaskManager = new TypicalTestTasks().getTypicalTaskManager();
 
-        TypicalTestTasks task=new TypicalTestTasks();
-        
-        
+        TypicalTestTasks task = new TypicalTestTasks();
+
+
         thrown.expect(IllegalValueException.class);
         typicalTaskManager.addTask(new Task(task.task1));;
     }
-    
-    //@@author 
+
+    //@@author
 
     /**
      * A stub ReadOnlyTaskManager whose tasks and tags lists can violate interface constraints.

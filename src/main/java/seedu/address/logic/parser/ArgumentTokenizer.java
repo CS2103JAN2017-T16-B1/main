@@ -78,8 +78,8 @@ public class ArgumentTokenizer {
      *     Check for prefix, start time, end time to categorize the command.
      */
     public String getCommandType(String args) {
-        
-        if (args.contains("s/") && args.contains("e/")) {
+
+        if ((args.contains("s/")) && (args.contains("e/"))) {
             return "event";
         }
         else {
@@ -153,8 +153,8 @@ public class ArgumentTokenizer {
      *    The end position of the value is determined by {@code nextPrefixPosition}
      */
     private String extractArgumentValue(String argsString,
-                                        PrefixPosition currentPrefixPosition,
-                                        PrefixPosition nextPrefixPosition) {
+            PrefixPosition currentPrefixPosition,
+            PrefixPosition nextPrefixPosition) {
         Prefix prefix = currentPrefixPosition.getPrefix();
 
         int valueStartPos = currentPrefixPosition.getStartPosition() + prefix.getPrefix().length();

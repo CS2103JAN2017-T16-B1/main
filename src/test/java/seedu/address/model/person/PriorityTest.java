@@ -11,7 +11,7 @@ public class PriorityTest {
 
     @Test
     public void isValidPriority() {
-       
+
         assertFalse(Priority.isValidName("")); // empty string
         assertFalse(Priority.isValidName(" ")); // spaces only
         assertFalse(Priority.isValidName("don")); // incomplete word
@@ -19,7 +19,7 @@ public class PriorityTest {
 
 
 
-        assertTrue(Priority.isValidName("h")); 
+        assertTrue(Priority.isValidName("h"));
         assertTrue(Priority.isValidName("m"));
         assertTrue(Priority.isValidName("l"));
     }
