@@ -56,7 +56,7 @@ public class AddCommand extends Command {
             throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
-            tagSet.add(new Tag(tagName));
+            tagSet.add(new Tag(tagName.toLowerCase()));
         }
         this.toAdd = new Task(
                 new Name(name),
@@ -87,7 +87,6 @@ public class AddCommand extends Command {
         assert model != null;
         try {
             model.addTask(toAdd);
-            model.sortTasksByEndTime();
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (UniqueTaskList.DuplicatetaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
