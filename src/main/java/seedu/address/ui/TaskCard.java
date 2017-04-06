@@ -1,5 +1,5 @@
 package seedu.address.ui;
-
+//@@author A0139509X
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -7,7 +7,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.model.Task.TaskStringReference;
-
 
 public class TaskCard extends UiPart<Region> {
 
@@ -44,45 +43,56 @@ public class TaskCard extends UiPart<Region> {
 
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
-        setValuesForAllNodes(task, displayedIndex);
+        initValuesForNodes(task, displayedIndex);
     }
-    public void setValuesForAllNodes(ReadOnlyTask task, int displayedIndex) {
-        name.setText(task.getName().fullName);
-        id.setText(displayedIndex + ". ");
-        //@@author A0139509X
+
+    public void initValuesForNodes(ReadOnlyTask task, int displayedIndex) {
+        setTextForName(task);
+        setTextForId(displayedIndex);
         setTextForDescription(task);
         setTextForStartTime(task);
         setTextForEndTime(task);
         setTextForRecurPeriod(task);
         setTextForRecurEndDate(task);
         initTags(task);
-        //setPriorityIcons(task);
         setColours(task);
+        //setPriorityIcons(task);
     }
+
+    public void setTextForId(int displayedIndex) {
+        id.setText(displayedIndex + ". ");
+    }
+
+    public void setTextForName(ReadOnlyTask task) {
+        name.setText(task.getName().fullName);
+    }
+
     private void setTextForRecurEndDate(ReadOnlyTask task) {
-        if (task.getRecurEndDate().endDate != null) {
+        if (task.getRecurEndDate().endDate != TaskStringReference.EMPTY_RECUR_END_DATE) {
             recurEndDate.setText("Recur End Date : " + task.getRecurEndDate().endDate);
-        } else if (task.getRecurEndDate().endDate == null) {
+        } else if (task.getRecurEndDate().endDate == TaskStringReference.EMPTY_RECUR_END_DATE) {
             dontShowLabel(recurEndDate);
         }
 
     }
+
     private void setTextForRecurPeriod(ReadOnlyTask task) {
-        if (task.getRecurPeriod().period != "") {
+        if (!task.getRecurPeriod().period.equals(TaskStringReference.EMPTY_PERIOD)) {
             setRecurPeriod(task);
-        } else if (task.getRecurPeriod().period == "") {
+        } else if (task.getRecurPeriod().period.equals(TaskStringReference.EMPTY_PERIOD)) {
             dontShowLabel(recurPeriod);
         }
 
     }
+
     public void setRecurPeriod(ReadOnlyTask task) {
-        if (task.getRecurPeriod().period.matches("(0-9)+")) {
+        if (task.getRecurPeriod().period.matches("[0-9]+")) {
             recurPeriod.setText("Recur Period : " + task.getRecurPeriod().period + " days");
         } else {
             recurPeriod.setText("Recur Period : " + task.getRecurPeriod().period);
         }
     }
-    //@@author A0139509X
+
     private void setColours(ReadOnlyTask task) {
         if (task.getPriority().toString().equals(TaskStringReference.PRIORITY_HIGH)) {
             cardPane.setStyle(HIGH_PRIORITY_COLOR);

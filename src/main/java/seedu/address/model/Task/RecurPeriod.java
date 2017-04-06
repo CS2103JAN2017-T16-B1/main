@@ -36,9 +36,6 @@ public class RecurPeriod {
         else this.period = period;
     }
 
-
-
-
     private boolean isValidPeriod(String test) {
         return test.matches(PERIOD_VALIDATION_REGEX);
     }
