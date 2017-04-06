@@ -61,8 +61,8 @@ public class MainApp extends Application {
         Platform.setImplicitExit(false);
 
 
-        config = initConfig("confiq.json");
-        //config = initConfig(getApplicationParameter("config"));
+        config = initConfig("config.json");//getApplicationParameter("config"));
+        
         storage = new StorageManager(config.getTaskManagerFilePath(), config.getUserPrefsFilePath());
 
         userPrefs = initPrefs(config);

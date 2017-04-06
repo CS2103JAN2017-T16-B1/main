@@ -12,6 +12,7 @@ public class FindCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void find_nonEmptyList() {
+
         assertFindResult("find Final"); // no results
         assertFindResult("find Midterms2 Midterms4", td.task2, td.task4); // multiple results
         assertFindResult("find #h", td.task3); //one result

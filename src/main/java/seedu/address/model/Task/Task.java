@@ -31,7 +31,8 @@ public class Task implements ReadOnlyTask {
      * @throws IllegalValueException 
      */
 
-    public Task(Name name, Description description, StartTime startTime, EndTime endTime, ID id, Priority priority, Status status, RecurPeriod recurPeriod, RecurEndDate recurEndDate, UniqueTagList tags) throws IllegalValueException {
+    public Task(Name name, Description description, StartTime startTime, EndTime endTime, ID id, Priority priority, Status status,
+    		RecurPeriod recurPeriod, RecurEndDate recurEndDate, UniqueTagList tags) throws IllegalValueException {
         assert !CollectionUtil.isAnyNull(name, startTime,id, tags);
         
         ParserUtil.isAfter(startTime.toString(), endTime.toString());

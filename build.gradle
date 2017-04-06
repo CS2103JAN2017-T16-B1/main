@@ -30,6 +30,8 @@ allprojects {
         maven { url "https://repo.eclipse.org/content/repositories/egit-releases/" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     	maven { url "https://mvnrepository.com/artifact/com.joestelmach/natty"}
+    	maven { url "https://mvnrepository.com/artifact/org.slf4j/slf4j-nop"}
+
 		
     }
 
@@ -73,6 +75,7 @@ allprojects {
             exclude group: "junit", module: "junit"
         }
         compile group: 'com.joestelmach', name: 'natty', version: '0.13'
+
         testCompile "org.testfx:openjfx-monocle:$monocleVersion"
     }
 
