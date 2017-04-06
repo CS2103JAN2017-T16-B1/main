@@ -67,22 +67,21 @@ public class UiManager extends ComponentManager implements Ui {
             mainWindow = new MainWindow(primaryStage, config, prefs, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-            
+
           //@@author A0140072X
             primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 public void handle(WindowEvent we) {
-                    Platform.runLater(new Runnable(){@Override public void run() {raise(new ExitAppRequestEvent());}});
+                    Platform.runLater(new Runnable() {@Override public void run() { raise(new ExitAppRequestEvent());}});
                 }
-            });                 
+            });
             final Provider provider = Provider.getCurrentProvider(false);
             HotKeyListener listener = new HotKeyListener() {
                 public void onHotKey(HotKey hotKey) {
-                    if(isShown) {
-                        raise(new HideWindowEvent());                            
-                        isShown = !isShown;
+                    if (isShown) {
+                        raise(new HideWindowEvent());
                     }
                     else {
-                        raise(new ShowWindowEvent());     
+                        raise(new ShowWindowEvent());
                         isShown = true;
                     }
                 }
@@ -120,7 +119,7 @@ public class UiManager extends ComponentManager implements Ui {
     }
   //@@author A0140072X
     @Override
-    public void show() {        
+    public void show() {
         mainWindow.show();
     }
   //@@author A0140072X

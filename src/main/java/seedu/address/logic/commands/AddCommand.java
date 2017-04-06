@@ -21,7 +21,7 @@ import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
-
+//@@author A0140072X
 /**
  * Adds a task to the task manager.
  */
@@ -65,7 +65,6 @@ public class AddCommand extends Command {
                 new StartTime(startTime),
                 new EndTime(endTime),
                 new ID(id),
-                //new ID(id++),
                 new Priority(priority),
                 new Status("undone"),
                 new RecurPeriod(recurPeriod),
@@ -74,94 +73,14 @@ public class AddCommand extends Command {
         );
         incrementID();
         
-      /*  while (this.toAdd.getRecurEndDate().hasPassedEndDate(endTime)){
-        	startTime = this.toAdd.getRecurPeriod().updatedDate(startTime);
-        	
-        	this.toAdd = new Task(
-                    new Name(name),
-                    new Description(description),
-                    new StartTime(startTime),
-                    new EndTime(endTime),
-                    new ID(id),
-                    //new ID(id++),
-                    new Priority("m"),
-                    new Status("undone"),
-                    new RecurPeriod(recurPeriod),
-                    new RecurEndDate(recurEndDate),
-                    new UniqueTagList(tagSet)
-            );
-            incrementID();
-        }*/
+     
     }
-
-  /*Add Task
-    public AddCommand(String name, String description, String endTime, Set<String> tags)
-
-            throws IllegalValueException {
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(new Tag(tagName));
-        }
-        this.toAdd = new Task(
-                new Name(name),
-         		new Description(description),
-                new StartTime(""),
-                new EndTime(endTime),
-                new ID(id),
-                new Priority("m"),
-                new Status("undone"),
-                new UniqueTagList(tagSet)
-        );
-        incrementID();
-    }
-  //Add Floating
-    public AddCommand(String name, String description,  Set<String> tags)
-
-            throws IllegalValueException {
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(new Tag(tagName));
-        }
-        this.toAdd = new Task(
-                new Name(name),
-
-                new Description(description),
-                new StartTime(""),
-                new EndTime(""),
-                new ID(id),
-                new Priority("m"),
-                new Status("undone"),
-                new UniqueTagList(tagSet)
-        );
-        incrementID();
-    }*/
     private void incrementID() {
         Integer intid = Integer.parseInt(id);
         intid++;
         id = intid.toString();
     }
-    /*
-    public AddCommand(String name, String description, String startTime, String endTime,
-            String id, String priority, String status, Set<String> tags)
-
-            throws IllegalValueException {
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(new Tag(tagName));
-        }
-        this.toAdd = new Task(
-                new Name(name),
-
-                new Description(description),
-                new StartTime(startTime),
-                new EndTime(endTime),
-                new ID(id),
-
-                new Priority(priority),
-                new Status(status),
-                new UniqueTagList(tagSet)
-        );
-    }*/
+    
 
     @Override
     public CommandResult execute() throws CommandException {
