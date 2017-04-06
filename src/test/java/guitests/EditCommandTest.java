@@ -25,19 +25,13 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void edit_allFieldsSpecified_success() throws Exception {
-<<<<<<< HEAD
-        String detailsToEdit = "Exam s/2017-03-03-2100 d/CS2103 module e/2017-10-10-2100 t/schoolwork t/School";
-        int taskManagerIndex = 1;
 
-        TestTask editedTask = new TaskBuilder().withName("Exam").withStartTime("2017-03-03-2100")
-                .withDescription("CS2103 module").withEndTime("2017-10-10-2100").withTags("schoolwork").withPriority("m").build();
-=======
         String detailsToEdit = "Study s/2017-03-03-2100 e/2017-10-10-2100 t/school";
         int taskManagerIndex = 1;
 
         TestTask editedTask = new TaskBuilder().withName("Study").withStartTime("2017-03-03-2100")
                 .withDescription("").withEndTime("2017-10-10-2100").withTags("school").build();
->>>>>>> 6cc771e4849f1e52995dc803ca92a7aff78a269d
+
 
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
