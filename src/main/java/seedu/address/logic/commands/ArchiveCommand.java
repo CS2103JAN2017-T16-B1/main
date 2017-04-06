@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Task.EndTime;
@@ -12,7 +11,6 @@ import seedu.address.model.Task.StartTime;
 import seedu.address.model.Task.Status;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
-import seedu.address.model.Task.UniqueTaskList.TaskNotFoundException;
 //@@author A0140072X
 /**
  * Archive a task identified using it's last displayed index from the task manager.
@@ -56,21 +54,24 @@ public class ArchiveCommand extends Command {
                     taskToArchive.getPriority(), new Status("undone"), taskToArchive.getRecurPeriod(),
                     taskToArchive.getRecurEndDate(), taskToArchive.getTags());
             model.updateTask(targetIndex, updatedTask);
-  //@@author A0139375W
-            if (toAdd.getRecurPeriod().toString() != null && !toAdd.getEndTime().isEmpty()){
-            	EndTime newEndTime = new EndTime(taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getEndTime().toString()));
-            	if(toAdd.getRecurEndDate().toString() == null || toAdd.getRecurEndDate().hasPassedEndDate(newEndTime.toString()) == false ){
-            	if (toAdd.getStartTime().toString() != null) {
-            		StartTime newStartTime = new StartTime(taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getStartTime().toString()));
-            		toAdd.setStartTime(newStartTime);
-            	}
-            	toAdd.setEndTime(newEndTime);
-            	
-            	model.addTask(toAdd);
-  //@@author A0139375W         	
-            	}
-            }
+            //@@author A0139375W
+            if (toAdd.getRecurPeriod().toString() != null && !toAdd.getEndTime().isEmpty()) {
+                EndTime newEndTime =
+                        new EndTime(taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getEndTime().toString()));
+                if (toAdd.getRecurEndDate().toString() == null
+                        || toAdd.getRecurEndDate().hasPassedEndDate(newEndTime.toString()) == false) {
+                    if (toAdd.getStartTime().toString() != null) {
+                        StartTime newStartTime =
+                                new StartTime(taskToArchive.getRecurPeriod().
+                                        updatedDate(taskToArchive.getStartTime().toString()));
+                        toAdd.setStartTime(newStartTime);
+                    }
+                    toAdd.setEndTime(newEndTime);
 
+                    model.addTask(toAdd);
+                    //@@author A0139375W
+                }
+            }
         }
         catch (UniqueTaskList.DuplicatetaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);

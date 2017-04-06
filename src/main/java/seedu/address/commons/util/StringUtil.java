@@ -60,23 +60,23 @@ public class StringUtil {
         return s != null && s.matches("^0*[1-9]\\d*$");
     }
 
-	public static boolean containsTagIgnoreCase(UniqueTagList tags, String keyword) {
-		assert keyword != null: "Tag parameter cannot be empty";
-		assert tags != null: "Taglist parameter cannot be empty";
-		
-		String preppedTag = keyword.trim();
+    public static boolean containsTagIgnoreCase(UniqueTagList tags, String keyword) {
+        assert keyword != null : "Tag parameter cannot be empty";
+        assert tags != null : "Taglist parameter cannot be empty";
+
+        String preppedTag = keyword.trim();
         assert !preppedTag.isEmpty() : "Tag parameter cannot be empty";
         assert preppedTag.split("\\s+").length == 1 : "Tag parameter should be a single word";
 
         UniqueTagList preppedList = tags;
- 
-		try {
-			Tag toCheck = new Tag(preppedTag);
-			return preppedList.contains(toCheck);
-		} catch (IllegalValueException e) {
-			e.printStackTrace();
-		}
-		return false;
 
-	}
+        try {
+            Tag toCheck = new Tag(preppedTag);
+            return preppedList.contains(toCheck);
+        } catch (IllegalValueException e) {
+            e.printStackTrace();
+        }
+        return false;
+
+    }
 }

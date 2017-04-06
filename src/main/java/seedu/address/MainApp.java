@@ -1,6 +1,5 @@
 package seedu.address;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
@@ -10,13 +9,11 @@ import com.google.common.eventbus.Subscribe;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
-import seedu.address.commons.events.model.TaskManagerChangedEvent;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
 import seedu.address.commons.events.ui.HideWindowEvent;
 import seedu.address.commons.events.ui.LoadRequestEvent;
@@ -35,7 +32,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
-import seedu.address.ui.MainWindow;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -62,7 +58,7 @@ public class MainApp extends Application {
 
 
         config = initConfig("config.json");//getApplicationParameter("config"));
-        
+
         storage = new StorageManager(config.getTaskManagerFilePath(), config.getUserPrefsFilePath());
 
         userPrefs = initPrefs(config);
@@ -189,7 +185,7 @@ public class MainApp extends Application {
         Platform.exit();
         System.exit(0);
     }
-  //@@author A0140072X
+    //@@author A0140072X
     @Subscribe
     private void handleDataSavingEvent(SaveRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
@@ -203,7 +199,7 @@ public class MainApp extends Application {
             logger.warning("Problem while trying to save config file");
         }
     }
-  //@@author A0140072X
+    //@@author A0140072X
     @Subscribe
     private void handleDataLoadingEvent(LoadRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
@@ -221,12 +217,22 @@ public class MainApp extends Application {
     //@@author A0140072X
     @Subscribe
     private void handleShowWindowEvent(ShowWindowEvent event) {
-        Platform.runLater(new Runnable(){@Override public void run() {ui.show();}});
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                ui.show();
+            }
+        });
     }
     @Subscribe
     private void handleHideWindowEvent(HideWindowEvent event) {
-      // ui.hide();
-        Platform.runLater(new Runnable(){@Override public void run() {ui.hide();}});
+        // ui.hide();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                ui.hide();
+            }
+        });
     }
 
     @Subscribe

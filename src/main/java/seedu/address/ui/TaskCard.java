@@ -2,8 +2,6 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -15,11 +13,11 @@ public class TaskCard extends UiPart<Region> {
 
     private static final String LOW_PRIORITY_COLOR = "-fx-background-color: #EEFEED;";
 
-	private static final String MEDIUM_PRIORITY_COLOR = "-fx-background-color: #EDF5FE;";
+    private static final String MEDIUM_PRIORITY_COLOR = "-fx-background-color: #EDF5FE;";
 
-	private static final String HIGH_PRIORITY_COLOR = "-fx-background-color: #FEF0ED;";
+    private static final String HIGH_PRIORITY_COLOR = "-fx-background-color: #FEF0ED;";
 
-	private static final String FXML = "TaskListCard.fxml";
+    private static final String FXML = "TaskListCard.fxml";
 
     @FXML
     private HBox cardPane;
@@ -48,8 +46,8 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         setValuesForAllNodes(task, displayedIndex);
     }
-	public void setValuesForAllNodes(ReadOnlyTask task, int displayedIndex) {
-		name.setText(task.getName().fullName);
+    public void setValuesForAllNodes(ReadOnlyTask task, int displayedIndex) {
+        name.setText(task.getName().fullName);
         id.setText(displayedIndex + ". ");
         //@@author A0139509X
         setTextForDescription(task);
@@ -60,77 +58,77 @@ public class TaskCard extends UiPart<Region> {
         initTags(task);
         //setPriorityIcons(task);
         setColours(task);
-	}
+    }
     private void setTextForRecurEndDate(ReadOnlyTask task) {
-    	if(task.getRecurEndDate().endDate != null){
-			recurEndDate.setText("Recur End Date : " +task.getRecurEndDate().endDate);
+        if(task.getRecurEndDate().endDate != null){
+            recurEndDate.setText("Recur End Date : " +task.getRecurEndDate().endDate);
         } else if(task.getRecurEndDate().endDate == null){
-        	dontShowLabel(recurEndDate);
+            dontShowLabel(recurEndDate);
         }
-		
-	}
-	private void setTextForRecurPeriod(ReadOnlyTask task) {
-    	if(task.getRecurPeriod().period != null){
-    		setRecurPeriod(task);
-        } else if(task.getRecurPeriod().period == null){
-        	dontShowLabel(recurPeriod);
-        }
-    	
-	}
-	public void setRecurPeriod(ReadOnlyTask task) {
-		if(task.getRecurPeriod().period.matches("(0-9)+")){
-			recurPeriod.setText("Recur Period : " +task.getRecurPeriod().period + " days");
-		}
-		else{
-			recurPeriod.setText("Recur Period : " +task.getRecurPeriod().period);
-		}
-	}
-	//@@author A0139509X
-    private void setColours(ReadOnlyTask task) {
-		if(task.getPriority().toString().equals(TaskStringReference.PRIORITY_HIGH)) {
-			cardPane.setStyle(HIGH_PRIORITY_COLOR);
-			//cardPane.setStyle(".label-red");
-		} else if(task.getPriority().toString().equals(TaskStringReference.PRIORITY_MEDIUM)){
-			cardPane.setStyle(MEDIUM_PRIORITY_COLOR);
-		} else if(task.getPriority().toString().equals(TaskStringReference.PRIORITY_LOW)){
-			cardPane.setStyle(LOW_PRIORITY_COLOR);
-		}
-		
-	}
 
-	/*private void setPriorityIcons(ReadOnlyTask task) {
+    }
+    private void setTextForRecurPeriod(ReadOnlyTask task) {
+        if(task.getRecurPeriod().period != null){
+            setRecurPeriod(task);
+        } else if(task.getRecurPeriod().period == null){
+            dontShowLabel(recurPeriod);
+        }
+
+    }
+    public void setRecurPeriod(ReadOnlyTask task) {
+        if(task.getRecurPeriod().period.matches("(0-9)+")){
+            recurPeriod.setText("Recur Period : " +task.getRecurPeriod().period + " days");
+        }
+        else{
+            recurPeriod.setText("Recur Period : " +task.getRecurPeriod().period);
+        }
+    }
+    //@@author A0139509X
+    private void setColours(ReadOnlyTask task) {
+        if(task.getPriority().toString().equals(TaskStringReference.PRIORITY_HIGH)) {
+            cardPane.setStyle(HIGH_PRIORITY_COLOR);
+            //cardPane.setStyle(".label-red");
+        } else if(task.getPriority().toString().equals(TaskStringReference.PRIORITY_MEDIUM)){
+            cardPane.setStyle(MEDIUM_PRIORITY_COLOR);
+        } else if(task.getPriority().toString().equals(TaskStringReference.PRIORITY_LOW)){
+            cardPane.setStyle(LOW_PRIORITY_COLOR);
+        }
+
+    }
+
+    /*private void setPriorityIcons(ReadOnlyTask task) {
 		pinimage.setImage(new Image("/images/clock.png"));
 	}*/
 
-	private void setTextForEndTime(ReadOnlyTask task) {
-		if(!(task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME))){
-			endTime.setText("End Time : " +task.getEndTime().endTime);
+    private void setTextForEndTime(ReadOnlyTask task) {
+        if(!(task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME))){
+            endTime.setText("End Time : " +task.getEndTime().endTime);
         } else if(task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME)){
-        	dontShowLabel(endTime);
+            dontShowLabel(endTime);
         }
-	}
+    }
 
-	private void setTextForStartTime(ReadOnlyTask task) {
-		if(!(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME))){
-        	startTime.setText("Start Time : " + task.getStartTime().startTime);
+    private void setTextForStartTime(ReadOnlyTask task) {
+        if(!(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME))){
+            startTime.setText("Start Time : " + task.getStartTime().startTime);
         } else if(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME)){
-        	dontShowLabel(startTime);
+            dontShowLabel(startTime);
         }
-	}
+    }
 
-	private void setTextForDescription(ReadOnlyTask task) {
-		if(!(task.getDescription().description.equals(TaskStringReference.EMPTY_DESCRIPTION))){
-        	description.setText("Description : " + task.getDescription().description);
+    private void setTextForDescription(ReadOnlyTask task) {
+        if(!(task.getDescription().description.equals(TaskStringReference.EMPTY_DESCRIPTION))){
+            description.setText("Description : " + task.getDescription().description);
         } else if(task.getDescription().description.equals(TaskStringReference.EMPTY_DESCRIPTION)){
-        	dontShowLabel(description);
+            dontShowLabel(description);
         }
-	}
+    }
 
-	private void initTags(ReadOnlyTask task) {
+    private void initTags(ReadOnlyTask task) {
         task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
-	
-	private void dontShowLabel(Label label) {
-		label.setManaged(false);
-	}
+
+    private void dontShowLabel(Label label) {
+        label.setManaged(false);
+    }
 }
