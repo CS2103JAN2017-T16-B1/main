@@ -23,18 +23,18 @@ public class RecurPeriod {
      * @throws IllegalValueException if the given period string is invalid.
      */
 
-	public RecurPeriod(String period) throws IllegalValueException{
-		if(period != ""){
-		String trimmedPeriod = period.trim();
+    public RecurPeriod(String period) throws IllegalValueException {
+        if (period != "") {
+            String trimmedPeriod = period.trim();
 
-	//	if (!isValidPeriod(trimmedPeriod)) {
-    //        throw new IllegalValueException(MESSAGE_PERIOD_CONSTRAINTS);
-    //    }
+  //          if (!isValidPeriod(trimmedPeriod)) {
+  //              throw new IllegalValueException(MESSAGE_PERIOD_CONSTRAINTS);
+  //              }
 
-		this.period = trimmedPeriod;
-		}
-		else this.period = period;
-	}
+            this.period = trimmedPeriod;
+        }
+        else this.period = period;
+    }
 
 
 
@@ -74,15 +74,15 @@ public class RecurPeriod {
 
 
 
-	public boolean hasRecurPeriod(){
-		if (period == "") return false;
-		return true;
-	}
+    public boolean hasRecurPeriod() {
+        if (period == "") return false;
+        return true;
+    }
 
-	@Override
-	public String toString() {
-	    return period;
-	}
+    @Override
+    public String toString() {
+        return period;
+    }
 
 
     @Override

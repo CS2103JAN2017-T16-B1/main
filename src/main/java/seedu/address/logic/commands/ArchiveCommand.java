@@ -34,7 +34,6 @@ public class ArchiveCommand extends Command {
         this.targetIndex = targetIndex - 1;
     }
 
-
     @Override
     public CommandResult execute() throws CommandException {
         List<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
@@ -59,10 +58,10 @@ public class ArchiveCommand extends Command {
                 EndTime newEndTime =
                         new EndTime(taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getEndTime().toString()));
                 if (toAdd.getRecurEndDate().hasRecurEndDate()
-                    || toAdd.getRecurEndDate().hasPassedEndDate(newEndTime.toString()) == false) {
+                        || toAdd.getRecurEndDate().hasPassedEndDate(newEndTime.toString()) == false) {
                     if (toAdd.getStartTime().hasStartTime()) {
-                        StartTime newStartTime = new StartTime(
-                                taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getStartTime().toString()));
+                        StartTime newStartTime = new StartTime (taskToArchive.getRecurPeriod().
+                                updatedDate(taskToArchive.getStartTime().toString()));
                         toAdd.setStartTime(newStartTime);
                     }
                     toAdd.setEndTime(newEndTime);
