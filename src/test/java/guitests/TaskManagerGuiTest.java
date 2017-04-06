@@ -24,8 +24,8 @@ import seedu.address.TestApp;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.events.BaseEvent;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.TaskManager;
 import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.TaskManager;
 import seedu.address.testutil.TestUtil;
 import seedu.address.testutil.TypicalTestTasks;
 
