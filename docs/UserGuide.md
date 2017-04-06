@@ -74,7 +74,7 @@ Examples:
 * `add Study for midterms e/Monday 1000 d/CS2103 at lt7 `
 * `add Buy milk for baby BY tuesday 0800 d/yaas milk t/family`
 * `add Create user story e/2017-4-1-1300 t/work t/computing` 
-* `add Meeting FROM monday 0800 TO monday 1100 t/work r/weekly  
+* `add Meeting FROM monday 0800 TO monday 1100 t/work r/weekly`
 
 
 
@@ -196,7 +196,7 @@ Format: `sort PARAMETER`
   `sort priority`<br>
   Sorts all tasks with names/descriptions/tags containing homework by priority.
 
-### 2.7.  Deleting task(s): `delete`
+### 2.7  Deleting task(s): `delete`
 
 
 Deletes the specified task(s) from the task manager.<br>
@@ -215,7 +215,7 @@ Examples:
   `delete 1`<br>
   Deletes the 1st task in the results of the `find` command.
 
-### 2.8. Mark task(s) as done : `archive`
+### 2.8 Mark task(s) as done : `archive`
 
 Mark the specified task(s) as done.<br>
 Format: `done INDEX,[INDEX]...`
@@ -229,23 +229,51 @@ Examples:
 * `list`<br>
    `archive 2,3`<br>
    Mark the 2nd and 3rd task in the list as done.
+   
+### 2.9.1 Save Task Manager Manually: 
 
-### 2.9. Clearing all entries : `clear`
+Save the current instance of Task Manager to a File.<br>
+HotKey: `ALT + S Key`
+
+> * Choose a File & Location to save the Task List. 
+> * Any further changes in this session will be saved to the new File.
+> * Task Manager will use the most recent File that was used upon startup
+> * Alternatively User can navigate to File > Save File from the GUI.
+
+### 2.9.2 Load Task Manager Manually: 
+
+Load a instance of Task Manager from a File.<br>
+HotKey: `ALT + L Key`
+
+> * Choose a File to Load. 
+> * Any further changes in this session will be saved to the new File.
+> * Task Manager will use the most recent File that was used upon startup
+> * Alternatively User can navigate to File > Load File from the GUI.
+
+### 2.10 Quick Launch HotKey: 
+
+Show/Hide the Task Manager to facilitate multi-tasking.<br>
+HotKey: `CTRL + SPACE Key`
+
+> * Press the HotKey at anytime to Show or Hide the Task Manager. 
+> * Window/Mac/Linux Supported
+
+### 2.11 Clearing all entries : `clear`
 
 Clears all entries from the task manager.<br>
 Format: `clear`
 
-### 2.10. Undo the last command : `undo`
+### 2.12 Undo the last command : `undo`
 
 Undo the last add/edit/archive/undo command input by the user.<br>
 Format: `undo`
 
-### 2.11. Exiting the program : `exit`
+### 2.13 Exiting the program : `exit`
 
 Exits the program.<br>
 Format: `exit`
 
-### 2.12. Saving the data
+### 2.14 Saving the data
 
 Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.
@@ -259,12 +287,9 @@ There is no need to save manually.
 ## 4. Command Summary
 
 * **Add :** <br>
-> * **Task :**<br>
-
-> *`add TASK_NAME [d/DEADLINE] [d/DESCRIPTION] [t/TAG]...` <br>
-> * **Event :**<br>
-> *`add EVENT_NAME s/START_TIME e/END_TIME [d/DESCRIPTION] [t/TAG]...` <br>
-
+* **Task :**<br>
+* `add TASK_NAME [s/STARTTIME] [e/ENDTIME] [d/DESCRIPTION] [r/REPEATPERIOD] [l/RECURENDDATE] [t/TAG] ...` <br>
+   e.g. `add Study for midterms s/Saturday e/Sunday d/CS2103 Chapter 1 to 10`
 
 * **Clear** : `clear`<br>
 
@@ -285,6 +310,10 @@ There is no need to save manually.
 
 * **Archived** : `archived` <br>
   e.g. `archived`
+  
+* **Save/Load** : `ALT + S / ALT + L` <br>
+  
+* **Quick Launch** : `CTRL + SPACE` <br>
 
 * **edit** : `edit TASK_ID[n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]...` <br>
 
