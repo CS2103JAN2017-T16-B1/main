@@ -196,7 +196,7 @@ Format: `sort PARAMETER`
   `sort priority`<br>
   Sorts all tasks with names/descriptions/tags containing homework by priority.
 
-### 2.7  Deleting task(s): `delete`
+### 2.8  Deleting task(s): `delete`
 
 
 Deletes the specified task(s) from the task manager.<br>
@@ -215,7 +215,7 @@ Examples:
   `delete 1`<br>
   Deletes the 1st task in the results of the `find` command.
 
-### 2.8 Mark task(s) as done : `archive`
+### 2.9 Mark task(s) as done : `archive`
 
 Mark the specified task(s) as done.<br>
 Format: `done INDEX,[INDEX]...`
@@ -230,7 +230,7 @@ Examples:
    `archive 2,3`<br>
    Mark the 2nd and 3rd task in the list as done.
    
-### 2.9.1 Save Task Manager Manually: 
+### 2.10.1 Save Task Manager Manually: 
 
 Save the current instance of Task Manager to a File.<br>
 HotKey: `ALT + S Key`
@@ -240,7 +240,7 @@ HotKey: `ALT + S Key`
 > * Task Manager will use the most recent File that was used upon startup
 > * Alternatively User can navigate to File > Save File from the GUI.
 
-### 2.9.2 Load Task Manager Manually: 
+### 2.10.2 Load Task Manager Manually: 
 
 Load a instance of Task Manager from a File.<br>
 HotKey: `ALT + L Key`
@@ -250,7 +250,7 @@ HotKey: `ALT + L Key`
 > * Task Manager will use the most recent File that was used upon startup
 > * Alternatively User can navigate to File > Load File from the GUI.
 
-### 2.10 Quick Launch HotKey: 
+### 2.11 Quick Launch HotKey: 
 
 Show/Hide the Task Manager to facilitate multi-tasking.<br>
 HotKey: `CTRL + SPACE Key`
@@ -258,22 +258,22 @@ HotKey: `CTRL + SPACE Key`
 > * Press the HotKey at anytime to Show or Hide the Task Manager. 
 > * Window/Mac/Linux Supported
 
-### 2.11 Clearing all entries : `clear`
+### 2.12 Clearing all entries : `clear`
 
 Clears all entries from the task manager.<br>
 Format: `clear`
 
-### 2.12 Undo the last command : `undo`
+### 2.13 Undo the last command : `undo`
 
 Undo the last add/edit/archive/undo command input by the user.<br>
 Format: `undo`
 
-### 2.13 Exiting the program : `exit`
+### 2.14 Exiting the program : `exit`
 
 Exits the program.<br>
 Format: `exit`
 
-### 2.14 Saving the data
+### 2.15 Saving the data
 
 Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.
