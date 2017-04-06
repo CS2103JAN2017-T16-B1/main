@@ -16,7 +16,6 @@ import seedu.address.model.Task.UniqueTaskList;
 * Archive a task identified using it's last displayed index from the task manager.
 */
 public class ArchiveCommand extends Command {
-
     public static final String COMMAND_WORD = "archive";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
     public static final String MESSAGE_ILLEGAL_VALUE = "Illegal value detected.";

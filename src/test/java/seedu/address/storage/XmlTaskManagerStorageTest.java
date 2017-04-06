@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -13,9 +12,9 @@ import org.junit.rules.TemporaryFolder;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.FileUtil;
+import seedu.address.model.ReadOnlyTaskManager;
 import seedu.address.model.TaskManager;
 import seedu.address.model.Task.Task;
-import seedu.address.model.ReadOnlyTaskManager;
 import seedu.address.testutil.TypicalTestTasks;
 
 public class XmlTaskManagerStorageTest {
@@ -40,7 +39,7 @@ public class XmlTaskManagerStorageTest {
     private String addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
         return prefsFileInTestDataFolder != null
                 ? TEST_DATA_FOLDER + prefsFileInTestDataFolder
-                : null;
+                        : null;
     }
 
     @Test

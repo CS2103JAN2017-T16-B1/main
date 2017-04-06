@@ -31,8 +31,13 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the last task listing. "
             + "Existing values will be overwritten by the input values.\n"
+<<<<<<< HEAD
             + "Parameters: INDEX (must be a positive integer) [NAME] [beg/STARTTIME] "
             + "[end/ENDTIME] [des/DESCRIPTION ] [t/TAG]...\n"
+=======
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[NAME] [beg/STARTTIME] [end/ENDTIME] [des/DESCRIPTION ] [t/TAG]...\n"
+>>>>>>> f8e8d5ad6422696330f211845fc569202121ff89
             + "Example: " + COMMAND_WORD + " 1 st/2017-3-1-2359 des/go to ntuc";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited:\n %1$s";
@@ -96,6 +101,7 @@ public class EditCommand extends Command {
         Status updatedStatus = editTaskDescriptor.getStatus().orElseGet(taskToEdit::getStatus);
         ID updatedID = taskToEdit.getId();
         RecurEndDate updatedRecurEndDate = editTaskDescriptor.getRecurEndDate().orElseGet(taskToEdit::getRecurEndDate);
+<<<<<<< HEAD
         RecurPeriod updatedRecurPeriod =
                 editTaskDescriptor.getRecurPeriod().orElseGet(taskToEdit::getRecurPeriod);
         UniqueTagList updatedTags = new UniqueTagList(taskToEdit, editTaskDescriptor);
@@ -104,6 +110,15 @@ public class EditCommand extends Command {
         return new Task(updatedName, updatedDescription, updatedStartTime, updatedEndTime,
                 updatedID, updatedPriority, updatedStatus, updatedRecurPeriod, updatedRecurEndDate, updatedTags);
 
+=======
+        RecurPeriod updatedRecurPeriod = editTaskDescriptor.getRecurPeriod().orElseGet(taskToEdit::getRecurPeriod);
+        UniqueTagList updatedTags = new UniqueTagList(taskToEdit, editTaskDescriptor);
+        //editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
+
+
+        return new Task(updatedName, updatedDescription, updatedStartTime, updatedEndTime, updatedID,
+               updatedPriority, updatedStatus, updatedRecurPeriod, updatedRecurEndDate, updatedTags);
+>>>>>>> f8e8d5ad6422696330f211845fc569202121ff89
     }
 
 
@@ -126,6 +141,10 @@ public class EditCommand extends Command {
         public EditTaskDescriptor() {}
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f8e8d5ad6422696330f211845fc569202121ff89
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             this.name = toCopy.getName();
             this.description = toCopy.getDescription();
@@ -142,8 +161,13 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
+<<<<<<< HEAD
             return CollectionUtil.isAnyPresent(this.name, this.description, this.startTime, this.endTime, this.priority,
                     this.status, this.recurPeriod, this.recurEndDate, this.tags);
+=======
+            return CollectionUtil.isAnyPresent(this.name, this.description, this.startTime,
+                   this.endTime, this.priority, this.status, this.recurPeriod, this.recurEndDate, this.tags);
+>>>>>>> f8e8d5ad6422696330f211845fc569202121ff89
         }
 
         public void setName(Optional<Name> name) {

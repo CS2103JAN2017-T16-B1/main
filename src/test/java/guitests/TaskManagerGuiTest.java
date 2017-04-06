@@ -15,9 +15,9 @@ import org.testfx.api.FxToolkit;
 import guitests.guihandles.CommandBoxHandle;
 import guitests.guihandles.MainGuiHandle;
 import guitests.guihandles.MainMenuHandle;
+import guitests.guihandles.ResultDisplayHandle;
 import guitests.guihandles.TaskCardHandle;
 import guitests.guihandles.TaskListPanelHandle;
-import guitests.guihandles.ResultDisplayHandle;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import seedu.address.TestApp;
@@ -76,14 +76,14 @@ public abstract class TaskManagerGuiTest {
         });
         EventsCenter.clearSubscribers();
         testApp = (TestApp) FxToolkit.setupApplication(() -> new TestApp(() -> {
-			try {
-				return getInitialData();
-			} catch (IllegalValueException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}, getDataFileLocation()));
+            try {
+                return getInitialData();
+            } catch (IllegalValueException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return null;
+        }, getDataFileLocation()));
         FxToolkit.showStage();
         while (!stage.isShowing());
         mainGui.focusOnMainApp();
@@ -92,7 +92,7 @@ public abstract class TaskManagerGuiTest {
     /**
      * Override this in child classes to set the initial local data.
      * Return null to use the data in the file specified in {@link #getDataFileLocation()}
-     * @throws IllegalValueException 
+     * @throws IllegalValueException
      */
     protected TaskManager getInitialData() throws IllegalValueException {
         TaskManager ab = new TaskManager();

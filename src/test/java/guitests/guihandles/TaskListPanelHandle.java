@@ -1,6 +1,5 @@
 package guitests.guihandles;
 
-
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -14,8 +13,8 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import seedu.address.TestApp;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Task.Task;
 import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.Task.Task;
 import seedu.address.testutil.TestUtil;
 
 /**
@@ -53,28 +52,29 @@ public class TaskListPanelHandle extends GuiHandle {
      * Returns true if the list is showing the task details correctly and in correct order.
      * @param startPosition The starting position of the sub list.
      * @param tasks A list of task in the correct order.
-     * @throws IllegalValueException 
+     * @throws IllegalValueException
      */
-    public boolean isListMatching(int startPosition, ReadOnlyTask... tasks) throws IllegalArgumentException{
-        
-        if (tasks.length + startPosition != getListView().getItems().filtered(null).size()){//getListView().getItems().size()) {
+    public boolean isListMatching(int startPosition, ReadOnlyTask... tasks) throws IllegalArgumentException {
+
+        if (tasks.length + startPosition != getListView().getItems().filtered(null).size()) {
+            //getListView().getItems().size()) {
             throw new IllegalArgumentException("List size mismatched\n" +
                     "Expected " + (getListView().getItems().size() - 1) + " tasks");
         }
-        
+
         assertTrue(this.containsInOrder(startPosition, tasks));
         for (int i = 0; i < tasks.length; i++) {
             final int scrollTo = i + startPosition;
             guiRobot.interact(() -> getListView().scrollTo(scrollTo));
             guiRobot.sleep(200);
             try {
-				if (!TestUtil.compareCardAndTask(getTaskCardHandle(startPosition + i), tasks[i])) {
-				    return false;
-				}
-			} catch (IllegalValueException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+                if (!TestUtil.compareCardAndTask(getTaskCardHandle(startPosition + i), tasks[i])) {
+                    return false;
+                }
+            } catch (IllegalValueException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
         return true;
     }
@@ -111,8 +111,8 @@ public class TaskListPanelHandle extends GuiHandle {
     public TaskCardHandle navigateToTask(String name) {
         guiRobot.sleep(500); //Allow a bit of time for the list to be updated
         final Optional<ReadOnlyTask> task = getListView().getItems().stream()
-                                                    .filter(p -> p.getName().fullName.equals(name))
-                                                    .findAny();
+                .filter(p -> p.getName().fullName.equals(name))
+                .findAny();
         if (!task.isPresent()) {
             throw new IllegalStateException("Name not found: " + name);
         }
@@ -162,7 +162,8 @@ public class TaskListPanelHandle extends GuiHandle {
 
     public TaskCardHandle getTaskCardHandle(ReadOnlyTask task) {
         Set<Node> nodes = getAllCardNodes();
-        //Optional<Node> taskCardNode = nodes.stream().filter(n -> new TaskCardHandle(guiRobot, primaryStage, n).isSameTask(task)).findFirst();
+        /*Optional<Node> taskCardNode = nodes.stream().filter(n ->
+        new TaskCardHandle(guiRobot, primaryStage, n).isSameTask(task)).findFirst();*/
 
         Optional<Node> taskCardNode = nodes.stream().filter(n -> true).findFirst();
         if (taskCardNode.isPresent()) {

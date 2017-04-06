@@ -1,15 +1,15 @@
 package seedu.address.testutil;
 
+import seedu.address.model.Task.Description;
 import seedu.address.model.Task.EndTime;
 import seedu.address.model.Task.ID;
-import seedu.address.model.Task.StartTime;
-import seedu.address.model.Task.Status;
 import seedu.address.model.Task.Name;
 import seedu.address.model.Task.Priority;
-import seedu.address.model.Task.Description;
 import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.model.Task.RecurEndDate;
 import seedu.address.model.Task.RecurPeriod;
+import seedu.address.model.Task.StartTime;
+import seedu.address.model.Task.Status;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
@@ -63,13 +63,13 @@ public class TestTask implements ReadOnlyTask {
     public void setTags(UniqueTagList tags) {
         this.tags = tags;
     }
-    
-    public void setRecurPeriod(RecurPeriod recurPeriod){
-    	this.recurPeriod=recurPeriod;
+
+    public void setRecurPeriod(RecurPeriod recurPeriod) {
+        this.recurPeriod = recurPeriod;
     }
-    
-    public void setRecurEndDate(RecurEndDate recurEndDate){
-    	this.recurEndDate=recurEndDate;
+
+    public void setRecurEndDate(RecurEndDate recurEndDate) {
+        this.recurEndDate = recurEndDate;
     }
 
     @Override
@@ -121,7 +121,7 @@ public class TestTask implements ReadOnlyTask {
     public Priority getPriority() {
         return priority;
     }
-    
+
     public void setStatus(Status status) {
         assert status != null;
         this.status = status;
@@ -131,46 +131,46 @@ public class TestTask implements ReadOnlyTask {
     public Status getStatus() {
         return status;
     }
-    
+
     @Override
     public ID getId() {
         return id;
     }
-	
-    
+
+
     public void setId(ID id) {
         assert id != null;
-        this.id=id;
+        this.id = id;
     }
 
-	@Override
-	public boolean noEndTime() {
-	    assert endTime != null;
-        if(this.endTime.isEmpty()){
+    @Override
+    public boolean noEndTime() {
+        assert endTime != null;
+        if (this.endTime.isEmpty()) {
             return true;
-        }else {
+        } else {
             return false;
         }
-	}
+    }
 
-	@Override
-	public boolean noStartTime() {
-	    assert startTime != null;
-        if(this.startTime.isEmpty()){
+    @Override
+    public boolean noStartTime() {
+        assert startTime != null;
+        if (this.startTime.isEmpty()) {
             return true;
-        }else {
+        } else {
             return false;
         }
-	}
+    }
 
-	@Override
-	public RecurPeriod getRecurPeriod() {
-		
-		return this.recurPeriod;
-	}
+    @Override
+    public RecurPeriod getRecurPeriod() {
 
-	@Override
-	public RecurEndDate getRecurEndDate() {
-		return this.recurEndDate;
-	}
+        return this.recurPeriod;
+    }
+
+    @Override
+    public RecurEndDate getRecurEndDate() {
+        return this.recurEndDate;
+    }
 }
