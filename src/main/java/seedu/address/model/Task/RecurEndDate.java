@@ -27,7 +27,7 @@ public class RecurEndDate {
 //		if (!isValidEndDate(trimmedEndDate)) {
  //           throw new IllegalValueException(MESSAGE_ENDDATE_CONSTRAINTS);
   //      }
-		this.endDate = trimmedEndDate + "-2359";
+		this.endDate = trimmedEndDate + "-2359\n";
 		}
 		else this.endDate = endDate;
 	}
@@ -53,7 +53,7 @@ public class RecurEndDate {
 	
 	@Override
     public String toString() {
-	        return endDate+"\n";
+	        return endDate;
     }
 	
 	@Override
