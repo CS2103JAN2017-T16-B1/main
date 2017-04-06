@@ -16,15 +16,19 @@ public class FindCommand extends Command {
     //@@author A0139509X
     public static final String COMMAND_WORD = "find";
 
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds all tasks whose names/description/tags contain any of "
+
             + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
             + "When prefix (#) is used, will display all task with the associated status or priority level.\n"
             + "When prefix (@) is used, will display all archived task with the associated names/descriptions/tags.\n"
             + "(Usage 1) Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " study meeting friend\n"
+
             + "(Usage 2) Parameters: #KEYWORD \n" + "Example: "
             + COMMAND_WORD + " #h\n"
+
             + "(Usage 3) Parameters: @KEYWORD \n" + "Example: " + COMMAND_WORD + " @study\n";
 
     private final Set<String> keywords;
@@ -106,5 +110,6 @@ public class FindCommand extends Command {
 			Assert.fail("unable to execute FindCommand due to incorrect Priority");
 		}
 	}
+
 
 }
