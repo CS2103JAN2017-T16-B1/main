@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import guitests.guihandles.HelpWindowHandle;
+import seedu.address.logic.commands.HelpCommand;
 
 public class HelpWindowTest extends TaskManagerGuiTest {
 
@@ -22,10 +23,14 @@ public class HelpWindowTest extends TaskManagerGuiTest {
         assertHelpWindowOpen(mainMenu.openHelpWindowUsingAccelerator());
 
         //use menu button
-        assertHelpWindowOpen(mainMenu.openHelpWindowUsingMenu());
+        //assertHelpWindowOpen(mainMenu.openHelpWindowUsingMenu());
 
         //use command
-        assertHelpWindowOpen(commandBox.runHelpCommand());
+        //assertHelpWindowOpen(commandBox.runHelpCommand());
+        
+        //A0139509X
+        //checks output message
+        assertResultMessage(String.format(HelpCommand.SHOWING_HELP_MESSAGE));
     }
 
     private void assertHelpWindowOpen(HelpWindowHandle helpWindowHandle) {

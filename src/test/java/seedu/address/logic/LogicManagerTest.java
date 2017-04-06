@@ -47,6 +47,8 @@ import seedu.address.model.Task.Priority;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.Description;
 import seedu.address.model.Task.ReadOnlyTask;
+import seedu.address.model.Task.RecurEndDate;
+import seedu.address.model.Task.RecurPeriod;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTaskManager;
@@ -446,10 +448,12 @@ public class LogicManagerTest {
             ID id = new ID("1");
             Priority priority = new Priority("m");
             Status status = new Status("undone");
+            RecurPeriod recurPeriod = new RecurPeriod("");
+            RecurEndDate recurEndDate= new RecurEndDate("");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("longertag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Task(name, privatePhone, startTime, endTime, id, priority, status, tags);
+            return new Task(name, privatePhone, startTime, endTime, id, priority, status,recurPeriod,recurEndDate, tags);
         }
 
         /**
@@ -475,10 +479,10 @@ public class LogicManagerTest {
 
             cmd.append("add ");
 
-            cmd.append(p.getName().toString());
-            cmd.append(" s/").append(p.getStartTime());
-            cmd.append(" d/").append(p.getDescription());
-            cmd.append(" e/").append(p.getEndTime());
+            cmd.append(p.getName().fullName);
+            cmd.append(" s/").append(p.getStartTime().startTime);
+            cmd.append(" d/").append(p.getDescription().description);
+            cmd.append(" e/").append(p.getEndTime().endTime);
 
             UniqueTagList tags = p.getTags();
             for (Tag t: tags) {

@@ -170,9 +170,25 @@ _Figure 2.3.1 : Structure of the Logic Component_
 **API** : [`Logic.java`](../src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `Parser` class to parse the user command.
-2. This results in a `Command` object which is executed by the `LogicManager`.
-3. The command execution can affect the `Model` (e.g. adding a task or changing the list of Tasks to be displayed and/or raise events.
+2. The 'Parser' class will take in the command type of the user input and return either return an appropriate specific command parser such as AddCommandParser to further parse the user input or the command directly.
+3. Both result in a `Command` object which is executed then by the `LogicManager`.
+4. The command execution can affect the `Model` (e.g. adding a task or changing the list of Tasks to be displayed and/or raise events.
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+
+***Comparison to alternative possible implementation***
+
+<img src="images/AlternativeLogicClassDiagram.png" width="800"><br>
+
+By using a separate Parser class from Parsers specific to each command, our groups current implemented method improves the readability of the code. User would be able to read code specific to each command, allowing him to perform debugging and edits more easily. 
+
+Cohesion is also increased through the addition of seperate parsers for each command. For example, an AddCommandParser would be solely responsible for the parsing and constructing of a new AddCommand while a EditCommandParser would be solely responsible for the parsing and constructing of a new EditCommand. The implementation of these two commands are inherently different which we can see from how EditCommandParsers requires the implementation of an additional class EditTaskDescriptor. This was to accomodate the possibility where users need not enter all the details of the task but only the fields they wish to edit. 
+
+Because of these reasons, the implementation of separate command parsers helps to improve cohesion within the logic object where the alternative design would result in a single parser having to accomodate parsing and constructing of various different types of commands.
+
+Lastly, this implementation reduces the amount of coupling within the logic class. Where trickle down effects of the way the user might give input results in less changes to the overall code. In the case of the possible implementation of a GUI with buttons for user interaction with the logic interface, the parser object could be the class that protects and passes this information down in a suitable form for command parsers or commands to continue working. 
+
+As such, our group believes that this current implementation of the logic class serves many benefits to increase readability and cohesion while reducing coupling.
+
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")`
  API call.<br>

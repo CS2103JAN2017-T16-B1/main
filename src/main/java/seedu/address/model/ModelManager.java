@@ -10,6 +10,7 @@ import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.events.model.TaskManagerChangedEvent;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
+import seedu.address.commons.events.ui.ScrollToListRequestEvent;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.Task.ReadOnlyTask;
@@ -94,7 +95,7 @@ public class ModelManager extends ComponentManager implements Model {
 		updateFilteredListToShowAll();
 		indicateTaskManagerChanged();
 		//@@author A0139509X
-		raise (new JumpToListRequestEvent(filteredTasks.indexOf(task)));
+		raise (new ScrollToListRequestEvent(filteredTasks.indexOf(task)));
 	}
 
 	// @@author A0140072X
@@ -152,7 +153,7 @@ public class ModelManager extends ComponentManager implements Model {
 
 		indicateTaskManagerChanged();
 		//@@author A0139509X
-		raise (new JumpToListRequestEvent((filteredTaskListIndex)));
+		raise (new ScrollToListRequestEvent(filteredTasks.indexOf(editedTask)));
 	}
 
 	//@@author A0139509X

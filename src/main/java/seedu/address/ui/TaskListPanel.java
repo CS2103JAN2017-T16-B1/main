@@ -53,6 +53,14 @@ public class TaskListPanel extends UiPart<Region> {
                 });
     }
 
+    //@@author A0139509X
+    public void scollToWithoutSelecting(int index){
+    	Platform.runLater(() -> {
+    		taskListView.scrollTo(index);
+    	});
+    }
+    
+    //@@author
     public void scrollTo(int index) {
         Platform.runLater(() -> {
             taskListView.scrollTo(index);

@@ -61,7 +61,10 @@ public class TestUtil {
 
     public static final Tag[] SAMPLE_TAG_DATA = getSampleTagData();
     
+<<<<<<< HEAD
 
+=======
+>>>>>>> c7f5cf914b71f2c5334fecf4bfe9e464b5b430f5
     public static void assertThrows(Class<? extends Throwable> expected, Runnable executable) {
         try {
             executable.run();
@@ -81,6 +84,7 @@ public class TestUtil {
         try {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
+<<<<<<< HEAD
                 new Task(new Name("School"), new Description("go to school"), new StartTime("2017-03-03-2100"), new EndTime("2017-05-04-2000"), new ID("20000"),new Priority("m"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
                 new Task(new Name("Homework"), new Description("do homework"), new StartTime("2017-03-03-2100"), new EndTime("2017-06-02-1000"),new ID("20001"),new Priority("h"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""),new UniqueTagList()),
                 new Task(new Name("Midterm"), new Description("study for midterm"), new StartTime("2017-02-01-2100"), new EndTime("2017-08-08-2100"),new ID("20002"),new Priority("m"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""),new UniqueTagList()),
@@ -90,10 +94,30 @@ public class TestUtil {
                 new Task(new Name("cook dinner"), new Description("cook steak for dinner"), new StartTime("2017-01-03-2100"), new EndTime("2017-05-05-2100"),new ID("20006"),new Priority("h"), new Status("undone"), new RecurPeriod(""), new RecurEndDate(""),new UniqueTagList()),
                 new Task(new Name("go to bed"), new Description("time to sleep"), new StartTime("2017-03-01-2200"), new EndTime("2017-07-07-2100"),new ID("20007"),new Priority("l"), new Status("undone"), new RecurPeriod(""), new RecurEndDate(""),new UniqueTagList()),
                 new Task(new Name("Sleeping"), new Description("zzzzz...."), new StartTime("2017-03-03-1500"), new EndTime("2017-05-05-2100"),new ID("20008"),new Priority("m"), new Status("undone"), new RecurPeriod(""), new RecurEndDate(""),new UniqueTagList())
+=======
+                new Task(new Name("School"), new Description("go to school"), new StartTime("2017-03-03-2100"), new EndTime("2017-05-04-2000"),
+                		new ID("20000"),new Priority("m"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                new Task(new Name("Homework"), new Description("do homework"), new StartTime("2017-03-03-2100"), new EndTime("2017-06-02-1000"),
+                		new ID("20001"),new Priority("h"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                new Task(new Name("Midterm"), new Description("study for midterm"), new StartTime("2017-02-01-2100"), new EndTime("2017-08-08-2100"),
+                		new ID("20002"),new Priority("m"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                new Task(new Name("Exam"), new Description("study for exam"), new StartTime("2017-01-01-1200"), new EndTime("2017-03-03-2100"),
+                		new ID("20003"),new Priority("l"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                new Task(new Name("buy milk"), new Description("buy milk at ntuc"), new StartTime("2017-01-01-1400"), new EndTime("2017-03-03-2100"),
+                		new ID("20004"),new Priority("m"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                new Task(new Name("buy dinner"), new Description("buy dinner at coffeeshop"), new StartTime("2017-08-09-2100"), new EndTime("2017-12-11-2100"),
+                		new ID("20005"),new Priority("l"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                new Task(new Name("cook dinner"), new Description("cook steak for dinner"), new StartTime("2017-01-03-2100"), new EndTime("2017-05-05-2100"),
+                		new ID("20006"),new Priority("h"), new Status("undone"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                new Task(new Name("go to bed"), new Description("time to sleep"), new StartTime("2017-03-01-2200"), new EndTime("2017-07-07-2100"),
+                		new ID("20007"),new Priority("l"), new Status("undone"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                new Task(new Name("Sleeping"), new Description("zzzzz...."), new StartTime("2017-03-03-1500"), new EndTime("2017-05-05-2100"),
+                		new ID("20008"),new Priority("m"), new Status("undone"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList())
+>>>>>>> c7f5cf914b71f2c5334fecf4bfe9e464b5b430f5
             };
             //CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {
-            assert false;
+
             // not possible
             return null;
         }

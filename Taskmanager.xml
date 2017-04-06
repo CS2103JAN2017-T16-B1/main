@@ -1,1 +1,35 @@
-<mxfile userAgent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36" version="6.2.4" editor="www.draw.io" type="github"><diagram name="Page-1">jZLBbsMgDIafhnsC7bRel3XbYTvlsDMDF9BIiChZkj39SDFNoqrScojMZxvbPyasasZXzzv94SRYQgs5EvZMKD3QMv5nMCWwO+wSUN7IhMoF1OYXEBZIeyPhvAkMztlgui0Urm1BhA3j3rthG3Zydlu14wpuQC24vaWfRgad6OO+WPgbGKVz5bJAzxcX38q7vsV6hLLT5Uvuhue7MP6suXTDCrEjYZV3LiSrGSuws7RZtpT3csd77dtDG/6TQFPCD7c9jv7ulBHYXJiyIIM2AeqOi/k8xDcn7EmHxsZTGU28BXyA8W4n5XW+uDbgGgh+iiGYwIp9SsGVoQ8o0bA8QJll0yvxcxzHN1fXq5e5o4Gj5+Mi8cW3WmN2/AM=</diagram></mxfile>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taskmanager>
+    <tasks>
+        <id>1</id>
+        <name>nonsense</name>
+        <description>
+</description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
+    </tasks>
+    <tasks>
+        <id>2</id>
+        <name>another nonsense</name>
+        <description>woo
+</description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
+    </tasks>
+    <tasks>
+        <id>3</id>
+        <name>nonsense part 2</name>
+        <description>
+</description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <tagged>cray</tagged>
+    </tasks>
+    <tags>cray</tags>
+</taskmanager>
