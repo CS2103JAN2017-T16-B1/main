@@ -56,7 +56,7 @@ public class ArchiveCommand extends Command {
             if (toAdd.getRecurPeriod().toString() != null){
             	EndTime newEndTime = new EndTime(taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getEndTime().toString()));
             	if(toAdd.getRecurEndDate().toString() == null || toAdd.getRecurEndDate().hasPassedEndDate(newEndTime.toString()) == false ){
-            	if (toAdd.getStartTime() != null) {
+            	if (toAdd.getStartTime().toString() != "\n") {
             		StartTime newStartTime = new StartTime(taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getStartTime().toString()));
             		toAdd.setStartTime(newStartTime);
             	}
