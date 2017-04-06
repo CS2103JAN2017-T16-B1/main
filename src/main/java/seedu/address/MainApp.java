@@ -57,11 +57,8 @@ public class MainApp extends Application {
         Platform.setImplicitExit(false);
 
 
-<<<<<<< HEAD
+
         config = initConfig("config.json");
-=======
-        config = initConfig("config.json"); //getApplicationParameter("config"));
->>>>>>> f8e8d5ad6422696330f211845fc569202121ff89
 
         storage = new StorageManager(config.getTaskManagerFilePath(), config.getUserPrefsFilePath());
 
