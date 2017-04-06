@@ -13,27 +13,27 @@ import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
 //@@author A0140072X
 /**
- * Archive a task identified using it's last displayed index from the task manager.
- */
+* Archive a task identified using it's last displayed index from the task manager.
+*/
 public class ArchiveCommand extends Command {
 
-    public static final String COMMAND_WORD = "archive";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
-    public static final String MESSAGE_ILLEGAL_VALUE = "Illegal value detected.";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+  public static final String COMMAND_WORD = "archive";
+  public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
+  public static final String MESSAGE_ILLEGAL_VALUE = "Illegal value detected.";
+  public static final String MESSAGE_USAGE = COMMAND_WORD
 
-            + ": Archive the item identified by the index number used in last task listing.\n"
-            + "Parameters:  INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+          + ": Archive the item identified by the index number used in last task listing.\n"
+          + "Parameters:  INDEX (must be a positive integer)\n"
+          + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_ARCHIVE_TASK_SUCCESS = "Archived Item: %1$s";
+  public static final String MESSAGE_ARCHIVE_TASK_SUCCESS = "Archived Item: %1$s";
 
-    public final int targetIndex;
+  public final int targetIndex;
 
 
-    public ArchiveCommand(int targetIndex) {
-        this.targetIndex = targetIndex - 1;
-    }
+  public ArchiveCommand(int targetIndex) {
+      this.targetIndex = targetIndex - 1;
+  }
 
 
     @Override

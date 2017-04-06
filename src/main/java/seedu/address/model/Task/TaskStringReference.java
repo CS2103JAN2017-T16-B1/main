@@ -17,5 +17,5 @@ public class TaskStringReference {
     public static final String EMPTY_TIME = "";
     public static final String EMPTY_PERIOD = null;
     public static final String EMPTY_RECUR_END_DATE = null;
-    
+
 }

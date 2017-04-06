@@ -24,7 +24,7 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private TextField commandTextField;
 
-	public CommandBox(AnchorPane commandBoxPlaceholder, Logic logic) {
+    public CommandBox(AnchorPane commandBoxPlaceholder, Logic logic) {
         super(FXML);
         this.logic = logic;
         addToPlaceholder(commandBoxPlaceholder);
@@ -58,12 +58,12 @@ public class CommandBox extends UiPart<Region> {
 
 
     //@@author A0139509X
-    public void setStyleAfterTab(Boolean success){
-    	if(success){
-    		setStyleToIndicateCommandSuccess();
-    	} else if(!success){
-    		setStyleToIndicateCommandFailure();
-    	}
+    public void setStyleAfterTab(Boolean success) {
+        if (success) {
+            setStyleToIndicateCommandSuccess();
+        } else if (!success) {
+            setStyleToIndicateCommandFailure();
+        }
     }
     //@@author
     /**
@@ -81,6 +81,6 @@ public class CommandBox extends UiPart<Region> {
     }
 
     public TextField getTextField() {
-		return commandTextField;
-	}
+        return commandTextField;
+    }
 }

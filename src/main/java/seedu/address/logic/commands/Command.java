@@ -19,7 +19,7 @@ public abstract class Command {
     public static String getMessageForTaskListShownSummary(int displaySize) {
         return String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, displaySize);
     }
-    
+
     /**
      * Constructs a feedback message to summaries an operation that displayed a listing of archived tasks.
      *

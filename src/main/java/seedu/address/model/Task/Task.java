@@ -1,6 +1,5 @@
 package seedu.address.model.Task;
 
-import java.text.ParseException;
 import java.util.Objects;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -14,7 +13,7 @@ import seedu.address.model.tag.UniqueTagList;
  */
 public class Task implements ReadOnlyTask {
 
-	
+
     private Name name;
     private Description description;
     private StartTime startTime;
@@ -28,16 +27,18 @@ public class Task implements ReadOnlyTask {
 
     /**
      * Every parameter must be present and not null.
-     * @throws IllegalValueException 
+     * @throws IllegalValueException
      */
 
-    public Task(Name name, Description description, StartTime startTime, EndTime endTime, ID id, Priority priority, Status status,
-    		RecurPeriod recurPeriod, RecurEndDate recurEndDate, UniqueTagList tags) throws IllegalValueException {
-        assert !CollectionUtil.isAnyNull(name, startTime,id, tags);
-        
-        if (startTime.toString() != null)
-        ParserUtil.isAfter(startTime.toString(), endTime.toString());
-			
+    public Task(Name name, Description description, StartTime startTime, EndTime endTime,
+            ID id, Priority priority, Status status, RecurPeriod recurPeriod,
+            RecurEndDate recurEndDate, UniqueTagList tags) throws IllegalValueException {
+        assert !CollectionUtil.isAnyNull(name, startTime, id, tags);
+
+        if (startTime.toString() != null) {
+            ParserUtil.isAfter(startTime.toString(), endTime.toString());
+        }
+
         this.name = name;
         this.description = description;
         this.startTime = startTime;
@@ -50,27 +51,29 @@ public class Task implements ReadOnlyTask {
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
-    public Task(Name name, Description description, StartTime startTime, EndTime endTime, ID id, Priority priority, Status status
-    		, UniqueTagList tags) throws IllegalValueException {
-        assert !CollectionUtil.isAnyNull(name, startTime,id, tags);
+    public Task(Name name, Description description, StartTime startTime, EndTime endTime,
+            ID id, Priority priority, Status status, UniqueTagList tags) throws IllegalValueException {
+        assert !CollectionUtil.isAnyNull(name, startTime, id, tags);
         ParserUtil.isAfter(startTime.startTime, endTime.endTime);
-		
+
         this.name = name;
         this.description = description;
         this.startTime = startTime;
         this.endTime = endTime;
         this.id = id;
         this.priority = priority;
-        this.status=status;
+        this.status = status;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
     /**
      * Creates a copy of the given ReadOnlyPerson.
-     * @throws IllegalValueException 
+     * @throws IllegalValueException
      */
     public Task(ReadOnlyTask source) throws IllegalValueException {
-        this(source.getName(), source.getDescription(), source.getStartTime(), source.getEndTime(),source.getId(),source.getPriority(), source.getStatus(), source.getRecurPeriod(), source.getRecurEndDate(), source.getTags());
-        }
+        this(source.getName(), source.getDescription(), source.getStartTime(),
+                source.getEndTime(), source.getId(), source.getPriority(), source.getStatus(),
+                source.getRecurPeriod(), source.getRecurEndDate(), source.getTags());
+    }
 
     public void setName(Name name) {
         assert name != null;
@@ -91,7 +94,7 @@ public class Task implements ReadOnlyTask {
     public Priority getPriority() {
         return priority;
     }
-    
+
     public void setStatus(Status status) {
         assert status != null;
         this.status = status;
@@ -101,36 +104,36 @@ public class Task implements ReadOnlyTask {
     public Status getStatus() {
         return status;
     }
-    
+
     public void setRecurPeriod(RecurPeriod recurPeriod) {
         assert recurPeriod != null;
         this.recurPeriod = recurPeriod;
     }
-    
+
     @Override
     public RecurPeriod getRecurPeriod() {
         return recurPeriod;
     }
-    
+
 
     public void setRecurEndDate(RecurEndDate recurEndDate) {
         assert recurEndDate != null;
         this.recurEndDate = recurEndDate;
     }
-    
+
 
     @Override
     public RecurEndDate getRecurEndDate() {
         return recurEndDate;
     }
-    
-   
-    
+
+
+
     @Override
     public ID getId() {
         return id;
     }
-    
+
     public void setDescription(Description description) {
         assert description != null;
         this.description = description;
@@ -145,14 +148,14 @@ public class Task implements ReadOnlyTask {
         assert startTime != null;
         this.startTime = startTime;
     }
-    @Override   
-    public boolean noStartTime(){
-    	assert startTime != null;
-    	if(this.startTime.isEmpty()){
-    		return true;
-    	}else {
-    		return false;
-    	}
+    @Override
+    public boolean noStartTime() {
+        assert startTime != null;
+        if (this.startTime.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
     }
     @Override
     public StartTime getStartTime() {
@@ -169,13 +172,13 @@ public class Task implements ReadOnlyTask {
         return endTime;
     }
     @Override
-    public boolean noEndTime(){
-    	assert endTime != null;
-    	if(this.endTime.isEmpty()){
-    		return true;
-    	}else {
-    		return false;
-    	}
+    public boolean noEndTime() {
+        assert endTime != null;
+        if (this.endTime.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
     }
     @Override
     public UniqueTagList getTags() {

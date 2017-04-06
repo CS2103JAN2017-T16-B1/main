@@ -44,22 +44,21 @@ public class TaskListPanel extends UiPart<Region> {
     }
 
     private void setEventHandlerForSelectionChangeEvent() {
-        taskListView.getSelectionModel().selectedItemProperty()
-                .addListener((observable, oldValue, newValue) -> {
-                    if (newValue != null) {
-                        logger.fine("Selection in task list panel changed to : '" + newValue + "'");
-                        raise(new TaskPanelSelectionChangedEvent(newValue));
-                    }
-                });
+        taskListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                logger.fine("Selection in task list panel changed to : '" + newValue + "'");
+                raise(new TaskPanelSelectionChangedEvent(newValue));
+            }
+        });
     }
 
     //@@author A0139509X
-    public void scollToWithoutSelecting(int index){
-    	Platform.runLater(() -> {
-    		taskListView.scrollTo(index);
-    	});
+    public void scollToWithoutSelecting(int index) {
+        Platform.runLater(() -> {
+            taskListView.scrollTo(index);
+        });
     }
-    
+
     //@@author
     public void scrollTo(int index) {
         Platform.runLater(() -> {

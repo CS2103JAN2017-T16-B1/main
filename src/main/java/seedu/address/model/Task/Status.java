@@ -10,7 +10,7 @@ public class Status {
 
     public static final String MESSAGE_NAME_CONSTRAINTS =
             "Task/Event status should only be labelled as done or undone";
-    
+
     /*
      * The urgency of the task must be either h,m or l,
      * otherwise " " (a blank string) becomes a valid input.
@@ -30,7 +30,7 @@ public class Status {
         if (!isValidName(trimmedstatus)) {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
         }
-       this.status=status;
+        this.status = status;
     }
 
     /**

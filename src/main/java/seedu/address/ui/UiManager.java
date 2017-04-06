@@ -2,7 +2,12 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javax.swing.KeyStroke;
+
 import com.google.common.eventbus.Subscribe;
+import com.tulskiy.keymaster.common.HotKey;
+import com.tulskiy.keymaster.common.HotKeyListener;
+import com.tulskiy.keymaster.common.Provider;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -10,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import seedu.address.MainApp;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.Config;
@@ -25,13 +31,6 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.model.UserPrefs;
 
-import com.tulskiy.keymaster.common.HotKey;
-import com.tulskiy.keymaster.common.HotKeyListener;
-import com.tulskiy.keymaster.common.Provider;
-
-import javafx.stage.WindowEvent;
-import javax.swing.*;
-
 
 /**
  * The manager of the UI component.
@@ -45,7 +44,6 @@ public class UiManager extends ComponentManager implements Ui {
     private Config config;
     private UserPrefs prefs;
     private MainWindow mainWindow;
-    
     private boolean isShown = true;
 
     public UiManager(Logic logic, Config config, UserPrefs prefs) {
@@ -68,10 +66,15 @@ public class UiManager extends ComponentManager implements Ui {
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
-          //@@author A0140072X
+            //@@author A0140072X
             primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 public void handle(WindowEvent we) {
-                    Platform.runLater(new Runnable() {@Override public void run() { raise(new ExitAppRequestEvent());}});
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            raise(new ExitAppRequestEvent());
+                        }
+                    });
                 }
             });
             final Provider provider = Provider.getCurrentProvider(false);
@@ -80,8 +83,7 @@ public class UiManager extends ComponentManager implements Ui {
                     if (isShown) {
                         raise(new HideWindowEvent());
                         isShown = false;
-                    }
-                    else {
+                    } else {
                         raise(new ShowWindowEvent());
                         isShown = true;
                     }
@@ -94,7 +96,7 @@ public class UiManager extends ComponentManager implements Ui {
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
     }
-  //@@author A0140072X
+    //@@author A0140072X
     @Override
     public void refresh() {
 
@@ -107,7 +109,7 @@ public class UiManager extends ComponentManager implements Ui {
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
     }
-  //@@author A0140072X
+    //@@author A0140072X
     @Override
     public void loadData(Logic logic) {
         try {
@@ -118,12 +120,12 @@ public class UiManager extends ComponentManager implements Ui {
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
     }
-  //@@author A0140072X
+    //@@author A0140072X
     @Override
     public void show() {
         mainWindow.show();
     }
-  //@@author A0140072X
+    //@@author A0140072X
     @Override
     public void hide() {
         mainWindow.hide();
@@ -149,7 +151,7 @@ public class UiManager extends ComponentManager implements Ui {
     }
 
     private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
-                                               String contentText) {
+            String contentText) {
         final Alert alert = new Alert(type);
         alert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
         alert.initOwner(owner);
@@ -168,8 +170,8 @@ public class UiManager extends ComponentManager implements Ui {
     }
 
     //==================== Event Handling Code ===============================================================
-   
-   
+
+
     @Subscribe
     private void handleDataSavingExceptionEvent(DataSavingExceptionEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
@@ -187,7 +189,7 @@ public class UiManager extends ComponentManager implements Ui {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         mainWindow.getTaskListPanel().scrollTo(event.targetIndex);
     }
-    
+
     //@@author A0139509X
     @Subscribe
     private void handleScrollToListRequestEvent(ScrollToListRequestEvent event) {

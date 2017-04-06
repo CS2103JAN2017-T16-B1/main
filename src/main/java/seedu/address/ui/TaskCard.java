@@ -60,66 +60,65 @@ public class TaskCard extends UiPart<Region> {
         setColours(task);
     }
     private void setTextForRecurEndDate(ReadOnlyTask task) {
-        if(task.getRecurEndDate().endDate != null){
-            recurEndDate.setText("Recur End Date : " +task.getRecurEndDate().endDate);
-        } else if(task.getRecurEndDate().endDate == null){
+        if (task.getRecurEndDate().endDate != null) {
+            recurEndDate.setText("Recur End Date : " + task.getRecurEndDate().endDate);
+        } else if (task.getRecurEndDate().endDate == null) {
             dontShowLabel(recurEndDate);
         }
 
     }
     private void setTextForRecurPeriod(ReadOnlyTask task) {
-        if(task.getRecurPeriod().period != null){
+        if (task.getRecurPeriod().period != null) {
             setRecurPeriod(task);
-        } else if(task.getRecurPeriod().period == null){
+        } else if (task.getRecurPeriod().period == null) {
             dontShowLabel(recurPeriod);
         }
 
     }
     public void setRecurPeriod(ReadOnlyTask task) {
-        if(task.getRecurPeriod().period.matches("(0-9)+")){
-            recurPeriod.setText("Recur Period : " +task.getRecurPeriod().period + " days");
-        }
-        else{
-            recurPeriod.setText("Recur Period : " +task.getRecurPeriod().period);
+        if (task.getRecurPeriod().period.matches("(0-9)+")) {
+            recurPeriod.setText("Recur Period : " + task.getRecurPeriod().period + " days");
+        } else {
+            recurPeriod.setText("Recur Period : " + task.getRecurPeriod().period);
         }
     }
     //@@author A0139509X
     private void setColours(ReadOnlyTask task) {
-        if(task.getPriority().toString().equals(TaskStringReference.PRIORITY_HIGH)) {
+        if (task.getPriority().toString().equals(TaskStringReference.PRIORITY_HIGH)) {
             cardPane.setStyle(HIGH_PRIORITY_COLOR);
             //cardPane.setStyle(".label-red");
-        } else if(task.getPriority().toString().equals(TaskStringReference.PRIORITY_MEDIUM)){
+        } else if (task.getPriority().toString().equals(TaskStringReference.PRIORITY_MEDIUM)) {
             cardPane.setStyle(MEDIUM_PRIORITY_COLOR);
-        } else if(task.getPriority().toString().equals(TaskStringReference.PRIORITY_LOW)){
+        } else if (task.getPriority().toString().equals(TaskStringReference.PRIORITY_LOW)) {
             cardPane.setStyle(LOW_PRIORITY_COLOR);
         }
 
     }
 
     /*private void setPriorityIcons(ReadOnlyTask task) {
-		pinimage.setImage(new Image("/images/clock.png"));
-	}*/
+    pinimage.setImage(new Image("/images/clock.png"))
+}*/
 
     private void setTextForEndTime(ReadOnlyTask task) {
-        if(!(task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME))){
-            endTime.setText("End Time : " +task.getEndTime().endTime);
-        } else if(task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME)){
+        if (!(task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME))) {
+            endTime.setText("End Time : " + task.getEndTime().endTime);
+        } else if (task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME)) {
             dontShowLabel(endTime);
         }
     }
 
     private void setTextForStartTime(ReadOnlyTask task) {
-        if(!(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME))){
+        if (!(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME))) {
             startTime.setText("Start Time : " + task.getStartTime().startTime);
-        } else if(task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME)){
+        } else if (task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME)) {
             dontShowLabel(startTime);
         }
     }
 
     private void setTextForDescription(ReadOnlyTask task) {
-        if(!(task.getDescription().description.equals(TaskStringReference.EMPTY_DESCRIPTION))){
+        if (!(task.getDescription().description.equals(TaskStringReference.EMPTY_DESCRIPTION))) {
             description.setText("Description : " + task.getDescription().description);
-        } else if(task.getDescription().description.equals(TaskStringReference.EMPTY_DESCRIPTION)){
+        } else if (task.getDescription().description.equals(TaskStringReference.EMPTY_DESCRIPTION)) {
             dontShowLabel(description);
         }
     }
