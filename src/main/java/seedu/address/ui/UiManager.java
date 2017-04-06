@@ -78,6 +78,7 @@ public class UiManager extends ComponentManager implements Ui {
                 public void onHotKey(HotKey hotKey) {
                     if (isShown) {
                         raise(new HideWindowEvent());
+                        isShown=false;
                     }
                     else {
                         raise(new ShowWindowEvent());
