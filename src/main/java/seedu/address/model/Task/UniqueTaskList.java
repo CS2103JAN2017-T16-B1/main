@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -60,10 +61,10 @@ public class UniqueTaskList implements Iterable<Task> {
         assert editedTask != null;
 
         Task taskToUpdate = internalList.get(index);
-        if (taskToUpdate.equals(editedTask) || internalList.contains(editedTask) ){//&& editedTask.getStatus().toString()=="undone") {
+        if (editedTask.getStatus().equals("undone") && (taskToUpdate.equals(editedTask) )){//&& editedTask.getStatus().toString()=="undone") { || internalList.contains(editedTask)
             throw new DuplicatetaskException();
         }
-        
+
         taskToUpdate.resetData(editedTask);
         // TODO: The code below is just a workaround to notify observers of the updated task.
         // The right way is to implement observable properties in the Person class.
@@ -88,8 +89,8 @@ public class UniqueTaskList implements Iterable<Task> {
     /**
      * Sorts tasks in the list according to end times.
      * floating tasks are sorted to the back
-     * @throws IllegalValueException 
-     * 
+     * @throws IllegalValueException
+     *
      */
     public void sortByEndTime() throws IllegalValueException {
     	List<TaskAndDueDate> list = new ArrayList<TaskAndDueDate>();
@@ -101,14 +102,14 @@ public class UniqueTaskList implements Iterable<Task> {
         internalList.clear();
         for(TaskAndDueDate object:list){
         	internalList.add(new Task(object.task));
-        	
+
         }
-       
+
     }
     /**
      * Sorts tasks in the list according to their names.
      *
-     * 
+     *
      */
     public void sortByName(){
     	internalList.sort(new Comparator<Task>(){
@@ -119,8 +120,8 @@ public class UniqueTaskList implements Iterable<Task> {
     }
     /**
      * Sorts tasks in the list according to priorities.
-     * 
-     * 
+     *
+     *
      */
     public void sortByPriority(){
     	internalList.sort(new Comparator<Task>(){
@@ -129,7 +130,7 @@ public class UniqueTaskList implements Iterable<Task> {
     		}
     	});
     }
-    //@@author 
+    //@@author
     public void setTasks(UniqueTaskList replacement) {
         this.internalList.setAll(replacement.internalList);
     }
@@ -202,20 +203,20 @@ public class UniqueTaskList implements Iterable<Task> {
     		  }
     		});
     }
-    
-    
-    
+
+
+
     /**
      * Utility class to store pairs of tasks and their endTimes as LocalDateTime variables to enable easy sorting
      */
     public class TaskAndDueDate{
     	public final ReadOnlyTask task;
     	public LocalDateTime dueDate;
-    	
+
     	public TaskAndDueDate(ReadOnlyTask task,EndTime endTime){
     		this.task=task;
     		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm");
-    		
+
     		try{
     		this.dueDate= LocalDateTime.parse(endTime.toString().replaceAll("\n",""), dtf);
     		} catch(DateTimeParseException e){
@@ -223,7 +224,7 @@ public class UniqueTaskList implements Iterable<Task> {
     		}
     	}
     }
-    
+
     public int turnPriorityIntoInt(Priority priority){
     	switch(priority.toString()){
     	case("h"):

@@ -23,7 +23,7 @@ public class RecurPeriod {
      */
     
 	public RecurPeriod(String period) throws IllegalValueException{
-		if(period != null){
+		if(period != ""){
 		String trimmedPeriod = period.trim();
 	
 	//	if (!isValidPeriod(trimmedPeriod)) {
@@ -77,6 +77,10 @@ public class RecurPeriod {
         return period;
     }
 	
+	public boolean hasRecurPeriod(){
+		if (period == "") return false;
+		return true;
+	}
 	 @Override
 	    public boolean equals(Object other) {
 	        return other == this // short circuit if same object
