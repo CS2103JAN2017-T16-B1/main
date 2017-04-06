@@ -6,18 +6,23 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import seedu.address.model.Task.Description;
-
+import seedu.address.model.Task.Name;
+//@@author A0140072X
 public class DescriptionTest {
 
     @Test
     public void isValidDescription() {
-     
-        // valid phone numbers
-        assertTrue(Description.isValidDescription("93121534"));
-        assertTrue(Description.isValidDescription("4")); // short phone numbers
-        assertTrue(Description.isValidDescription("124293842033123")); // long phone numbers
-        assertTrue(Description.isValidDescription("9011p041")); // alphabets within digits
-        assertTrue(Description.isValidDescription("9312 1534")); // spaces within digits
-        assertTrue(Description.isValidDescription("hello hello hello")); // spaces within digits
+        //invalid Task description
+        assertFalse(Description.isValidDescription("d/hello")); // additional description prefix
+        assertFalse(Description.isValidDescription("s/this saturday")); // additional starttime prefix
+        assertFalse(Description.isValidDescription("e/next sunday")); // additional endtime prefix
+
+        //valid Task Description
+        assertTrue(Description.isValidDescription("Venue at LT27"));
+        assertTrue(Description.isValidDescription("4")); // short Description
+        assertTrue(Description.isValidDescription("Venue at National University of Singapore")); // long Description
+        assertTrue(Description.isValidDescription("9011p041")); // alphabets within Description
+        assertTrue(Description.isValidDescription("9312-1534*()")); // symbols within Description
+        assertTrue(Description.isValidDescription("hello hello hello")); // spaces within Description
     }
 }

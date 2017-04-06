@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
+import guitests.GuiRobot;
 
 public class DeleteCommandTest extends TaskManagerGuiTest {
 
@@ -43,7 +44,11 @@ public class DeleteCommandTest extends TaskManagerGuiTest {
         TestTask taskToDelete = currentList[targetIndexOneIndexed - 1]; // -1 as array uses zero indexing
         TestTask[] expectedRemainder = TestUtil.removeTaskFromList(currentList, targetIndexOneIndexed);
 
+
+
         commandBox.runCommand("delete " + targetIndexOneIndexed);
+        //commandBox.enterKey();
+        
 
         //confirm the list now contains all previous tasks except the deleted task
         assertTrue(taskListPanel.isListMatching(expectedRemainder));

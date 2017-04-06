@@ -143,8 +143,8 @@ public class MainWindow extends UiPart<Region> {
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
       //@@author A0140072X
-        setAccelerator(saveMenuItem, new KeyCodeCombination(KeyCode.S,KeyCombination.CONTROL_DOWN));
-        setAccelerator(loadMenuItem, new KeyCodeCombination(KeyCode.L,KeyCombination.CONTROL_DOWN));       
+        setAccelerator(saveMenuItem, new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN));
+        setAccelerator(loadMenuItem, new KeyCodeCombination(KeyCode.L, KeyCombination.CONTROL_DOWN));
     }
 
     /**
@@ -255,27 +255,26 @@ public class MainWindow extends UiPart<Region> {
     public void handleSave() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose Save File");
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home"))); 
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
         File file = fileChooser.showSaveDialog(primaryStage);
         if (file != null) {
-            raise(new SaveRequestEvent(file.toString()));            
+            raise(new SaveRequestEvent(file.toString()));
         }
 
-        
     }
     //@@author A0140072X
     @FXML
     public void handleLoad() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose Load File");
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home"))); 
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
         File file = fileChooser.showOpenDialog(primaryStage);
         if (file != null) {
-            raise(new LoadRequestEvent(file.toString()));     
+            raise(new LoadRequestEvent(file.toString()));
         }
-        
+
     }
-   
+
 
     void show() {
         primaryStage.show();

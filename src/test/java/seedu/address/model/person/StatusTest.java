@@ -6,20 +6,22 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import seedu.address.model.Task.Status;
-
+//@@author A0140072X
 public class StatusTest {
 
     @Test
     public void isValidStatus() {
-       
-        assertFalse(Status.isValidName("")); // empty string
-        assertFalse(Status.isValidName(" ")); // spaces only
-        assertFalse(Status.isValidName("don")); // incomplete word
-        assertFalse(Status.isValidName("undo")); // incomplete word
+        //Invalid Statues
+        assertFalse(Status.isValidName("")); // empty Statues
+        assertFalse(Status.isValidName(" ")); // spaces Statues
+        assertFalse(Status.isValidName("low")); // Invalid Statues
+        assertFalse(Status.isValidName("ongoing")); // Invalid Statues
+        assertFalse(Status.isValidName("complete")); // Invalid Statues
+        assertFalse(Status.isValidName("Finished")); // Invalid Statues
+        assertFalse(Status.isValidName("DONE*&")); // Invalid Statues
 
-
-
-        assertTrue(Status.isValidName("done")); 
+        //Valid Statues
+        assertTrue(Status.isValidName("done"));
         assertTrue(Status.isValidName("undone"));
     }
 }

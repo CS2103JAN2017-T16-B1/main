@@ -98,20 +98,21 @@ public class ModelManager extends ComponentManager implements Model {
 	}
 
 	// @@author A0140072X
-	private void setPrevious() {
-		previousTaskMgr = new TaskManager(taskManager);
-	}
+    private void setPrevious() {
+	previousTaskMgr = new TaskManager(taskManager);
+    }
 
 	// @@author A0140072X
-	public boolean undoTask() {
-		if (previousTaskMgr == null) {
-			return false;
-		} else {
-			TaskManager currentTaskMgr = new TaskManager(taskManager);
-			taskManager.resetData(previousTaskMgr);
-			previousTaskMgr.resetData(currentTaskMgr);
-			return true;
-		}
+    public boolean undoTask() {
+	if (previousTaskMgr == null) {
+	    return false;
+	}
+	else {
+	    TaskManager currentTaskMgr = new TaskManager(taskManager);
+	    taskManager.resetData(previousTaskMgr);
+	    previousTaskMgr.resetData(currentTaskMgr);
+	    return true;
+	}
 
 	}
 	//@@author A0138998B
@@ -190,14 +191,15 @@ public class ModelManager extends ComponentManager implements Model {
 
 	// @@author A0140072X
 	public void updateFilteredTaskListByArchived() {
-		updateFilteredListToShowAll();
-		filteredTasks.setPredicate(task -> {
-			if (task.getStatus().toString().equals(TaskStringReference.STATUS_DONE)) {
-				return true;
-			} else {
-				return false;
-			}
-		});
+	updateFilteredListToShowAll();
+	filteredTasks.setPredicate(task -> {
+	    if (task.getStatus().toString().equals(TaskStringReference.STATUS_DONE)) {
+		return true;
+	    }
+	    else {
+		return false;
+	    }
+	});
 	}
 
 	// @@author
