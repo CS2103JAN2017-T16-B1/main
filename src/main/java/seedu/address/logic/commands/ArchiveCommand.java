@@ -57,10 +57,10 @@ public class ArchiveCommand extends Command {
                     taskToArchive.getRecurEndDate(), taskToArchive.getTags());
             model.updateTask(targetIndex, updatedTask);
   //@@author A0139375W
-            if (toAdd.getRecurPeriod().toString() != null){
+            if (toAdd.getRecurPeriod().toString() != null && !toAdd.getEndTime().isEmpty()){
             	EndTime newEndTime = new EndTime(taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getEndTime().toString()));
             	if(toAdd.getRecurEndDate().toString() == null || toAdd.getRecurEndDate().hasPassedEndDate(newEndTime.toString()) == false ){
-            	if (toAdd.getStartTime() != null) {
+            	if (toAdd.getStartTime().toString() != null) {
             		StartTime newStartTime = new StartTime(taskToArchive.getRecurPeriod().updatedDate(taskToArchive.getStartTime().toString()));
             		toAdd.setStartTime(newStartTime);
             	}

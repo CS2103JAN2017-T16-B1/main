@@ -95,7 +95,10 @@ public class StartTime {
 
     @Override
     public String toString() {
+    	if (startTime != ""){
         return startTime+"\n";
+    	} 
+    	return null;
     }
 
     @Override

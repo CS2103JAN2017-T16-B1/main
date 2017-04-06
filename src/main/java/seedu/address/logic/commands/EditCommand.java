@@ -64,9 +64,7 @@ public class EditCommand extends Command {
         }
 
         ReadOnlyTask taskToEdit = lastShownList.get(filteredTaskListIndex);
-        
-        
-
+                
         try {
         	Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
             model.updateTask(filteredTaskListIndex, editedTask);
@@ -99,7 +97,7 @@ public class EditCommand extends Command {
         RecurEndDate updatedRecurEndDate = editTaskDescriptor.getRecurEndDate().orElseGet(taskToEdit::getRecurEndDate); 
 		RecurPeriod updatedRecurPeriod = editTaskDescriptor.getRecurPeriod().orElseGet(taskToEdit::getRecurPeriod); 
         UniqueTagList updatedTags =new UniqueTagList(taskToEdit,editTaskDescriptor);//editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
-        System.out.print(updatedTags);
+        
         
       		return new Task(updatedName, updatedDescription, updatedStartTime,
               		updatedEndTime, updatedID, updatedPriority, updatedStatus, updatedRecurPeriod, updatedRecurEndDate, updatedTags);

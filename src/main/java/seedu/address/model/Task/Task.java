@@ -35,6 +35,7 @@ public class Task implements ReadOnlyTask {
     		RecurPeriod recurPeriod, RecurEndDate recurEndDate, UniqueTagList tags) throws IllegalValueException {
         assert !CollectionUtil.isAnyNull(name, startTime,id, tags);
         
+        if (startTime.toString() != null)
         ParserUtil.isAfter(startTime.toString(), endTime.toString());
 			
         this.name = name;

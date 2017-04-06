@@ -25,11 +25,13 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void edit_allFieldsSpecified_success() throws Exception {
+
         String detailsToEdit = "Study s/2017-03-03-2100 e/2017-10-10-2100 t/school";
         int taskManagerIndex = 1;
 
         TestTask editedTask = new TaskBuilder().withName("Study").withStartTime("2017-03-03-2100")
                 .withDescription("").withEndTime("2017-10-10-2100").withTags("school").build();
+
 
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
@@ -58,7 +60,9 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void edit_findThenEdit_success() throws Exception {
+
         commandBox.runCommand("find midterm");
+
 
         String detailsToEdit = "Belle";
         int filteredTaskListIndex = 1;

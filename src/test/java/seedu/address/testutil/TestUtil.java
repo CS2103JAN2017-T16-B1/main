@@ -61,6 +61,7 @@ public class TestUtil {
 
     public static final Tag[] SAMPLE_TAG_DATA = getSampleTagData();
     
+
     public static void assertThrows(Class<? extends Throwable> expected, Runnable executable) {
         try {
             executable.run();
@@ -80,6 +81,7 @@ public class TestUtil {
         try {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
+
                 new Task(new Name("School"), new Description("go to school"), new StartTime("2017-03-03-2100"), new EndTime("2017-05-04-2000"),
                 		new ID("20000"),new Priority("m"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
                 new Task(new Name("Homework"), new Description("do homework"), new StartTime("2017-03-03-2100"), new EndTime("2017-06-02-1000"),
@@ -98,6 +100,7 @@ public class TestUtil {
                 		new ID("20007"),new Priority("l"), new Status("undone"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
                 new Task(new Name("Sleeping"), new Description("zzzzz...."), new StartTime("2017-03-03-1500"), new EndTime("2017-05-05-2100"),
                 		new ID("20008"),new Priority("m"), new Status("undone"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList())
+
             };
             //CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {
