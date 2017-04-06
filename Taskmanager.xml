@@ -3,18 +3,17 @@
     <tasks>
         <id>1</id>
         <name>nonsense</name>
-        <description>
-</description>
+        <description></description>
         <starttime></starttime>
         <endtime></endtime>
         <priority>m</priority>
         <status>undone</status>
+        <recurPeriod>weekly</recurPeriod>
     </tasks>
     <tasks>
         <id>2</id>
         <name>another nonsense</name>
-        <description>woo
-</description>
+        <description>woo</description>
         <starttime></starttime>
         <endtime></endtime>
         <priority>m</priority>
@@ -23,13 +22,66 @@
     <tasks>
         <id>3</id>
         <name>nonsense part 2</name>
-        <description>
-</description>
+        <description></description>
         <starttime></starttime>
         <endtime></endtime>
         <priority>m</priority>
         <status>undone</status>
         <tagged>cray</tagged>
+    </tasks>
+    <tasks>
+        <id>1</id>
+        <name>task</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
+    </tasks>
+    <tasks>
+        <id>1</id>
+        <name>stuff</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
+    </tasks>
+    <tasks>
+        <id>1</id>
+        <name>on</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
+    </tasks>
+    <tasks>
+        <id>1</id>
+        <name>faf</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
+    </tasks>
+    <tasks>
+        <id>1</id>
+        <name>dfg</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
+    </tasks>
+    <tasks>
+        <id>1</id>
+        <name>hbfh</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
     </tasks>
     <tags>cray</tags>
 </taskmanager>

@@ -71,7 +71,7 @@ public class StringUtil {
         UniqueTagList preppedList = tags;
  
 		try {
-			Tag toCheck = new Tag(keyword);
+			Tag toCheck = new Tag(preppedTag);
 			return preppedList.contains(toCheck);
 		} catch (IllegalValueException e) {
 			e.printStackTrace();

@@ -34,6 +34,10 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label endTime;
     @FXML
+    private Label recurPeriod;
+    @FXML
+    private Label recurEndDate;
+    @FXML
     private FlowPane tags;
     //@FXML
     //private ImageView pinimage;
@@ -48,11 +52,26 @@ public class TaskCard extends UiPart<Region> {
         setTextForDescription(task);
         setTextForStartTime(task);
         setTextForEndTime(task);
+        setTextForRecurPeriod(task);
         initTags(task);
         //setPriorityIcons(task);
         setColours(task);
     }
-    //@@author A0139509X
+    private void setTextForRecurPeriod(ReadOnlyTask task) {
+    	if(task.getRecurPeriod().period != null){
+			recurPeriod.setText("Recur Period : " +task.getRecurPeriod().period);
+        } else if(task.getRecurPeriod().period == null){
+        	recurPeriod.setManaged(false);
+        }
+    	
+    	if(task.getRecurEndDate().endDate != null){
+			recurEndDate.setText("Recur End Date : " +task.getRecurEndDate().endDate);
+        } else if(task.getRecurEndDate().endDate == null){
+        	recurEndDate.setManaged(false);
+        }
+    	
+	}
+	//@@author A0139509X
     private void setColours(ReadOnlyTask task) {
 		if(task.getPriority().toString().equals(TaskStringReference.PRIORITY_HIGH)) {
 			cardPane.setStyle(HIGH_PRIORITY_COLOR);
