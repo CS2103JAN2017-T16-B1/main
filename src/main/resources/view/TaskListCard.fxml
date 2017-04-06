@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -48,5 +49,10 @@
             <RowConstraints />
          </rowConstraints>
         </GridPane>
+      <ImageView fx:id="pinimage" fitHeight="52.0" fitWidth="111.0" pickOnBounds="true" preserveRatio="true">
+         <HBox.margin>
+            <Insets right="5.0" top="30.0" />
+         </HBox.margin>
+      </ImageView>
     </children>
 </HBox>
