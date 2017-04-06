@@ -1,10 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.UnmodifiableObservableList;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 
 
@@ -23,18 +19,18 @@ public class SortCommand extends Command {
             + " Example: " + COMMAND_WORD + " duedate";
 
     public static final String MESSAGE_SORT_PERSON_SUCCESS = "Sorted by %1$s ";
-    
+
     public static final String VALID_PARAMETER = "^(name|duedate|priority)";
-    
+
     public final String parameter;
-    
+
     /**
      * Creates an SortCommand using the String parameter.
     */
     public SortCommand(String parameter) {
-    	
-    	this.parameter=parameter.trim();
-    	
+
+        this.parameter = parameter.trim();
+
     }
 
     /**
@@ -42,38 +38,38 @@ public class SortCommand extends Command {
     */
     @Override
     public CommandResult execute() throws CommandException {
-    	
-    	
-    	if (!parameter.matches(VALID_PARAMETER)) {
-    		
+
+
+        if (!parameter.matches(VALID_PARAMETER)) {
+
             throw new CommandException(
-            		String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,MESSAGE_USAGE));
-            
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+
         }
-    	
-    	switch(parameter){
-    	
-    	case("name"):
-    		model.sortTasksByName();
-    		break;
-    	
-    	case("duedate"):
-    		model.sortTasksByEndTime();
-    		break;
-    	
-    	case("priority"):
-    		model.sortTasksByPriority();
-    		break;
-    		
-    	}
-    	
+
+        switch(parameter) {
+
+        case("name"):
+            model.sortTasksByName();
+            break;
+
+        case("duedate"):
+            model.sortTasksByEndTime();
+            break;
+
+        case("priority"):
+            model.sortTasksByPriority();
+            break;
+
+        }
+
         return new CommandResult(
-        		String.format(MESSAGE_SORT_PERSON_SUCCESS,parameter));
+                String.format(MESSAGE_SORT_PERSON_SUCCESS, parameter));
 
     }
-    
-  
-    
-    
+
+
+
+
 
 }

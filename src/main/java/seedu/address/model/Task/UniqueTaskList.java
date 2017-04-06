@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -23,7 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
  * Supports a minimal set of list operations.
  *
  * @see Task#equals(Object)
- * @see CollectionUtil#elementsAreUnique(Collection)
+ * @see CollectionUtil#elementsAreUnique(Collections)
  */
 public class UniqueTaskList implements Iterable<Task> {
 
@@ -62,7 +61,7 @@ public class UniqueTaskList implements Iterable<Task> {
 
         Task taskToUpdate = internalList.get(index);
 
-        if (editedTask.getStatus().equals("undone") && (taskToUpdate.equals(editedTask) )){//&& editedTask.getStatus().toString()=="undone") { || internalList.contains(editedTask)
+        if (editedTask.getStatus().equals("undone") && (taskToUpdate.equals(editedTask))) {
 
    //     if (taskToUpdate.equals(editedTask) || internalList.contains(editedTask)) {
 
@@ -112,6 +111,37 @@ public class UniqueTaskList implements Iterable<Task> {
         }
 
     }
+
+  //@@author A0138998B
+    /**
+     * Sorts list of tasks by duedate
+     * Floating tasks will be sorted to the end
+     */
+    public void sortByEndTime(List<TaskAndDueDate> list) {
+        Collections.sort(list, new Comparator<TaskAndDueDate>() {
+            public int compare(TaskAndDueDate task1, TaskAndDueDate task2) {
+                if (task1.dueDate != null && task2.dueDate != null) {
+                    return task1.dueDate.compareTo(task2.dueDate);
+                }
+                else if (task1.dueDate == null && task2.dueDate != null) {
+                    return 1;
+                }
+                else if (task1.dueDate != null && task2.dueDate == null) {
+                    return -1;
+                }
+                else if (task1.dueDate == null && task2.dueDate == null) {
+                    return 0;
+                }
+                return 0;
+            }
+            });
+    }
+
+
+
+    /**
+     * Utility class to store pairs of tasks and their endTimes as LocalDateTime variables to enable easy sorting
+     */
 
     /**
      * Utility class to store pairs of tasks and their endTimes as LocalDateTime variables to enable easy sorting
@@ -226,30 +256,4 @@ public class UniqueTaskList implements Iterable<Task> {
      * Sorts list of tasks by duedate
      * Floating tasks will be sorted to the end
      */
-    public void sortByEndTime(List<TaskAndDueDate> list) {
-    	Collections.sort(list, new Comparator<TaskAndDueDate>() {
-    		  public int compare(TaskAndDueDate task1, TaskAndDueDate task2) {
-    			  if(task1.dueDate!=null && task2.dueDate!=null){
-    		      return task1.dueDate.compareTo(task2.dueDate);
-    			  }
-    			  else if(task1.dueDate==null && task2.dueDate!=null){
-    				 return 1;
-    			  }
-    			  else if(task1.dueDate!=null && task2.dueDate==null){
-    				  return -1;
-    			  }
-    			  else if(task1.dueDate==null && task2.dueDate==null){
-    				  return 0;
-    			  }
-    			  return 0;
-    		  }
-    		});
-    }
-
-
-
-    /**
-     * Utility class to store pairs of tasks and their endTimes as LocalDateTime variables to enable easy sorting
-     */
-
 }

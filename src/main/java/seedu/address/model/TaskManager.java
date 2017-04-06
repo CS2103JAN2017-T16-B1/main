@@ -14,7 +14,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Task.ReadOnlyTask;
 import seedu.address.model.Task.Task;
 import seedu.address.model.Task.UniqueTaskList;
-import seedu.address.model.Task.UniqueTaskList.DuplicatetaskException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -69,8 +68,8 @@ public class TaskManager implements ReadOnlyTaskManager {
             assert false : "TaskManager should not have duplicate tasks";
 
         } catch (IllegalValueException e) {
-        	assert false : "Please change me";
-		}
+            assert false : "Please change me";
+        }
         try {
             setTags(newData.getTagList());
         } catch (UniqueTagList.DuplicateTagException e) {
@@ -96,7 +95,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     /**
      * Updates the task in the list at position {@code index} with {@code editedReadOnlyPerson}.
      * {@code TaskManager}'s tag list will be updated with the tags of {@code editedReadOnlyPerson}.
-     * @throws IllegalValueException 
+     * @throws IllegalValueException
      * @see #syncMasterTagListWith(Task)
      *
      * @throws IndexOutOfBoundsException if {@code index} < 0 or >= the size of the list.
@@ -148,16 +147,16 @@ public class TaskManager implements ReadOnlyTaskManager {
         }
     }
     //@@author A0138998B
-    public void sortTasksByEndTime() throws IllegalValueException{
-    	tasks.sortByEndTime();
+    public void sortTasksByEndTime() throws IllegalValueException {
+        tasks.sortByEndTime();
     }
-    public void sortTasksByName(){
-    	tasks.sortByName();
+    public void sortTasksByName() {
+        tasks.sortByName();
     }
-    public void sortTaskByPriority(){
-    	tasks.sortByPriority();
+    public void sortTaskByPriority() {
+        tasks.sortByPriority();
     }
-    
+
     //@@author
 //// tag-level operations
 
@@ -196,6 +195,6 @@ public class TaskManager implements ReadOnlyTaskManager {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(tasks, tags);
     }
-    
-    
+
+
 }
