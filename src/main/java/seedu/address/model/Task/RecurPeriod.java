@@ -11,7 +11,7 @@ public class RecurPeriod {
             "Recur period should only a positive integer for the number of days "
                     + "inbetween each recurrance and it should not be blank";
 
-    private static final String PERIOD_VALIDATION_REGEX = "^([0-9]|weekly|monthly|annually)";
+    private static final String PERIOD_VALIDATION_REGEX = "^([0-999]|weekly|monthly|annually)*";
 
     public final String period;
 
@@ -27,9 +27,9 @@ public class RecurPeriod {
         if (period != "") {
             String trimmedPeriod = period.trim();
 
-  //          if (!isValidPeriod(trimmedPeriod)) {
-  //              throw new IllegalValueException(MESSAGE_PERIOD_CONSTRAINTS);
-  //              }
+            if (!isValidPeriod(trimmedPeriod)) {
+                throw new IllegalValueException(MESSAGE_PERIOD_CONSTRAINTS);
+            }
 
             this.period = trimmedPeriod;
         }
