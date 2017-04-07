@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.ArchivedCommand;
@@ -67,7 +66,7 @@ public class Parser {
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-			return new FindCommandParser().parse(arguments);
+            return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -77,32 +76,31 @@ public class Parser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-            
+
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
-            
+
         case ArchiveCommand.COMMAND_WORD:
             return new ArchiveCommandParser().parse(arguments);
-            
+
         case ArchivedCommand.COMMAND_WORD:
             return new ArchivedCommand();
-            
-        case SortCommand.COMMAND_WORD:
 
-        	return new SortCommandParser().parse(arguments);
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         case ToggleCommand.COMMAND_WORD:
-        	return new ToggleCommand();
+            return new ToggleCommand();
 
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
     }
     //@@author A0138998B
-    public String parseArguments(String args){
-    	args=args.replaceAll(STARTTIME_VARIANTS_REGEX, "s/");
-    	args=args.replaceAll(ENDTIME_VARIANTS_REGEX, "e/");
-    	return args;
+    public String parseArguments(String args) {
+        args = args.replaceAll(STARTTIME_VARIANTS_REGEX, "s/");
+        args = args.replaceAll(ENDTIME_VARIANTS_REGEX, "e/");
+        return args;
     }
 
 }

@@ -2,10 +2,10 @@ package seedu.address.ui;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import java.util.logging.Logger;
 
 //@@author A0139509X
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -19,7 +19,7 @@ import seedu.address.model.Task.TaskStringReference;
 
 public class TaskCard extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(TaskCard.class);
-    
+
     private static final String LOW_PRIORITY_COLOR = "-fx-background-color: #EEFEED;";
 
     private static final String MEDIUM_PRIORITY_COLOR = "-fx-background-color: #EDF5FE;";
@@ -116,7 +116,7 @@ public class TaskCard extends UiPart<Region> {
     }
 
     private void setOverdueIcons(ReadOnlyTask task) {
-        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd-HHmm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HHmm");
         Date currentTime = new Date();
         String taskEndTimeString = task.getEndTime().endTime;
         Date taskEndTime = new Date();
@@ -125,7 +125,7 @@ public class TaskCard extends UiPart<Region> {
         } catch (ParseException e) {
             logger.info("parsing taskEndTime failed due to exception");
         }
-        if (currentTime.after(taskEndTime)){
+        if (currentTime.after(taskEndTime)) {
             pinimage.setImage(new Image("/images/overdue.png"));
         }
     }
