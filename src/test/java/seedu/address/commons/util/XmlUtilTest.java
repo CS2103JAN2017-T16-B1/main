@@ -55,7 +55,8 @@
 //
 //    @Test
 //    public void getDataFromFile_validFile_validResult() throws Exception {
-//        XmlSerializableTaskManager dataFromFile = XmlUtil.getDataFromFile(VALID_FILE, XmlSerializableTaskManager.class);
+//        XmlSerializableTaskManager dataFromFile =
+//                  XmlUtil.getDataFromFile(VALID_FILE, XmlSerializableTaskManager.class);
 //        assertEquals(5, dataFromFile.getTaskList().size());
 //        assertEquals(8, dataFromFile.getTagList().size());
 //    }
@@ -83,7 +84,8 @@
 //        TEMP_FILE.createNewFile();
 //        XmlSerializableTaskManager dataToWrite = new XmlSerializableTaskManager(new TaskManager());
 //        XmlUtil.saveDataToFile(TEMP_FILE, dataToWrite);
-//        XmlSerializableTaskManager dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE, XmlSerializableTaskManager.class);
+//        XmlSerializableTaskManager dataFromFile =
+//                  XmlUtil.getDataFromFile(TEMP_FILE, XmlSerializableTaskManager.class);
 //        assertEquals((new TaskManager(dataToWrite)).toString(), (new TaskManager(dataFromFile)).toString());
 //        //TODO: use equality instead of string comparisons
 //

@@ -111,7 +111,8 @@
 //    @Test
 //    public void execute_invalid() {
 //        String invalidCommand = "       ";
-//        assertCommandFailure(invalidCommand, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+//        assertCommandFailure(invalidCommand, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+//                  HelpCommand.MESSAGE_USAGE));
 //    }
 //
 //    /**
@@ -144,7 +145,8 @@
 //     *      - the backing list shown by UI matches the {@code shownList} <br>
 //     *      - {@code expectedTaskManager} was saved to the storage file. <br>
 //     */
-//    private void assertCommandBehavior(boolean isCommandExceptionExpected, String inputCommand, String expectedMessage,
+//    private void assertCommandBehavior(boolean isCommandExceptionExpected,
+//                    String inputCommand, String expectedMessage,
 //            ReadOnlyTaskManager expectedTaskManager,
 //            List<? extends ReadOnlyTask> expectedShownList) {
 //
@@ -200,7 +202,8 @@
 //        assertCommandFailure("add wrong args wrong args", expectedMessage);
 //        assertCommandFailure("add Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid,address", expectedMessage);
 //        assertCommandFailure("add Valid Name p/12345 valid@email.butNoPrefix a/valid, address", expectedMessage);
-//        assertCommandFailure("add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address", expectedMessage);
+//        assertCommandFailure("add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid,
+//              address", expectedMessage);
 //    }
 //
 //    @Test
@@ -456,7 +459,8 @@
 //            Tag tag2 = new Tag("longertag2");
 //            UniqueTagList tags = new UniqueTagList(tag1, tag2);
 //            return new
-//                    Task(name, privatePhone, startTime, endTime, id, priority, status, recurPeriod, recurEndDate, tags);
+//                    Task(name, privatePhone, startTime, endTime, id, priority,
+//                              status, recurPeriod, recurEndDate, tags);
 //        }
 //
 //        /**

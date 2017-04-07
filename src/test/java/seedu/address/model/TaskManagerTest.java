@@ -17,9 +17,9 @@ import javafx.collections.ObservableList;
 import seedu.address.testutil.TypicalTestTasks;
 import seedu.taskManager.commons.exceptions.IllegalValueException;
 import seedu.taskManager.model.ReadOnlyTaskManager;
-import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.Task.ReadOnlyTask;
 import seedu.taskManager.model.Task.Task;
+import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.tag.Tag;
 
 public class TaskManagerTest {
