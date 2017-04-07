@@ -139,8 +139,7 @@ public class ModelManager extends ComponentManager implements Model {
 
 
     @Override
-    public void updateTask (int filteredTaskListIndex, ReadOnlyTask editedTask) throws CommandException
-    {
+    public void updateTask (int filteredTaskListIndex, ReadOnlyTask editedTask) throws CommandException {
         assert editedTask != null;
         setPrevious();
         int taskManagerIndex = filteredTasks.getSourceIndex(filteredTaskListIndex);
@@ -328,8 +327,9 @@ public class ModelManager extends ComponentManager implements Model {
             if (((StringUtil.containsWordIgnoreCase(task.getName().fullName, archive))
                     || (StringUtil.containsWordIgnoreCase(task.getDescription().description, archive))
                     || (StringUtil.containsTagIgnoreCase(task.getTags(), archive)))
-                    && (task.getStatus().toString().equalsIgnoreCase(TaskStringReference.STATUS_DONE)))
+                    && (task.getStatus().toString().equalsIgnoreCase(TaskStringReference.STATUS_DONE))) {
                 return true;
+            }
             else {
                 return false;
             }
@@ -385,8 +385,9 @@ public class ModelManager extends ComponentManager implements Model {
                 if (((StringUtil.containsWordIgnoreCase(task.getName().fullName, keyword))
                         || (StringUtil.containsWordIgnoreCase(task.getDescription().description, keyword))
                         || (StringUtil.containsTagIgnoreCase(task.getTags(), keyword)))
-                        && (task.getStatus().toString().equalsIgnoreCase(TaskStringReference.STATUS_UNDONE)))
+                        && (task.getStatus().toString().equalsIgnoreCase(TaskStringReference.STATUS_UNDONE))) {
                     return true;
+                }
             }
             return false;
 
