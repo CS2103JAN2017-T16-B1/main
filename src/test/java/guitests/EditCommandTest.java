@@ -1,20 +1,20 @@
 package guitests;
 
 import static org.junit.Assert.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.taskManager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import org.junit.Test;
 
 import guitests.guihandles.TaskCardHandle;
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.model.Task.Description;
-import seedu.address.model.Task.EndTime;
-import seedu.address.model.Task.Name;
-import seedu.address.model.Task.StartTime;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TestTask;
+import seedu.taskManager.commons.core.Messages;
+import seedu.taskManager.logic.commands.EditCommand;
+import seedu.taskManager.model.Task.Description;
+import seedu.taskManager.model.Task.EndTime;
+import seedu.taskManager.model.Task.Name;
+import seedu.taskManager.model.Task.StartTime;
+import seedu.taskManager.model.tag.Tag;
 
 // TODO: reduce GUI tests by transferring some tests to be covered by lower level tests.
 public class EditCommandTest extends TaskManagerGuiTest {

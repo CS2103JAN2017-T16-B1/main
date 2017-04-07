@@ -11,10 +11,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.address.model.TaskManager;
-import seedu.address.storage.XmlSerializableTaskManager;
 import seedu.address.testutil.TaskManagerBuilder;
 import seedu.address.testutil.TestUtil;
+import seedu.taskManager.commons.util.FileUtil;
+import seedu.taskManager.commons.util.XmlUtil;
+import seedu.taskManager.model.TaskManager;
+import seedu.taskManager.storage.XmlSerializableTaskManager;
 
 public class XmlUtilTest {
 

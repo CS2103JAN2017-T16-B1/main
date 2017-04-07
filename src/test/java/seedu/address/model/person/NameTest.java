@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import seedu.address.model.Task.Name;
+import seedu.taskManager.model.Task.Name;
 //@@author A0140072X
 public class NameTest {
 

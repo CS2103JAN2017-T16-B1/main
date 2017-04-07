@@ -6,8 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Task.EndTime;
+import seedu.taskManager.commons.exceptions.IllegalValueException;
+import seedu.taskManager.model.Task.EndTime;
 //@@author A0138998B
 public class EndTimeTest {
 

@@ -1,17 +1,17 @@
 package seedu.address.testutil;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Task.Description;
-import seedu.address.model.Task.EndTime;
-import seedu.address.model.Task.ID;
-import seedu.address.model.Task.Name;
-import seedu.address.model.Task.Priority;
-import seedu.address.model.Task.RecurEndDate;
-import seedu.address.model.Task.RecurPeriod;
-import seedu.address.model.Task.StartTime;
-import seedu.address.model.Task.Status;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.UniqueTagList;
+import seedu.taskManager.commons.exceptions.IllegalValueException;
+import seedu.taskManager.model.Task.Description;
+import seedu.taskManager.model.Task.EndTime;
+import seedu.taskManager.model.Task.ID;
+import seedu.taskManager.model.Task.Name;
+import seedu.taskManager.model.Task.Priority;
+import seedu.taskManager.model.Task.RecurEndDate;
+import seedu.taskManager.model.Task.RecurPeriod;
+import seedu.taskManager.model.Task.StartTime;
+import seedu.taskManager.model.Task.Status;
+import seedu.taskManager.model.tag.Tag;
+import seedu.taskManager.model.tag.UniqueTagList;
 
 /**
  *

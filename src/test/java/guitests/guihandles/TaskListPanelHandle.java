@@ -12,10 +12,10 @@ import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import seedu.address.TestApp;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Task.ReadOnlyTask;
-import seedu.address.model.Task.Task;
 import seedu.address.testutil.TestUtil;
+import seedu.taskManager.commons.exceptions.IllegalValueException;
+import seedu.taskManager.model.Task.ReadOnlyTask;
+import seedu.taskManager.model.Task.Task;
 
 /**
  * Provides a handle for the panel containing the task list.

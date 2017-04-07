@@ -1,13 +1,13 @@
 package guitests;
 
 import static org.junit.Assert.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.taskManager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import org.junit.Test;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.testutil.TestTask;
+import seedu.taskManager.commons.core.Messages;
+import seedu.taskManager.logic.commands.FindCommand;
 
 public class FindCommandTest extends TaskManagerGuiTest {
     //@@author A0139509X
