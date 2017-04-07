@@ -32,7 +32,6 @@ allprojects {
     	maven { url "https://mvnrepository.com/artifact/com.joestelmach/natty"}
     	maven { url "https://mvnrepository.com/artifact/org.slf4j/slf4j-nop"}
 		maven { url "https://mvnrepository.com/artifact/com.github.tulskiy/jkeymaster"}
-		
     }
 
     // This part is similar to global variables
