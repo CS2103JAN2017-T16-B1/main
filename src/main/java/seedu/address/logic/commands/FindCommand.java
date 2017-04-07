@@ -67,49 +67,49 @@ public class FindCommand extends Command {
         this.archive = null;
     }
 
-	@Override
-	public CommandResult execute() {
-		if (this.keywords != null) {
-			updateByKeywords();
-		} else if (this.status != null) {
-			updateByStatusLevel(status);
-		} else if (this.priority != null) {
-			updateByPriorityLevel(priority);
-		} else if (this.archive != null) {
-			updateByArchivedKeyword();
-		}
-		return new CommandResult(getMessageForTaskListShownSummary(model.getFilteredTaskList().size()));
-	}
+    @Override
+    public CommandResult execute() {
+        if (this.keywords != null) {
+            updateByKeywords();
+        } else if (this.status != null) {
+            updateByStatusLevel(status);
+        } else if (this.priority != null) {
+            updateByPriorityLevel(priority);
+        } else if (this.archive != null) {
+            updateByArchivedKeyword();
+        }
+        return new CommandResult(getMessageForTaskListShownSummary(model.getFilteredTaskList().size()));
+    }
 
-	public void updateByArchivedKeyword() {
-		model.updateArchivedFilteredTaskListByKeyword(archive);
-	}
+    public void updateByArchivedKeyword() {
+        model.updateArchivedFilteredTaskListByKeyword(archive);
+    }
 
-	public void updateByKeywords() {
-		model.updateFilteredTaskListByKeywords(keywords);
-	}
+    public void updateByKeywords() {
+        model.updateFilteredTaskListByKeywords(keywords);
+    }
 
-	private void updateByStatusLevel(Status status) {
-		if (this.status.toString().equals(TaskStringReference.STATUS_DONE)) {
-			model.updateFilteredTaskListByDoneStatus();
-		} else if (this.status.toString().equals(TaskStringReference.STATUS_UNDONE)) {
-			model.updateFilteredTaskListByUnDoneStatus();
-		} else {
-			Assert.fail("unable to execute FindCommand due to incorrect Status");
-		}
-	}
+    private void updateByStatusLevel(Status status) {
+        if (this.status.toString().equals(TaskStringReference.STATUS_DONE)) {
+            model.updateFilteredTaskListByDoneStatus();
+        } else if (this.status.toString().equals(TaskStringReference.STATUS_UNDONE)) {
+            model.updateFilteredTaskListByUnDoneStatus();
+        } else {
+            Assert.fail("unable to execute FindCommand due to incorrect Status");
+        }
+    }
 
-	private void updateByPriorityLevel(Priority priority) {
-		if (this.priority.toString().equals(TaskStringReference.PRIORITY_HIGH)) {
-			model.updateFilteredTaskListByHighPriority();
-		} else if (this.priority.toString().equals(TaskStringReference.PRIORITY_MEDIUM)) {
-			model.updateFilteredTaskListByMediumPriority();
-		} else if (this.priority.toString().equals(TaskStringReference.PRIORITY_LOW)) {
-			model.updateFilteredTaskListByLowPriority();
-		} else {
-			Assert.fail("unable to execute FindCommand due to incorrect Priority");
-		}
-	}
+    private void updateByPriorityLevel(Priority priority) {
+        if (this.priority.toString().equals(TaskStringReference.PRIORITY_HIGH)) {
+            model.updateFilteredTaskListByHighPriority();
+        } else if (this.priority.toString().equals(TaskStringReference.PRIORITY_MEDIUM)) {
+            model.updateFilteredTaskListByMediumPriority();
+        } else if (this.priority.toString().equals(TaskStringReference.PRIORITY_LOW)) {
+            model.updateFilteredTaskListByLowPriority();
+        } else {
+            Assert.fail("unable to execute FindCommand due to incorrect Priority");
+        }
+    }
 
 
 }

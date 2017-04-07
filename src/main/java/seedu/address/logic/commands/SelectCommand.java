@@ -32,12 +32,11 @@ public class SelectCommand extends Command {
     public CommandResult execute() throws CommandException {
 
         UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
-        
-        
+
         if (lastShownList.size() < targetIndex) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
-        
+
         ReadOnlyTask taskSelected = lastShownList.get(targetIndex - 1);
 
         EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex - 1));

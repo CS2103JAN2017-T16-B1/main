@@ -47,7 +47,7 @@ public class AddCommand extends Command {
      */
     //Add Event
     public AddCommand(String name, String description, String startTime,
-            String endTime, String recurPeriod, String recurEndDate, String priority, Set<String> tags )
+            String endTime, String recurPeriod, String recurEndDate, String priority, Set<String> tags)
                     throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {

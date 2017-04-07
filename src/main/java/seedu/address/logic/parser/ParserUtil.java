@@ -1,14 +1,8 @@
 package seedu.address.logic.parser;
 
-import java.sql.Array;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -24,15 +18,12 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.Task.Description;
 import seedu.address.model.Task.EndTime;
-
-import seedu.address.model.Task.StartTime;
-import seedu.address.model.Task.Status;
 import seedu.address.model.Task.Name;
 import seedu.address.model.Task.Priority;
 import seedu.address.model.Task.RecurEndDate;
 import seedu.address.model.Task.RecurPeriod;
-import seedu.address.model.Task.Description;
-
+import seedu.address.model.Task.StartTime;
+import seedu.address.model.Task.Status;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -41,16 +32,16 @@ import seedu.address.model.tag.UniqueTagList;
  */
 public class ParserUtil {
 
-	private static final Pattern INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+    private static final Pattern INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
 
-	/**
+    /**
      * Returns the specified index in the {@code command} if it is a positive unsigned integer
      * Returns an {@code Optional.empty()} otherwise.
      */
-    
+
     private static final Pattern LIST_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
 
-	private static final String STARTTIME_WITHOUT_ENDTIME_MESSAGE = "Cannot have StartTime without End Time";
+    private static final String STARTTIME_WITHOUT_ENDTIME_MESSAGE = "Cannot have StartTime without End Time";
 
     public static Optional<Integer> parseIndex(String command) {
         final Matcher matcher = INDEX_ARGS_FORMAT.matcher(command.trim());
@@ -111,23 +102,24 @@ public class ParserUtil {
     /**
      * Parses a {@code Optional<String> start time} into an {@code Optional<Phone>} if {@code start time} is present.
      */
-        public static Optional<StartTime> parseStartTime(Optional<String> startTime) throws IllegalValueException {
+    public static Optional<StartTime> parseStartTime(Optional<String> startTime) throws IllegalValueException {
         assert startTime != null;
-        
+
         return startTime.isPresent() ? Optional.of(new StartTime(startTime.get())) : Optional.empty();
     }
-    
+
     /**
      * Parses a {@code Optional<String> end time} into an {@code Optional<EndTime>} if {@code end time} is present.
      */
     public static Optional<EndTime> parseEndTime(Optional<String> endTime) throws IllegalValueException {
         assert endTime != null;
         return endTime.isPresent() ? Optional.of(new EndTime(endTime.get())) : Optional.empty();
-        
+
     }
- 
+
     /**
-     * Parses a {@code Optional<String> description} into an {@code Optional<Description>} if {@code description} is present.
+    * Parses a {@code Optional<String> description} into an {@code Optional<Description>}
+    * if {@code description} is present.
      */
     public static Optional<Description> parseDescription(Optional<String> description) throws IllegalValueException {
         assert description != null;
@@ -155,7 +147,8 @@ public class ParserUtil {
         return recurPeriod.isPresent() ? Optional.of(new RecurPeriod(recurPeriod.get())) : Optional.empty();
     }
     /**
-     * Parses a {@code Optional<String> recurEndDate} into an {@code Optional<RecurEndDate>} if {@code status} is present.
+     * Parses a {@code Optional<String> recurEndDate} into an {@code Optional<RecurEndDate>}
+     * if {@code status} is present.
      */
     public static Optional<RecurEndDate> parseRecurEndDate(Optional<String> recurEndDate) throws IllegalValueException {
         assert recurEndDate != null;
@@ -164,7 +157,7 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> tags} into an {@code UniqueTagList}.
      */
-    
+
     public static UniqueTagList parseTags(Collection<String> tags) throws IllegalValueException {
         assert tags != null;
         final Set<Tag> tagSet = new HashSet<>();
@@ -176,31 +169,31 @@ public class ParserUtil {
     //@@author A0138998B
     /**
      * Parses endTime and StartTime to validate that startTime is before endTime
-     * @throws ParseException 
-     * @throws IllegalValueException 
+     * @throws ParseException
+     * @throws IllegalValueException
      */
-    public static void isAfter(String startTimeString,String endTimeString) throws IllegalValueException{
-    	SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd-HHmm");
-    	Date startTime;
-    	Date endTime;
-    	
-    	if(endTimeString=="" && startTimeString!=""){
-			throw new IllegalValueException(STARTTIME_WITHOUT_ENDTIME_MESSAGE);
-    	}
-    	
-    	try{
-    	startTime=dateFormat.parse(startTimeString);
-    	endTime=dateFormat.parse(endTimeString);
-    	}
-    	catch (ParseException e){
-    		return;
-    	} 
-    	
-    	if(startTime.after(endTime)){
-    		throw new IllegalValueException("StartTime must be before EndTime");
-    	}else{
-    		return;
-    	}
-    	
+    public static void isAfter (String startTimeString, String endTimeString) throws IllegalValueException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HHmm");
+        Date startTime;
+        Date endTime;
+
+        if (endTimeString == "" && startTimeString != "") {
+            throw new IllegalValueException(STARTTIME_WITHOUT_ENDTIME_MESSAGE);
+        }
+
+        try {
+            startTime = dateFormat.parse(startTimeString);
+            endTime = dateFormat.parse(endTimeString);
+        }
+        catch (ParseException e) {
+            return;
+        }
+
+        if (startTime.after(endTime)) {
+            throw new IllegalValueException("StartTime must be before EndTime");
+        } else {
+            return;
+        }
+
     }
 }

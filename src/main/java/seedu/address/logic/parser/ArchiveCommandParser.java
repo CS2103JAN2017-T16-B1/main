@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.IncorrectCommand;
 //@@author A0140072X
 /**
