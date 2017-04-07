@@ -11,7 +11,7 @@ public class RecurEndDate {
             "Recur end date must be in the form of yyyy-mm-dd";
 
     public static final String ENDDATE_VALIDATION_REGEX =
-            "(((18|19|20|21)\\d\\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01]))*";
+            "(((18|19|20|21)\\d\\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])-[0-9]{4})*";
 
     public final String endDate;
 
@@ -22,9 +22,13 @@ public class RecurEndDate {
      */
 
     public RecurEndDate(String endDate) throws IllegalValueException {
-        if (endDate != null) {
+        if (endDate != "") {
             String trimmedEndDate = endDate.trim();
-            this.endDate = trimmedEndDate + "-2359\n";
+
+            if (!isValidEndDate(trimmedEndDate)) {
+                throw new IllegalValueException(MESSAGE_ENDDATE_CONSTRAINTS);
+            }
+            this.endDate = trimmedEndDate;
         } else {
             this.endDate = endDate;
         }
@@ -40,7 +44,7 @@ public class RecurEndDate {
     }
 
     public boolean hasPassedEndDate(String date) {
-        if (date != null && this.endDate != null) {
+        if (date != null && this.endDate != "") {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm\n");
             LocalDateTime a = LocalDateTime.parse(date, formatter);
             LocalDateTime b = LocalDateTime.parse(this.endDate, formatter);
@@ -50,14 +54,14 @@ public class RecurEndDate {
     }
 
     public boolean hasRecurEndDate() {
-        if (endDate == null) return false;
+        if (endDate == "") return false;
         return true;
     }
 
 
     @Override
     public String toString() {
-        return endDate;
+        return endDate + "\n";
     }
 
     @Override

@@ -78,9 +78,9 @@ public class TaskCard extends UiPart<Region> {
     }
 
     private void setTextForRecurEndDate(ReadOnlyTask task) {
-        if (task.getRecurEndDate().endDate != TaskStringReference.EMPTY_RECUR_END_DATE) {
+        if (!task.getRecurEndDate().endDate.equals(TaskStringReference.EMPTY_RECUR_END_DATE)) {
             recurEndDate.setText("Recur End Date : " + task.getRecurEndDate().endDate);
-        } else if (task.getRecurEndDate().endDate == TaskStringReference.EMPTY_RECUR_END_DATE) {
+        } else { //if (task.getRecurEndDate().endDate == TaskStringReference.EMPTY_RECUR_END_DATE) {
             dontShowLabel(recurEndDate);
         }
 
