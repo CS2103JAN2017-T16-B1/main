@@ -24,8 +24,6 @@ public class RecurEndDate {
     public RecurEndDate(String endDate) throws IllegalValueException {
         if (endDate != null) {
             String trimmedEndDate = endDate.trim();
-
-
             this.endDate = trimmedEndDate + "-2359\n";
         } else {
             this.endDate = endDate;
