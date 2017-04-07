@@ -21,13 +21,13 @@ import guitests.guihandles.TaskListPanelHandle;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import seedu.address.TestApp;
-import seedu.address.commons.core.EventsCenter;
-import seedu.address.commons.events.BaseEvent;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Task.ReadOnlyTask;
-import seedu.address.model.TaskManager;
 import seedu.address.testutil.TestUtil;
 import seedu.address.testutil.TypicalTestTasks;
+import seedu.taskManager.commons.core.EventsCenter;
+import seedu.taskManager.commons.events.BaseEvent;
+import seedu.taskManager.commons.exceptions.IllegalValueException;
+import seedu.taskManager.model.TaskManager;
+import seedu.taskManager.model.Task.ReadOnlyTask;
 
 /**
  * A GUI Test class for TaskManager.

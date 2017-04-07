@@ -14,11 +14,13 @@ import org.junit.rules.ExpectedException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Task.ReadOnlyTask;
-import seedu.address.model.Task.Task;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TypicalTestTasks;
+import seedu.taskManager.commons.exceptions.IllegalValueException;
+import seedu.taskManager.model.ReadOnlyTaskManager;
+import seedu.taskManager.model.TaskManager;
+import seedu.taskManager.model.Task.ReadOnlyTask;
+import seedu.taskManager.model.Task.Task;
+import seedu.taskManager.model.tag.Tag;
 
 public class TaskManagerTest {
 

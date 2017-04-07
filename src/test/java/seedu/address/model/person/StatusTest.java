@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import seedu.address.model.Task.Status;
+import seedu.taskManager.model.Task.Status;
 //@@author A0140072X
 public class StatusTest {
 

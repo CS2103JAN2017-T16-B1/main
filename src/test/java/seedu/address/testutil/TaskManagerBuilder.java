@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Task.Task;
-import seedu.address.model.Task.UniqueTaskList;
-import seedu.address.model.TaskManager;
-import seedu.address.model.tag.Tag;
+import seedu.taskManager.commons.exceptions.IllegalValueException;
+import seedu.taskManager.model.TaskManager;
+import seedu.taskManager.model.Task.Task;
+import seedu.taskManager.model.Task.UniqueTaskList;
+import seedu.taskManager.model.tag.Tag;
 
 /**
  * A utility class to help with building TaskManager objects.
