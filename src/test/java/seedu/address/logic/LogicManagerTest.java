@@ -20,6 +20,7 @@ import org.junit.rules.TemporaryFolder;
 
 import com.google.common.eventbus.Subscribe;
 
+import javafx.collections.ObservableList;
 import seedu.taskManager.commons.core.EventsCenter;
 import seedu.taskManager.commons.core.Messages;
 import seedu.taskManager.commons.core.UnmodifiableObservableList;
@@ -29,6 +30,7 @@ import seedu.taskManager.commons.events.ui.ShowHelpRequestEvent;
 import seedu.taskManager.logic.Logic;
 import seedu.taskManager.logic.LogicManager;
 import seedu.taskManager.logic.commands.AddCommand;
+import seedu.taskManager.logic.commands.ArchiveCommand;
 import seedu.taskManager.logic.commands.ClearCommand;
 import seedu.taskManager.logic.commands.Command;
 import seedu.taskManager.logic.commands.CommandResult;
@@ -280,7 +282,35 @@ public class LogicManagerTest {
                 expectedAB,
                 expectedList);
     }
+ //@@ a0139375w
+    @Test
+    public void execute_archive_successful() throws Exception {
+        // prepare expectations
+        TestDataHelper helper = new TestDataHelper();
+        List<Task> threeTasks = helper.generateTaskList(3);
 
+        TaskManager expectedTM = helper.generateTaskManager(threeTasks);
+
+        // prepare task manager state
+        helper.addToModel(model, threeTasks);
+
+        ObservableList<ReadOnlyTask> lastShownList = expectedTM.getTaskList();
+        ReadOnlyTask taskToArchive = lastShownList.get(0);
+        Task updatedTask = new Task(taskToArchive.getName(), taskToArchive.getDescription(),
+                taskToArchive.getStartTime(), taskToArchive.getEndTime(), taskToArchive.getId(),
+                taskToArchive.getPriority(), new Status("done"), taskToArchive.getRecurPeriod(),
+                taskToArchive.getRecurEndDate(), taskToArchive.getTags());
+
+        expectedTM.archiveTask(1, updatedTask);
+
+
+        assertCommandSuccess("archive 1",
+                String.format(ArchiveCommand.MESSAGE_ARCHIVE_TASK_SUCCESS, taskToArchive),
+                expectedTM,
+                expectedTM.getTaskList());
+    }
+
+    //@@ a0139375w
 
     /**
      * Confirms the 'invalid argument index number behaviour' for the given command
