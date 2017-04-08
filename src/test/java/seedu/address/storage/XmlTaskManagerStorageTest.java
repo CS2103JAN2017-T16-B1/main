@@ -14,8 +14,8 @@ import seedu.address.testutil.TypicalTestTasks;
 import seedu.taskManager.commons.exceptions.DataConversionException;
 import seedu.taskManager.commons.util.FileUtil;
 import seedu.taskManager.model.ReadOnlyTaskManager;
-import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.Task.Task;
+import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.storage.XmlTaskManagerStorage;
 
 public class XmlTaskManagerStorageTest {
