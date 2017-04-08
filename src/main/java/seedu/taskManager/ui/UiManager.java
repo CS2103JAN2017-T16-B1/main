@@ -130,7 +130,7 @@ public class UiManager extends ComponentManager implements Ui {
     public void hide() {
         mainWindow.hide();
     }
-
+    //@@author
     @Override
     public void stop() {
         prefs.updateLastUsedGuiSetting(mainWindow.getCurrentGuiSetting());
