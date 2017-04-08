@@ -27,7 +27,7 @@ public class FindCommandTest extends TaskManagerGuiTest {
         //find done and undone list
         assertFindResult("find #undone", td.task1, td.task2, td.task3, td.task4, td.task5, td.task6, td.task7);
         assertFindResult("find #done");
-        
+
         //find after deleting one task
         commandBox.runCommand("list");
         commandBox.runCommand("delete 1");

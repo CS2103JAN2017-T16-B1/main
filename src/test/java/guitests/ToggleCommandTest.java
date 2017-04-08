@@ -37,9 +37,10 @@ public class ToggleCommandTest extends TaskManagerGuiTest {
         //check for toggle to work after executing find function
         commandBox.runCommand("find Midterm");
         pressHotKeyForToggle();
-        assertToggleCommandBoxRevertToListAllSuccess(td.task1, td.task2, td.task3, td.task4, td.task5, td.task6, td.task7);
+        assertToggleCommandBoxRevertToListAllSuccess(
+                td.task1, td.task2, td.task3, td.task4, td.task5, td.task6, td.task7);
     }
-    
+
     private void assertToggleCommandBoxRevertToListAllSuccess(TestTask ...expectedHits) {
         assertListSize(expectedHits.length);
         assertResultMessage(expectedHits.length + " tasks listed!");
@@ -55,25 +56,25 @@ public class ToggleCommandTest extends TaskManagerGuiTest {
         assertResultMessage("Toggled to list ALL\n" + expectedHits.length + " tasks listed!");
         assertTrue(taskListPanel.isListMatching(expectedHits));
     }
-    
+
     private void assertToggleCommandBoxFloatingSuccess(TestTask ...expectedHits) {
         assertListSize(expectedHits.length);
         assertResultMessage("Toggled to list FLOATING_TASK\n" + expectedHits.length + " tasks listed!");
         assertTrue(taskListPanel.isListMatching(expectedHits));
     }
-    
+
     private void assertToggleCommandBoxTaskSuccess(TestTask ...expectedHits) {
         assertListSize(expectedHits.length);
         assertResultMessage("Toggled to list TASK\n" + expectedHits.length + " tasks listed!");
         assertTrue(taskListPanel.isListMatching(expectedHits));
     }
-    
+
     private void assertToggleCommandBoxEventSuccess(TestTask ...expectedHits) {
         assertListSize(expectedHits.length);
         assertResultMessage("Toggled to list EVENT\n" + expectedHits.length + " tasks listed!");
         assertTrue(taskListPanel.isListMatching(expectedHits));
     }
-    
+
     private void runToggleCommandByTyping(String string) {
         commandBox.runCommand("toggle");
     }

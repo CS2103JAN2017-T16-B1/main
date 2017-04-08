@@ -38,7 +38,7 @@ public class CommandBoxHandle extends GuiHandle {
         //to solve the problem of not clicking commandTextField when executing enter
         guiRobot.type(KeyCode.B);
         guiRobot.type(KeyCode.BACK_SPACE);
-        
+
         enterCommand(command);
         pressEnter();
         guiRobot.sleep(200); //Give time for the command to take effect

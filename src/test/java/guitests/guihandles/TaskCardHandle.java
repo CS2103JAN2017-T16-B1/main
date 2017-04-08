@@ -50,7 +50,7 @@ public class TaskCardHandle extends GuiHandle {
     public String getStartTime() {
         return getTextFromLabel(STARTTIME_FIELD_ID);
     }
-    
+
     public String getRecurPeriod() {
         return getTextFromLabel(RECURPERIOD_FIELD_ID);
     }
@@ -58,7 +58,7 @@ public class TaskCardHandle extends GuiHandle {
     public String getRecurEndDate() {
         return getTextFromLabel(RECURENDDATE_FIELD_ID);
     }
-    
+
     public List<String> getTags() {
         return getTags(getTagsContainer());
     }
@@ -91,7 +91,7 @@ public class TaskCardHandle extends GuiHandle {
         System.out.println("EndTime :" + getEndTime());
         System.out.println("RecurPeriod :" + getRecurPeriod());
         System.out.println("RecurEndDate :" + getRecurEndDate());
-        
+
         System.out.println("fullnameTask :" + task.getName().fullName);
         System.out.println("descriptionTask :" + task.getDescription().description);
         System.out.println("startTimeTask :" + task.getStartTime().startTime);
@@ -107,7 +107,7 @@ public class TaskCardHandle extends GuiHandle {
                 && checkForRecurPeriod(task)
                 && checkForRecurEndDate(task);
     }
-    
+
     //@@author A0139509X
     private boolean checkForRecurEndDate(ReadOnlyTask task) {
         if (getRecurEndDate().equals("$recurEndDate")) {
@@ -116,7 +116,7 @@ public class TaskCardHandle extends GuiHandle {
                 return true;
             }
         } else {
-            if (getRecurEndDate().equals("Recur End Date : " + task.getRecurEndDate().toString())){
+            if (getRecurEndDate().equals("Recur End Date : " + task.getRecurEndDate().toString())) {
                 System.out.println("I'm here! and my recurEndDate works!\n");
                 return true;
             }
@@ -147,7 +147,7 @@ public class TaskCardHandle extends GuiHandle {
                 return true;
             }
         } else {
-            if (getEndTime().equals("End Time : " + task.getEndTime().endTime)){
+            if (getEndTime().equals("End Time : " + task.getEndTime().endTime)) {
                 System.out.println("I'm here! and my endTime works!\n");
                 return true;
             }
@@ -162,7 +162,7 @@ public class TaskCardHandle extends GuiHandle {
                 return true;
             }
         } else {
-            if (getStartTime().equals("Start Time : " + task.getStartTime().startTime)){
+            if (getStartTime().equals("Start Time : " + task.getStartTime().startTime)) {
                 System.out.println("I'm here! and my startTime works!\n");
                 return true;
             }
@@ -177,7 +177,7 @@ public class TaskCardHandle extends GuiHandle {
                 return true;
             }
         } else {
-            if (getDescription().equals("Description : " + task.getDescription().description)){
+            if (getDescription().equals("Description : " + task.getDescription().description)) {
                 System.out.println("I'm here! and my description works!\n");
                 return true;
             }
