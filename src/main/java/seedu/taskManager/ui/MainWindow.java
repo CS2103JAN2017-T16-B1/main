@@ -273,8 +273,7 @@ public class MainWindow extends UiPart<Region> {
         }
 
     }
-
-
+    //@@author
     void show() {
         primaryStage.show();
     }
