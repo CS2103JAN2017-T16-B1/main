@@ -80,10 +80,9 @@ Examples:
 
 
 
-### 2.3.1 Finding all tasks/events containing any keyword in their names, description or tag : `find`
+### 2.3 Finding tasks/events : `find`
 
-
-
+**(Usage 1)**<br>
 Finds tasks/events whose names contain any of the given keywords.<br>
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
@@ -99,25 +98,23 @@ Examples:
 * find work family friends
 * Returns a numbered list of undone tasks/events whose names/description/tags contain work, family or friends
 
-### 2.3.2 Finding all tasks/events that matches the given priority level : `find #`
-
-
+**(Usage 2)**<br>
 Finds tasks/events that matches a priority level.<br>
 
 Format: `find #KEYWORD`
 
 > * The search is case sensitive. e.g. h will not match H
-> * Only priority is searched
-> * Tasks matching the given priority will be returned.
+> * Only priority or status is searched
+> * Tasks matching the given priority or status will be returned.
 
 Examples:
 * find #h
-* Returns a numbered list of tasks/events that are labelled as high priority
+> * Returns a numbered list of tasks/events that are labelled as high priority
+* find #done
+> * Returns a numbered list of tasks/events that are archived
 
-### 2.3.3 Finding all archived tasks/events containing the keyword in their names, description or tag : `find @`
-
-
-Finds tasks/events whose name/description/tags match a given keyword.<br>
+**(Usage 3)**<br>
+Finds all archived tasks/events/floating task whose name/description/tags match a given keyword.<br>
 
 Format: `find @KEYWORD`
 
@@ -258,24 +255,30 @@ HotKey: `CTRL + SPACE Key`
 > * Press the HotKey at anytime to Show or Hide the Task Manager. 
 > * Window/Mac/Linux Supported
 
-### 2.12 Clearing all entries : `clear`
+### 2.12 Toggle between different tasks: `toggle`
+
+Toggles the view between the 4 different kinds of screen.<br>
+Format: `toggle`<br>
+Hotkey: `TAB Key`
+
+### 2.13 Clearing all entries : `clear`
 
 Clears all entries from the task manager.<br>
 Format: `clear`
 
-### 2.13 Undo the last command : `undo`
+### 2.14 Undo the last command : `undo`
 
 Undo the last add/edit/archive/undo command input by the user.<br>
 Format: `undo`
 
-### 2.14 Exiting the program : `exit`
+### 2.15 Exiting the program : `exit`
 
 Exits the program.<br>
 Format: `exit`
 
-### 2.15 Saving the data
+### 2.16 Saving the data
 
-Address book data are saved in the hard disk automatically after any command that changes the data.<br>
+Task Manager data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.
 
 ## 3. FAQ
@@ -297,7 +300,10 @@ There is no need to save manually.
    e.g. `delete 3`
 
 * **Find** : `find KEYWORD [MORE_KEYWORDS]` <br>
-  e.g. `find milk`
+  e.g. `find milk`<br>
+  e.g. `find #h` (priority level)<br>
+  e.g. `find #done` (status)<br>
+  e.g. `find @milk` (if the task has been archived)
 
 * **List** : `list` <br>
   e.g. `list`
@@ -314,6 +320,8 @@ There is no need to save manually.
 * **Save/Load** : `ALT + S / ALT + L` <br>
   
 * **Quick Launch** : `CTRL + SPACE` <br>
+
+* **Toggle** : `toggle` or `TAB` <br>
 
 * **edit** : `edit TASK_ID[n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]...` <br>
 
