@@ -162,10 +162,10 @@ public class TaskListPanelHandle extends GuiHandle {
 
     public TaskCardHandle getTaskCardHandle(ReadOnlyTask task) {
         Set<Node> nodes = getAllCardNodes();
-        /*Optional<Node> taskCardNode = nodes.stream().filter(n ->
-        new TaskCardHandle(guiRobot, primaryStage, n).isSameTask(task)).findFirst();*/
+        Optional<Node> taskCardNode = nodes.stream().filter(n ->
+        new TaskCardHandle(guiRobot, primaryStage, n).isSameTask(task)).findFirst();
 
-        Optional<Node> taskCardNode = nodes.stream().filter(n -> true).findFirst();
+        /*Optional<Node> taskCardNode = nodes.stream().filter(n -> true).findFirst();*/
         if (taskCardNode.isPresent()) {
             return new TaskCardHandle(guiRobot, primaryStage, taskCardNode.get());
         } else {

@@ -8,6 +8,7 @@
         <endtime>2017-04-10-1719</endtime>
         <priority>m</priority>
         <status>undone</status>
+        <recurEndDate></recurEndDate>
         <recurPeriod>5</recurPeriod>
     </tasks>
 </taskmanager>

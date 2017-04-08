@@ -36,7 +36,7 @@
 //
 //    private void assertSelectionInvalid(int index) {
 //        commandBox.runCommand("select " + index);
-//        assertResultMessage("The item index provided is invalid");
+//        assertResultMessage("The task index provided is invalid");
 //    }
 //
 //    private void assertSelectionSuccess(int index) {
