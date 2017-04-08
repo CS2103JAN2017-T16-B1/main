@@ -8,6 +8,7 @@ import org.junit.Test;
 import seedu.address.testutil.TestTask;
 import seedu.taskManager.commons.core.Messages;
 import seedu.taskManager.logic.commands.FindCommand;
+import seedu.taskManager.model.Task.Priority;
 
 public class FindCommandTest extends TaskManagerGuiTest {
     //@@author A0139509X
@@ -23,13 +24,17 @@ public class FindCommandTest extends TaskManagerGuiTest {
         assertFindResult("find School", td.task1, td.task2, td.task3, td.task4, td.task5, td.task6, td.task7);
         assertFindResult("find @School"); //no results
 
-        //find after deleting one result
+        //find done and undone list
+        assertFindResult("find #undone", td.task1, td.task2, td.task3, td.task4, td.task5, td.task6, td.task7);
+        assertFindResult("find #done");
+
+        //find after deleting one task
         commandBox.runCommand("list");
         commandBox.runCommand("delete 1");
         assertFindResult("find Midterm4", td.task4);
         assertFindResult("find Midterms");
 
-        //find after editing one result
+        //find after archiving one task
         commandBox.runCommand("list");
         commandBox.runCommand("archive 2");
         assertFindResult("find #h"); //no result because task became done
@@ -48,6 +53,12 @@ public class FindCommandTest extends TaskManagerGuiTest {
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
         commandBox.runCommand("find");
         assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        commandBox.runCommand("find @");
+        assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        commandBox.runCommand("find #");
+        assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        commandBox.runCommand("find #H");
+        assertResultMessage(Priority.MESSAGE_NAME_CONSTRAINTS);
     }
 
     private void assertFindResult(String command, TestTask... expectedHits) {

@@ -200,6 +200,8 @@ public class ModelManager extends ComponentManager implements Model {
                 return false;
             }
         });
+        //@@author A0139509X
+        setCurrentToggleStatus(TaskStringReference.SHOWING_SPECIAL);
     }
 
     // @@author
