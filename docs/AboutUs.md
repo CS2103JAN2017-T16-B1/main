@@ -67,8 +67,8 @@ We are a team based in the [School of Computing, National University of Singapor
 **Aspects/tools in charge of**: Scheduling and tracking, Documentation, GUI
 
 **Features implemented**: 
-* find task(s)
-* toggle function
+* [find task(s)](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#23-find-tasks/events--find)
+* [toggle function]
 * auto focus with keywords
 * UI design
 
