@@ -22,4 +22,26 @@
         <recurEndDate></recurEndDate>
         <recurPeriod></recurPeriod>
     </tasks>
+    <tasks>
+        <id>1</id>
+        <name>nonsense</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>2</id>
+        <name>more nonsense</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>done</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
 </taskmanager>
