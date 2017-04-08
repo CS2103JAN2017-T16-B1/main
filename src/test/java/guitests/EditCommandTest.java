@@ -1,7 +1,6 @@
 package guitests;
 
 import static org.junit.Assert.assertTrue;
-import static seedu.taskManager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import org.junit.Test;
 
@@ -10,9 +9,11 @@ import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TestTask;
 import seedu.taskManager.commons.core.Messages;
 import seedu.taskManager.logic.commands.EditCommand;
-import seedu.taskManager.model.Task.Description;
 import seedu.taskManager.model.Task.EndTime;
 import seedu.taskManager.model.Task.Name;
+import seedu.taskManager.model.Task.Priority;
+import seedu.taskManager.model.Task.RecurEndDate;
+import seedu.taskManager.model.Task.RecurPeriod;
 import seedu.taskManager.model.Task.StartTime;
 import seedu.taskManager.model.tag.Tag;
 
@@ -24,16 +25,18 @@ public class EditCommandTest extends TaskManagerGuiTest {
     TestTask[] expectedTaskList = td.getTypicalTasks();
 
     @Test
-    public void edit_allFieldsSpecified_success() throws Exception {
-
+     public void edit_allFieldsSpecified_success() throws Exception {
+    
         String detailsToEdit = "Study s/2017-03-03-2100 e/2017-10-10-2100 t/school";
-        int taskManagerIndex = 1;
-
-        TestTask editedTask = new TaskBuilder().withName("Study").withStartTime("2017-03-03-2100").withDescription("")
-                .withEndTime("2017-10-10-2100").withTags("school").build();
-
-        assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
-    }
+     int taskManagerIndex = 1;
+    
+     TestTask editedTask = new
+     TaskBuilder().withName("Study").withStartTime("2017-03-03-2100").withDescription("")
+     .withEndTime("2017-10-10-2100").withTags("school").build();
+    
+     assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit,
+     editedTask);
+     }
 
     @Test
     public void edit_notAllFieldsSpecified_success() throws Exception {
@@ -64,18 +67,19 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
         String detailsToEdit = "Belle";
         int filteredTaskListIndex = 1;
-        int taskManagerIndex = 5;
+        int taskManagerIndex = 0;
 
-        TestTask taskToEdit = expectedTaskList[taskManagerIndex - 1];
+        TestTask taskToEdit = expectedTaskList[taskManagerIndex];
         TestTask editedTask = new TaskBuilder(taskToEdit).withName("Belle").build();
-
+        editedTask.setRecurPeriod(new RecurPeriod(""));
+        editedTask.setRecurEndDate(new RecurEndDate(""));
         assertEditSuccess(filteredTaskListIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
 
     @Test
     public void edit_missingTaskIndex_failure() {
         commandBox.runCommand("edit Bobby");
-        assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        assertResultMessage(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -96,13 +100,13 @@ public class EditCommandTest extends TaskManagerGuiTest {
         assertResultMessage(Name.MESSAGE_NAME_CONSTRAINTS);
 
         commandBox.runCommand("edit 1 p/abcd");
-        assertResultMessage(Description.MESSAGE_DESCRIPTION_CONSTRAINTS);
+        assertResultMessage(Priority.MESSAGE_NAME_CONSTRAINTS);
 
-        commandBox.runCommand("edit 1 e/yahoo!!!");
-        assertResultMessage(StartTime.MESSAGE_TIME_CONSTRAINTS);
+        commandBox.runCommand("edit 1 s/yahoo!!!");
+        assertResultMessage(StartTime.MESSAGE_DATETIME_CONSTRAINTS);
 
-        commandBox.runCommand("edit 1 a/");
-        assertResultMessage(EndTime.MESSAGE_TIME_CONSTRAINTS);
+        commandBox.runCommand("edit 1 e/google");
+        assertResultMessage(EndTime.MESSAGE_DATETIME_CONSTRAINTS);
 
         commandBox.runCommand("edit 1 t/*&");
         assertResultMessage(Tag.MESSAGE_TAG_CONSTRAINTS);
@@ -111,25 +115,26 @@ public class EditCommandTest extends TaskManagerGuiTest {
     @Test
     public void edit_duplicateTask_failure() {
         commandBox.runCommand(
-                "edit 3 Alice Pauline p/85355255 e/alice@gmail.com " + "a/123, Jurong West Ave 6, #08-111 t/friends");
+                "edit 3 Study for Midterm2 s/2017-03-03-2100 e/2017-04-04-2100 t/school p/l");
         assertResultMessage(EditCommand.MESSAGE_DUPLICATE_TASK);
     }
 
-    /**
-     * Checks whether the edited task has the correct updated details.
-     *
-     * @param filteredTaskListIndex
-     *            index of task to edit in filtered list
-     * @param taskManagerIndex
-     *            index of task to edit in the task manager. Must refer to the
-     *            same task as {@code filteredTaskListIndex}
-     * @param detailsToEdit
-     *            details to edit the task with as input to the edit command
-     * @param editedTask
-     *            the expected task after editing the task's details
-     */
+    // /**
+    // * Checks whether the edited task has the correct updated details.
+    // *
+    // * @param filteredTaskListIndex
+    // * index of task to edit in filtered list
+    // * @param taskManagerIndex
+    // * index of task to edit in the task manager. Must refer to the
+    // * same task as {@code filteredTaskListIndex}
+    // * @param detailsToEdit
+    // * details to edit the task with as input to the edit command
+    // * @param editedTask
+    // * the expected task after editing the task's details
+    // */
     private void assertEditSuccess(int filteredTaskListIndex, int taskManagerIndex, String detailsToEdit,
             TestTask editedTask) {
+
 
         commandBox.runCommand("edit " + filteredTaskListIndex + " " + detailsToEdit);
 
