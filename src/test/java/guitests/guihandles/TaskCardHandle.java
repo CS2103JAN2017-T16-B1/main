@@ -104,8 +104,8 @@ public class TaskCardHandle extends GuiHandle {
                 && checkForDescription(task)
                 && checkForStartTime(task)
                 && checkForEndTime(task)
-                && checkForRecurPeriod(task);
-                //&& checkForRecurEndDate(task)
+                && checkForRecurPeriod(task)
+                && checkForRecurEndDate(task);
     }
     
     //@@author A0139509X

@@ -24,15 +24,16 @@ public class FindCommandTest extends TaskManagerGuiTest {
         assertFindResult("find @School"); //no results
 
         //find after deleting one result
+        commandBox.runCommand("list");
         commandBox.runCommand("delete 1");
         assertFindResult("find Midterm4", td.task4);
         assertFindResult("find Midterms");
 
         //find after editing one result
-        //commandBox.runCommand("list");
-        //commandBox.runCommand("archive 2");
-        //assertFindResult("find #h"); //no result because task became done
-        //assertFindResult("find @School", td.task10); //1result found in archived folder
+        commandBox.runCommand("list");
+        commandBox.runCommand("archive 2");
+        assertFindResult("find #h"); //no result because task became done
+        assertFindResult("find @School", td.task10); //1result found in archived folder
     }
 
     @Test
