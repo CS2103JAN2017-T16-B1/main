@@ -12,7 +12,7 @@ import seedu.taskManager.commons.exceptions.IllegalValueException;
 public class RecurEndDate {
 
     public static final String MESSAGE_ENDDATE_CONSTRAINTS =
-            "Recur end date must be in the form of yyyy-mm-dd";
+            "Recur end date must be in the form of yyyy-mm-dd-hhmm";
 
     public static final String ENDDATE_VALIDATION_REGEX =
             "(((18|19|20|21)\\d\\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])-[0-9]{4})*";

@@ -33,7 +33,7 @@ public class Task implements ReadOnlyTask {
     public Task(Name name, Description description, StartTime startTime, EndTime endTime,
             ID id, Priority priority, Status status, RecurPeriod recurPeriod,
             RecurEndDate recurEndDate, UniqueTagList tags) throws IllegalValueException {
-        assert !CollectionUtil.isAnyNull(name, startTime, id, tags);
+        assert !CollectionUtil.isAnyNull(name, id);
 
         if (startTime.toString() != null) {
             ParserUtil.isAfter(startTime.toString(), endTime.toString());
@@ -53,7 +53,7 @@ public class Task implements ReadOnlyTask {
 
     public Task(Name name, Description description, StartTime startTime, EndTime endTime,
             ID id, Priority priority, Status status, UniqueTagList tags) throws IllegalValueException {
-        assert !CollectionUtil.isAnyNull(name, startTime, id, tags);
+        assert !CollectionUtil.isAnyNull(name, id);
         ParserUtil.isAfter(startTime.startTime, endTime.endTime);
 
         this.name = name;

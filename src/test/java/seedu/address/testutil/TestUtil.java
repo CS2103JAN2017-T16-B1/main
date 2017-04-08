@@ -29,6 +29,7 @@ import seedu.address.TestApp;
 import seedu.taskManager.commons.exceptions.IllegalValueException;
 import seedu.taskManager.commons.util.FileUtil;
 import seedu.taskManager.commons.util.XmlUtil;
+import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.Task.Description;
 import seedu.taskManager.model.Task.EndTime;
 import seedu.taskManager.model.Task.ID;
@@ -40,7 +41,6 @@ import seedu.taskManager.model.Task.RecurPeriod;
 import seedu.taskManager.model.Task.StartTime;
 import seedu.taskManager.model.Task.Status;
 import seedu.taskManager.model.Task.Task;
-import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.tag.Tag;
 import seedu.taskManager.model.tag.UniqueTagList;
 import seedu.taskManager.storage.XmlSerializableTaskManager;
@@ -82,7 +82,7 @@ public class TestUtil {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
                 new Task(new Name("School"), new Description("go to school"), new StartTime("2017-03-03-2100"), new EndTime("2017-05-04-2000"),
-                        new ID("20000"), new Priority("m"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                        new ID("20000"), new Priority("m"), new Status("undone"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
                 new Task(new Name("Homework"), new Description("do homework"), new StartTime("2017-03-03-2100"), new EndTime("2017-06-02-1000"),
                         new ID("20001"), new Priority("h"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
                 new Task(new Name("Midterm"), new Description("study for midterm"), new StartTime("2017-02-01-2100"), new EndTime("2017-08-08-2100"),

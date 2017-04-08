@@ -22,6 +22,7 @@ import com.google.common.eventbus.Subscribe;
 
 import seedu.taskManager.commons.core.EventsCenter;
 import seedu.taskManager.commons.core.Messages;
+import seedu.taskManager.commons.core.UnmodifiableObservableList;
 import seedu.taskManager.commons.events.model.TaskManagerChangedEvent;
 import seedu.taskManager.commons.events.ui.JumpToListRequestEvent;
 import seedu.taskManager.commons.events.ui.ShowHelpRequestEvent;
@@ -200,42 +201,44 @@ public class LogicManagerTest {
     public void execute_add_invalidArgsFormat() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         assertCommandFailure("add", expectedMessage);
-        assertCommandFailure("add []\\[;] p/12345 e/valid@e.mail a/valid, address",
-                Name.MESSAGE_NAME_CONSTRAINTS);
-        assertCommandFailure("add Valid Name d/!@!#@#!$ ",
-                Description.MESSAGE_DESCRIPTION_CONSTRAINTS);
-        assertCommandFailure("add Valid Name s/tomato p/12345 e/notAnEmail a/valid, address",
-                StartTime.MESSAGE_DATETIME_CONSTRAINTS);
-        assertCommandFailure("add Valid Name e/tomato p/12345 e/notAnEmail a/valid, address",
-                EndTime.MESSAGE_DATETIME_CONSTRAINTS);
-        assertCommandFailure("add Valid Name p/12345",
-                Priority.MESSAGE_NAME_CONSTRAINTS);
-        assertCommandFailure("add Valid Name t/invalid_-[.tag",
-                Tag.MESSAGE_TAG_CONSTRAINTS);
-
+       // assertCommandFailure("add Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid,address", expectedMessage);
+      //  assertCommandFailure("add Valid Name p/12345 valid@email.butNoPrefix a/valid, address", expectedMessage);
+      //  assertCommandFailure("add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address", expectedMessage);
     }
-
+//@@a0139375w
     @Test
     public void execute_add_invalidTaskData() {
-        assertCommandFailure("add []\\[;] p/12345 e/valid@e.mail a/valid, address",
+        assertCommandFailure("add []\\[;]",
                 Name.MESSAGE_NAME_CONSTRAINTS);
-        assertCommandFailure("add Valid Name d/!@!#@#!$ p/not_numbers e/valid@e.mail a/valid, address",
+        assertCommandFailure("add Valid Name d/&^",
                 Description.MESSAGE_DESCRIPTION_CONSTRAINTS);
-        assertCommandFailure("add Valid Name s/tomato p/12345 e/notAnEmail a/valid, address",
+   //     assertCommandFailure("add Valid Name s/2017-05-05-56566",
+   //             StartTime.MESSAGE_TIME_CONSTRAINTS);
+        assertCommandFailure("add Valid Name s/invalid time",
                 StartTime.MESSAGE_DATETIME_CONSTRAINTS);
-        assertCommandFailure("add Valid Name e/tomato p/12345 e/notAnEmail a/valid, address",
+   //     assertCommandFailure("add Valid Name s/next wed",
+   //             StartTime.MESSAGE_DAY_CONSTRAINTS);
+    //    assertCommandFailure("add Valid Name e/2017-05-05-56566",
+   //             EndTime.MESSAGE_TIME_CONSTRAINTS);
+        assertCommandFailure("add Valid Name e/invalid time",
                 EndTime.MESSAGE_DATETIME_CONSTRAINTS);
-        assertCommandFailure("add Valid Name p/12345",
+  //      assertCommandFailure("add Valid Name e/next wed",
+  //              EndTime.MESSAGE_DAY_CONSTRAINTS);
+        assertCommandFailure("add Valid Name p/invalid priority",
                 Priority.MESSAGE_NAME_CONSTRAINTS);
-        assertCommandFailure("add Valid Name t/invalid_-[.tag",
+        assertCommandFailure("add Valid Name r/invalid recur period",
+                RecurPeriod.MESSAGE_PERIOD_CONSTRAINTS);
+        assertCommandFailure("add Valid Name l/invalid recur end date",
+                RecurEndDate.MESSAGE_ENDDATE_CONSTRAINTS);
+        assertCommandFailure("add Valid Name t/invalidtag**",
                 Tag.MESSAGE_TAG_CONSTRAINTS);
-}
-
+    }
+//@@a0139375w
     @Test
     public void execute_add_successful() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
-        Task toBeAdded = helper.adam();
+        Task toBeAdded = helper.testTask();
         TaskManager expectedAB = new TaskManager();
         expectedAB.addTask(toBeAdded);
 
@@ -251,7 +254,7 @@ public class LogicManagerTest {
     public void execute_addDuplicate_notAllowed() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
-        Task toBeAdded = helper.adam();
+        Task toBeAdded = helper.testTask();
 
         // setup starting state
         model.addTask(toBeAdded); // task already in internal task manager
@@ -346,8 +349,13 @@ public class LogicManagerTest {
         TaskManager expectedAB = helper.generateTaskManager(threeTasks);
         helper.addToModel(model, threeTasks);
 
+        UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
+        ReadOnlyTask taskSelected = lastShownList.get(2 - 1);
+        String expectedMessage = String.format(SelectCommand.MESSAGE_SELECT_TASK_SUCCESS, taskSelected);
+
+
         assertCommandSuccess("select 2",
-                " " + threeTasks.get(1).getAsText(),
+                String.format(expectedMessage, 2),
                 expectedAB,
                 expectedAB.getTaskList());
         assertEquals(1, targetedJumpIndex);
@@ -457,7 +465,7 @@ public class LogicManagerTest {
      */
     class TestDataHelper {
 
-        Task adam() throws Exception {
+        Task testTask() throws Exception {
             Name name = new Name("buy milk");
             Description privatePhone = new Description("111111");
             StartTime startTime = new StartTime("2017-04-04-1000");
@@ -488,9 +496,11 @@ public class LogicManagerTest {
                     new Description("" + Math.abs(seed)),
                     new StartTime("2017-10-10-1600"),
                     new EndTime("2017-12-12-2000"),
-                    new ID("1"),
-                    new Priority("l"),
+                    new ID("" + Math.abs(seed)),
+                    new Priority("m"),
                     new Status("undone"),
+                    new RecurPeriod(""),
+                    new RecurEndDate(""),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
                     );
         }
@@ -587,10 +597,15 @@ public class LogicManagerTest {
         Task generateTaskWithName(String name) throws Exception {
             return new Task(
                     new Name(name),
-                    new Description("1"),
-                    new StartTime("monday 1000"),
-                    new EndTime("monday 1200"),
-                    new ID("20000"), new Priority("m"), new Status("done"), new UniqueTagList(new Tag("tag"))
+                    new Description(""),
+                    new StartTime("2017-08-08-1000"),
+                    new EndTime("2017-08-08-1200"),
+                    new ID("20000"),
+                    new Priority("m"),
+                    new Status("done"),
+                    new RecurPeriod (""),
+                    new RecurEndDate (""),
+                    new UniqueTagList(new Tag("tag"))
                     );
         }
     }
