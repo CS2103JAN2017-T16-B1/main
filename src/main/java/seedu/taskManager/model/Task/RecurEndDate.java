@@ -5,6 +5,10 @@ import java.time.format.DateTimeFormatter;
 
 import seedu.taskManager.commons.exceptions.IllegalValueException;
 //@@author A0139375W
+
+/**
+ * Represents a recur end date in the task manager.
+ */
 public class RecurEndDate {
 
     public static final String MESSAGE_ENDDATE_CONSTRAINTS =
@@ -39,7 +43,7 @@ public class RecurEndDate {
      */
 
 
-    private boolean isValidEndDate(String test) {
+    public static boolean isValidEndDate(String test) {
         return test.matches(ENDDATE_VALIDATION_REGEX);
     }
 
