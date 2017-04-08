@@ -50,11 +50,7 @@ public class CommandBoxHandle extends GuiHandle {
     }
 
     public HelpWindowHandle runHelpCommand() {
-        guiRobot.type(KeyCode.H);
-        guiRobot.type(KeyCode.E);
-        guiRobot.type(KeyCode.L);
-        guiRobot.type(KeyCode.P);
-        //enterCommand("help");
+        enterCommand("help");
         pressEnter();
         return new HelpWindowHandle(guiRobot, primaryStage);
     }
