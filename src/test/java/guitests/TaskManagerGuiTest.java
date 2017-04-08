@@ -26,8 +26,8 @@ import seedu.address.testutil.TypicalTestTasks;
 import seedu.taskManager.commons.core.EventsCenter;
 import seedu.taskManager.commons.events.BaseEvent;
 import seedu.taskManager.commons.exceptions.IllegalValueException;
-import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.Task.ReadOnlyTask;
+import seedu.taskManager.model.TaskManager;
 
 /**
  * A GUI Test class for TaskManager.
