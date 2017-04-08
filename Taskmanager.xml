@@ -2,34 +2,13 @@
 <taskmanager>
     <tasks>
         <id>1</id>
-        <name>shit</name>
-        <description>crazy ah</description>
-        <starttime>2017-03-26-1800</starttime>
-        <endtime>2017-04-06-0020</endtime>
-        <priority>h</priority>
-        <status>undone</status>
-        <tagged>friends</tagged>
-        <recurPeriod>weekly</recurPeriod>
-    </tasks>
-    <tasks>
-        <id>2</id>
-        <name>more shit</name>
-        <description></description>
-        <starttime></starttime>
-        <endtime>2017-04-07-0021</endtime>
-        <priority>m</priority>
-        <status>undone</status>
-        <recurPeriod>9</recurPeriod>
-    </tasks>
-    <tasks>
-        <id>1</id>
-        <name>stask</name>
+        <name>this is first</name>
         <description></description>
         <starttime></starttime>
         <endtime></endtime>
         <priority>m</priority>
-        <status>done</status>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
         <recurPeriod></recurPeriod>
     </tasks>
-    <tags>friends</tags>
 </taskmanager>
