@@ -62,7 +62,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/EdCS2103.jpg" width="150"><br>
 
-**Components in charge of**: [UI](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/DeveloperGuide.md#UI-component)
+**Components in charge of**: [UI](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/DeveloperGuide.md#22-ui-component)
 
 **Aspects/tools in charge of**: Scheduling and tracking, Documentation, GUI
 
