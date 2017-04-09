@@ -1,58 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <taskmanager>
     <tasks>
-        <id>1</id>
-        <name>this is first</name>
-        <description></description>
-        <starttime></starttime>
-        <endtime></endtime>
-        <priority>m</priority>
-        <status>done</status>
-        <recurEndDate></recurEndDate>
-        <recurPeriod></recurPeriod>
-    </tasks>
-    <tasks>
-        <id>1</id>
-        <name>sth</name>
-        <description></description>
-        <starttime></starttime>
-        <endtime></endtime>
-        <priority>m</priority>
-        <status>done</status>
-        <recurEndDate></recurEndDate>
-        <recurPeriod></recurPeriod>
-    </tasks>
-    <tasks>
-        <id>1</id>
-        <name>nonsense</name>
-        <description></description>
-        <starttime></starttime>
-        <endtime></endtime>
-        <priority>m</priority>
-        <status>undone</status>
-        <recurEndDate></recurEndDate>
-        <recurPeriod></recurPeriod>
-    </tasks>
-    <tasks>
         <id>2</id>
-        <name>more nonsense</name>
-        <description></description>
+        <name>submit cs project</name>
+        <description>CS2103</description>
         <starttime></starttime>
-        <endtime></endtime>
-        <priority>m</priority>
-        <status>done</status>
+        <endtime>2017-04-09-0347</endtime>
+        <priority>h</priority>
+        <status>undone</status>
+        <tagged>school</tagged>
         <recurEndDate></recurEndDate>
         <recurPeriod></recurPeriod>
     </tasks>
     <tasks>
         <id>1</id>
-        <name>hello there</name>
-        <description></description>
+        <name>buy bighouse</name>
+        <description>call me maybe</description>
+        <starttime>2017-04-21-0345</starttime>
+        <endtime>2017-04-22-0345</endtime>
+        <priority>h</priority>
+        <status>undone</status>
+        <tagged>family</tagged>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>3</id>
+        <name>get some shots</name>
+        <description>get wasted from too much stress</description>
         <starttime></starttime>
-        <endtime></endtime>
+        <endtime>2017-04-24-0346</endtime>
         <priority>m</priority>
+        <status>undone</status>
+        <tagged>crazy</tagged>
+        <tagged>drink</tagged>
+        <tagged>friends</tagged>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>4</id>
+        <name>doing some good works</name>
+        <description>trying to fix cs bugs</description>
+        <starttime></starttime>
+        <endtime>2017-05-10-0346</endtime>
+        <priority>l</priority>
         <status>undone</status>
         <recurEndDate></recurEndDate>
         <recurPeriod></recurPeriod>
     </tasks>
+    <tags>family</tags>
+    <tags>school</tags>
+    <tags>crazy</tags>
+    <tags>drink</tags>
+    <tags>friends</tags>
 </taskmanager>
