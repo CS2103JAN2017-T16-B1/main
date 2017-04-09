@@ -154,8 +154,8 @@ public class ModelManager extends ComponentManager implements Model {
 
 
         indicateTaskManagerChanged();
+        //sortTasksByEndTime();
         //@@author A0139509X
-        sortTasksByEndTime();
         raise (new ScrollToListRequestEvent(filteredTasks.indexOf(editedTask)));
     }
 

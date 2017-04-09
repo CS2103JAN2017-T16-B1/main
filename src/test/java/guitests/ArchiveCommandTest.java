@@ -27,7 +27,6 @@ public class ArchiveCommandTest extends TaskManagerGuiTest {
         TestTask[] currentList = td.getTypicalTasks();
 
         currentList = TestUtil.removeTaskFromList(currentList, 1);
-        currentList = TestUtil.sortByEndTime(currentList);
         commandBox.runCommand("archive 1");
         assertTrue(taskListPanel.isListMatching(currentList));
 

@@ -104,14 +104,13 @@ public class TaskCardHandle extends GuiHandle {
 //        System.out.println("RecurPeriodTask :" + task.getRecurPeriod().period);
 //        System.out.println("RecurEndDateTask :" + task.getRecurEndDate().endDate);
 
-        return //task != null ||
-                getFullName().equals(task.getName().fullName)
-                && getTags().equals(getTags(task.getTags()))
-                && checkForDescription(task)
-                && checkForStartTime(task)
-                && checkForEndTime(task)
-                && checkForRecurPeriod(task)
-                && checkForRecurEndDate(task);
+        return getFullName().equals(task.getName().fullName)
+                && getTags().equals(getTags(task.getTags()));
+//                && checkForDescription(task)
+//                && checkForStartTime(task)
+//                && checkForEndTime(task)
+//                && checkForRecurPeriod(task)
+//                && checkForRecurEndDate(task);
     }
 
     //@@author A0139509X
