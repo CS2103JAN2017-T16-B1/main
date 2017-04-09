@@ -90,39 +90,38 @@ public class TaskCardHandle extends GuiHandle {
 
     public boolean isSameTask(ReadOnlyTask task) {
 
-//        System.out.println("fullname :" + getFullName());
-//        System.out.println("description :" + getDescription());
-//        System.out.println("startTime :" + getStartTime());
-//        System.out.println("EndTime :" + getEndTime());
-//        System.out.println("RecurPeriod :" + getRecurPeriod());
-//        System.out.println("RecurEndDate :" + getRecurEndDate());
-//
-//        System.out.println("fullnameTask :" + task.getName().fullName);
-//        System.out.println("descriptionTask :" + task.getDescription().description);
-//        System.out.println("startTimeTask :" + task.getStartTime().startTime);
-//        System.out.println("EndTimeTask :" + task.getEndTime().endTime);
-//        System.out.println("RecurPeriodTask :" + task.getRecurPeriod().period);
-//        System.out.println("RecurEndDateTask :" + task.getRecurEndDate().endDate);
+        //checks to verify errors
+        /*System.out.println("fullname :" + getFullName());
+        System.out.println("description :" + getDescription());
+        System.out.println("startTime :" + getStartTime());
+        System.out.println("EndTime :" + getEndTime());
+        System.out.println("RecurPeriod :" + getRecurPeriod());
+        System.out.println("RecurEndDate :" + getRecurEndDate());
+
+        System.out.println("fullnameTask :" + task.getName().fullName);
+        System.out.println("descriptionTask :" + task.getDescription().description);
+        System.out.println("startTimeTask :" + task.getStartTime().startTime);
+        System.out.println("EndTimeTask :" + task.getEndTime().endTime);
+        System.out.println("RecurPeriodTask :" + task.getRecurPeriod().period);
+        System.out.println("RecurEndDateTask :" + task.getRecurEndDate().endDate);*/
 
         return getFullName().equals(task.getName().fullName)
-                && getTags().equals(getTags(task.getTags()));
-//                && checkForDescription(task)
-//                && checkForStartTime(task)
-//                && checkForEndTime(task)
-//                && checkForRecurPeriod(task)
-//                && checkForRecurEndDate(task);
+                && getTags().equals(getTags(task.getTags()))
+                && checkForDescription(task)
+                && checkForStartTime(task)
+                && checkForEndTime(task)
+                && checkForRecurPeriod(task)
+                && checkForRecurEndDate(task);
     }
 
     //@@author A0139509X
     private boolean checkForRecurEndDate(ReadOnlyTask task) {
         if (getRecurEndDate().equals(UI_DEFAULT_TEXT_RECUR_END_DATE)) {
             if (task.getRecurEndDate().endDate.equals(TaskStringReference.EMPTY_RECUR_END_DATE)) {
-                System.out.println("this: " + getRecurEndDate() + " vs that : " + task.getRecurEndDate().endDate);
                 return true;
             }
         } else {
             if (getRecurEndDate().equals("Recur End Date : " + task.getRecurEndDate().toString())) {
-                System.out.println("this: " + getRecurEndDate() + " vs that : " + task.getRecurEndDate().endDate);
                 return true;
             }
         }
@@ -132,15 +131,12 @@ public class TaskCardHandle extends GuiHandle {
     private boolean checkForRecurPeriod(ReadOnlyTask task) {
         if (getRecurPeriod().equals(UI_DEFAULT_TEXT_RECUR_PERIOD)) {
             if (task.getRecurPeriod().period.equals(TaskStringReference.EMPTY_PERIOD)) {
-                System.out.println("this: " + getRecurPeriod() + " vs that : " + task.getRecurPeriod().period);
                 return true;
             }
         } else {
             if (task.getRecurPeriod().period.matches("[0-9]+")) {
-                System.out.println("this: " + getRecurPeriod() + " vs that : " + task.getRecurPeriod().period);
                 return getRecurPeriod().equals("Recur Period : " + task.getRecurPeriod().period + " days");
             } else {
-                System.out.println("this: " + getRecurPeriod() + " vs that : " + task.getRecurPeriod().period);
                 return getRecurPeriod().equals("Recur Period : " + task.getRecurPeriod().period);
             }
         }
@@ -150,12 +146,10 @@ public class TaskCardHandle extends GuiHandle {
     private boolean checkForEndTime(ReadOnlyTask task) {
         if (getEndTime().equals(UI_DEFAULT_TEXT_END_TIME)) {
             if (task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME)) {
-                System.out.println("this: " + getEndTime() + " vs that : " + task.getEndTime().endTime);
                 return true;
             }
         } else {
             if (getEndTime().equals("End Time : " + task.getEndTime().endTime)) {
-                System.out.println("this: " + getEndTime() + " vs that : " + task.getEndTime().endTime);
                 return true;
             }
         }
@@ -165,12 +159,10 @@ public class TaskCardHandle extends GuiHandle {
     private boolean checkForStartTime(ReadOnlyTask task) {
         if (getStartTime().equals(UI_DEFAULT_TEXT_START_TIME)) {
             if (task.getStartTime().startTime.equals(TaskStringReference.EMPTY_TIME)) {
-                System.out.println("this: " + getStartTime() + " vs that : " + task.getStartTime().startTime);
                 return true;
             }
         } else {
             if (getStartTime().equals("Start Time : " + task.getStartTime().startTime)) {
-                System.out.println("this: " + getStartTime() + " vs that : " + task.getStartTime().startTime);
                 return true;
             }
         }
@@ -180,19 +172,16 @@ public class TaskCardHandle extends GuiHandle {
     private boolean checkForDescription(ReadOnlyTask task) {
         if (getDescription().equals(UI_DEFAULT_TEXT_DESCRIPTION)) {
             if (task.getDescription().description.equals(TaskStringReference.EMPTY_DESCRIPTION)) {
-                System.out.println("this: " + getDescription() + " vs that : " + task.getDescription().description);
                 return true;
             }
         } else {
             if (getDescription().equals("Description : " + task.getDescription().description)) {
-                System.out.println("this: " + getDescription() + " vs that : " + task.getDescription().description);
                 return true;
             }
         }
         return false;
     }
 
-    //@@author
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof TaskCardHandle) {
