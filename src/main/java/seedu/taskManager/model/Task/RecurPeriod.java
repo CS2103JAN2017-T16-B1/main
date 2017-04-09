@@ -9,9 +9,9 @@ public class RecurPeriod {
 
     public static final String MESSAGE_PERIOD_CONSTRAINTS =
             "Recur period should only a positive integer for the number of days "
-                    + "inbetween each recurrance and it should not be blank";
+                    + "inbetween each recurrance or weekly, monthly, yearly";
 
-    private static final String PERIOD_VALIDATION_REGEX = "^([0-999]|weekly|monthly|annually)*";
+    private static final String PERIOD_VALIDATION_REGEX = "^([1-999]|weekly|monthly|yearly)*";
 
     public final String period;
 
@@ -36,7 +36,7 @@ public class RecurPeriod {
         else this.period = period;
     }
 
-    private boolean isValidPeriod(String test) {
+    public static boolean isValidPeriod(String test) {
         return test.matches(PERIOD_VALIDATION_REGEX);
     }
 

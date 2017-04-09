@@ -7,8 +7,11 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.loadui.testfx.GuiTest;
@@ -26,9 +29,11 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import junit.framework.AssertionFailedError;
 import seedu.address.TestApp;
+import seedu.taskManager.commons.core.LogsCenter;
 import seedu.taskManager.commons.exceptions.IllegalValueException;
 import seedu.taskManager.commons.util.FileUtil;
 import seedu.taskManager.commons.util.XmlUtil;
+import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.Task.Description;
 import seedu.taskManager.model.Task.EndTime;
 import seedu.taskManager.model.Task.ID;
@@ -40,7 +45,6 @@ import seedu.taskManager.model.Task.RecurPeriod;
 import seedu.taskManager.model.Task.StartTime;
 import seedu.taskManager.model.Task.Status;
 import seedu.taskManager.model.Task.Task;
-import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.tag.Tag;
 import seedu.taskManager.model.tag.UniqueTagList;
 import seedu.taskManager.storage.XmlSerializableTaskManager;
@@ -82,7 +86,7 @@ public class TestUtil {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
                 new Task(new Name("School"), new Description("go to school"), new StartTime("2017-03-03-2100"), new EndTime("2017-05-04-2000"),
-                        new ID("20000"), new Priority("m"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                        new ID("20000"), new Priority("m"), new Status("undone"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
                 new Task(new Name("Homework"), new Description("do homework"), new StartTime("2017-03-03-2100"), new EndTime("2017-06-02-1000"),
                         new ID("20001"), new Priority("h"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
                 new Task(new Name("Midterm"), new Description("study for midterm"), new StartTime("2017-02-01-2100"), new EndTime("2017-08-08-2100"),
@@ -318,6 +322,34 @@ public class TestUtil {
     }
 
     /**
+     * Returns a copy of the list with the task at specified index archived.
+     * 
+     * @param list
+     *            original list to copy from
+     * @param targetIndexInOneIndexedFormat
+     *            e.g. index 1 if the first element is to be archived
+     */
+    // @@author A0140072X
+    public static TestTask[] archiveTaskFromList(final TestTask[] list, int targetIndexInOneIndexedFormat) {
+        List<TestTask> listOfTasks = asList(list);
+        try {
+            listOfTasks.get(targetIndexInOneIndexedFormat - 1).setStatus(new Status("done"));
+        } catch (IllegalValueException e) {
+            Logger logger = LogsCenter.getLogger(TestUtil.class);
+            logger.info("Illegal value at archiveTaskFromList");
+        }
+        sortByEndTime(listOfTasks);
+        return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
+    }
+
+    // @@author A0140072X
+    public static TestTask[] sortByEndTime(final TestTask[] list) {
+        List<TestTask> listOfTasks = asList(list);
+        sortByEndTime(listOfTasks);
+        return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
+    }
+
+    /**
      * Replaces tasks[i] with a task.
      * @param tasks The array of tasks.
      * @param task The replacement task
@@ -340,6 +372,38 @@ public class TestUtil {
         listOfTasks.addAll(asList(tasksToAdd));
         return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
     }
+
+    // @@author A0140072X
+    public static TestTask[] addTasksToListandSort(final TestTask[] tasks, TestTask... tasksToAdd) {
+        List<TestTask> listOfTasks = asList(tasks);
+        listOfTasks.addAll(asList(tasksToAdd));
+
+        sortByEndTime(listOfTasks);
+
+        return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
+    }
+    
+    public static void sortByEndTime(List<TestTask> list) {
+        Collections.sort(list, new Comparator<TestTask>() {
+            public int compare(TestTask task1, TestTask task2) {
+
+                if (task1.getDueDate() != null && task2.getDueDate() != null) {
+                    return task1.getDueDate().compareTo(task2.getDueDate());
+                }
+                else if (task1.getDueDate() == null && task2.getDueDate() != null) {
+                    return 1;
+                }
+                else if (task1.getDueDate() != null && task2.getDueDate() == null) {
+                    return -1;
+                }
+                else if (task1.getDueDate() == null && task2.getDueDate() == null) {
+                    return 0;
+                }
+                return 0;
+            }
+            });
+    }
+    
 
     private static <T> List<T> asList(T[] objs) {
         List<T> list = new ArrayList<>();

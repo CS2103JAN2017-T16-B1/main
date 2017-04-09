@@ -28,6 +28,7 @@ public class ArchiveCommand extends Command {
 
     public static final String MESSAGE_ARCHIVE_TASK_SUCCESS = "Archived Item: %1$s";
 
+
     public final int targetIndex;
 
     public ArchiveCommand(int targetIndex) {
