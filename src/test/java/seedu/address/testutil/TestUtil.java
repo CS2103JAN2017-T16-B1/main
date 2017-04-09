@@ -33,6 +33,7 @@ import seedu.taskManager.commons.core.LogsCenter;
 import seedu.taskManager.commons.exceptions.IllegalValueException;
 import seedu.taskManager.commons.util.FileUtil;
 import seedu.taskManager.commons.util.XmlUtil;
+import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.Task.Description;
 import seedu.taskManager.model.Task.EndTime;
 import seedu.taskManager.model.Task.ID;
@@ -44,7 +45,6 @@ import seedu.taskManager.model.Task.RecurPeriod;
 import seedu.taskManager.model.Task.StartTime;
 import seedu.taskManager.model.Task.Status;
 import seedu.taskManager.model.Task.Task;
-import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.tag.Tag;
 import seedu.taskManager.model.tag.UniqueTagList;
 import seedu.taskManager.storage.XmlSerializableTaskManager;
@@ -323,6 +323,10 @@ public class TestUtil {
 
     /**
      * Returns a copy of the list with the task at specified index archived.
+<<<<<<< HEAD
+     *
+=======
+>>>>>>> 39f84794964a4ecceb8c90a767f8ef4f8df90c32
      * @param list
      *            original list to copy from
      * @param targetIndexInOneIndexedFormat
@@ -402,6 +406,7 @@ public class TestUtil {
 
         return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
     }
+
     private static <T> List<T> asList(T[] objs) {
         List<T> list = new ArrayList<>();
         for (T obj : objs) {

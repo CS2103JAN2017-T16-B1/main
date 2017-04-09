@@ -21,7 +21,7 @@ public class ArchivedCommand extends Command {
 
         model.updateFilteredTaskListByArchived();
 
-        return new CommandResult(getMessageForArchivedTaskListShownSummary(model.getFilteredTaskList().size()));
+        return new CommandResult(Command.getMessageForArchivedTaskListShownSummary(model.getFilteredTaskList().size()));
     }
 
 

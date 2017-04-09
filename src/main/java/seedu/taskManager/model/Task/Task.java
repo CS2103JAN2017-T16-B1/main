@@ -51,20 +51,7 @@ public class Task implements ReadOnlyTask {
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
-    public Task(Name name, Description description, StartTime startTime, EndTime endTime,
-            ID id, Priority priority, Status status, UniqueTagList tags) throws IllegalValueException {
-        assert !CollectionUtil.isAnyNull(name, id);
-        ParserUtil.isAfter(startTime.startTime, endTime.endTime);
 
-        this.name = name;
-        this.description = description;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.id = id;
-        this.priority = priority;
-        this.status = status;
-        this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
-    }
     /**
      * Creates a copy of the given ReadOnlyPerson.
      * @throws IllegalValueException
@@ -213,8 +200,8 @@ public class Task implements ReadOnlyTask {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ReadOnlyTask // instanceof handles nulls
-                && this.isSameStateAs((ReadOnlyTask) other));     
-    
+                && this.isSameStateAs((ReadOnlyTask) other));
+
     }
 
     @Override

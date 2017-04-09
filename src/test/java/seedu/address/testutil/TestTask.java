@@ -46,6 +46,9 @@ public class TestTask implements ReadOnlyTask {
         this.description = taskToCopy.getDescription();
         this.startTime = taskToCopy.getStartTime();
         this.endTime = taskToCopy.getEndTime();
+        this.status = taskToCopy.getStatus();
+        this.recurPeriod = taskToCopy.getRecurPeriod();
+        this.recurEndDate = taskToCopy.getRecurEndDate();
         this.tags = taskToCopy.getTags();
     }
 
@@ -114,6 +117,8 @@ public class TestTask implements ReadOnlyTask {
         sb.append("e/" + this.getEndTime().endTime + " ");
         sb.append("d/" + this.getDescription().description + " ");
         sb.append("s/" + this.getStartTime().startTime + " ");
+        sb.append("r/" + this.getRecurPeriod().period + " ");
+        sb.append("l/" + this.getRecurEndDate().endDate + " ");
         this.getTags().asObservableList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }

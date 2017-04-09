@@ -57,7 +57,7 @@ public class RecurPeriod {
         case("monthly"):
             oldDate = oldDate.plusMonths(1); break;
 
-        case("annually"):
+        case("yearly"):
             oldDate = oldDate.plusYears(1); break;
 
         default:
@@ -72,7 +72,7 @@ public class RecurPeriod {
 
 
     public boolean hasRecurPeriod() {
-        if (period == "") return false;
+        if (period.equals("")) return false;
         return true;
     }
 

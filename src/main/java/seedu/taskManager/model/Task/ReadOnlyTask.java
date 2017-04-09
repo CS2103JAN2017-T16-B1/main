@@ -36,8 +36,9 @@ public interface ReadOnlyTask {
                 && other.getEndTime().equals(this.getEndTime()))
                 && other.getPriority().equals(this.getPriority())
                 && other.getStatus().equals(this.getStatus())
-                && other.getTags().equals(this.getTags());
-                //&& other.getRecurPeriod().equals(this.getRecurPeriod());
+                && other.getTags().equals(this.getTags())
+                && other.getRecurPeriod().equals(this.getRecurPeriod());
+               // && other.getRecurEndDate().equals(this.getRecurEndDate());
     }
 
 //@@author A0138998B

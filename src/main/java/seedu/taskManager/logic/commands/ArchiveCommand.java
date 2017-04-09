@@ -68,7 +68,7 @@ public class ArchiveCommand extends Command {
                     toAdd.setEndTime(newEndTime);
 
                     model.addTask(toAdd);
-                    // @@author A0139375W
+                    // @@author
                 }
             }
         }

@@ -108,7 +108,7 @@ public class EndTime {
     }
 
     public boolean isEmpty() {
-        if (endTime == "") {
+        if (endTime.equals("")) {
             return true;
         } else {
             return false;
