@@ -43,7 +43,6 @@ import seedu.taskManager.logic.commands.exceptions.CommandException;
 import seedu.taskManager.model.Model;
 import seedu.taskManager.model.ModelManager;
 import seedu.taskManager.model.ReadOnlyTaskManager;
-import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.Task.Description;
 import seedu.taskManager.model.Task.EndTime;
 import seedu.taskManager.model.Task.ID;
@@ -55,6 +54,7 @@ import seedu.taskManager.model.Task.RecurPeriod;
 import seedu.taskManager.model.Task.StartTime;
 import seedu.taskManager.model.Task.Status;
 import seedu.taskManager.model.Task.Task;
+import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.tag.Tag;
 import seedu.taskManager.model.tag.UniqueTagList;
 import seedu.taskManager.storage.StorageManager;
@@ -258,8 +258,9 @@ public class LogicManagerTest {
         helper.addToModel(model, 3);
 
 
-        assertCommandSuccess("sort " + parameter, String.format(SortCommand.MESSAGE_SORT_PERSON_SUCCESS, parameter), expectedAB, expectedList);
-   }
+        assertCommandSuccess("sort " + parameter, String.format(
+                SortCommand.MESSAGE_SORT_PERSON_SUCCESS, parameter), expectedAB, expectedList);
+    }
 
     @Test
     public void execute_sort_name_successful() throws Exception {
@@ -277,8 +278,9 @@ public class LogicManagerTest {
         tasksToAdd.add(helper.generateTask(1));
         helper.addToModel(model, tasksToAdd);
 
-        assertCommandSuccess("sort " + parameter, String.format(SortCommand.MESSAGE_SORT_PERSON_SUCCESS, parameter), expectedAB, expectedList);
-   }
+        assertCommandSuccess("sort " + parameter, String.format(
+                SortCommand.MESSAGE_SORT_PERSON_SUCCESS, parameter), expectedAB, expectedList);
+    }
 
 
 
@@ -569,7 +571,8 @@ public class LogicManagerTest {
          */
         Task generateTask(int seed) throws Exception {
             return new Task(new Name("Task " + seed), new Description("" + Math.abs(seed)),
-                    new StartTime("2007-10-10-1600"), new EndTime("201" + seed + "-12-12-2000"), new ID("" + Math.abs(seed)),
+                    new StartTime("2007-10-10-1600"), new EndTime("201" + seed + "-12-12-2000"),
+                    new ID("" + Math.abs(seed)),
                     new Priority("m"), new Status("undone"), new RecurPeriod(""), new RecurEndDate(""),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1))));
         }

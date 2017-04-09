@@ -55,7 +55,7 @@ public class TypicalTestTasks {
                     .withPriority("m").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
             task10 = new TaskBuilder().withName("Study for Midterm3").withStartTime("2017-03-03-2100")
-                    .withEndTime("2017-04-04-2100").withTags("school").withStatus("done")
+                    .withEndTime("2017-04-07-2100").withTags("school").withStatus("done")
                     .withPriority("h").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
             task11 = new TaskBuilder().withName("Study for Midterm3").withStartTime("2017-03-12-2100")
