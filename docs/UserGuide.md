@@ -70,11 +70,11 @@ Format: `add TASK_NAME [s/STARTTIME] [e/ENDTIME] [d/DESCRIPTION] [r/REPEATPERIOD
 
 
 Examples:
-* `add Do laundry e/2017-3-1-2359 `
-* `add Study for midterms e/Monday 1000 d/CS2103 at lt7 `
-* `add Buy milk for baby BY tuesday 0800 d/yaas milk t/family`
-* `add Create user story e/2017-4-1-1300 t/work t/computing` 
-* `add Meeting FROM monday 0800 TO monday 1100 t/work r/weekly  
+* add Do laundry e/2017-3-1-2359 
+* add Study for midterms e/Monday 1000 d/CS2103 at lt7 
+* add Buy milk for baby BY tuesday 0800 d/yaas milk t/family
+* add Create user story e/2017-4-1-1300 t/work t/computing
+* add Meeting FROM monday 0800 TO monday 1100 t/work r/weekly  
 
 
 
