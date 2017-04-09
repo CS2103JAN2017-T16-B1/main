@@ -323,7 +323,7 @@ public class TestUtil {
 
     /**
      * Returns a copy of the list with the task at specified index archived.
-     * 
+     *
      * @param list
      *            original list to copy from
      * @param targetIndexInOneIndexedFormat
@@ -382,7 +382,7 @@ public class TestUtil {
 
         return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
     }
-    
+
     public static void sortByEndTime(List<TestTask> list) {
         Collections.sort(list, new Comparator<TestTask>() {
             public int compare(TestTask task1, TestTask task2) {
@@ -403,7 +403,7 @@ public class TestUtil {
             }
             });
     }
-    
+
 
     private static <T> List<T> asList(T[] objs) {
         List<T> list = new ArrayList<>();

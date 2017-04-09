@@ -92,7 +92,7 @@ public class StartTime {
     }
 
     public boolean hasStartTime() {
-        if (startTime == "") return false;
+        if (startTime.equals("")) return false;
         return true;
     }
 

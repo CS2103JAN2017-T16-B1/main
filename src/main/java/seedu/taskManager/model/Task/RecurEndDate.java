@@ -48,7 +48,7 @@ public class RecurEndDate {
     }
 
     public boolean hasPassedEndDate(String date) {
-        if (date != null && this.endDate != "") {
+        if (date != null && !this.endDate.equals("")) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm\n");
             LocalDateTime a = LocalDateTime.parse(date, formatter);
             LocalDateTime b = LocalDateTime.parse(this.endDate, formatter);

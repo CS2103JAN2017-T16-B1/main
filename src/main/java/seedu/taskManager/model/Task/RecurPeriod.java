@@ -72,7 +72,7 @@ public class RecurPeriod {
 
 
     public boolean hasRecurPeriod() {
-        if (period == "") return false;
+        if (period.equals("")) return false;
         return true;
     }
 

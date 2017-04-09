@@ -15,19 +15,15 @@ public class FindCommandTest extends TaskManagerGuiTest {
     @Test
     public void find_nonEmptyList() {
 
-        assertFindResult("find Final"); // no results
-        assertFindResult("find Midterm", td.task1); //, td.task4); // multiple results
+        assertFindResult("find final"); // no results
+        assertFindResult("find midterm", td.task1); //, td.task4); // multiple results
         assertFindResult("find #h", td.task3); //one result
         assertFindResult("find #m", td.task1, td.task4, td.task5, td.task6, td.task7); //5 results
         assertFindResult("find #l", td.task2); //no results
         //find by tags
-<<<<<<< HEAD
-   //     assertFindResult("find School", td.task1, td.task2, td.task3, td.task4, td.task5, td.task6, td.task7);
-        assertFindResult("find @School"); //no results
-=======
+
         assertFindResult("find school", td.task1, td.task2, td.task3, td.task4, td.task5, td.task6, td.task7);
         assertFindResult("find @school"); //no results
->>>>>>> 50c8975065e10e36f1f8f127dc428448db48d91e
 
         //find done and undone list
         assertFindResult("find #undone", td.task1, td.task2, td.task3, td.task4, td.task5, td.task6, td.task7);
@@ -36,24 +32,21 @@ public class FindCommandTest extends TaskManagerGuiTest {
         //find after deleting one task
         commandBox.runCommand("list");
         commandBox.runCommand("delete 1");
-        assertFindResult("find Midterm4", td.task4);
-        assertFindResult("find Midterms");
+        assertFindResult("find midterm4", td.task4);
+        assertFindResult("find midterms");
 
         //find after archiving one task
         commandBox.runCommand("list");
         commandBox.runCommand("archive 2");
         assertFindResult("find #h"); //no result because task became done
-<<<<<<< HEAD
-      //  assertFindResult("find @School", td.task10); //1result found in archived folder
-=======
-        assertFindResult("find @school", td.task10); //1result found in archived folder
->>>>>>> 50c8975065e10e36f1f8f127dc428448db48d91e
+     //   assertFindResult("find @school", td.task10); //1 result found in archived folder
+
     }
 
     @Test
     public void find_emptyList() {
         commandBox.runCommand("clear");
-        assertFindResult("find Study"); // no results
+        assertFindResult("find study"); // no results
     }
 
     @Test
