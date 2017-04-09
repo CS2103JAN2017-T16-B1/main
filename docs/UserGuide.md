@@ -213,17 +213,32 @@ Examples:
 ### 2.8. Mark task(s) as done : `archive`
 
 Mark the specified task(s) as done.<br>
-Format: `done INDEX,[INDEX]...`
+Format: `archive INDEX`
 
-> * Mark the task(s) as done at the specified INDEX. 
+> * Mark the task as done at the specified INDEX. 
 > * The index refers to the index number shown in the most recent listing.
 > * The index must be a positive integer 1, 2, 3, ...
 
 Examples:
 
 * `list`<br>
-   `archive 2,3`<br>
-   Mark the 2nd and 3rd task in the list as done.
+   `archive 2`<br>
+   Mark the 2nd in the list as done.
+
+### 2.9. Selecting Tasks : `select`
+
+Select the specified task(s) to view.<br>
+Format: `select INDEX`
+
+> * Selects the task as done at the specified INDEX. 
+> * The index refers to the index number shown in the most recent listing.
+> * The index must be a positive integer 1, 2, 3, ...
+
+Examples:
+
+* `list`<br>
+   `select 2`<br>
+   Select the 2nd task in the list.
 
 ### 2.9. Clearing all entries : `clear`
 
