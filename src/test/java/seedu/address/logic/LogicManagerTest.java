@@ -20,7 +20,6 @@ import org.junit.rules.TemporaryFolder;
 
 import com.google.common.eventbus.Subscribe;
 
-import javafx.collections.ObservableList;
 import seedu.taskManager.commons.core.EventsCenter;
 import seedu.taskManager.commons.core.Messages;
 import seedu.taskManager.commons.core.UnmodifiableObservableList;
@@ -30,7 +29,6 @@ import seedu.taskManager.commons.events.ui.ShowHelpRequestEvent;
 import seedu.taskManager.logic.Logic;
 import seedu.taskManager.logic.LogicManager;
 import seedu.taskManager.logic.commands.AddCommand;
-import seedu.taskManager.logic.commands.ArchiveCommand;
 import seedu.taskManager.logic.commands.ClearCommand;
 import seedu.taskManager.logic.commands.Command;
 import seedu.taskManager.logic.commands.CommandResult;
@@ -224,24 +222,15 @@ public class LogicManagerTest {
     @Test
     public void execute_add_invalidTaskData() {
         assertCommandFailure("add []\\[;]", Name.MESSAGE_NAME_CONSTRAINTS);
-        assertCommandFailure("add Valid Name d/&^", Description.MESSAGE_DESCRIPTION_CONSTRAINTS);
-        // assertCommandFailure("add Valid Name s/2017-05-05-56566",
-        // StartTime.MESSAGE_TIME_CONSTRAINTS);
         assertCommandFailure("add Valid Name s/invalid time", StartTime.MESSAGE_DATETIME_CONSTRAINTS);
-        // assertCommandFailure("add Valid Name s/next wed",
-        // StartTime.MESSAGE_DAY_CONSTRAINTS);
-        // assertCommandFailure("add Valid Name e/2017-05-05-56566",
-        // EndTime.MESSAGE_TIME_CONSTRAINTS);
         assertCommandFailure("add Valid Name e/invalid time", EndTime.MESSAGE_DATETIME_CONSTRAINTS);
-        // assertCommandFailure("add Valid Name e/next wed",
-        // EndTime.MESSAGE_DAY_CONSTRAINTS);
         assertCommandFailure("add Valid Name p/invalid priority", Priority.MESSAGE_NAME_CONSTRAINTS);
         assertCommandFailure("add Valid Name r/invalid recur period", RecurPeriod.MESSAGE_PERIOD_CONSTRAINTS);
         assertCommandFailure("add Valid Name l/invalid recur end date", RecurEndDate.MESSAGE_ENDDATE_CONSTRAINTS);
         assertCommandFailure("add Valid Name t/invalidtag**", Tag.MESSAGE_TAG_CONSTRAINTS);
     }
 
-    // @@author a0139375w
+    // @@author
 
     //@@author A0138998B
     @Test
@@ -249,7 +238,7 @@ public class LogicManagerTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
             assertCommandFailure("sort invalidParameter", expectedMessage);
     }
-    
+
     @Test
     public void execute_sort_duedate_successful() throws Exception {
      // prepare expectations
@@ -259,7 +248,7 @@ public class LogicManagerTest {
         Task latestDueDateTask = helper.generateTask(9);
         expectedAB.addTask(latestDueDateTask);
         List<? extends ReadOnlyTask> expectedList = expectedAB.getTaskList();
-        
+
         String parameter = "duedate";
 
         // prepare task manager state 4 tasks with the late duedate task at the front
@@ -267,18 +256,18 @@ public class LogicManagerTest {
         tasksToAdd.add(latestDueDateTask);
         helper.addToModel(model, tasksToAdd);
         helper.addToModel(model, 3);
-        
-        
+
+
         assertCommandSuccess("sort " + parameter, String.format(SortCommand.MESSAGE_SORT_PERSON_SUCCESS, parameter), expectedAB, expectedList);
    }
-    
+
     @Test
     public void execute_sort_name_successful() throws Exception {
      // prepare expectations
         TestDataHelper helper = new TestDataHelper();
         TaskManager expectedAB = helper.generateTaskManager(3);
         List<? extends ReadOnlyTask> expectedList = expectedAB.getTaskList();
-        
+
         String parameter = "name";
 
         // prepare task manager state by adding in tasks in unordered format
@@ -287,11 +276,11 @@ public class LogicManagerTest {
         tasksToAdd.add(helper.generateTask(2));
         tasksToAdd.add(helper.generateTask(1));
         helper.addToModel(model, tasksToAdd);
-       
+
         assertCommandSuccess("sort " + parameter, String.format(SortCommand.MESSAGE_SORT_PERSON_SUCCESS, parameter), expectedAB, expectedList);
    }
-    
-    
+
+
 
     //@@author A0138998B
     @Test
