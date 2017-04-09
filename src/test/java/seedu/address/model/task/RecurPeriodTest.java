@@ -27,7 +27,5 @@ public class RecurPeriodTest {
         assertTrue(RecurPeriod.isValidPeriod("98")); // double digit int
         assertTrue(RecurPeriod.isValidPeriod("98")); // empty period
 
-        //has Recur Period
-        assertTrue(RecurPeriod.hasRecurPeriod());
     }
 }
