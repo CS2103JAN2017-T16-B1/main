@@ -230,7 +230,13 @@ public class LogicManagerTest {
         assertCommandFailure("add Valid Name t/invalid_-[.tag",
                 Tag.MESSAGE_TAG_CONSTRAINTS);
 }
-
+//@@author A0138998B
+    @Test
+    public void execute_sort_invalidTaskData() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
+        assertCommandFailure("sort dudate", expectedMessage);
+}
+//@@author
     @Test
     public void execute_add_successful() throws Exception {
         // setup expectations
