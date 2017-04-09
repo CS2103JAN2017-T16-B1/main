@@ -43,7 +43,7 @@ public class TaskTest {
         name = new Name("Study for Midterm");
         description = new Description("");
         startTime = new StartTime("2017-03-03-2100");
-        endTime = new EndTime("2017-04-04-2100");;
+        endTime = new EndTime("2017-04-05-2100");;
         id = new ID("1");
         priority = new Priority("m");
         status = new Status("undone");
@@ -69,7 +69,7 @@ public class TaskTest {
 
         StartTime relaxedStartTime = new StartTime("3rd march 2017 9pm");
 
-        EndTime relaxedEndTime = new EndTime("4th april 2017 9pm");
+        EndTime relaxedEndTime = new EndTime("5th april 2017 9pm");
 
         Task testTask = new Task(name, description, relaxedStartTime, relaxedEndTime, id,
                 priority, status, recurPeriod, recurEndDate, tags);

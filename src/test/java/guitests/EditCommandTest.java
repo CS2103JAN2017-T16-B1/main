@@ -12,8 +12,6 @@ import seedu.taskManager.logic.commands.EditCommand;
 import seedu.taskManager.model.Task.EndTime;
 import seedu.taskManager.model.Task.Name;
 import seedu.taskManager.model.Task.Priority;
-import seedu.taskManager.model.Task.RecurEndDate;
-import seedu.taskManager.model.Task.RecurPeriod;
 import seedu.taskManager.model.Task.StartTime;
 import seedu.taskManager.model.tag.Tag;
 
@@ -25,18 +23,16 @@ public class EditCommandTest extends TaskManagerGuiTest {
     TestTask[] expectedTaskList = td.getTypicalTasks();
 
     @Test
-     public void edit_allFieldsSpecified_success() throws Exception {
-    
+    public void edit_allFieldsSpecified_success() throws Exception {
+
         String detailsToEdit = "Study s/2017-03-03-2100 e/2017-10-10-2100 t/school";
-     int taskManagerIndex = 1;
-    
-     TestTask editedTask = new
-     TaskBuilder().withName("Study").withStartTime("2017-03-03-2100").withDescription("")
-     .withEndTime("2017-10-10-2100").withPriority("m").build();
-    
-     assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit,
-     editedTask);
-     }
+        int taskManagerIndex = 1;
+
+        TestTask editedTask = new TaskBuilder().withName("Study").withStartTime("2017-03-03-2100").withDescription("")
+                .withEndTime("2017-10-10-2100").withPriority("m").build();
+
+        assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
+    }
 
     @Test
     public void edit_notAllFieldsSpecified_success() throws Exception {
@@ -44,7 +40,8 @@ public class EditCommandTest extends TaskManagerGuiTest {
         int taskManagerIndex = 2;
 
         TestTask taskToEdit = expectedTaskList[taskManagerIndex - 1];
-        TestTask editedTask = new TaskBuilder(taskToEdit).withTags("school", "sweetie", "bestie").withPriority("l").build();
+        TestTask editedTask = new TaskBuilder(taskToEdit).withTags("school", "sweetie", "bestie").withPriority("l")
+                .build();
 
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
@@ -56,7 +53,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
         TestTask taskToEdit = expectedTaskList[taskManagerIndex - 1];
         TestTask editedTask = new TaskBuilder(taskToEdit).withTags().withPriority("l").build();
-        
+
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
 
@@ -71,7 +68,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
         TestTask taskToEdit = expectedTaskList[taskManagerIndex];
         TestTask editedTask = new TaskBuilder(taskToEdit).withName("Belle").withPriority("m").build();
-        
+
         assertEditSuccess(filteredTaskListIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
 
@@ -113,8 +110,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void edit_duplicateTask_failure() {
-        commandBox.runCommand(
-                "edit 3 Study for Midterm2 p/l");
+        commandBox.runCommand("edit 3 Study for Midterm2 p/l e/2017-04-06-2100");
         assertResultMessage(EditCommand.MESSAGE_DUPLICATE_TASK);
     }
 
@@ -134,7 +130,6 @@ public class EditCommandTest extends TaskManagerGuiTest {
     private void assertEditSuccess(int filteredTaskListIndex, int taskManagerIndex, String detailsToEdit,
             TestTask editedTask) {
 
-
         commandBox.runCommand("edit " + filteredTaskListIndex + " " + detailsToEdit);
         assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask));
         // confirm the new card contains the right data
@@ -143,9 +138,9 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
         // confirm the list now contains all previous tasks plus the task with
         // updated details
-        //expectedTaskList[taskManagerIndex - 1] = editedTask;
-        
+        // expectedTaskList[taskManagerIndex - 1] = editedTask;
+
         assertTrue(taskListPanel.isListMatching(expectedTaskList));
-        
+
     }
 }

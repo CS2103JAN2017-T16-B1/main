@@ -1,9 +1,10 @@
 package seedu.address.testutil;
 
 import seedu.taskManager.commons.exceptions.IllegalValueException;
-import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.Task.Task;
 import seedu.taskManager.model.Task.UniqueTaskList;
+import seedu.taskManager.model.TaskManager;
+
 
 /**
  *
