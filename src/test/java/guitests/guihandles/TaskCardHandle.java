@@ -126,7 +126,6 @@ public class TaskCardHandle extends GuiHandle {
                 return true;
             }
         }
-        System.out.println("I return false here");
         return false;
     }
 
@@ -202,9 +201,9 @@ public class TaskCardHandle extends GuiHandle {
                     && getDescription().equals(handle.getDescription())
                     && getStartTime().equals(handle.getStartTime())
                     && getEndTime().equals(handle.getEndTime())
-                    && getTags().equals(handle.getTags());
-                    /*&& getRecurPeriod().equals(handle.getRecurPeriod())
-                    && getRecurEndDate().equals(handle.getRecurEndDate())*/
+                    && getTags().equals(handle.getTags())
+                    && getRecurPeriod().equals(handle.getRecurPeriod())
+                    && getRecurEndDate().equals(handle.getRecurEndDate());
         }
         return super.equals(obj);
     }
