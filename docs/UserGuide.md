@@ -61,18 +61,18 @@ Task/event:
 
 Format: `add TASK_NAME [s/STARTTIME] [e/ENDTIME] [d/DESCRIPTION] [r/REPEATPERIOD] [l/RECURENDDATE] [t/TAG] ...`
 
-> Tasks can have a description
-> Tasks can have start time and end time
-> Start and end time is input in the format yyyy-mm-dd-hhmm
-> Start and end time can be in more natural language such as "next week", "2 mondays from now", "3 days from now", "tomorrow afternoon"
-> Tasks can have any number of tags (including 0)
-> Tasks can be flagged as recurring by adding the period to repeat
-> Period to repeat can be in any positive integer which represents the number of days before next occurance
-> Period to repeat can be in any of the following key word, "weekly", "monthly", "yearly"
-> Tasks flagged as recurring can have an end date to stop the recurring task
-> Recur end date is in the format yyyy-mm-dd-hhmm, which is the last date user wants the task to recur till
-> Recur end date only looks at end time
-> User may use FROM and TO instead of s/ and e/, also may use BY instead of e/
+> * Tasks can have a description
+> * Tasks can have start time and end time
+> * Start and end time is input in the format yyyy-mm-dd-hhmm
+> * Start and end time can be in more natural language such as "next week", "2 mondays from now", "3 days from now", "tomorrow afternoon"
+> * Tasks can have any number of tags (including 0)
+> * Tasks can be flagged as recurring by adding the period to repeat
+> * Period to repeat can be in any positive integer which represents the number of days before next occurance
+> * Period to repeat can be in any of the following key word, "weekly", "monthly", "yearly"
+> * Tasks flagged as recurring can have an end date to stop the recurring task
+> * Recur end date is in the format yyyy-mm-dd-hhmm, which is the last date user wants the task to recur till
+> * Recur end date only looks at end time
+> * User may use FROM and TO instead of s/ and e/, also may use BY instead of e/
 
 
 Examples:
