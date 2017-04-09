@@ -240,22 +240,22 @@ Examples:
    `select 2`<br>
    Select the 2nd task in the list.
 
-### 2.9. Clearing all entries : `clear`
+### 2.10. Clearing all entries : `clear`
 
 Clears all entries from the task manager.<br>
 Format: `clear`
 
-### 2.10. Undo the last command : `undo`
+### 2.11. Undo the last command : `undo`
 
 Undo the last add/edit/archive/undo command input by the user.<br>
 Format: `undo`
 
-### 2.11. Exiting the program : `exit`
+### 2.12. Exiting the program : `exit`
 
 Exits the program.<br>
 Format: `exit`
 
-### 2.12. Saving the data
+### 2.13. Saving the data
 
 Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.
