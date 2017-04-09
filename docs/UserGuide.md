@@ -62,10 +62,16 @@ Task/event:
 Format: `add TASK_NAME [s/STARTTIME] [e/ENDTIME] [d/DESCRIPTION] [r/REPEATPERIOD] [l/RECURENDDATE] [t/TAG] ...`
 
 > Tasks can have a description
-
+> Tasks can have start time and end time
+> Start and end time is input in the format yyyy-mm-dd-hhmm
+> Start and end time can be in more natural language such as "next week", "2 mondays from now", "3 days from now", "tomorrow afternoon"
 > Tasks can have any number of tags (including 0)
 > Tasks can be flagged as recurring by adding the period to repeat
+> Period to repeat can be in any positive integer which represents the number of days before next occurance
+> Period to repeat can be in any of the following key word, "weekly", "monthly", "yearly"
 > Tasks flagged as recurring can have an end date to stop the recurring task
+> Recur end date is in the format yyyy-mm-dd-hhmm, which is the last date user wants the task to recur till
+> Recur end date only looks at end time
 > User may use FROM and TO instead of s/ and e/, also may use BY instead of e/
 
 
@@ -74,7 +80,8 @@ Examples:
 * `add Study for midterms e/Monday 1000 d/CS2103 at lt7 `
 * `add Buy milk for baby BY tuesday 0800 d/yaas milk t/family`
 * `add Create user story e/2017-4-1-1300 t/work t/computing` 
-* `add Meeting FROM monday 0800 TO monday 1100 t/work r/weekly`
+* `add Meeting FROM monday 0800 TO monday 1100 t/work r/10`
+* `add Weekly Test FROM tuesday 0900 TO tuesday 1200 t/school r/weekly l/2017-05-05-1200
 
 
 
@@ -197,7 +204,7 @@ Format: `sort PARAMETER`
 
 
 Deletes the specified task(s) from the task manager.<br>
-Format: `delete INDEX,[INDEX]...`
+Format: `delete INDEX
 
 > * Deletes the task(s) at the specified INDEX. <br>
 > * The index refers to the index number shown in the most recent listing.<br>
@@ -206,8 +213,8 @@ Format: `delete INDEX,[INDEX]...`
 Examples:
 
 * `list`<br>
-  `delete 2,3`<br>
-  Deletes the 2nd and 3rd task in the list of task.
+  `delete 2`<br>
+  Deletes the 2nd task in the list of task.
 * `find meeting` <br>
   `delete 1`<br>
   Deletes the 1st task in the results of the `find` command.
