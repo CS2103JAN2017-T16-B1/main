@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.loadui.testfx.GuiTest;
@@ -28,6 +29,7 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import junit.framework.AssertionFailedError;
 import seedu.address.TestApp;
+import seedu.taskManager.commons.core.LogsCenter;
 import seedu.taskManager.commons.exceptions.IllegalValueException;
 import seedu.taskManager.commons.util.FileUtil;
 import seedu.taskManager.commons.util.XmlUtil;
@@ -317,6 +319,34 @@ public class TestUtil {
      */
     public static TestTask[] removeTaskFromList(final TestTask[] list, int targetIndexInOneIndexedFormat) {
         return removeTasksFromList(list, list[targetIndexInOneIndexedFormat - 1]);
+    }
+
+    /**
+     * Returns a copy of the list with the task at specified index archived.
+     * 
+     * @param list
+     *            original list to copy from
+     * @param targetIndexInOneIndexedFormat
+     *            e.g. index 1 if the first element is to be archived
+     */
+    // @@author A0140072X
+    public static TestTask[] archiveTaskFromList(final TestTask[] list, int targetIndexInOneIndexedFormat) {
+        List<TestTask> listOfTasks = asList(list);
+        try {
+            listOfTasks.get(targetIndexInOneIndexedFormat - 1).setStatus(new Status("done"));
+        } catch (IllegalValueException e) {
+            Logger logger = LogsCenter.getLogger(TestUtil.class);
+            logger.info("Illegal value at archiveTaskFromList");
+        }
+        sortByEndTime(listOfTasks);
+        return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
+    }
+
+    // @@author A0140072X
+    public static TestTask[] sortByEndTime(final TestTask[] list) {
+        List<TestTask> listOfTasks = asList(list);
+        sortByEndTime(listOfTasks);
+        return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
     }
 
     /**
