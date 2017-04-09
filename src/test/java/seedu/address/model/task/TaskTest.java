@@ -49,7 +49,7 @@ public class TaskTest {
         status = new Status("undone");
         recurPeriod = new RecurPeriod("");
         recurEndDate = new RecurEndDate("");
-        tags = new UniqueTagList("School");
+        tags = new UniqueTagList("school");
     }
 
     @Test

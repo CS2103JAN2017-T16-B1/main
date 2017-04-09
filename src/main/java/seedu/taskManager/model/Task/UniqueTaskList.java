@@ -62,16 +62,15 @@ public class UniqueTaskList implements Iterable<Task> {
         Task taskToUpdate = internalList.get(index);
 
         if (editedTask.getStatus().equals("undone") && (taskToUpdate.equals(editedTask))) {
-
-   //     if (taskToUpdate.equals(editedTask) || internalList.contains(editedTask)) {
-
             throw new DuplicatetaskException();
         }
-
+        
+        if (internalList.contains(editedTask)) {
+            System.out.print(editedTask);
+            throw new DuplicatetaskException();
+        }
+        
         taskToUpdate.resetData(editedTask);
-        // TODO: The code below is just a workaround to notify observers of the updated task.
-        // The right way is to implement observable properties in the Person class.
-        // Then, TaskCard should then bind its text labels to those observable properties.
         internalList.set(index, taskToUpdate);
     }
 

@@ -213,7 +213,8 @@ public class Task implements ReadOnlyTask {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ReadOnlyTask // instanceof handles nulls
-                && this.isSameStateAs((ReadOnlyTask) other));
+                && this.isSameStateAs((ReadOnlyTask) other));     
+    
     }
 
     @Override
