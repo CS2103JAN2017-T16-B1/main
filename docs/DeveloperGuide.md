@@ -381,7 +381,7 @@ Priority | As a ... | I want to ... | So that I can...
 `* *` | user | add tasks that repeat according to a stipulated number of days | So that i can reduce the amount of redundant work i need to do
 `* *` | user | change the folder to store my data | so that I can easily copy my data/program and work in another computer.		
 `*` | user | have a shortcut key | to quickly access the program.		
-`*` | user | use the Task Manager across time zones | so that i can travel while using the Task Manager	
+
 
 ## Appendix B : Use Cases
 
@@ -496,6 +496,11 @@ Priority | As a ... | I want to ... | So that I can...
 > 2c1. TaskManager feedbacks that the input is invalid
 > Use case resumes at step 2
 
+2d. The user enters input that edits a task to be identical to an existing task
+
+> 2d1. TaskManager feedbacks that the input is invalid
+> Use case resumes at step 2
+
 #### Use case: UC07 - Mark task as done
 
 **MSS**
@@ -509,6 +514,22 @@ Priority | As a ... | I want to ... | So that I can...
 
 
 2a. The given index is invalid
+
+> 2a1. TaskManager shows an error message 
+> Use case resumes at step 2
+
+#### Use case: UC08 - Sort Task
+
+**MSS**
+
+1. User requests to list tasks (UC04) or search tasks by keyword (UC03)
+2. User requests to sort tasks in the list according to a stipulated parameter
+3. Taskmanager executes the command and returns a confirmation message
+4. Use case ends.
+
+**Extensions**
+
+2a. The given parameter is invalid
 
 > 2a1. TaskManager shows an error message 
 > Use case resumes at step 2
