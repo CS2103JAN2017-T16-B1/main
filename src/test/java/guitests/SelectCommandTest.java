@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import seedu.taskManager.model.Task.ReadOnlyTask;
+//@@author A0140072X
 
 public class SelectCommandTest extends TaskManagerGuiTest {
 
