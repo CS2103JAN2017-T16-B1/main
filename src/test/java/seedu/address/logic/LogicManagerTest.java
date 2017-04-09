@@ -218,7 +218,7 @@ public class LogicManagerTest {
         // e/valid@email.butNoAddressPrefix valid, address", expectedMessage);
     }
 
-    // @@author a0139375w
+    // @@author A0139375W
     @Test
     public void execute_add_invalidTaskData() {
         assertCommandFailure("add []\\[;]", Name.MESSAGE_NAME_CONSTRAINTS);
@@ -325,7 +325,7 @@ public class LogicManagerTest {
 
         assertCommandSuccess("list", ListCommand.MESSAGE_SUCCESS, expectedAB, expectedList);
     }
- /*//@@ a0139375w
+ /*
     @Test
     public void execute_archive_successful() throws Exception {
         // prepare expectations
@@ -352,9 +352,6 @@ public class LogicManagerTest {
                 expectedTM,
                 expectedTM.getTaskList());
     }
-
-
-    //@@ a0139375w
 */
 
     /**
