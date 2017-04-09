@@ -61,27 +61,22 @@ Task/event:
 
 Format: `add TASK_NAME [s/STARTTIME] [e/ENDTIME] [d/DESCRIPTION] [r/REPEATPERIOD] [l/RECURENDDATE] [t/TAG] ...`
 
-> * Tasks can have a description
-> * Tasks can have start time and end time
-> * Start and end time is input in the format yyyy-mm-dd-hhmm
-> * Start and end time can be in more natural language such as "next week", "2 mondays from now", "3 days from now", "tomorrow afternoon"
-> * Tasks can have any number of tags (including 0)
-> * Tasks can be flagged as recurring by adding the period to repeat
-> * Period to repeat can be in any positive integer which represents the number of days before next occurance
-> * Period to repeat can be in any of the following key word, "weekly", "monthly", "yearly"
-> * Tasks flagged as recurring can have an end date to stop the recurring task
-> * Recur end date is in the format yyyy-mm-dd-hhmm, which is the last date user wants the task to recur till
-> * Recur end date only looks at end time
-> * User may use FROM and TO instead of s/ and e/, also may use BY instead of e/
+> Tasks can have a description
 
+> Tasks can have any number of tags (including 0)
+> Tasks can be flagged as recurring by adding the period to repeat
+> Tasks flagged as recurring can have an end date to stop the recurring task
+> User may use FROM and TO instead of s/ and e/, also may use BY instead of e/
+
+   > <img src="images/Add.PNG" width="600">
+   > <img src="images/afterAdd.PNG" width="600">
 
 Examples:
 * `add Do laundry e/2017-3-1-2359 `
 * `add Study for midterms e/Monday 1000 d/CS2103 at lt7 `
 * `add Buy milk for baby BY tuesday 0800 d/yaas milk t/family`
 * `add Create user story e/2017-4-1-1300 t/work t/computing` 
-* `add Meeting FROM monday 0800 TO monday 1100 t/work r/10`
-* `add Weekly Test FROM tuesday 0900 TO tuesday 1200 t/school r/weekly l/2017-05-05-1200
+* `add Meeting FROM monday 0800 TO monday 1100 t/work r/weekly`
 
 
 
@@ -99,6 +94,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 > * Only names, description and tags are searched.
 > * Tasks matching at least one keyword will be returned (i.e. OR search). e.g. CS2103 final exams will match finals bo rawr
 
+   > <img src="images/Findkeyword&tag.PNG" width="600">
+
 Examples:
 * find Milk
 * Returns a numbered list of undone tasks/events whose names/description/tags contain buy Milk but not milk
@@ -114,6 +111,8 @@ Format: `find #KEYWORD`
 > * Only priority or status is searched
 > * Tasks matching the given priority or status will be returned.
 
+   > <img src="images/FindPriority.PNG" width="600">
+
 Examples:
 * find #h
 > * Returns a numbered list of tasks/events that are labelled as high priority
@@ -128,6 +127,8 @@ Format: `find @KEYWORD`
 > * The search is case sensitive. e.g homework will not match Homework
 > * Only names/descriptions/tags will be searched
 > * Task matching the keyword given will be returned.
+
+   > <img src="images/Findarchive.PNG" width="600">
 
 Examples:
 * find @Milk
@@ -154,6 +155,8 @@ Format: `archived`
 > * Tasks/events is arranged by deadline, with the most recent dateline first
 > * Only the past one month worth of event/task can be done
 
+   > <img src="images/Archived.PNG" width="600">
+
 Examples:
 
 * `archived`<br>
@@ -175,6 +178,12 @@ Format: `edit INDEX [n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]
 > * When editing tags, the existing tags of the task/event will be removed i.e adding of tags is not cumulative.
 > * You can remove all the task's tags by typing t/ without specifying any tags after it.
 
+`Before`<br>
+   > <img src="images/Edit.PNG" width="600">
+
+`After`<br>
+  > <img src="images/Editafter.PNG" width="600">
+
 Examples:
 
 
@@ -193,6 +202,12 @@ Format: `sort PARAMETER`
 > * Sorting by duedate will sort all tasks in the Task Manager by EndTimes of Tasks or Events. Floating Tasks will be sorted to the back
 > * Sorting by priority will sort all tasks with those with high priority at the top and low priority at the bottom
 
+`Sort by Due Date`<br>
+  > <img src="images/Sortduedate.PNG" width="600">
+  
+`Sort by priority`<br>
+  > <img src="images/SortPriority.PNG" width="600">
+
 * `list`<br>
   `sort duedate`<br>
   Sorts all tasks in the list by duedate
@@ -204,17 +219,19 @@ Format: `sort PARAMETER`
 
 
 Deletes the specified task(s) from the task manager.<br>
-Format: `delete INDEX
+Format: `delete INDEX,[INDEX]...`
 
 > * Deletes the task(s) at the specified INDEX. <br>
 > * The index refers to the index number shown in the most recent listing.<br>
 > * The index **must be a positive integer** 1, 2, 3, ...<br>
 
+  > <img src="images/Delete.PNG" width="600">
+
 Examples:
 
 * `list`<br>
-  `delete 2`<br>
-  Deletes the 2nd task in the list of task.
+  `delete 2,3`<br>
+  Deletes the 2nd and 3rd task in the list of task.
 * `find meeting` <br>
   `delete 1`<br>
   Deletes the 1st task in the results of the `find` command.
@@ -228,6 +245,8 @@ Format: `done INDEX,[INDEX]...`
 > * The index refers to the index number shown in the most recent listing.
 > * The index must be a positive integer 1, 2, 3, ...
 
+  > <img src="images/Archive.PNG" width="600">
+
 Examples:
 
 * `list`<br>
@@ -239,6 +258,10 @@ Examples:
 Save the current instance of Task Manager to a File.<br>
 HotKey: `ALT + S Key`
 
+  > <img src="images/SavePopup.PNG" width="600">
+  
+  > <img src="images/SaveLoadGUI.PNG" width="600">
+
 > * Choose a File & Location to save the Task List. 
 > * Any further changes in this session will be saved to the new File.
 > * Task Manager will use the most recent File that was used upon startup
@@ -248,6 +271,8 @@ HotKey: `ALT + S Key`
 
 Load a instance of Task Manager from a File.<br>
 HotKey: `ALT + L Key`
+
+  > <img src="images/LoadPopup.PNG" width="600">
 
 > * Choose a File to Load. 
 > * Any further changes in this session will be saved to the new File.
@@ -268,6 +293,18 @@ Toggles the view between the 4 different kinds of screen.<br>
 Format: `toggle`<br>
 Hotkey: `TAB Key`
 
+`Toggle All Task`<br>
+  > <img src="images/ToggleAll.PNG" width="600">
+  
+`Toggle Event`<br>
+  > <img src="images/ToggleEvent.PNG" width="600">
+  
+`Toggle Task`<br>
+  > <img src="images/ToggleTask.PNG" width="600">
+  
+`Toggle Floating Task`<br>
+  > <img src="images/ToggleFloating.PNG" width="600">
+
 ### 2.13 Clearing all entries : `clear`
 
 Clears all entries from the task manager.<br>
@@ -277,6 +314,13 @@ Format: `clear`
 
 Undo the last add/edit/archive/undo command input by the user.<br>
 Format: `undo`
+
+`Before Undo`<br>
+  > <img src="images/Undo.PNG" width="600">
+
+`After Undo`<br>
+  > <img src="images/afterUndo.PNG" width="600">
+
 
 ### 2.15 Exiting the program : `exit`
 
