@@ -24,6 +24,10 @@ public class FindCommandTest extends TaskManagerGuiTest {
 
         assertFindResult("find school", td.task1, td.task2, td.task3, td.task4, td.task5, td.task6, td.task7);
         assertFindResult("find @school"); //no results
+<<<<<<< HEAD
+=======
+
+>>>>>>> 39f84794964a4ecceb8c90a767f8ef4f8df90c32
 
         //find done and undone list
         assertFindResult("find #undone", td.task1, td.task2, td.task3, td.task4, td.task5, td.task6, td.task7);
@@ -39,7 +43,11 @@ public class FindCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("list");
         commandBox.runCommand("archive 2");
         assertFindResult("find #h"); //no result because task became done
+<<<<<<< HEAD
      //   assertFindResult("find @school", td.task10); //1 result found in archived folder
+=======
+        assertFindResult("find @school", td.task10); //1result found in archived folder
+>>>>>>> 39f84794964a4ecceb8c90a767f8ef4f8df90c32
 
     }
 

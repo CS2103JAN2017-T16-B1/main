@@ -362,35 +362,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (un
 
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
-`* * *` | user | tasks/events that may or may not have deadlines/dates | so that i can keep track of what i need to do
+`* * *` | user | add tasks/events that may or may not have deadlines/dates | so that i can keep track of what i need to do
 `* * *` | user | delete tasks/events| get rid of tasks that need not be done anymore 
 `* * *` | user | reschedule a task/event | accommodate changes in my schedule 
 `* * *` | user | mark a task/event as done | so that i can reduce clutter in my todo list
-`* * *` | user | add tasks/events that have multiple dates/times | accomodate events that span over multiple days
-`* * *` | user | have a scheduler that automatically syncs my schedulers | so that i can reduce clutter in my todo list
 `* * *` | user | be given confirmation whether i enter a command | so that i know when the command has been executed
 `* * *` | user | edit the task/event's description' and name | so that i can accomodate any changes
 `* * *` | user | view my to-do list of undone tasks with and sorted by deadlines | so that I can find out what I have to do
 `* * *` | new user | view more information about a particular command | so that i can learn how to use the task manager easily.	
 `* *` | user | tag my tasks | so that I can easily categorise my tasks
 `* *` | user | undo my last action | so that i can rectify my mistakes quickly
-`* *` | user | add reminder alarms to tasks | to prompt follow up action	
-`* *` | user | get prompted on yesterday’s tasks that have yet to be completed | so that I can reschedule the task or flag as cannot be done. 
+`* *` | user | be able to see tasks that have yet to be completed | so that I can reschedule the task. 
 `* *` | user | search my tasks by keyword | so that I can quickly access the desired task in mind
-`* *` | user | flag a task/events | so as to highlight the importance	
+`* *` | user | flag and give priority to task/events | so as to highlight the importance	
 `* *` | user | easily see an overview of my schedule and todo list | so that i can keep track of things that need to be done	
 `* *` | user | access a list of previously completed tasks | so as to keep track of things i have done	
 `* *` | user | search my tasks according to categories | so that I can easily visualize my tasks in a particular category
 `* *` | user | add tasks that repeat according to a stipulated number of days | So that i can reduce the amount of redundant work i need to do
-`* *` | user | change the folder to store my data | so that I can easily copy my data/program and work in another computer.	
-`* *` | user | to manually sync my scheduler | so that I can back it up on my cloud/local folder
-`* *` | advanced user | use shorter command words | so as to save time typing	
-`* *` | user | stipulate ranges of time for my tasks to be slotted into | so that i neednt consider my schedule directly	
-`*` | user | have a shortcut key | to quickly access the program.	
-`*` | user | be prompted for my password to enter the Task Manager |  prevent unauthorised users from using my Task Manager	
-`*` | user | place a tasks that was previously marked as done back into my todo list | so that i can save time	
-`*` | user | change the text size in the GUI | in case i have bad eyesight	
-`*` | user | be notified of all the commands i have given when i exit the program | to keep track of what i did	
+`* *` | user | change the folder to store my data | so that I can easily copy my data/program and work in another computer.		
+`*` | user | have a shortcut key | to quickly access the program.		
 `*` | user | use the Task Manager across time zones | so that i can travel while using the Task Manager	
 
 ## Appendix B : Use Cases
@@ -429,7 +419,7 @@ Priority | As a ... | I want to ... | So that I can...
 
 2a. The given index is invalid
 
-> 2a1. AddressBook feedbacks that the index is invalid 
+> 2a1. TaskManager feedbacks that the index is invalid 
 > Use case resumes at step 2
 
 #### Use case: UC03 - Find Task by keyword
@@ -493,7 +483,7 @@ Priority | As a ... | I want to ... | So that I can...
 
 2a. The given index is invalid
 
-> 2a1. AddressBook feedbacks that the index is invalid 
+> 2a1. TaskManager feedbacks that the index is invalid 
 > Use case resumes at step 2
 
 2b. The user gives index but no other input
@@ -520,7 +510,7 @@ Priority | As a ... | I want to ... | So that I can...
 
 2a. The given index is invalid
 
-> 2a1. AddressBook shows an error message 
+> 2a1. TaskManager shows an error message 
 > Use case resumes at step 2
 
 ## Appendix C : Non Functional Requirements
@@ -529,8 +519,7 @@ Priority | As a ... | I want to ... | So that I can...
 2. Should be able to hold up to 2000 tasks without a noticeable sluggishness in performance for typical usage.
 3. A user should be able to complete certain action in less than 3 step.
 4. A user should be able to search for task/events within 3seconds.
-5. Should automatically sync with online cloud when internet connection is available
-6. Should automatically save its data locally after every edit
+5. Should automatically save its data locally after every edit
 
 ## Appendix D : Glossary
 

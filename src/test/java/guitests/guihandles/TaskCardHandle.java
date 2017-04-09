@@ -85,27 +85,27 @@ public class TaskCardHandle extends GuiHandle {
 
     public boolean isSameTask(ReadOnlyTask task) {
 
-        System.out.println("fullname :" + getFullName());
-        System.out.println("description :" + getDescription());
-        System.out.println("startTime :" + getStartTime());
-        System.out.println("EndTime :" + getEndTime());
-        System.out.println("RecurPeriod :" + getRecurPeriod());
-        System.out.println("RecurEndDate :" + getRecurEndDate());
-
-        System.out.println("fullnameTask :" + task.getName().fullName);
-        System.out.println("descriptionTask :" + task.getDescription().description);
-        System.out.println("startTimeTask :" + task.getStartTime().startTime);
-        System.out.println("EndTimeTask :" + task.getEndTime().endTime);
-        System.out.println("RecurPeriodTask :" + task.getRecurPeriod().period);
-        System.out.println("RecurEndDateTask :" + task.getRecurEndDate().endDate);
-        return //task != null ||
+//        System.out.println("fullname :" + getFullName());
+//        System.out.println("description :" + getDescription());
+//        System.out.println("startTime :" + getStartTime());
+//        System.out.println("EndTime :" + getEndTime());
+//        System.out.println("RecurPeriod :" + getRecurPeriod());
+//        System.out.println("RecurEndDate :" + getRecurEndDate());
+//
+//        System.out.println("fullnameTask :" + task.getName().fullName);
+//        System.out.println("descriptionTask :" + task.getDescription().description);
+//        System.out.println("startTimeTask :" + task.getStartTime().startTime);
+//        System.out.println("EndTimeTask :" + task.getEndTime().endTime);
+//        System.out.println("RecurPeriodTask :" + task.getRecurPeriod().period);
+//        System.out.println("RecurEndDateTask :" + task.getRecurEndDate().endDate);
+            return task != null ||
                 getFullName().equals(task.getName().fullName)
                 && getTags().equals(getTags(task.getTags()))
                 && checkForDescription(task)
                 && checkForStartTime(task)
-                && checkForEndTime(task)
-                && checkForRecurPeriod(task)
-                && checkForRecurEndDate(task);
+                && checkForEndTime(task);
+                //&& checkForRecurPeriod(task)
+                //&& checkForRecurEndDate(task);
     }
 
     //@@author A0139509X
