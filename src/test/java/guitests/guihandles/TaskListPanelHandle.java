@@ -62,7 +62,6 @@ public class TaskListPanelHandle extends GuiHandle {
                     "Expected " + (getListView().getItems().size() - 1) + " tasks");
         }
 
-        
         for (int i = 0; i < tasks.length; i++) {
             final int scrollTo = i + startPosition;
             guiRobot.interact(() -> getListView().scrollTo(scrollTo));
