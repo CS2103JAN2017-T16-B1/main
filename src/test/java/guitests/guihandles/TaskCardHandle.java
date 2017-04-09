@@ -134,12 +134,9 @@ public class TaskCardHandle extends GuiHandle {
                 return true;
             }
         } else {
-<<<<<<< HEAD
+
             if (task.getRecurPeriod().period.matches("[0-999]+")) {
                 System.out.println("this: " + getRecurPeriod() + " vs that : " + task.getRecurPeriod().period);
-=======
-            if (task.getRecurPeriod().period.matches("[0-9]+")) {
->>>>>>> 2178df6c033d459331b033454a4def73f22c18a8
                 return getRecurPeriod().equals("Recur Period : " + task.getRecurPeriod().period + " days");
             } else {
                 return getRecurPeriod().equals("Recur Period : " + task.getRecurPeriod().period);
