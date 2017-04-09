@@ -185,7 +185,7 @@ public class TestTask implements ReadOnlyTask {
         return this.recurEndDate;
     }
 
-    // @@author A0140072
+    // @@author A0140072X
     public LocalDateTime getDueDate() {
         LocalDateTime dueDate;
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm");
