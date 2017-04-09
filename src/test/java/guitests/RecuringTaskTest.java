@@ -18,7 +18,6 @@ public class RecuringTaskTest extends TaskManagerGuiTest {
 
         TestTask[] currentList = {td.task11};
         TestTask[] expectedList = {td.task12};
-        TestTask[] expectedArchivedList = {td.task11, td.task12};
         TestTask[] emptyList = {};
 
         //checking for creation of new task, when recur period is int
