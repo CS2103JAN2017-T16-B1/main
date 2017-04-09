@@ -360,7 +360,7 @@ There is no need to save manually.
 * **List** : `list` <br>
 > * e.g. `list`
 
-* **List** : `undo` <br>
+* **Undo** : `undo` <br>
 > * e.g. `undo`
 
 * **Sort** : `sort KEYWORD` <br>
@@ -378,7 +378,7 @@ There is no need to save manually.
 
 * **Toggle** : `toggle` or `TAB` <br>
 
-* **edit** : `edit TASK_ID[n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]...` <br>
+* **Edit** : `edit TASK_ID[n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]...` <br>
 
 * **Help** : `help` <br>
  
