@@ -69,11 +69,11 @@ We are a team based in the [School of Computing, National University of Singapor
 
 **Features implemented**: 
 * [find task(s)](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#23-finding-tasksevents--find)
-* [toggle function]
+* [toggle function](https://github.com/CS2103JAN2017-T16-B1/main/blob/v0.5/docs/UserGuide.md#212-toggle-between-different-tasks-toggle)
 * auto focus with keywords
 * UI design
 
-**Code written:** [[functional code](../collated/main/A0139509X.md)]
+**Code written:** [[functional code](../collated/main/A0139509X.md)][[test code](../collated/test/A0139509X.md)]
 
 **Other major contribution**:
 * Did up initial refactoring from AddressBook to TaskManager
