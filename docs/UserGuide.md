@@ -21,6 +21,7 @@ By : `Team SE-EDU`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2016`  &nbsp;&nbsp;&nbs
 3. Double-click the file to start the app. The GUI should appear in a few seconds.
 
    > <img src="images/GUI.PNG" width="600">
+   > <img src="images/UI_feature.PNG" width="600">
 
 
 4. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br>
