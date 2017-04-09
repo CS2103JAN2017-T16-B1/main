@@ -236,7 +236,7 @@ public class LogicManagerTest {
     @Test
     public void execute_sort_invalidTaskData() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
-            assertCommandFailure("sort invalidParameter", expectedMessage);
+        assertCommandFailure("sort invalidParameter", expectedMessage);
     }
 
     @Test
@@ -258,8 +258,8 @@ public class LogicManagerTest {
         helper.addToModel(model, 3);
 
 
-        assertCommandSuccess("sort " + parameter, String.format(
-                SortCommand.MESSAGE_SORT_PERSON_SUCCESS, parameter), expectedAB, expectedList);
+        assertCommandSuccess("sort " + parameter, String.format(SortCommand.MESSAGE_SORT_PERSON_SUCCESS, parameter),
+                expectedAB, expectedList);
     }
 
     @Test
@@ -278,8 +278,8 @@ public class LogicManagerTest {
         tasksToAdd.add(helper.generateTask(1));
         helper.addToModel(model, tasksToAdd);
 
-        assertCommandSuccess("sort " + parameter, String.format(
-                SortCommand.MESSAGE_SORT_PERSON_SUCCESS, parameter), expectedAB, expectedList);
+        assertCommandSuccess("sort " + parameter, String.format(SortCommand.MESSAGE_SORT_PERSON_SUCCESS, parameter),
+                expectedAB, expectedList);
     }
 
 

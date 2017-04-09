@@ -103,6 +103,7 @@ public class TaskCardHandle extends GuiHandle {
 //        System.out.println("EndTimeTask :" + task.getEndTime().endTime);
 //        System.out.println("RecurPeriodTask :" + task.getRecurPeriod().period);
 //        System.out.println("RecurEndDateTask :" + task.getRecurEndDate().endDate);
+
         return //task != null ||
                 getFullName().equals(task.getName().fullName)
                 && getTags().equals(getTags(task.getTags()))

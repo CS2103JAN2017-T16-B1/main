@@ -404,6 +404,11 @@ Priority | As a ... | I want to ... | So that I can...
 > 1a1. TaskManager feedbacks that the format is wrong and shows an example of the right format
 > Use case ends
 
+1b. Task already exists in the TaskManager
+
+> 1b1. TaskManager feedbacks that the task already exists
+> Use case ends
+
 #### Use case: UC02 - Delete task
 
 **MSS**
