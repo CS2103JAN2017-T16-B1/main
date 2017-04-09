@@ -36,7 +36,6 @@ public class CommandBoxHandle extends GuiHandle {
      */
     public void runCommand(String command) {
         //to solve the problem of not clicking commandTextField when executing enter
-
         guiRobot.type(KeyCode.B);
         guiRobot.type(KeyCode.BACK_SPACE);
 
