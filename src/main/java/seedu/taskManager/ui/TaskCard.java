@@ -1,4 +1,5 @@
 package seedu.taskManager.ui;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,8 +49,8 @@ public class TaskCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private ImageView pinimage;
-    //@FXML
-    //private ImageView icon;
+    // @FXML
+    // private ImageView icon;
 
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
@@ -106,7 +107,7 @@ public class TaskCard extends UiPart<Region> {
     private void setColours(ReadOnlyTask task) {
         if (task.getPriority().toString().equals(TaskStringReference.PRIORITY_HIGH)) {
             cardPane.setStyle(HIGH_PRIORITY_COLOR);
-            //cardPane.setStyle(".label-red");
+            // cardPane.setStyle(".label-red");
         } else if (task.getPriority().toString().equals(TaskStringReference.PRIORITY_MEDIUM)) {
             cardPane.setStyle(MEDIUM_PRIORITY_COLOR);
         } else if (task.getPriority().toString().equals(TaskStringReference.PRIORITY_LOW)) {
@@ -121,11 +122,11 @@ public class TaskCard extends UiPart<Region> {
         String taskEndTimeString = task.getEndTime().endTime;
         Date taskEndTime = new Date();
         if (!task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME)) {
-        try {
-            taskEndTime = dateFormat.parse(taskEndTimeString);
-        } catch (ParseException e) {
-            logger.info("parsing taskEndTime failed due to exception");
-        }
+            try {
+                taskEndTime = dateFormat.parse(taskEndTimeString);
+            } catch (ParseException e) {
+                logger.info("parsing taskEndTime failed due to exception");
+            }
         }
         if (currentTime.after(taskEndTime)) {
             pinimage.setImage(new Image("/images/overdue.png"));
