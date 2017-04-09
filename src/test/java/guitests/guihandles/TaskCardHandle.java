@@ -1,5 +1,5 @@
 package guitests.guihandles;
-
+//@@author A0139509X
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -83,11 +83,12 @@ public class TaskCardHandle extends GuiHandle {
                 .map(tag -> tag.tagName)
                 .collect(Collectors.toList());
     }
-
+    //@@author
     private Region getTagsContainer() {
         return guiRobot.from(node).lookup(TAGS_FIELD_ID).query();
     }
 
+    //@@author A0139509X
     public boolean isSameTask(ReadOnlyTask task) {
 
         //checks to verify errors
@@ -114,7 +115,6 @@ public class TaskCardHandle extends GuiHandle {
                 && checkForRecurEndDate(task);
     }
 
-    //@@author A0139509X
     private boolean checkForRecurEndDate(ReadOnlyTask task) {
         if (getRecurEndDate().equals(UI_DEFAULT_TEXT_RECUR_END_DATE)) {
             if (task.getRecurEndDate().endDate.equals(TaskStringReference.EMPTY_RECUR_END_DATE)) {
@@ -136,7 +136,6 @@ public class TaskCardHandle extends GuiHandle {
         } else {
 
             if (task.getRecurPeriod().period.matches("[0-999]+")) {
-                System.out.println("this: " + getRecurPeriod() + " vs that : " + task.getRecurPeriod().period);
                 return getRecurPeriod().equals("Recur Period : " + task.getRecurPeriod().period + " days");
             } else {
                 return getRecurPeriod().equals("Recur Period : " + task.getRecurPeriod().period);

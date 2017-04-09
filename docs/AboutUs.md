@@ -33,7 +33,12 @@ We are a team based in the [School of Computing, National University of Singapor
 **Aspects/tools in charge of**: Testing, Code Quality,
 
 **Features implemented**: Recur task, Delete command, Select command
+* [Recur task](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#22-adding-a-taskevent--add)
+* [Delete command](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#27--deleting-tasks-delete)
+* [Select command](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#29-selecting-tasks--select)
 
+
+**Code written:** [[functional code](../collated/main/A0139375W.md)][[test code](../collated/test/A0139375W.md)]
 
 **Other major contribution**:
 
@@ -53,7 +58,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * [Save/Load]
 * [Global Quick Launch key]
 
-**Code written:** [[functional code](../collated/main/A0140072X.md)][[test code](../collated/test/A0140072X.md)]
+**Code written:** [[functional code](../collated/main/A0140072X.md)]
 
 **Other major contribution**:
 
