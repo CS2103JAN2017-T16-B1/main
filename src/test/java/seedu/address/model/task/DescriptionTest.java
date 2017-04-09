@@ -21,7 +21,7 @@ public class DescriptionTest {
         assertTrue(Description.isValidDescription("4")); // short Description
         assertTrue(Description.isValidDescription("Venue at National University of Singapore")); // long Description
         assertTrue(Description.isValidDescription("9011p041")); // alphabets within Description
-        assertTrue(Description.isValidDescription("9312-1534*()")); // symbols within Description
+        assertTrue(Description.isValidDescription("93121534")); // numbers within Description
         assertTrue(Description.isValidDescription("hello hello hello")); // spaces within Description
     }
 }

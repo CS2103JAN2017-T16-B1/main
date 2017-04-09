@@ -220,7 +220,7 @@ public class LogicManagerTest {
         // e/valid@email.butNoAddressPrefix valid, address", expectedMessage);
     }
 
-    // @@a0139375w
+    // @@author a0139375w
     @Test
     public void execute_add_invalidTaskData() {
         assertCommandFailure("add []\\[;]", Name.MESSAGE_NAME_CONSTRAINTS);
@@ -241,7 +241,59 @@ public class LogicManagerTest {
         assertCommandFailure("add Valid Name t/invalidtag**", Tag.MESSAGE_TAG_CONSTRAINTS);
     }
 
-    // @@a0139375w
+    // @@author a0139375w
+
+    //@@author A0138998B
+    @Test
+    public void execute_sort_invalidTaskData() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
+            assertCommandFailure("sort invalidParameter", expectedMessage);
+    }
+    
+    @Test
+    public void execute_sort_duedate_successful() throws Exception {
+     // prepare expectations
+        TestDataHelper helper = new TestDataHelper();
+        TaskManager expectedAB = helper.generateTaskManager(3);
+        //generate a late duedate task to check sort
+        Task latestDueDateTask = helper.generateTask(9);
+        expectedAB.addTask(latestDueDateTask);
+        List<? extends ReadOnlyTask> expectedList = expectedAB.getTaskList();
+        
+        String parameter = "duedate";
+
+        // prepare task manager state 4 tasks with the late duedate task at the front
+        List<Task> tasksToAdd = new ArrayList<Task>();
+        tasksToAdd.add(latestDueDateTask);
+        helper.addToModel(model, tasksToAdd);
+        helper.addToModel(model, 3);
+        
+        
+        assertCommandSuccess("sort " + parameter, String.format(SortCommand.MESSAGE_SORT_PERSON_SUCCESS, parameter), expectedAB, expectedList);
+   }
+    
+    @Test
+    public void execute_sort_name_successful() throws Exception {
+     // prepare expectations
+        TestDataHelper helper = new TestDataHelper();
+        TaskManager expectedAB = helper.generateTaskManager(3);
+        List<? extends ReadOnlyTask> expectedList = expectedAB.getTaskList();
+        
+        String parameter = "name";
+
+        // prepare task manager state by adding in tasks in unordered format
+        List<Task> tasksToAdd = new ArrayList<Task>();
+        tasksToAdd.add(helper.generateTask(3));
+        tasksToAdd.add(helper.generateTask(2));
+        tasksToAdd.add(helper.generateTask(1));
+        helper.addToModel(model, tasksToAdd);
+       
+        assertCommandSuccess("sort " + parameter, String.format(SortCommand.MESSAGE_SORT_PERSON_SUCCESS, parameter), expectedAB, expectedList);
+   }
+    
+    
+
+    //@@author A0138998B
     @Test
     public void execute_add_successful() throws Exception {
         // setup expectations
@@ -528,7 +580,7 @@ public class LogicManagerTest {
          */
         Task generateTask(int seed) throws Exception {
             return new Task(new Name("Task " + seed), new Description("" + Math.abs(seed)),
-                    new StartTime("2017-10-10-1600"), new EndTime("2017-12-12-2000"), new ID("" + Math.abs(seed)),
+                    new StartTime("2007-10-10-1600"), new EndTime("201" + seed + "-12-12-2000"), new ID("" + Math.abs(seed)),
                     new Priority("m"), new Status("undone"), new RecurPeriod(""), new RecurEndDate(""),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1))));
         }

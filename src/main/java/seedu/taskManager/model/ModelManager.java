@@ -121,20 +121,23 @@ public class ModelManager extends ComponentManager implements Model {
     public void sortTasksByEndTime() {
         try {
             taskManager.sortTasksByEndTime();
+            indicateTaskManagerChanged();
         } catch (IllegalValueException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            //sortTasksByEndTime creates new sets of tasks from the existing set.
+            // No IllegalValueException expected
         }
     }
 
     @Override
     public void sortTasksByName() {
         taskManager.sortTasksByName();
+        indicateTaskManagerChanged();
     }
 
     @Override
     public void sortTasksByPriority() {
         taskManager.sortTaskByPriority();
+        indicateTaskManagerChanged();
     }
 
 

@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import seedu.taskManager.model.Task.Description;
 import seedu.taskManager.model.Task.EndTime;
 import seedu.taskManager.model.Task.ID;
@@ -27,6 +31,7 @@ public class TestTask implements ReadOnlyTask {
     private Status status;
     private RecurPeriod recurPeriod;
     private RecurEndDate recurEndDate;
+    private LocalDateTime dueDate;
 
 
     public TestTask() {
@@ -43,6 +48,7 @@ public class TestTask implements ReadOnlyTask {
         this.endTime = taskToCopy.getEndTime();
         this.tags = taskToCopy.getTags();
     }
+
 
     public void setName(Name name) {
         this.name = name;
@@ -172,5 +178,18 @@ public class TestTask implements ReadOnlyTask {
     @Override
     public RecurEndDate getRecurEndDate() {
         return this.recurEndDate;
+    }
+
+    // @@author A0140072
+    public LocalDateTime getDueDate() {
+        LocalDateTime dueDate;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm");
+
+        try {
+            this.dueDate = LocalDateTime.parse(endTime.toString().replaceAll("\n", ""), dtf);
+        } catch (DateTimeParseException e) {
+            this.dueDate = null;
+        }
+        return this.dueDate;
     }
 }

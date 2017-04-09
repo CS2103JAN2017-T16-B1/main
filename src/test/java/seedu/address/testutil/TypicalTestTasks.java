@@ -15,45 +15,45 @@ public class TypicalTestTasks {
     public TypicalTestTasks() {
         try {
             task1 = new TaskBuilder().withName("Study for Midterm").withStartTime("2017-03-03-2100")
-                    .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
+                    .withEndTime("2017-04-04-2100").withTags("school").withStatus("undone")
                     .withPriority("m").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
             task2 = new TaskBuilder().withName("Study for Midterm2").withStartTime("2017-03-03-2100")
-                    .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
+                    .withEndTime("2017-04-04-2100").withTags("school").withStatus("undone")
                     .withPriority("l").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
             task3 = new TaskBuilder().withName("Study for Midterm3").withStartTime("2017-03-03-2100")
-                    .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
+                    .withEndTime("2017-04-04-2100").withTags("school").withStatus("undone")
                     .withPriority("h").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
             task4 = new TaskBuilder().withName("Study for Midterm4").withStartTime("2017-03-03-2100")
-                    .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
+                    .withEndTime("2017-04-04-2100").withTags("school").withStatus("undone")
                     .withPriority("m").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
             task5 = new TaskBuilder().withName("Study for Midterm5").withStartTime("2009-03-03-2100")
-                    .withEndTime("2010-04-04-2100").withTags("School").withStatus("undone")
+                    .withEndTime("2010-04-04-2100").withTags("school").withStatus("undone")
                     .withPriority("m").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
             task6 = new TaskBuilder().withName("ABC Study for Midterm6").withStartTime("2017-03-03-2100")
-                    .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
+                    .withEndTime("2017-04-04-2100").withTags("school").withStatus("undone")
                     .withPriority("m").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
             task7 = new TaskBuilder().withName("Study for Midterm7").withStartTime("2017-03-03-2100")
-                    .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
+                    .withEndTime("2017-04-04-2100").withTags("school").withStatus("undone")
                     .withPriority("m").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
 
             // Manually added
             task8 = new TaskBuilder().withName("Study for Midterm8").withStartTime("2017-03-03-2100")
-                    .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
+                    .withEndTime("2017-04-04-2100").withTags("school").withStatus("undone")
                     .withPriority("m").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
             task9 = new TaskBuilder().withName("Study for Midterm9").withStartTime("2017-03-03-2100")
-                    .withEndTime("2017-04-04-2100").withTags("School").withStatus("undone")
+                    .withEndTime("2017-04-04-2100").withTags("school").withStatus("undone")
                     .withPriority("m").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
             task10 = new TaskBuilder().withName("Study for Midterm3").withStartTime("2017-03-03-2100")
-                    .withEndTime("2017-04-04-2100").withTags("School").withStatus("done")
+                    .withEndTime("2017-04-04-2100").withTags("school").withStatus("done")
                     .withPriority("h").withID("1").withDescription("").withRecurPeriod("")
                     .withRecurEndDate("").build();
         } catch (IllegalValueException e) {
