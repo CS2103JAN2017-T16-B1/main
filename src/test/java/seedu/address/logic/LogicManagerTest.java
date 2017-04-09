@@ -43,6 +43,7 @@ import seedu.taskManager.logic.commands.exceptions.CommandException;
 import seedu.taskManager.model.Model;
 import seedu.taskManager.model.ModelManager;
 import seedu.taskManager.model.ReadOnlyTaskManager;
+import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.Task.Description;
 import seedu.taskManager.model.Task.EndTime;
 import seedu.taskManager.model.Task.ID;
@@ -54,7 +55,6 @@ import seedu.taskManager.model.Task.RecurPeriod;
 import seedu.taskManager.model.Task.StartTime;
 import seedu.taskManager.model.Task.Status;
 import seedu.taskManager.model.Task.Task;
-import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.tag.Tag;
 import seedu.taskManager.model.tag.UniqueTagList;
 import seedu.taskManager.storage.StorageManager;
@@ -222,24 +222,15 @@ public class LogicManagerTest {
     @Test
     public void execute_add_invalidTaskData() {
         assertCommandFailure("add []\\[;]", Name.MESSAGE_NAME_CONSTRAINTS);
-        //assertCommandFailure("add Valid Name d/&^", Description.MESSAGE_DESCRIPTION_CONSTRAINTS);
-        // assertCommandFailure("add Valid Name s/2017-05-05-56566",
-        // StartTime.MESSAGE_TIME_CONSTRAINTS);
         assertCommandFailure("add Valid Name s/invalid time", StartTime.MESSAGE_DATETIME_CONSTRAINTS);
-        // assertCommandFailure("add Valid Name s/next wed",
-        // StartTime.MESSAGE_DAY_CONSTRAINTS);
-        // assertCommandFailure("add Valid Name e/2017-05-05-56566",
-        // EndTime.MESSAGE_TIME_CONSTRAINTS);
         assertCommandFailure("add Valid Name e/invalid time", EndTime.MESSAGE_DATETIME_CONSTRAINTS);
-        // assertCommandFailure("add Valid Name e/next wed",
-        // EndTime.MESSAGE_DAY_CONSTRAINTS);
         assertCommandFailure("add Valid Name p/invalid priority", Priority.MESSAGE_NAME_CONSTRAINTS);
         assertCommandFailure("add Valid Name r/invalid recur period", RecurPeriod.MESSAGE_PERIOD_CONSTRAINTS);
         assertCommandFailure("add Valid Name l/invalid recur end date", RecurEndDate.MESSAGE_ENDDATE_CONSTRAINTS);
         assertCommandFailure("add Valid Name t/invalidtag**", Tag.MESSAGE_TAG_CONSTRAINTS);
     }
 
-    // @@author a0139375w
+    // @@author
 
     //@@author A0138998B
     @Test
@@ -247,7 +238,7 @@ public class LogicManagerTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
             assertCommandFailure("sort invalidParameter", expectedMessage);
     }
-    
+
     @Test
     public void execute_sort_duedate_successful() throws Exception {
      // prepare expectations
@@ -257,7 +248,7 @@ public class LogicManagerTest {
         Task latestDueDateTask = helper.generateTask(9);
         expectedAB.addTask(latestDueDateTask);
         List<? extends ReadOnlyTask> expectedList = expectedAB.getTaskList();
-        
+
         String parameter = "duedate";
 
         // prepare task manager state 4 tasks with the late duedate task at the front
@@ -265,18 +256,18 @@ public class LogicManagerTest {
         tasksToAdd.add(latestDueDateTask);
         helper.addToModel(model, tasksToAdd);
         helper.addToModel(model, 3);
-        
-        
+
+
         assertCommandSuccess("sort " + parameter, String.format(SortCommand.MESSAGE_SORT_PERSON_SUCCESS, parameter), expectedAB, expectedList);
    }
-    
+
     @Test
     public void execute_sort_name_successful() throws Exception {
      // prepare expectations
         TestDataHelper helper = new TestDataHelper();
         TaskManager expectedAB = helper.generateTaskManager(3);
         List<? extends ReadOnlyTask> expectedList = expectedAB.getTaskList();
-        
+
         String parameter = "name";
 
         // prepare task manager state by adding in tasks in unordered format
@@ -285,11 +276,11 @@ public class LogicManagerTest {
         tasksToAdd.add(helper.generateTask(2));
         tasksToAdd.add(helper.generateTask(1));
         helper.addToModel(model, tasksToAdd);
-       
+
         assertCommandSuccess("sort " + parameter, String.format(SortCommand.MESSAGE_SORT_PERSON_SUCCESS, parameter), expectedAB, expectedList);
    }
-    
-    
+
+
 
     //@@author A0138998B
     @Test
@@ -332,6 +323,37 @@ public class LogicManagerTest {
 
         assertCommandSuccess("list", ListCommand.MESSAGE_SUCCESS, expectedAB, expectedList);
     }
+ /*//@@ a0139375w
+    @Test
+    public void execute_archive_successful() throws Exception {
+        // prepare expectations
+        TestDataHelper helper = new TestDataHelper();
+        List<Task> threeTasks = helper.generateTaskList(3);
+
+        TaskManager expectedTM = helper.generateTaskManager(threeTasks);
+
+        // prepare task manager state
+        helper.addToModel(model, threeTasks);
+
+        ObservableList<ReadOnlyTask> lastShownList = expectedTM.getTaskList();
+        ReadOnlyTask taskToArchive = lastShownList.get(0);
+        Task updatedTask = new Task(taskToArchive.getName(), taskToArchive.getDescription(),
+                taskToArchive.getStartTime(), taskToArchive.getEndTime(), taskToArchive.getId(),
+                taskToArchive.getPriority(), new Status("done"), taskToArchive.getRecurPeriod(),
+                taskToArchive.getRecurEndDate(), taskToArchive.getTags());
+
+        expectedTM.archiveTask(1, updatedTask);
+
+
+        assertCommandSuccess("archive 1",
+                String.format(ArchiveCommand.MESSAGE_ARCHIVE_TASK_SUCCESS, taskToArchive),
+                expectedTM,
+                expectedTM.getTaskList());
+    }
+
+
+    //@@ a0139375w
+*/
 
     /**
      * Confirms the 'invalid argument index number behaviour' for the given

@@ -14,6 +14,7 @@ import seedu.taskManager.commons.exceptions.IllegalValueException;
 import seedu.taskManager.model.Task.ReadOnlyTask;
 import seedu.taskManager.model.Task.Task;
 import seedu.taskManager.model.Task.UniqueTaskList;
+import seedu.taskManager.model.Task.UniqueTaskList.DuplicatetaskException;
 import seedu.taskManager.model.tag.Tag;
 import seedu.taskManager.model.tag.UniqueTagList;
 
@@ -146,6 +147,12 @@ public class TaskManager implements ReadOnlyTaskManager {
             throw new UniqueTaskList.TaskNotFoundException();
         }
     }
+
+    public void archiveTask(int index, ReadOnlyTask key) throws DuplicatetaskException {
+       tasks.updateTask(index, key);
+
+    }
+
     //@@author A0138998B
     public void sortTasksByEndTime() throws IllegalValueException {
         tasks.sortByEndTime();

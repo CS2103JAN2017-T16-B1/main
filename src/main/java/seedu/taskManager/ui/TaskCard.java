@@ -80,7 +80,7 @@ public class TaskCard extends UiPart<Region> {
     private void setTextForRecurEndDate(ReadOnlyTask task) {
         if (!task.getRecurEndDate().endDate.equals(TaskStringReference.EMPTY_RECUR_END_DATE)) {
             recurEndDate.setText("Recur End Date : " + task.getRecurEndDate().endDate);
-        } else if (task.getRecurEndDate().endDate == TaskStringReference.EMPTY_RECUR_END_DATE) {
+        } else if (task.getRecurEndDate().endDate.equals(TaskStringReference.EMPTY_RECUR_END_DATE)) {
             dontShowLabel(recurEndDate);
         }
 
@@ -120,10 +120,12 @@ public class TaskCard extends UiPart<Region> {
         Date currentTime = new Date();
         String taskEndTimeString = task.getEndTime().endTime;
         Date taskEndTime = new Date();
+        if (!task.getEndTime().endTime.equals(TaskStringReference.EMPTY_TIME)) {
         try {
             taskEndTime = dateFormat.parse(taskEndTimeString);
         } catch (ParseException e) {
             logger.info("parsing taskEndTime failed due to exception");
+        }
         }
         if (currentTime.after(taskEndTime)) {
             pinimage.setImage(new Image("/images/overdue.png"));
