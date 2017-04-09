@@ -53,7 +53,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * [Save/Load]
 * [Global Quick Launch key]
 
-**Code written:** [[functional code](../collated/main/A0140072X.md)]
+**Code written:** [[functional code](../collated/main/A0140072X.md)][[test code](../collated/test/A0140072X.md)]
 
 **Other major contribution**:
 
