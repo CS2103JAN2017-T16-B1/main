@@ -4,6 +4,7 @@ import java.util.Set;
 
 import seedu.taskManager.commons.core.UnmodifiableObservableList;
 import seedu.taskManager.logic.commands.exceptions.CommandException;
+import seedu.taskManager.model.Task.EndTime;
 import seedu.taskManager.model.Task.ReadOnlyTask;
 import seedu.taskManager.model.Task.Task;
 import seedu.taskManager.model.Task.UniqueTaskList;
@@ -39,6 +40,13 @@ public interface Model {
 
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
+
+    //@@author A0139375W
+    /** Checks if the task is recurring */
+    boolean isRecurringTask(Task task);
+
+    /** Checks if the task has passed the end date */
+    boolean hasPassedEndDate(Task task, EndTime endTime);
 
     //@@author A0139509X
     /** Returns the current toggle status */

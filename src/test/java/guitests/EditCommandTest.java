@@ -25,12 +25,12 @@ public class EditCommandTest extends TaskManagerGuiTest {
     @Test
     public void edit_allFieldsSpecified_success() throws Exception {
 
-        String detailsToEdit = "Study s/2017-03-03-2100 e/2017-10-10-2100 t/school";
+        String detailsToEdit = "Study s/2017-03-03-2200 e/2017-10-10-2100 t/school";
         int taskManagerIndex = 1;
 
-        TestTask editedTask = new TaskBuilder().withName("Study").withStartTime("2017-03-03-2100").withDescription("")
-                .withEndTime("2017-10-10-2100").withPriority("m").build();
-
+        TestTask editedTask = new TaskBuilder().withName("Study").withStartTime("2017-03-03-2200").withDescription("")
+                .withEndTime("2017-10-10-2100").withTags().withPriority("m")
+                .withRecurEndDate("").withRecurPeriod("").build();
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
 
@@ -54,7 +54,6 @@ public class EditCommandTest extends TaskManagerGuiTest {
         TestTask taskToEdit = expectedTaskList[taskManagerIndex - 1];
         TestTask editedTask = new TaskBuilder(taskToEdit).withTags().withPriority("l").build();
 
-        System.out.println("this shit starts here");
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
 

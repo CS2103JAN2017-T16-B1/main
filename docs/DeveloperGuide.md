@@ -539,6 +539,21 @@ Priority | As a ... | I want to ... | So that I can...
 > 2a1. TaskManager shows an error message 
 > Use case resumes at step 2
 
+#### Use case: UC08 - Toggle Task
+
+**MSS**
+
+1. User requests to toggle tasks
+2. Taskmanager executes the command and returns a confirmation message that varies, depending on current state
+3. Use case ends.
+
+**Extensions**
+
+2a. The given state does not allow for toggling
+
+> 2a1. TaskManager shows an error message 
+> Use case ends
+
 ## Appendix C : Non Functional Requirements
 
 1. Should work on any [mainstream OS](#mainstream-os) as long as it has Java `1.8.0_60` or higher installed.
@@ -553,10 +568,10 @@ Priority | As a ... | I want to ... | So that I can...
 
 > Windows, Linux, Unix, OS-X
 
-#####NLP: 
+##### NLP: 
 	Natural Language Processing
 
-#####Task:
+##### Task:
 	Event: Tasks that has both start time and end time
 	Tasks: Tasks that has only end time
 	Floating Tasks: Tasks that has no start time or end time

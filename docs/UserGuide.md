@@ -21,6 +21,7 @@ By : `Team SE-EDU`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2016`  &nbsp;&nbsp;&nbs
 3. Double-click the file to start the app. The GUI should appear in a few seconds.
 
    > <img src="images/GUI.PNG" width="600">
+   > <img src="images/UI_feature.PNG" width="600">
 
 
 4. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br>
@@ -359,7 +360,7 @@ There is no need to save manually.
 * **List** : `list` <br>
 > * e.g. `list`
 
-* **List** : `undo` <br>
+* **Undo** : `undo` <br>
 > * e.g. `undo`
 
 * **Sort** : `sort KEYWORD` <br>
@@ -377,7 +378,7 @@ There is no need to save manually.
 
 * **Toggle** : `toggle` or `TAB` <br>
 
-* **edit** : `edit TASK_ID[n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]...` <br>
+* **Edit** : `edit TASK_ID[n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]...` <br>
 
 * **Help** : `help` <br>
  

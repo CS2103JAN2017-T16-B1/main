@@ -14,6 +14,7 @@ import seedu.taskManager.commons.util.CollectionUtil;
 import seedu.taskManager.commons.util.StringUtil;
 import seedu.taskManager.logic.commands.EditCommand;
 import seedu.taskManager.logic.commands.exceptions.CommandException;
+import seedu.taskManager.model.Task.EndTime;
 import seedu.taskManager.model.Task.ReadOnlyTask;
 import seedu.taskManager.model.Task.Task;
 import seedu.taskManager.model.Task.TaskStringReference;
@@ -97,6 +98,16 @@ public class ModelManager extends ComponentManager implements Model {
         //@@author A0139509X
         sortTasksByEndTime();
         raise (new ScrollToListRequestEvent(filteredTasks.indexOf(task)));
+    }
+
+    //@@author A0139375W
+    public boolean isRecurringTask(Task task) {
+        return task.getRecurPeriod().hasRecurPeriod() && !task.getEndTime().isEmpty();
+    }
+
+    public boolean hasPassedEndDate(Task task, EndTime endTime) {
+        return !task.getRecurEndDate().hasRecurEndDate()
+                || !task.getRecurEndDate().hasPassedEndDate(endTime.toString());
     }
 
     // @@author A0140072X
