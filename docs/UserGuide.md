@@ -289,33 +289,36 @@ There is no need to save manually.
 
 ## 4. Command Summary
 
-* **Add :** <br>
-* **Task :**<br>
-* `add TASK_NAME [s/STARTTIME] [e/ENDTIME] [d/DESCRIPTION] [r/REPEATPERIOD] [l/RECURENDDATE] [t/TAG] ...` <br>
-   e.g. `add Study for midterms s/Saturday e/Sunday d/CS2103 Chapter 1 to 10`
+* **Add Task : `add TASK_NAME [s/STARTTIME] [e/ENDTIME] [d/DESCRIPTION] [r/REPEATPERIOD] [l/RECURENDDATE] [t/TAG] ...`** <br>
+> *  e.g. `add Study for midterms s/Saturday e/Sunday d/CS2103 Chapter 1 to 10` <br>
+  
 
 * **Clear** : `clear`<br>
 
+
 * **Delete** : `delete INDEX [INDEX]...` <br>
-   e.g. `delete 3`
+> * e.g. `delete 3`
 
 * **Find** : `find KEYWORD [MORE_KEYWORDS]` <br>
-  e.g. `find milk`<br>
-  e.g. `find #h` (priority level)<br>
-  e.g. `find #done` (status)<br>
-  e.g. `find @milk` (if the task has been archived)
+> * e.g. `find milk`<br>
+> * e.g. `find #h` (priority level)<br>
+> * e.g. `find #done` (status)<br>
+> * e.g. `find @milk` (if the task has been archived)
 
 * **List** : `list` <br>
-  e.g. `list`
+> * e.g. `list`
 
 * **List** : `undo` <br>
-  e.g. `undo`
+> * e.g. `undo`
+
+* **Sort** : `sort KEYWORD` <br>
+> * e.g. `sort duedate`
  
 * **Archive** : `archive` <br>
-  e.g. `archive 2`
+> * e.g. `archive 2`
 
 * **Archived** : `archived` <br>
-  e.g. `archived`
+> * e.g. `archived`
   
 * **Save/Load** : `ALT + S / ALT + L` <br>
   
