@@ -194,18 +194,18 @@ Format: `sort PARAMETER`
 ### 2.7.  Deleting task(s): `delete`
 
 
-Deletes the specified task(s) from the task manager.<br>
-Format: `delete INDEX,[INDEX]...`
+Deletes the specified task from the task manager.<br>
+Format: `delete INDEX`
 
-> * Deletes the task(s) at the specified INDEX. <br>
+> * Deletes the task at the specified INDEX. <br>
 > * The index refers to the index number shown in the most recent listing.<br>
 > * The index **must be a positive integer** 1, 2, 3, ...<br>
 
 Examples:
 
 * `list`<br>
-  `delete 2,3`<br>
-  Deletes the 2nd and 3rd task in the list of task.
+  `delete 2`<br>
+  Deletes the 2nd in the list of task.
 * `find meeting` <br>
   `delete 1`<br>
   Deletes the 1st task in the results of the `find` command.
