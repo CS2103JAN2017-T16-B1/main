@@ -149,7 +149,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     public void archiveTask(int index, ReadOnlyTask key) throws DuplicatetaskException {
-       tasks.updateTask(index, key);
+        tasks.updateTask(index, key);
 
     }
 
