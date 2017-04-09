@@ -10,7 +10,7 @@ public class Description {
 
     public static final String MESSAGE_DESCRIPTION_CONSTRAINTS =
             "Description should only contain alphanumeric characters and whitespace";
-    public static final String DESCRIPTION_VALIDATION_REGEX = "^([a-zA-Z0-9]*)$";
+    public static final String DESCRIPTION_VALIDATION_REGEX = ".*";
 
     public final String description;
 
