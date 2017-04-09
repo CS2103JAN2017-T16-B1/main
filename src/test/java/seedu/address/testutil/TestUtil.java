@@ -33,6 +33,7 @@ import seedu.taskManager.commons.core.LogsCenter;
 import seedu.taskManager.commons.exceptions.IllegalValueException;
 import seedu.taskManager.commons.util.FileUtil;
 import seedu.taskManager.commons.util.XmlUtil;
+import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.Task.Description;
 import seedu.taskManager.model.Task.EndTime;
 import seedu.taskManager.model.Task.ID;
@@ -44,7 +45,6 @@ import seedu.taskManager.model.Task.RecurPeriod;
 import seedu.taskManager.model.Task.StartTime;
 import seedu.taskManager.model.Task.Status;
 import seedu.taskManager.model.Task.Task;
-import seedu.taskManager.model.TaskManager;
 import seedu.taskManager.model.tag.Tag;
 import seedu.taskManager.model.tag.UniqueTagList;
 import seedu.taskManager.storage.XmlSerializableTaskManager;
@@ -406,32 +406,7 @@ public class TestUtil {
 
         return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
     }
-<<<<<<< HEAD
 
-    public static void sortByEndTime(List<TestTask> list) {
-        Collections.sort(list, new Comparator<TestTask>() {
-            public int compare(TestTask task1, TestTask task2) {
-
-                if (task1.getDueDate() != null && task2.getDueDate() != null) {
-                    return task1.getDueDate().compareTo(task2.getDueDate());
-                }
-                else if (task1.getDueDate() == null && task2.getDueDate() != null) {
-                    return 1;
-                }
-                else if (task1.getDueDate() != null && task2.getDueDate() == null) {
-                    return -1;
-                }
-                else if (task1.getDueDate() == null && task2.getDueDate() == null) {
-                    return 0;
-                }
-                return 0;
-            }
-            });
-    }
-
-
-=======
->>>>>>> 39f84794964a4ecceb8c90a767f8ef4f8df90c32
     private static <T> List<T> asList(T[] objs) {
         List<T> list = new ArrayList<>();
         for (T obj : objs) {

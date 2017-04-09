@@ -10,7 +10,8 @@ import seedu.taskManager.model.Task.UniqueTaskList;
  */
 public class TypicalTestTasks {
 
-    public TestTask task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11;
+    public TestTask task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11, task12,
+                     task13, task14, task15, task16, task17, task18;
 
     public TypicalTestTasks() {
         try {
@@ -59,6 +60,34 @@ public class TypicalTestTasks {
             task11 = new TaskBuilder().withName("Study for Midterm3").withStartTime("2017-03-12-2100")
                     .withEndTime("2017-04-16-2100").withTags("school").withStatus("undone")
                     .withPriority("h").withID("1").withDescription("").withRecurPeriod("9")
+                    .withRecurEndDate("2017-04-30-2100").build();
+            task12 = new TaskBuilder().withName("Study for Midterm3").withStartTime("2017-03-19-2100")
+                    .withEndTime("2017-04-25-2100").withTags("school").withStatus("undone")
+                    .withPriority("h").withID("1").withDescription("").withRecurPeriod("9")
+                    .withRecurEndDate("2017-04-30-2100").build();
+            task13 = new TaskBuilder().withName("Study for Midterm3").withStartTime("2017-03-12-2100")
+                    .withEndTime("2017-04-16-2100").withTags("school").withStatus("undone")
+                    .withPriority("h").withID("1").withDescription("").withRecurPeriod("weekly")
+                    .withRecurEndDate("").build();
+            task14 = new TaskBuilder().withName("Study for Midterm3").withStartTime("2017-03-19-2100")
+                    .withEndTime("2017-04-23-2100").withTags("school").withStatus("undone")
+                    .withPriority("h").withID("1").withDescription("").withRecurPeriod("weekly")
+                    .withRecurEndDate("").build();
+            task15 = new TaskBuilder().withName("Study for Midterm3").withStartTime("2017-03-12-2100")
+                    .withEndTime("2017-04-16-2100").withTags("school").withStatus("undone")
+                    .withPriority("h").withID("1").withDescription("").withRecurPeriod("monthly")
+                    .withRecurEndDate("").build();
+            task16 = new TaskBuilder().withName("Study for Midterm3").withStartTime("2017-04-12-2100")
+                    .withEndTime("2017-05-16-2100").withTags("school").withStatus("undone")
+                    .withPriority("h").withID("1").withDescription("").withRecurPeriod("monthly")
+                    .withRecurEndDate("").build();
+            task17 = new TaskBuilder().withName("Study for Midterm3").withStartTime("2017-03-12-2100")
+                    .withEndTime("2017-04-16-2100").withTags("school").withStatus("undone")
+                    .withPriority("h").withID("1").withDescription("").withRecurPeriod("yearly")
+                    .withRecurEndDate("").build();
+            task18 = new TaskBuilder().withName("Study for Midterm3").withStartTime("2018-03-12-2100")
+                    .withEndTime("2018-04-16-2100").withTags("school").withStatus("undone")
+                    .withPriority("h").withID("1").withDescription("").withRecurPeriod("yearly")
                     .withRecurEndDate("").build();
 
         } catch (IllegalValueException e) {
