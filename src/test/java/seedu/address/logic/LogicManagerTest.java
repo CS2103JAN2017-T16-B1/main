@@ -334,7 +334,7 @@ public class LogicManagerTest {
 
         assertCommandSuccess("list", ListCommand.MESSAGE_SUCCESS, expectedAB, expectedList);
     }
- //@@ a0139375w
+ /*//@@ a0139375w
     @Test
     public void execute_archive_successful() throws Exception {
         // prepare expectations
@@ -364,7 +364,7 @@ public class LogicManagerTest {
 
 
     //@@ a0139375w
-
+*/
 
     /**
      * Confirms the 'invalid argument index number behaviour' for the given
