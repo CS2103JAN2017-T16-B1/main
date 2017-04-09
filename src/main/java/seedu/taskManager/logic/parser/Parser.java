@@ -97,6 +97,10 @@ public class Parser {
         }
     }
     //@@author A0138998B
+    /*
+     * Parses user input and replaces any commonly used words such as FROM/TO/BY 
+     * with the appropriate prefixes
+     */
     public String parseArguments(String args) {
         args = args.replaceAll(STARTTIME_VARIANTS_REGEX, "s/");
         args = args.replaceAll(ENDTIME_VARIANTS_REGEX, "e/");

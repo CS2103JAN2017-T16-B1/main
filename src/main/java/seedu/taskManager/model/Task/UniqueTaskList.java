@@ -17,7 +17,8 @@ import seedu.taskManager.commons.exceptions.IllegalValueException;
 import seedu.taskManager.commons.util.CollectionUtil;
 
 /**
- * A list of tasks that enforces uniqueness between its elements and does not allow nulls.
+ * A list of tasks that enforces uniqueness between its elements and does not
+ * allow nulls.
  *
  * Supports a minimal set of list operations.
  *
@@ -29,7 +30,8 @@ public class UniqueTaskList implements Iterable<Task> {
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
 
     /**
-     * Returns true if the list contains an equivalent task as the given argument.
+     * Returns true if the list contains an equivalent task as the given
+     * argument.
      */
     public boolean contains(ReadOnlyTask toCheck) {
         assert toCheck != null;
@@ -39,7 +41,9 @@ public class UniqueTaskList implements Iterable<Task> {
     /**
      * Adds a Task to the list.
      *
-     * @throws DuplicatetaskException if the task to add is a duplicate of an existing task in the list.
+     * @throws DuplicatetaskException
+     *             if the task to add is a duplicate of an existing task in the
+     *             list.
      */
     public void add(Task toAdd) throws DuplicatetaskException {
         assert toAdd != null;
@@ -50,11 +54,14 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Updates the task in the list at position {@code index} with {@code editedtask}.
+     * Updates the task in the list at position {@code index} with
+     * {@code editedtask}.
      *
-     * @throws DuplicatetaskException if updating the task's details causes the task to be equivalent to
-     *      another existing task in the list.
-     * @throws IndexOutOfBoundsException if {@code index} < 0 or >= the size of the list.
+     * @throws DuplicatetaskException
+     *             if updating the task's details causes the task to be
+     *             equivalent to another existing task in the list.
+     * @throws IndexOutOfBoundsException
+     *             if {@code index} < 0 or >= the size of the list.
      */
     public void updateTask(int index, ReadOnlyTask editedTask) throws DuplicatetaskException {
         assert editedTask != null;
@@ -64,12 +71,12 @@ public class UniqueTaskList implements Iterable<Task> {
         if (editedTask.getStatus().equals("undone") && (taskToUpdate.equals(editedTask))) {
             throw new DuplicatetaskException();
         }
-        
+
         if (internalList.contains(editedTask)) {
             System.out.print(editedTask);
             throw new DuplicatetaskException();
         }
-        
+
         taskToUpdate.resetData(editedTask);
         internalList.set(index, taskToUpdate);
     }
@@ -77,7 +84,8 @@ public class UniqueTaskList implements Iterable<Task> {
     /**
      * Removes the equivalent task from the list.
      *
-     * @throws TaskNotFoundException if no such task could be found in the list.
+     * @throws TaskNotFoundException
+     *             if no such task could be found in the list.
      */
     public boolean remove(ReadOnlyTask toRemove) throws TaskNotFoundException {
         assert toRemove != null;
@@ -87,63 +95,59 @@ public class UniqueTaskList implements Iterable<Task> {
         }
         return taskFoundAndDeleted;
     }
-    //@@author A0138998B
+
+    // @@author A0138998B
     /**
-     * Sorts tasks in the list according to end times.
-     * floating tasks are sorted to the back
+     * Sorts tasks in the list according to end times. floating tasks are sorted
+     * to the back
+     *
      * @throws IllegalValueException
      *
      */
     public void sortByEndTime() throws IllegalValueException {
         List<TaskAndDueDate> list = new ArrayList<TaskAndDueDate>();
-        for (Task task:internalList) {
+        for (Task task : internalList) {
             list.add(new TaskAndDueDate(task, task.getEndTime()));
         }
         sortByEndTime(list);
 
         internalList.clear();
 
-        for (TaskAndDueDate object:list) {
+        for (TaskAndDueDate object : list) {
             internalList.add(new Task(object.task));
-
 
         }
 
     }
 
-  //@@author A0138998B
     /**
-     * Sorts list of tasks by duedate
-     * Floating tasks will be sorted to the end
+     * Sorts list of tasks by duedate Floating tasks will be sorted to the end
      */
     public void sortByEndTime(List<TaskAndDueDate> list) {
         Collections.sort(list, new Comparator<TaskAndDueDate>() {
             public int compare(TaskAndDueDate task1, TaskAndDueDate task2) {
                 if (task1.dueDate != null && task2.dueDate != null) {
                     return task1.dueDate.compareTo(task2.dueDate);
-                }
-                else if (task1.dueDate == null && task2.dueDate != null) {
+                } else if (task1.dueDate == null && task2.dueDate != null) {
                     return 1;
-                }
-                else if (task1.dueDate != null && task2.dueDate == null) {
+                } else if (task1.dueDate != null && task2.dueDate == null) {
                     return -1;
-                }
-                else if (task1.dueDate == null && task2.dueDate == null) {
+                } else if (task1.dueDate == null && task2.dueDate == null) {
                     return 0;
                 }
                 return 0;
             }
-            });
+        });
     }
 
-
-
     /**
-     * Utility class to store pairs of tasks and their endTimes as LocalDateTime variables to enable easy sorting
+     * Utility class to store pairs of tasks and their endTimes as LocalDateTime
+     * variables to enable easy sorting
      */
 
     /**
-     * Utility class to store pairs of tasks and their endTimes as LocalDateTime variables to enable easy sorting
+     * Utility class to store pairs of tasks and their endTimes as LocalDateTime
+     * variables to enable easy sorting
      */
     public class TaskAndDueDate {
         public final ReadOnlyTask task;
@@ -162,12 +166,12 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     public int turnPriorityIntoInt(Priority priority) {
-        switch(priority.toString()) {
-        case("h"):
+        switch (priority.toString()) {
+        case ("h"):
             return 1;
-        case("m"):
+        case ("m"):
             return 2;
-        case("l"):
+        case ("l"):
             return 3;
         default:
             return 0;
@@ -186,6 +190,7 @@ public class UniqueTaskList implements Iterable<Task> {
             }
         });
     }
+
     /**
      * Sorts tasks in the list according to priorities.
      *
@@ -200,7 +205,8 @@ public class UniqueTaskList implements Iterable<Task> {
         });
 
     }
-    //@@author
+
+    // @@author
     public void setTasks(UniqueTaskList replacement) {
         this.internalList.setAll(replacement.internalList);
     }
@@ -226,8 +232,7 @@ public class UniqueTaskList implements Iterable<Task> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueTaskList // instanceof handles nulls
-                && this.internalList.equals(
-                ((UniqueTaskList) other).internalList));
+                        && this.internalList.equals(((UniqueTaskList) other).internalList));
     }
 
     @Override
@@ -236,7 +241,8 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Signals that an operation would have violated the 'no duplicates' property of the list.
+     * Signals that an operation would have violated the 'no duplicates'
+     * property of the list.
      */
     public static class DuplicatetaskException extends DuplicateDataException {
         public DuplicatetaskException() {
@@ -245,14 +251,14 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Signals that an operation targeting a specified task in the list would fail because
-     * there is no such matching task in the list.
+     * Signals that an operation targeting a specified task in the list would
+     * fail because there is no such matching task in the list.
      */
-    public static class TaskNotFoundException extends Exception {}
+    public static class TaskNotFoundException extends Exception {
+    }
 
-    //@@author A0138998B
+    // @@author A0138998B
     /**
-     * Sorts list of tasks by duedate
-     * Floating tasks will be sorted to the end
+     * Sorts list of tasks by duedate Floating tasks will be sorted to the end
      */
 }

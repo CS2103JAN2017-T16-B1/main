@@ -3,11 +3,10 @@ package seedu.taskManager.logic.commands;
 import seedu.taskManager.commons.core.Messages;
 import seedu.taskManager.logic.commands.exceptions.CommandException;
 
-
+//@@author A0138998B
 /**
  * Sorts the entire task list in the task manager and displays the last shown list in a sorted format
  */
-//@@author A0138998B
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
@@ -25,7 +24,8 @@ public class SortCommand extends Command {
     public final String parameter;
 
     /**
-     * Creates an SortCommand using the String parameter.
+     * Creates a SortCommand using the String parameter.
+     * Parameters can take on values such as name, duedate and priority
     */
     public SortCommand(String parameter) {
 
