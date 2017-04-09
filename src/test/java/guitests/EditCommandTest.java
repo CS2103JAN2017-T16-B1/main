@@ -54,6 +54,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
         TestTask taskToEdit = expectedTaskList[taskManagerIndex - 1];
         TestTask editedTask = new TaskBuilder(taskToEdit).withTags().withPriority("l").build();
 
+        System.out.println("this shit starts here");
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
 
@@ -64,9 +65,9 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
         String detailsToEdit = "Belle";
         int filteredTaskListIndex = 1;
-        int taskManagerIndex = 0;
+        int taskManagerIndex = 1;
 
-        TestTask taskToEdit = expectedTaskList[taskManagerIndex];
+        TestTask taskToEdit = expectedTaskList[taskManagerIndex - 1];
         TestTask editedTask = new TaskBuilder(taskToEdit).withName("Belle").withPriority("m").build();
 
         assertEditSuccess(filteredTaskListIndex, taskManagerIndex, detailsToEdit, editedTask);
@@ -138,9 +139,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
         // confirm the list now contains all previous tasks plus the task with
         // updated details
-        // expectedTaskList[taskManagerIndex - 1] = editedTask;
-
+        expectedTaskList[taskManagerIndex - 1] = editedTask;
         assertTrue(taskListPanel.isListMatching(expectedTaskList));
-
     }
 }
