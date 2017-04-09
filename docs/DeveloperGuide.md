@@ -624,3 +624,17 @@ Cons:
 > * Unable to set multiple reminders
 > * Unable to set start date/time for task
 
+	 | Pros | Cons 
+-------- | :-------- | :--------- 
+Sticky Notes | > * Can create multiple notes for items of different category, providing easy visual based on category
+> * Can have multiple items under one category
+> * Can edit the space it takes on the screen as compared to the rest of the notes to allow the more important ones to stand out
+> * Easy to delete task by just erasing them
+> * Color code different categories to help visualize them better
+> * Can easily edit the tasks | > * Hard to sort out which items are more important by deadline
+> * No deadline function to remind me of important dates
+> * There is no calendar view to look at a snapshot of events/tasks by time
+> * Requires multiple use of the mouse with the GUI
+> * Unable to search for a particular tasks by keyword
+> * Unable to find out what was previously done (list of completed items)
+> * Cannot sync/connect to a cloud network
