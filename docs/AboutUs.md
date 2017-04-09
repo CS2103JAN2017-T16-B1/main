@@ -13,10 +13,11 @@ We are a team based in the [School of Computing, National University of Singapor
 **Aspects/tools in charge of**: Logic, Deliverables and deadlines <br>
 
 **Features implemented**: 
-* [Sort command] 
+* [Edit command](https://github.com/CS2103JAN2017-T16-B1/main/blob/v0.5/docs/UserGuide.md#26-editing-a-taskevent--edit)
+* [Sort command](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#27--sorting-tasksevents--sort)
 * [Date parsing](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#22-adding-a-taskevent--add)
 
-**Code written:** [[functional code](../collated/main/A0138998B.md)]
+**Code written:** [[functional code](../collated/main/A0138998B.md)][[test code](../collated/test/A0138998B.md)][[unused code](../collated/unused/A0138998B.md)]
 
 **Other major contribution**:
 * Contributed to Junit testing
