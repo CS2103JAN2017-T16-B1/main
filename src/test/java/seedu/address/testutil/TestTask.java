@@ -1,16 +1,20 @@
 package seedu.address.testutil;
 
-import seedu.address.model.Task.EndTime;
-import seedu.address.model.Task.ID;
-import seedu.address.model.Task.StartTime;
-import seedu.address.model.Task.Status;
-import seedu.address.model.Task.Name;
-import seedu.address.model.Task.Priority;
-import seedu.address.model.Task.Description;
-import seedu.address.model.Task.ReadOnlyTask;
-import seedu.address.model.Task.RecurEndDate;
-import seedu.address.model.Task.RecurPeriod;
-import seedu.address.model.tag.UniqueTagList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import seedu.taskManager.model.Task.Description;
+import seedu.taskManager.model.Task.EndTime;
+import seedu.taskManager.model.Task.ID;
+import seedu.taskManager.model.Task.Name;
+import seedu.taskManager.model.Task.Priority;
+import seedu.taskManager.model.Task.ReadOnlyTask;
+import seedu.taskManager.model.Task.RecurEndDate;
+import seedu.taskManager.model.Task.RecurPeriod;
+import seedu.taskManager.model.Task.StartTime;
+import seedu.taskManager.model.Task.Status;
+import seedu.taskManager.model.tag.UniqueTagList;
 
 /**
  * A mutable task object. For testing only.
@@ -27,6 +31,7 @@ public class TestTask implements ReadOnlyTask {
     private Status status;
     private RecurPeriod recurPeriod;
     private RecurEndDate recurEndDate;
+    private LocalDateTime dueDate;
 
 
     public TestTask() {
@@ -34,15 +39,19 @@ public class TestTask implements ReadOnlyTask {
     }
 
     /**
-     * Creates a copy of {@code personToCopy}.
+     * Creates a copy of {@code taskToCopy}.
      */
-    public TestTask(TestTask personToCopy) {
-        this.name = personToCopy.getName();
-        this.description = personToCopy.getDescription();
-        this.startTime = personToCopy.getStartTime();
-        this.endTime = personToCopy.getEndTime();
-        this.tags = personToCopy.getTags();
+    public TestTask(TestTask taskToCopy) {
+        this.name = taskToCopy.getName();
+        this.description = taskToCopy.getDescription();
+        this.startTime = taskToCopy.getStartTime();
+        this.endTime = taskToCopy.getEndTime();
+        this.status = taskToCopy.getStatus();
+        this.recurPeriod = taskToCopy.getRecurPeriod();
+        this.recurEndDate = taskToCopy.getRecurEndDate();
+        this.tags = taskToCopy.getTags();
     }
+
 
     public void setName(Name name) {
         this.name = name;
@@ -63,13 +72,13 @@ public class TestTask implements ReadOnlyTask {
     public void setTags(UniqueTagList tags) {
         this.tags = tags;
     }
-    
-    public void setRecurPeriod(RecurPeriod recurPeriod){
-    	this.recurPeriod=recurPeriod;
+
+    public void setRecurPeriod(RecurPeriod recurPeriod) {
+        this.recurPeriod = recurPeriod;
     }
-    
-    public void setRecurEndDate(RecurEndDate recurEndDate){
-    	this.recurEndDate=recurEndDate;
+
+    public void setRecurEndDate(RecurEndDate recurEndDate) {
+        this.recurEndDate = recurEndDate;
     }
 
     @Override
@@ -108,6 +117,8 @@ public class TestTask implements ReadOnlyTask {
         sb.append("e/" + this.getEndTime().endTime + " ");
         sb.append("d/" + this.getDescription().description + " ");
         sb.append("s/" + this.getStartTime().startTime + " ");
+        sb.append("r/" + this.getRecurPeriod().period + " ");
+        sb.append("l/" + this.getRecurEndDate().endDate + " ");
         this.getTags().asObservableList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }
@@ -121,7 +132,7 @@ public class TestTask implements ReadOnlyTask {
     public Priority getPriority() {
         return priority;
     }
-    
+
     public void setStatus(Status status) {
         assert status != null;
         this.status = status;
@@ -131,46 +142,59 @@ public class TestTask implements ReadOnlyTask {
     public Status getStatus() {
         return status;
     }
-    
+
     @Override
     public ID getId() {
         return id;
     }
-	
-    
+
+
     public void setId(ID id) {
         assert id != null;
-        this.id=id;
+        this.id = id;
     }
 
-	@Override
-	public boolean noEndTime() {
-	    assert endTime != null;
-        if(this.endTime.isEmpty()){
+    @Override
+    public boolean noEndTime() {
+        assert endTime != null;
+        if (this.endTime.isEmpty()) {
             return true;
-        }else {
+        } else {
             return false;
         }
-	}
+    }
 
-	@Override
-	public boolean noStartTime() {
-	    assert startTime != null;
-        if(this.startTime.isEmpty()){
+    @Override
+    public boolean noStartTime() {
+        assert startTime != null;
+        if (this.startTime.isEmpty()) {
             return true;
-        }else {
+        } else {
             return false;
         }
-	}
+    }
 
-	@Override
-	public RecurPeriod getRecurPeriod() {
-		
-		return this.recurPeriod;
-	}
+    @Override
+    public RecurPeriod getRecurPeriod() {
 
-	@Override
-	public RecurEndDate getRecurEndDate() {
-		return this.recurEndDate;
-	}
+        return this.recurPeriod;
+    }
+
+    @Override
+    public RecurEndDate getRecurEndDate() {
+        return this.recurEndDate;
+    }
+
+    // @@author A0140072X
+    public LocalDateTime getDueDate() {
+        LocalDateTime dueDate;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm");
+
+        try {
+            this.dueDate = LocalDateTime.parse(endTime.toString().replaceAll("\n", ""), dtf);
+        } catch (DateTimeParseException e) {
+            this.dueDate = null;
+        }
+        return this.dueDate;
+    }
 }

@@ -4,12 +4,13 @@ import java.util.function.Supplier;
 
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import seedu.address.commons.core.Config;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.ReadOnlyTaskManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.storage.XmlSerializableTaskManager;
 import seedu.address.testutil.TestUtil;
+import seedu.taskManager.MainApp;
+import seedu.taskManager.commons.core.Config;
+import seedu.taskManager.commons.core.GuiSettings;
+import seedu.taskManager.model.ReadOnlyTaskManager;
+import seedu.taskManager.model.UserPrefs;
+import seedu.taskManager.storage.XmlSerializableTaskManager;
 
 /**
  * This class is meant to override some properties of MainApp so that it will be suited for

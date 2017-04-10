@@ -34,4 +34,15 @@ public class MainMenuHandle extends GuiHandle {
         guiRobot.push(KeyCode.F1);
         guiRobot.sleep(500);
     }
+
+    //@@author A0139509X
+    public void useTabKey() {
+        guiRobot.push(KeyCode.TAB);
+        guiRobot.sleep(500);
+    }
+
+    public void useKeyWordA() {
+        guiRobot.push(KeyCode.A);
+        guiRobot.sleep(500);
+    }
 }

@@ -1,40 +1,73 @@
 package guitests;
 
 import static org.junit.Assert.assertTrue;
+import static seedu.taskManager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import org.junit.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.testutil.TestTask;
+import seedu.taskManager.commons.core.Messages;
+import seedu.taskManager.logic.commands.FindCommand;
+import seedu.taskManager.model.Task.Priority;
 
 public class FindCommandTest extends TaskManagerGuiTest {
-
+    //@@author A0139509X
     @Test
     public void find_nonEmptyList() {
-        assertFindResult("find Mark"); // no results
-        assertFindResult("find Midterms2 Midterms4", td.task2, td.task4); // multiple results
 
-        //find after deleting one result
+        assertFindResult("find final"); // no results
+        assertFindResult("find midterm", td.task1); //, td.task4); // multiple results
+        assertFindResult("find #h", td.task3); //one result
+        assertFindResult("find #m", td.task1, td.task4, td.task5, td.task6, td.task7); //5 results
+        assertFindResult("find #l", td.task2); //no results
+        //find by tags
+
+        assertFindResult("find school", td.task1, td.task2, td.task3, td.task4, td.task5, td.task6, td.task7);
+        assertFindResult("find @school"); //no results
+
+        //find done and undone list
+        assertFindResult("find #undone", td.task1, td.task2, td.task3, td.task4, td.task5, td.task6, td.task7);
+        assertFindResult("find #done");
+
+        //find after deleting one task
+        commandBox.runCommand("list");
         commandBox.runCommand("delete 1");
-        assertFindResult("find Midterms4", td.task4);
+        assertFindResult("find midterm4", td.task4);
+        assertFindResult("find midterms");
+
+        //find after archiving one task
+        commandBox.runCommand("list");
+        commandBox.runCommand("archive 2");
+        assertFindResult("find #h"); //no result because task became done
+
+        assertFindResult("find @school", td.task10); //1 result found in archived folder
+
     }
 
     @Test
     public void find_emptyList() {
         commandBox.runCommand("clear");
-        assertFindResult("find Jean"); // no results
+        assertFindResult("find study"); // no results
     }
 
     @Test
     public void find_invalidCommand_fail() {
-        commandBox.runCommand("findgeorge");
+        commandBox.runCommand("findStudy");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
+        commandBox.runCommand("find");
+        assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        commandBox.runCommand("find @");
+        assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        commandBox.runCommand("find #");
+        assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        commandBox.runCommand("find #H");
+        assertResultMessage(Priority.MESSAGE_NAME_CONSTRAINTS);
     }
 
     private void assertFindResult(String command, TestTask... expectedHits) {
         commandBox.runCommand(command);
         assertListSize(expectedHits.length);
-        assertResultMessage(expectedHits.length + " persons listed!");
-        assertTrue(personListPanel.isListMatching(expectedHits));
+        assertResultMessage(expectedHits.length + " tasks listed!");
+        assertTrue(taskListPanel.isListMatching(expectedHits));
     }
 }

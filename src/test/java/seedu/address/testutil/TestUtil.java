@@ -7,8 +7,11 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.loadui.testfx.GuiTest;
@@ -16,7 +19,7 @@ import org.testfx.api.FxToolkit;
 
 import com.google.common.io.Files;
 
-import guitests.guihandles.PersonCardHandle;
+import guitests.guihandles.TaskCardHandle;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
@@ -26,22 +29,25 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import junit.framework.AssertionFailedError;
 import seedu.address.TestApp;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.FileUtil;
-import seedu.address.commons.util.XmlUtil;
-import seedu.address.model.TaskManager;
-import seedu.address.model.Task.EndTime;
-import seedu.address.model.Task.ID;
-import seedu.address.model.Task.StartTime;
-import seedu.address.model.Task.Status;
-import seedu.address.model.Task.Name;
-import seedu.address.model.Task.Priority;
-import seedu.address.model.Task.Task;
-import seedu.address.model.Task.Description;
-import seedu.address.model.Task.ReadOnlyTask;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.UniqueTagList;
-import seedu.address.storage.XmlSerializableTaskManager;
+import seedu.taskManager.commons.core.LogsCenter;
+import seedu.taskManager.commons.exceptions.IllegalValueException;
+import seedu.taskManager.commons.util.FileUtil;
+import seedu.taskManager.commons.util.XmlUtil;
+import seedu.taskManager.model.Task.Description;
+import seedu.taskManager.model.Task.EndTime;
+import seedu.taskManager.model.Task.ID;
+import seedu.taskManager.model.Task.Name;
+import seedu.taskManager.model.Task.Priority;
+import seedu.taskManager.model.Task.ReadOnlyTask;
+import seedu.taskManager.model.Task.RecurEndDate;
+import seedu.taskManager.model.Task.RecurPeriod;
+import seedu.taskManager.model.Task.StartTime;
+import seedu.taskManager.model.Task.Status;
+import seedu.taskManager.model.Task.Task;
+import seedu.taskManager.model.TaskManager;
+import seedu.taskManager.model.tag.Tag;
+import seedu.taskManager.model.tag.UniqueTagList;
+import seedu.taskManager.storage.XmlSerializableTaskManager;
 
 /**
  * A utility class for test cases.
@@ -55,9 +61,10 @@ public class TestUtil {
      */
     public static final String SANDBOX_FOLDER = FileUtil.getPath("./src/test/data/sandbox/");
 
-    public static final Task[] SAMPLE_PERSON_DATA = getSamplePersonData();
+    public static final Task[] SAMPLE_TASK_DATA = getSampleTaskData();
 
     public static final Tag[] SAMPLE_TAG_DATA = getSampleTagData();
+
 
     public static void assertThrows(Class<? extends Throwable> expected, Runnable executable) {
         try {
@@ -74,23 +81,33 @@ public class TestUtil {
                 String.format("Expected %s to be thrown, but nothing was thrown.", expected.getName()));
     }
 
-    private static Task[] getSamplePersonData() {
+    private static Task[] getSampleTaskData() {
         try {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
-                new Task(new Name("School"), new Description("go to school"), new StartTime("2017-03-03-2100"), new EndTime("2017-05-04-2000"), new ID("20000"),new Priority("m"), new Status("done"), new UniqueTagList()),
-                new Task(new Name("Homework"), new Description("do homework"), new StartTime("2017-03-03-2100"), new EndTime("2017-06-02-1000"),new ID("20001"),new Priority("h"), new Status("done"), new UniqueTagList()),
-                new Task(new Name("Midterm"), new Description("study for midterm"), new StartTime("2017-02-01-2100"), new EndTime("2017-08-08-2100"),new ID("20002"),new Priority("m"), new Status("done"), new UniqueTagList()),
-                new Task(new Name("Exam"), new Description("study for exam"), new StartTime("2017-06-06-1200"), new EndTime("2017-03-03-2100"),new ID("20003"),new Priority("l"), new Status("done"), new UniqueTagList()),
-                new Task(new Name("buy milk"), new Description("buy milk at ntuc"), new StartTime("2017-10-10-1400"), new EndTime("2017-03-03-2100"),new ID("20004"),new Priority("m"), new Status("done"), new UniqueTagList()),
-                new Task(new Name("buy dinner"), new Description("buy dinner at coffeeshop"), new StartTime("2017-08-09-2100"), new EndTime("2017-12-11-2100"),new ID("20005"),new Priority("l"), new Status("done"), new UniqueTagList()),
-                new Task(new Name("cook dinner"), new Description("cook steak for dinner"), new StartTime("2017-01-03-2100"), new EndTime("2017-05-05-2100"),new ID("20006"),new Priority("h"), new Status("undone"), new UniqueTagList()),
-                new Task(new Name("go to bed"), new Description("time to sleep"), new StartTime("2017-03-01-2200"), new EndTime("2017-07-07-2100"),new ID("20007"),new Priority("l"), new Status("undone"), new UniqueTagList()),
-                new Task(new Name("Sleeping"), new Description("zzzzz...."), new StartTime("2017-03-03-1500"), new EndTime("2017-05-05-2100"),new ID("20008"),new Priority("m"), new Status("undone"), new UniqueTagList())
+                new Task(new Name("School"), new Description("go to school"), new StartTime("2017-03-03-2100"), new EndTime("2017-05-04-2000"),
+                        new ID("20000"), new Priority("m"), new Status("undone"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                new Task(new Name("Homework"), new Description("do homework"), new StartTime("2017-03-03-2100"), new EndTime("2017-06-02-1000"),
+                        new ID("20001"), new Priority("h"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                new Task(new Name("Midterm"), new Description("study for midterm"), new StartTime("2017-02-01-2100"), new EndTime("2017-08-08-2100"),
+                        new ID("20002"), new Priority("m"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                new Task(new Name("Exam"), new Description("study for exam"), new StartTime("2017-01-01-1200"), new EndTime("2017-03-03-2100"),
+                        new ID("20003"), new Priority("l"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                new Task(new Name("buy milk"), new Description("buy milk at ntuc"), new StartTime("2017-01-01-1400"), new EndTime("2017-03-03-2100"),
+                        new ID("20004"), new Priority("m"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                new Task(new Name("buy dinner"), new Description("buy dinner at coffeeshop"), new StartTime("2017-08-09-2100"), new EndTime("2017-12-11-2100"),
+                        new ID("20005"), new Priority("l"), new Status("done"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                new Task(new Name("cook dinner"), new Description("cook steak for dinner"), new StartTime("2017-01-03-2100"), new EndTime("2017-05-05-2100"),
+                        new ID("20006"), new Priority("h"), new Status("undone"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                new Task(new Name("go to bed"), new Description("time to sleep"), new StartTime("2017-03-01-2200"), new EndTime("2017-07-07-2100"),
+                        new ID("20007"), new Priority("l"), new Status("undone"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList()),
+                new Task(new Name("Sleeping"), new Description("zzzzz...."), new StartTime("2017-03-03-1500"), new EndTime("2017-05-05-2100"),
+                        new ID("20008"), new Priority("m"), new Status("undone"), new RecurPeriod(""), new RecurEndDate(""), new UniqueTagList())
+
             };
             //CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {
-            assert false;
+
             // not possible
             return null;
         }
@@ -110,8 +127,8 @@ public class TestUtil {
         }
     }
 
-    public static List<Task> generateSamplePersonData() {
-        return Arrays.asList(SAMPLE_PERSON_DATA);
+    public static List<Task> generateSampleTaskData() {
+        return Arrays.asList(SAMPLE_TASK_DATA);
     }
 
     /**
@@ -195,7 +212,7 @@ public class TestUtil {
     }
 
     public static void setFinalStatic(Field field, Object newValue) throws NoSuchFieldException,
-                                                                           IllegalAccessException {
+        IllegalAccessException {
         field.setAccessible(true);
         // remove final modifier from field
         Field modifiersField = Field.class.getDeclaredField("modifiers");
@@ -283,10 +300,10 @@ public class TestUtil {
     }
 
     /**
-     * Removes a subset from the list of persons.
-     * @param tasks The list of persons
-     * @param tasksToRemove The subset of persons.
-     * @return The modified persons after removal of the subset from persons.
+     * Removes a subset from the list of tasks.
+     * @param tasks The list of tasks
+     * @param tasksToRemove The subset of tasks.
+     * @return The modified tasks after removal of the subset from tasks.
      */
     public static TestTask[] removeTasksFromList(final TestTask[] tasks, TestTask... tasksToRemove) {
         List<TestTask> listOfTasks = asList(tasks);
@@ -296,7 +313,7 @@ public class TestUtil {
 
 
     /**
-     * Returns a copy of the list with the person at specified index removed.
+     * Returns a copy of the list with the task at specified index removed.
      * @param list original list to copy from
      * @param targetIndexInOneIndexedFormat e.g. index 1 if the first element is to be removed
      */
@@ -304,6 +321,54 @@ public class TestUtil {
         return removeTasksFromList(list, list[targetIndexInOneIndexedFormat - 1]);
     }
 
+    /**
+     * Returns a copy of the list with the task at specified index archived.
+     * @param list
+     *            original list to copy from
+     * @param targetIndexInOneIndexedFormat
+     *            e.g. index 1 if the first element is to be archived
+     */
+    // @@author A0140072X
+    public static TestTask[] archiveTaskFromList(final TestTask[] list, int targetIndexInOneIndexedFormat) {
+        List<TestTask> listOfTasks = asList(list);
+        try {
+            listOfTasks.get(targetIndexInOneIndexedFormat - 1).setStatus(new Status("done"));
+        } catch (IllegalValueException e) {
+            Logger logger = LogsCenter.getLogger(TestUtil.class);
+            logger.info("Illegal value at archiveTaskFromList");
+        }
+        sortByEndTime(listOfTasks);
+        return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
+    }
+
+    // @@author A0138998B
+    public static TestTask[] sortByEndTime(final TestTask[] list) {
+        List<TestTask> listOfTasks = asList(list);
+        sortByEndTime(listOfTasks);
+        return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
+    }
+
+    public static void sortByEndTime(List<TestTask> list) {
+        Collections.sort(list, new Comparator<TestTask>() {
+            public int compare(TestTask task1, TestTask task2) {
+
+                if (task1.getDueDate() != null && task2.getDueDate() != null) {
+                    return task1.getDueDate().compareTo(task2.getDueDate());
+                }
+                else if (task1.getDueDate() == null && task2.getDueDate() != null) {
+                    return 1;
+                }
+                else if (task1.getDueDate() != null && task2.getDueDate() == null) {
+                    return -1;
+                }
+                else if (task1.getDueDate() == null && task2.getDueDate() == null) {
+                    return 0;
+                }
+                return 0;
+            }
+            });
+    }
+    //@@author
     /**
      * Replaces tasks[i] with a task.
      * @param tasks The array of tasks.
@@ -328,6 +393,16 @@ public class TestUtil {
         return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
     }
 
+    // @@author A0140072X
+    public static TestTask[] addTasksToListandSort(final TestTask[] tasks, TestTask... tasksToAdd) {
+        List<TestTask> listOfTasks = asList(tasks);
+        listOfTasks.addAll(asList(tasksToAdd));
+
+        sortByEndTime(listOfTasks);
+
+        return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
+    }
+
     private static <T> List<T> asList(T[] objs) {
         List<T> list = new ArrayList<>();
         for (T obj : objs) {
@@ -336,7 +411,7 @@ public class TestUtil {
         return list;
     }
 
-    public static boolean compareCardAndPerson(PersonCardHandle card, ReadOnlyTask task) {
+    public static boolean compareCardAndTask(TaskCardHandle card, ReadOnlyTask task) {
         return card.isSameTask(task);
     }
 

@@ -170,9 +170,25 @@ _Figure 2.3.1 : Structure of the Logic Component_
 **API** : [`Logic.java`](../src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `Parser` class to parse the user command.
-2. This results in a `Command` object which is executed by the `LogicManager`.
-3. The command execution can affect the `Model` (e.g. adding a task or changing the list of Tasks to be displayed and/or raise events.
+2. The 'Parser' class will take in the command type of the user input and return either return an appropriate specific command parser such as AddCommandParser to further parse the user input or the command directly.
+3. Both result in a `Command` object which is executed then by the `LogicManager`.
+4. The command execution can affect the `Model` (e.g. adding a task or changing the list of Tasks to be displayed and/or raise events.
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+
+***Comparison to alternative possible implementation***
+
+<img src="images/AlternativeLogicClassDiagram.png" width="800"><br>
+
+By using a separate Parser class from Parsers specific to each command, our groups current implemented method improves the readability of the code. User would be able to read code specific to each command, allowing him to perform debugging and edits more easily. 
+
+Cohesion is also increased through the addition of seperate parsers for each command. For example, an AddCommandParser would be solely responsible for the parsing and constructing of a new AddCommand while a EditCommandParser would be solely responsible for the parsing and constructing of a new EditCommand. The implementation of these two commands are inherently different which we can see from how EditCommandParsers requires the implementation of an additional class EditTaskDescriptor. This was to accomodate the possibility where users need not enter all the details of the task but only the fields they wish to edit. 
+
+Because of these reasons, the implementation of separate command parsers helps to improve cohesion within the logic object where the alternative design would result in a single parser having to accomodate parsing and constructing of various different types of commands.
+
+Lastly, this implementation reduces the amount of coupling within the logic class. Where trickle down effects of the way the user might give input results in less changes to the overall code. In the case of the possible implementation of a GUI with buttons for user interaction with the logic interface, the parser object could be the class that protects and passes this information down in a suitable form for command parsers or commands to continue working. 
+
+As such, our group believes that this current implementation of the logic class serves many benefits to increase readability and cohesion while reducing coupling.
+
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")`
  API call.<br>
@@ -346,36 +362,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (un
 
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
-`* * *` | user | tasks/events that may or may not have deadlines/dates | so that i can keep track of what i need to do
+`* * *` | user | add tasks/events that may or may not have deadlines/dates | so that i can keep track of what i need to do
 `* * *` | user | delete tasks/events| get rid of tasks that need not be done anymore 
 `* * *` | user | reschedule a task/event | accommodate changes in my schedule 
 `* * *` | user | mark a task/event as done | so that i can reduce clutter in my todo list
-`* * *` | user | add tasks/events that have multiple dates/times | accomodate events that span over multiple days
-`* * *` | user | have a scheduler that automatically syncs my schedulers | so that i can reduce clutter in my todo list
 `* * *` | user | be given confirmation whether i enter a command | so that i know when the command has been executed
 `* * *` | user | edit the task/event's description' and name | so that i can accomodate any changes
 `* * *` | user | view my to-do list of undone tasks with and sorted by deadlines | so that I can find out what I have to do
 `* * *` | new user | view more information about a particular command | so that i can learn how to use the task manager easily.	
 `* *` | user | tag my tasks | so that I can easily categorise my tasks
 `* *` | user | undo my last action | so that i can rectify my mistakes quickly
-`* *` | user | add reminder alarms to tasks | to prompt follow up action	
-`* *` | user | get prompted on yesterday’s tasks that have yet to be completed | so that I can reschedule the task or flag as cannot be done. 
+`* *` | user | be able to see tasks that have yet to be completed | so that I can reschedule the task. 
 `* *` | user | search my tasks by keyword | so that I can quickly access the desired task in mind
-`* *` | user | flag a task/events | so as to highlight the importance	
+`* *` | user | flag and give priority to task/events | so as to highlight the importance	
 `* *` | user | easily see an overview of my schedule and todo list | so that i can keep track of things that need to be done	
 `* *` | user | access a list of previously completed tasks | so as to keep track of things i have done	
 `* *` | user | search my tasks according to categories | so that I can easily visualize my tasks in a particular category
 `* *` | user | add tasks that repeat according to a stipulated number of days | So that i can reduce the amount of redundant work i need to do
-`* *` | user | change the folder to store my data | so that I can easily copy my data/program and work in another computer.	
-`* *` | user | to manually sync my scheduler | so that I can back it up on my cloud/local folder
-`* *` | advanced user | use shorter command words | so as to save time typing	
-`* *` | user | stipulate ranges of time for my tasks to be slotted into | so that i neednt consider my schedule directly	
-`*` | user | have a shortcut key | to quickly access the program.	
-`*` | user | be prompted for my password to enter the Task Manager |  prevent unauthorised users from using my Task Manager	
-`*` | user | place a tasks that was previously marked as done back into my todo list | so that i can save time	
-`*` | user | change the text size in the GUI | in case i have bad eyesight	
-`*` | user | be notified of all the commands i have given when i exit the program | to keep track of what i did	
-`*` | user | use the Task Manager across time zones | so that i can travel while using the Task Manager	
+`* *` | user | change the folder to store my data | so that I can easily copy my data/program and work in another computer.		
+`*` | user | have a shortcut key | to quickly access the program.		
+
 
 ## Appendix B : Use Cases
 
@@ -398,6 +404,11 @@ Priority | As a ... | I want to ... | So that I can...
 > 1a1. TaskManager feedbacks that the format is wrong and shows an example of the right format
 > Use case ends
 
+1b. Task already exists in the TaskManager
+
+> 1b1. TaskManager feedbacks that the task already exists
+> Use case ends
+
 #### Use case: UC02 - Delete task
 
 **MSS**
@@ -413,7 +424,7 @@ Priority | As a ... | I want to ... | So that I can...
 
 2a. The given index is invalid
 
-> 2a1. AddressBook feedbacks that the index is invalid 
+> 2a1. TaskManager feedbacks that the index is invalid 
 > Use case resumes at step 2
 
 #### Use case: UC03 - Find Task by keyword
@@ -477,7 +488,7 @@ Priority | As a ... | I want to ... | So that I can...
 
 2a. The given index is invalid
 
-> 2a1. AddressBook feedbacks that the index is invalid 
+> 2a1. TaskManager feedbacks that the index is invalid 
 > Use case resumes at step 2
 
 2b. The user gives index but no other input
@@ -488,6 +499,11 @@ Priority | As a ... | I want to ... | So that I can...
 2c. The user enters input that is invalid (i.e. edit start time when it is a task)
 
 > 2c1. TaskManager feedbacks that the input is invalid
+> Use case resumes at step 2
+
+2d. The user enters input that edits a task to be identical to an existing task
+
+> 2d1. TaskManager feedbacks that the input is invalid
 > Use case resumes at step 2
 
 #### Use case: UC07 - Mark task as done
@@ -504,8 +520,39 @@ Priority | As a ... | I want to ... | So that I can...
 
 2a. The given index is invalid
 
-> 2a1. AddressBook shows an error message 
+> 2a1. TaskManager shows an error message 
 > Use case resumes at step 2
+
+#### Use case: UC08 - Sort Task
+
+**MSS**
+
+1. User requests to list tasks (UC04) or search tasks by keyword (UC03)
+2. User requests to sort tasks in the list according to a stipulated parameter
+3. Taskmanager executes the command and returns a confirmation message
+4. Use case ends.
+
+**Extensions**
+
+2a. The given parameter is invalid
+
+> 2a1. TaskManager shows an error message 
+> Use case resumes at step 2
+
+#### Use case: UC08 - Toggle Task
+
+**MSS**
+
+1. User requests to toggle tasks
+2. Taskmanager executes the command and returns a confirmation message that varies, depending on current state
+3. Use case ends.
+
+**Extensions**
+
+2a. The given state does not allow for toggling
+
+> 2a1. TaskManager shows an error message 
+> Use case ends
 
 ## Appendix C : Non Functional Requirements
 
@@ -513,8 +560,7 @@ Priority | As a ... | I want to ... | So that I can...
 2. Should be able to hold up to 2000 tasks without a noticeable sluggishness in performance for typical usage.
 3. A user should be able to complete certain action in less than 3 step.
 4. A user should be able to search for task/events within 3seconds.
-5. Should automatically sync with online cloud when internet connection is available
-6. Should automatically save its data locally after every edit
+5. Should automatically save its data locally after every edit
 
 ## Appendix D : Glossary
 
@@ -522,10 +568,10 @@ Priority | As a ... | I want to ... | So that I can...
 
 > Windows, Linux, Unix, OS-X
 
-#####NLP: 
+##### NLP: 
 	Natural Language Processing
 
-#####Task:
+##### Task:
 	Event: Tasks that has both start time and end time
 	Tasks: Tasks that has only end time
 	Floating Tasks: Tasks that has no start time or end time

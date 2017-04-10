@@ -21,6 +21,7 @@ By : `Team SE-EDU`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2016`  &nbsp;&nbsp;&nbs
 3. Double-click the file to start the app. The GUI should appear in a few seconds.
 
    > <img src="images/GUI.PNG" width="600">
+   > <img src="images/UI_feature.PNG" width="600">
 
 
 4. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br>
@@ -68,13 +69,17 @@ Format: `add TASK_NAME [s/STARTTIME] [e/ENDTIME] [d/DESCRIPTION] [r/REPEATPERIOD
 > Tasks flagged as recurring can have an end date to stop the recurring task
 > User may use FROM and TO instead of s/ and e/, also may use BY instead of e/
 
+   > <img src="images/Add.PNG" width="600">
+   > <img src="images/afterAdd.PNG" width="600">
 
 Examples:
-* add Do laundry e/2017-3-1-2359 
-* add Study for midterms e/Monday 1000 d/CS2103 at lt7 
-* add Buy milk for baby BY tuesday 0800 d/yaas milk t/family
-* add Create user story e/2017-4-1-1300 t/work t/computing
-* add Meeting FROM monday 0800 TO monday 1100 t/work r/weekly  
+
+* `add Do laundry e/2017-3-1-2359 `
+* `add Study for midterms e/Monday 1000 d/CS2103 at lt7 `
+* `add Buy milk for baby BY tuesday 0800 d/yaas milk t/family`
+* `add Create user story e/2017-4-1-1300 t/work t/computing` 
+* `add Meeting FROM monday 0800 TO monday 1100 t/work r/weekly`
+
 
 
 
@@ -92,6 +97,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 > * Only names, description and tags are searched.
 > * Tasks matching at least one keyword will be returned (i.e. OR search). e.g. CS2103 final exams will match finals bo rawr
 
+   > <img src="images/Findkeyword&tag.PNG" width="600">
+
 Examples:
 * find Milk
 * Returns a numbered list of undone tasks/events whose names/description/tags contain buy Milk but not milk
@@ -104,12 +111,18 @@ Finds tasks/events that matches a priority level.<br>
 Format: `find #KEYWORD`
 
 > * The search is case sensitive. e.g. h will not match H
-> * Only priority is searched
-> * Tasks matching the given priority will be returned.
+> * Only priority or status is searched
+> * Tasks matching the given priority or status will be returned.
+
+   > <img src="images/FindPriority.PNG" width="600">
 
 Examples:
 * find #h
-* Returns a numbered list of tasks/events that are labelled as high priority
+
+> * Returns a numbered list of tasks/events that are labelled as high priority
+* find #done
+> * Returns a numbered list of tasks/events that are archived
+
 
 **(Usage 3)**<br>
 Finds all archived tasks/events/floating task whose name/description/tags match a given keyword.<br>
@@ -119,6 +132,8 @@ Format: `find @KEYWORD`
 > * The search is case sensitive. e.g homework will not match Homework
 > * Only names/descriptions/tags will be searched
 > * Task matching the keyword given will be returned.
+
+   > <img src="images/Findarchive.PNG" width="600">
 
 Examples:
 * find @Milk
@@ -145,6 +160,8 @@ Format: `archived`
 > * Tasks/events is arranged by deadline, with the most recent dateline first
 > * Only the past one month worth of event/task can be done
 
+   > <img src="images/Archived.PNG" width="600">
+
 Examples:
 
 * `archived`<br>
@@ -166,6 +183,12 @@ Format: `edit INDEX [n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]
 > * When editing tags, the existing tags of the task/event will be removed i.e adding of tags is not cumulative.
 > * You can remove all the task's tags by typing t/ without specifying any tags after it.
 
+`Before`<br>
+   > <img src="images/Edit.PNG" width="600">
+
+`After`<br>
+  > <img src="images/Editafter.PNG" width="600">
+
 Examples:
 
 
@@ -184,6 +207,12 @@ Format: `sort PARAMETER`
 > * Sorting by duedate will sort all tasks in the Task Manager by EndTimes of Tasks or Events. Floating Tasks will be sorted to the back
 > * Sorting by priority will sort all tasks with those with high priority at the top and low priority at the bottom
 
+`Sort by Due Date`<br>
+  > <img src="images/Sortduedate.PNG" width="600">
+  
+`Sort by priority`<br>
+  > <img src="images/SortPriority.PNG" width="600">
+
 * `list`<br>
   `sort duedate`<br>
   Sorts all tasks in the list by duedate
@@ -191,7 +220,7 @@ Format: `sort PARAMETER`
   `sort priority`<br>
   Sorts all tasks with names/descriptions/tags containing homework by priority.
 
-### 2.7.  Deleting task(s): `delete`
+### 2.8  Deleting task(s): `delete`
 
 
 Deletes the specified task from the task manager.<br>
@@ -200,6 +229,8 @@ Format: `delete INDEX`
 > * Deletes the task at the specified INDEX. <br>
 > * The index refers to the index number shown in the most recent listing.<br>
 > * The index **must be a positive integer** 1, 2, 3, ...<br>
+
+  > <img src="images/Delete.PNG" width="600">
 
 Examples:
 
@@ -210,7 +241,7 @@ Examples:
   `delete 1`<br>
   Deletes the 1st task in the results of the `find` command.
 
-### 2.8. Mark task(s) as done : `archive`
+### 2.9 Mark task(s) as done : `archive`
 
 Mark the specified task(s) as done.<br>
 Format: `archive INDEX`
@@ -234,30 +265,98 @@ Format: `select INDEX`
 > * The index refers to the index number shown in the most recent listing.
 > * The index must be a positive integer 1, 2, 3, ...
 
+  > <img src="images/Archive.PNG" width="600">
+
 Examples:
 
 * `list`<br>
-   `select 2`<br>
-   Select the 2nd task in the list.
 
-### 2.10. Clearing all entries : `clear`
+   `archive 2,3`<br>
+   Mark the 2nd and 3rd task in the list as done.
+   
+### 2.10.1 Save Task Manager Manually: 
+
+Save the current instance of Task Manager to a File.<br>
+HotKey: `ALT + S Key`
+
+  > <img src="images/SavePopup.PNG" width="600">
+  
+  > <img src="images/SaveLoadGUI.PNG" width="600">
+
+> * Choose a File & Location to save the Task List. 
+> * Any further changes in this session will be saved to the new File.
+> * Task Manager will use the most recent File that was used upon startup
+> * Alternatively User can navigate to File > Save File from the GUI.
+
+### 2.10.2 Load Task Manager Manually: 
+
+Load a instance of Task Manager from a File.<br>
+HotKey: `ALT + L Key`
+
+  > <img src="images/LoadPopup.PNG" width="600">
+
+> * Choose a File to Load. 
+> * Any further changes in this session will be saved to the new File.
+> * Task Manager will use the most recent File that was used upon startup
+> * Alternatively User can navigate to File > Load File from the GUI.
+
+### 2.11 Quick Launch HotKey: 
+
+Show/Hide the Task Manager to facilitate multi-tasking.<br>
+HotKey: `CTRL + SPACE Key`
+
+> * Press the HotKey at anytime to Show or Hide the Task Manager. 
+> * Window/Mac/Linux Supported
+
+### 2.12 Toggle between different tasks: `toggle`
+
+Toggles the view between the 4 different kinds of screen.<br>
+Format: `toggle`<br>
+Hotkey: `TAB Key`
+
+`Toggle All Task`<br>
+  > <img src="images/ToggleAll.PNG" width="600">
+  
+`Toggle Event`<br>
+  > <img src="images/ToggleEvent.PNG" width="600">
+  
+`Toggle Task`<br>
+  > <img src="images/ToggleTask.PNG" width="600">
+  
+`Toggle Floating Task`<br>
+  > <img src="images/ToggleFloating.PNG" width="600">
+
+### 2.13 Clearing all entries : `clear`
+
 
 Clears all entries from the task manager.<br>
 Format: `clear`
 
-### 2.11. Undo the last command : `undo`
+### 2.14 Undo the last command : `undo`
+
 
 Undo the last add/edit/archive/undo command input by the user.<br>
 Format: `undo`
 
-### 2.12. Exiting the program : `exit`
+
+`Before Undo`<br>
+  > <img src="images/Undo.PNG" width="600">
+
+`After Undo`<br>
+  > <img src="images/afterUndo.PNG" width="600">
+
+
+### 2.15 Exiting the program : `exit`
+
 
 Exits the program.<br>
 Format: `exit`
 
-### 2.13. Saving the data
 
-Address book data are saved in the hard disk automatically after any command that changes the data.<br>
+### 2.16 Saving the data
+
+
+Task Manager data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.
 
 ## 3. FAQ
@@ -268,35 +367,44 @@ There is no need to save manually.
 
 ## 4. Command Summary
 
-* **Add :** <br>
-> * **Task :**<br>
-
-> *`add TASK_NAME [d/DEADLINE] [d/DESCRIPTION] [t/TAG]...` <br>
-> * **Event :**<br>
-> *`add EVENT_NAME s/START_TIME e/END_TIME [d/DESCRIPTION] [t/TAG]...` <br>
-
+* **Add Task : `add TASK_NAME [s/STARTTIME] [e/ENDTIME] [d/DESCRIPTION] [r/REPEATPERIOD] [l/RECURENDDATE] [t/TAG] ...`** <br>
+> *  e.g. `add Study for midterms s/Saturday e/Sunday d/CS2103 Chapter 1 to 10` <br>
+  
 
 * **Clear** : `clear`<br>
 
+
 * **Delete** : `delete INDEX [INDEX]...` <br>
-   e.g. `delete 3`
+> * e.g. `delete 3`
 
 * **Find** : `find KEYWORD [MORE_KEYWORDS]` <br>
-  e.g. `find milk`
+> * e.g. `find milk`<br>
+> * e.g. `find #h` (priority level)<br>
+> * e.g. `find #done` (status)<br>
+> * e.g. `find @milk` (if the task has been archived)
 
 * **List** : `list` <br>
-  e.g. `list`
+> * e.g. `list`
 
-* **List** : `undo` <br>
-  e.g. `undo`
+* **Undo** : `undo` <br>
+> * e.g. `undo`
+
+* **Sort** : `sort KEYWORD` <br>
+> * e.g. `sort duedate`
  
 * **Archive** : `archive` <br>
-  e.g. `archive 2`
+> * e.g. `archive 2`
 
 * **Archived** : `archived` <br>
-  e.g. `archived`
+> * e.g. `archived`
+  
+* **Save/Load** : `ALT + S / ALT + L` <br>
+  
+* **Quick Launch** : `CTRL + SPACE` <br>
 
-* **edit** : `edit TASK_ID[n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]...` <br>
+* **Toggle** : `toggle` or `TAB` <br>
+
+* **Edit** : `edit TASK_ID[n/NAME] [s/START_TIME] [e/END_TIME] [d/DESCRIPTION] [t/TAG]...` <br>
 
 * **Help** : `help` <br>
  

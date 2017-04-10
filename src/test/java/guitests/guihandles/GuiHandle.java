@@ -11,7 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import seedu.address.TestApp;
-import seedu.address.commons.core.LogsCenter;
+import seedu.taskManager.commons.core.LogsCenter;
 
 /**
  * Base class for all GUI Handles used in testing.
@@ -20,7 +20,8 @@ public class GuiHandle {
     protected final GuiRobot guiRobot;
     protected final Stage primaryStage;
     /**
-     * An optional stage that exists in the App other than the primaryStage, could be a alert dialog, popup window, etc.
+     * An optional stage that exists in the App other than the primaryStage,
+          could be a alert dialog, popup window, etc.
      */
     protected Optional<Stage> intermediateStage = Optional.empty();
     protected final String stageTitle;
@@ -63,6 +64,7 @@ public class GuiHandle {
         guiRobot.clickOn(textFieldId);
         TextField textField = getNode(textFieldId);
         textField.setText(newText);
+        //guiRobot.write(textFieldId).sleep(500);
         guiRobot.sleep(500); // so that the texts stays visible on the GUI for a short period
     }
 

@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taskmanager>
+    <tasks>
+        <id>36</id>
+        <name>2103 lecture</name>
+        <description>LT27</description>
+        <starttime>2017-03-31-1600</starttime>
+        <endtime>2017-03-31-1800</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <tagged>school</tagged>
+        <recurEndDate>2017-06-20-1200</recurEndDate>
+        <recurPeriod>7</recurPeriod>
+    </tasks>
+    <tasks>
+        <id>2</id>
+        <name>study for cs2103</name>
+        <description>exam</description>
+        <starttime></starttime>
+        <endtime>2017-04-04-1557</endtime>
+        <priority>h</priority>
+        <status>undone</status>
+        <tagged>school</tagged>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>35</id>
+        <name>buy cap</name>
+        <description>halyang</description>
+        <starttime>2017-04-04-1400</starttime>
+        <endtime>2017-04-04-1600</endtime>
+        <priority>m</priority>
+        <status>done</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>3</id>
+        <name>have family dinner</name>
+        <description>Granny birthday</description>
+        <starttime>2017-04-04-1800</starttime>
+        <endtime>2017-04-04-2000</endtime>
+        <priority>h</priority>
+        <status>done</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>13</id>
+        <name>demo for CS2103</name>
+        <description></description>
+        <starttime>2017-04-06-1600</starttime>
+        <endtime>2017-04-06-1700</endtime>
+        <priority>h</priority>
+        <status>done</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>1</id>
+        <name>buy milk</name>
+        <description>Giant</description>
+        <starttime>2017-04-04-1556</starttime>
+        <endtime>2017-04-07-1556</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate>2017-10-20-1556</recurEndDate>
+        <recurPeriod>14</recurPeriod>
+    </tasks>
+    <tasks>
+        <id>1</id>
+        <name>yoga</name>
+        <description>clear mind and relax</description>
+        <starttime>2017-04-04-0107</starttime>
+        <endtime>2017-04-10-0109</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <tagged>leisure</tagged>
+        <recurEndDate>2017-10-10-0109</recurEndDate>
+        <recurPeriod>7</recurPeriod>
+    </tasks>
+    <tasks>
+        <id>27</id>
+        <name>top up ezlink card</name>
+        <description>transport fee</description>
+        <starttime></starttime>
+        <endtime>2017-04-10-1602</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>1</id>
+        <name>Meeting</name>
+        <description></description>
+        <starttime>2017-04-17-0800</starttime>
+        <endtime>2017-04-17-1100</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <tagged>work</tagged>
+        <recurEndDate></recurEndDate>
+        <recurPeriod>weekly</recurPeriod>
+    </tasks>
+    <tasks>
+        <id>18</id>
+        <name>buy dog food</name>
+        <description>for kiki</description>
+        <starttime></starttime>
+        <endtime>2017-04-17-1600</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>24</id>
+        <name>buy school textbook</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime>2017-04-17-1602</endtime>
+        <priority>h</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>26</id>
+        <name>buy new water bottle</name>
+        <description>aluminium</description>
+        <starttime></starttime>
+        <endtime>2017-04-17-1602</endtime>
+        <priority>h</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>22</id>
+        <name>buy school bag</name>
+        <description>korean style</description>
+        <starttime></starttime>
+        <endtime>2017-04-17-1602</endtime>
+        <priority>m</priority>
+        <status>done</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>25</id>
+        <name>dry clean school sweater</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime>2017-04-17-1602</endtime>
+        <priority>m</priority>
+        <status>done</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>14</id>
+        <name>eat lunch</name>
+        <description></description>
+        <starttime>2017-04-20-1200</starttime>
+        <endtime>2017-04-20-1300</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate>2017-12-20-1600</recurEndDate>
+        <recurPeriod>7</recurPeriod>
+    </tasks>
+    <tasks>
+        <id>43</id>
+        <name>demo task manager</name>
+        <description>for 2103</description>
+        <starttime>2017-04-20-1600</starttime>
+        <endtime>2017-04-20-1700</endtime>
+        <priority>h</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>8</id>
+        <name>meet prof for consult</name>
+        <description>2106 operating system</description>
+        <starttime>2017-04-20-1500</starttime>
+        <endtime>2017-04-20-1700</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>6</id>
+        <name>buy chiwawa</name>
+        <description>pasir ris</description>
+        <starttime></starttime>
+        <endtime>2017-04-23-0055</endtime>
+        <priority>l</priority>
+        <status>undone</status>
+        <tagged>pet</tagged>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>16</id>
+        <name>buy breakfast</name>
+        <description>mac big breakfast</description>
+        <starttime></starttime>
+        <endtime>2017-04-25-1600</endtime>
+        <priority>l</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>32</id>
+        <name>assemble puzzle</name>
+        <description>bought online</description>
+        <starttime></starttime>
+        <endtime>2017-04-26-1600</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>23</id>
+        <name>clean school shoes</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime>2017-04-28-1602</endtime>
+        <priority>m</priority>
+        <status>done</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>30</id>
+        <name>upgrade ram for desktop</name>
+        <description>4gb to 12gb</description>
+        <starttime></starttime>
+        <endtime>2017-04-30-1600</endtime>
+        <priority>h</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>11</id>
+        <name>buy macbook</name>
+        <description>replace zenbook</description>
+        <starttime></starttime>
+        <endtime>2017-04-30-1600</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>31</id>
+        <name>fix roller blinder</name>
+        <description>get replacement from hardwareshop</description>
+        <starttime></starttime>
+        <endtime>2017-05-01-1600</endtime>
+        <priority>h</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>28</id>
+        <name>do charity</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime>2017-05-24-1603</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate>2017-10-24-1603</recurEndDate>
+        <recurPeriod>7</recurPeriod>
+    </tasks>
+    <tasks>
+        <id>34</id>
+        <name>buy milo</name>
+        <description>ntuc</description>
+        <starttime></starttime>
+        <endtime>2017-05-30-1630</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>29</id>
+        <name>Have family dinner From today 1900</name>
+        <description>at home</description>
+        <starttime>2017-05-30-1900</starttime>
+        <endtime>2017-05-30-2000</endtime>
+        <priority>h</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>10</id>
+        <name>Hang out with friends</name>
+        <description>Bennett Ed and Kaili at nus</description>
+        <starttime>2017-06-25-1900</starttime>
+        <endtime>2017-06-25-2359</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <tagged>leisure</tagged>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>7</id>
+        <name>buy Ikea chair</name>
+        <description>IKEA TAMPINES</description>
+        <starttime></starttime>
+        <endtime>2017-08-08-1600</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>15</id>
+        <name>Celebrate NDP</name>
+        <description>Singapore birthday</description>
+        <starttime>2017-08-09-1200</starttime>
+        <endtime>2017-08-09-2300</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>4</id>
+        <name>adopt a dog</name>
+        <description>Shiba inu</description>
+        <starttime></starttime>
+        <endtime>2017-10-04-1200</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>21</id>
+        <name>get fit and diet</name>
+        <description>exercise</description>
+        <starttime></starttime>
+        <endtime>2017-10-15-1600</endtime>
+        <priority>h</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>5</id>
+        <name>celebrate birthday</name>
+        <description></description>
+        <starttime>2017-10-15-0100</starttime>
+        <endtime>2017-10-15-2300</endtime>
+        <priority>h</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>19</id>
+        <name>learn guitar</name>
+        <description>yamaha lesson maybe</description>
+        <starttime></starttime>
+        <endtime>2017-12-12-0100</endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>33</id>
+        <name>get a girlfriend</name>
+        <description>rich and pretty</description>
+        <starttime></starttime>
+        <endtime>2017-12-25-1600</endtime>
+        <priority>h</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>2</id>
+        <name>learn to cook</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>h</priority>
+        <status>done</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>17</id>
+        <name>buy blanket</name>
+        <description>egyptian cotton</description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>20</id>
+        <name>buy sunglasses</name>
+        <description>rayban</description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>1</id>
+        <name>math homework</name>
+        <description>burn it when done</description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>1</id>
+        <name>schoolwork</name>
+        <description>neverending</description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <tagged>school</tagged>
+        <recurEndDate>2017-12-25-1600</recurEndDate>
+        <recurPeriod>14</recurPeriod>
+    </tasks>
+    <tasks>
+        <id>37</id>
+        <name>turn off stove</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>2</id>
+        <name>learn yoyo trick</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>done</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>41</id>
+        <name>go for cs2103 tutorial</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>42</id>
+        <name>demo task manager</name>
+        <description>cs2103</description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>m</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>39</id>
+        <name>play some ps4</name>
+        <description>one piece</description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>l</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>9</id>
+        <name>sleep 3 hours every night</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>l</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tasks>
+        <id>38</id>
+        <name>turn up music</name>
+        <description></description>
+        <starttime></starttime>
+        <endtime></endtime>
+        <priority>l</priority>
+        <status>undone</status>
+        <recurEndDate></recurEndDate>
+        <recurPeriod></recurPeriod>
+    </tasks>
+    <tags>grocery</tags>
+    <tags>cs2103</tags>
+    <tags>hello</tags>
+    <tags>coding</tags>
+    <tags>work</tags>
+    <tags>schoolworrk</tags>
+    <tags>school</tags>
+    <tags>leisure</tags>
+    <tags>pet</tags>
+</taskmanager>

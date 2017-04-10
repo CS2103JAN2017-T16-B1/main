@@ -13,10 +13,12 @@ We are a team based in the [School of Computing, National University of Singapor
 **Aspects/tools in charge of**: Logic, Deliverables and deadlines <br>
 
 **Features implemented**: 
-* [Sort command](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#27--sorting-tasksevents--sort) 
+
+* [Edit command](https://github.com/CS2103JAN2017-T16-B1/main/blob/v0.5/docs/UserGuide.md#26-editing-a-taskevent--edit)
+* [Sort command](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#27--sorting-tasksevents--sort)
 * [Date parsing](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#22-adding-a-taskevent--add)
 
-**Code written:** [[functional code](../collated/main/A0138998B.md)]
+**Code written:** [[functional code](../collated/main/A0138998B.md)][[test code](../collated/test/A0138998B.md)][[unused code](../collated/unused/A0138998B.md)]
 
 **Other major contribution**:
 * Contributed to Junit testing
@@ -32,7 +34,12 @@ We are a team based in the [School of Computing, National University of Singapor
 **Aspects/tools in charge of**: Testing, Code Quality,
 
 **Features implemented**: Recur task, Delete command, Select command
+* [Recur task](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#22-adding-a-taskevent--add)
+* [Delete command](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#27--deleting-tasks-delete)
+* [Select command](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#29-selecting-tasks--select)
 
+
+**Code written:** [[functional code](../collated/main/A0139375W.md)][[test code](../collated/test/A0139375W.md)]
 
 **Other major contribution**:
 
@@ -41,31 +48,38 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/alwinsonauyong.jpg" width="150"><br>
 
-**Components in charge of**: UI
+**Components in charge of**: Storage 
 
-**Aspects/tools in charge of**: GUI, GUI Testing,
+**Aspects/tools in charge of**: Implementation of Backend
 
-**Features implemented**: 
+**Features implemented**:
+* [Add command]
+* [Undo command]
+* [Archive/Archived command]
+* [Save/Load]
+* [Global Quick Launch key]
 
+**Code written:** [[functional code](../collated/main/A0140072X.md)]
 
 **Other major contribution**:
+
 
 
 #### [EDWARD TAN WEI CHONG](https://github.com/EdCS2103) <br>
 
 <img src="images/EdCS2103.jpg" width="150"><br>
 
-**Components in charge of**: [UI](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/DeveloperGuide.md#UI-component)
+**Components in charge of**: [UI](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/DeveloperGuide.md#22-ui-component)
 
-**Aspects/tools in charge of**: Scheduling and tracking, Documentation,
+**Aspects/tools in charge of**: Scheduling and tracking, Documentation, GUI
 
 **Features implemented**: 
-* find task(s)
-* toggle function
+* [find task(s)](https://github.com/CS2103JAN2017-T16-B1/main/blob/master/docs/UserGuide.md#23-finding-tasksevents--find)
+* [toggle function](https://github.com/CS2103JAN2017-T16-B1/main/blob/v0.5/docs/UserGuide.md#212-toggle-between-different-tasks-toggle)
 * auto focus with keywords
 * UI design
 
-**Code written:** [[functional code](../collated/main/A0139509X.md)]
+**Code written:** [[functional code](../collated/main/A0139509X.md)][[test code](../collated/test/A0139509X.md)]
 
 **Other major contribution**:
 * Did up initial refactoring from AddressBook to TaskManager

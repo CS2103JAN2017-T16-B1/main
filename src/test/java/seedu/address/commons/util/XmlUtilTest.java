@@ -11,10 +11,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.address.model.TaskManager;
-import seedu.address.storage.XmlSerializableTaskManager;
-import seedu.address.testutil.TaskManagerBuilder;
 import seedu.address.testutil.TestUtil;
+import seedu.taskManager.commons.util.FileUtil;
+import seedu.taskManager.commons.util.XmlUtil;
+import seedu.taskManager.model.TaskManager;
+import seedu.taskManager.storage.XmlSerializableTaskManager;
 
 public class XmlUtilTest {
 
@@ -53,9 +54,10 @@ public class XmlUtilTest {
 
     @Test
     public void getDataFromFile_validFile_validResult() throws Exception {
-        XmlSerializableTaskManager dataFromFile = XmlUtil.getDataFromFile(VALID_FILE, XmlSerializableTaskManager.class);
-        assertEquals(5, dataFromFile.getTaskList().size());
-        assertEquals(8, dataFromFile.getTagList().size());
+        XmlSerializableTaskManager dataFromFile =
+                  XmlUtil.getDataFromFile(VALID_FILE, XmlSerializableTaskManager.class);
+        assertEquals(1, dataFromFile.getTaskList().size());
+        assertEquals(0, dataFromFile.getTagList().size());
     }
 
     @Test
@@ -81,13 +83,14 @@ public class XmlUtilTest {
         TEMP_FILE.createNewFile();
         XmlSerializableTaskManager dataToWrite = new XmlSerializableTaskManager(new TaskManager());
         XmlUtil.saveDataToFile(TEMP_FILE, dataToWrite);
-        XmlSerializableTaskManager dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE, XmlSerializableTaskManager.class);
+        XmlSerializableTaskManager dataFromFile =
+                  XmlUtil.getDataFromFile(TEMP_FILE, XmlSerializableTaskManager.class);
         assertEquals((new TaskManager(dataToWrite)).toString(), (new TaskManager(dataFromFile)).toString());
         //TODO: use equality instead of string comparisons
 
-        TaskManagerBuilder builder = new TaskManagerBuilder(new TaskManager());
-        dataToWrite = new XmlSerializableTaskManager(
-                builder.withPerson(TestUtil.generateSamplePersonData().get(0)).withTag("Friends").build());
+ //       TaskManagerBuilder builder = new TaskManagerBuilder(new TaskManager());
+ //       dataToWrite = new XmlSerializableTaskManager(
+ //               builder.withTask(TestUtil.generateSampleTaskData().get(0)).withTag("Friends").build());
 
         XmlUtil.saveDataToFile(TEMP_FILE, dataToWrite);
         dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE, XmlSerializableTaskManager.class);
