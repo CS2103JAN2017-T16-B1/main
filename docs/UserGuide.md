@@ -73,11 +73,13 @@ Format: `add TASK_NAME [s/STARTTIME] [e/ENDTIME] [d/DESCRIPTION] [r/REPEATPERIOD
    > <img src="images/afterAdd.PNG" width="600">
 
 Examples:
+
 * `add Do laundry e/2017-3-1-2359 `
 * `add Study for midterms e/Monday 1000 d/CS2103 at lt7 `
 * `add Buy milk for baby BY tuesday 0800 d/yaas milk t/family`
 * `add Create user story e/2017-4-1-1300 t/work t/computing` 
 * `add Meeting FROM monday 0800 TO monday 1100 t/work r/weekly`
+
 
 
 
@@ -116,9 +118,11 @@ Format: `find #KEYWORD`
 
 Examples:
 * find #h
+
 > * Returns a numbered list of tasks/events that are labelled as high priority
 * find #done
 > * Returns a numbered list of tasks/events that are archived
+
 
 **(Usage 3)**<br>
 Finds all archived tasks/events/floating task whose name/description/tags match a given keyword.<br>
@@ -219,10 +223,10 @@ Format: `sort PARAMETER`
 ### 2.8  Deleting task(s): `delete`
 
 
-Deletes the specified task(s) from the task manager.<br>
-Format: `delete INDEX,[INDEX]...`
+Deletes the specified task from the task manager.<br>
+Format: `delete INDEX`
 
-> * Deletes the task(s) at the specified INDEX. <br>
+> * Deletes the task at the specified INDEX. <br>
 > * The index refers to the index number shown in the most recent listing.<br>
 > * The index **must be a positive integer** 1, 2, 3, ...<br>
 
@@ -231,8 +235,8 @@ Format: `delete INDEX,[INDEX]...`
 Examples:
 
 * `list`<br>
-  `delete 2,3`<br>
-  Deletes the 2nd and 3rd task in the list of task.
+  `delete 2`<br>
+  Deletes the 2nd in the list of task.
 * `find meeting` <br>
   `delete 1`<br>
   Deletes the 1st task in the results of the `find` command.
@@ -240,9 +244,24 @@ Examples:
 ### 2.9 Mark task(s) as done : `archive`
 
 Mark the specified task(s) as done.<br>
-Format: `done INDEX,[INDEX]...`
+Format: `archive INDEX`
 
-> * Mark the task(s) as done at the specified INDEX. 
+> * Mark the task as done at the specified INDEX. 
+> * The index refers to the index number shown in the most recent listing.
+> * The index must be a positive integer 1, 2, 3, ...
+
+Examples:
+
+* `list`<br>
+   `archive 2`<br>
+   Mark the 2nd in the list as done.
+
+### 2.9. Selecting Tasks : `select`
+
+Select the specified task(s) to view.<br>
+Format: `select INDEX`
+
+> * Selects the task as done at the specified INDEX. 
 > * The index refers to the index number shown in the most recent listing.
 > * The index must be a positive integer 1, 2, 3, ...
 
@@ -251,6 +270,7 @@ Format: `done INDEX,[INDEX]...`
 Examples:
 
 * `list`<br>
+
    `archive 2,3`<br>
    Mark the 2nd and 3rd task in the list as done.
    
@@ -308,13 +328,16 @@ Hotkey: `TAB Key`
 
 ### 2.13 Clearing all entries : `clear`
 
+
 Clears all entries from the task manager.<br>
 Format: `clear`
 
 ### 2.14 Undo the last command : `undo`
 
+
 Undo the last add/edit/archive/undo command input by the user.<br>
 Format: `undo`
+
 
 `Before Undo`<br>
   > <img src="images/Undo.PNG" width="600">
@@ -325,10 +348,13 @@ Format: `undo`
 
 ### 2.15 Exiting the program : `exit`
 
+
 Exits the program.<br>
 Format: `exit`
 
+
 ### 2.16 Saving the data
+
 
 Task Manager data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.
